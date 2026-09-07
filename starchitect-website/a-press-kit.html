@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARCHITECT — Press Kit</title>
+<meta name="description" content="Approved boilerplate, fact sheet, leadership bios, and brand assets for press covering STARCHITECT and HYPATIUS LLC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="sub.css">
+<style>
+  .boiler { background: var(--panel); border: 1px solid var(--hair); border-left: 3px solid var(--gold); border-radius: 8px; padding: 24px 26px; margin: 14px 0 28px; position: relative; }
+  .boiler .meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .boiler .len { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .boiler .copy { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); background: var(--void); border: 1px solid var(--hair); border-radius: 4px; padding: 6px 12px; cursor: pointer; transition: all .15s; }
+  .boiler .copy:hover { border-color: var(--gold); color: var(--gold); }
+  .boiler .copy.done { color: var(--go); border-color: var(--go); }
+  .boiler p { font-size: 16px; color: var(--bone); line-height: 1.65; }
+  .boiler p + p { margin-top: 12px; }
+  .facts { list-style: none; border: 1px solid var(--hair); border-radius: 8px; overflow: hidden; margin: 8px 0; }
+  .facts li { display: grid; grid-template-columns: 280px 1fr; gap: 24px; padding: 14px 22px; border-bottom: 1px solid var(--hair); background: var(--panel); font-size: 15px; align-items: baseline; }
+  .facts li:last-child { border-bottom: 0; }
+  .facts li:nth-child(even) { background: var(--deep-navy); }
+  .facts li b { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); }
+  .facts li span { color: var(--bone); }
+  .facts.perf li b { font-family: var(--font-display); font-size: 26px; letter-spacing: 0.03em; color: var(--gold); text-transform: none; }
+  .swatches { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 8px 0; }
+  .sw { border: 1px solid var(--hair); border-radius: 6px; overflow: hidden; }
+  .sw .chip { height: 72px; } .sw .info { padding: 12px; background: var(--panel); }
+  .sw .nm { font-size: 13px; color: var(--bone); font-weight: 600; }
+  .sw .hex { font-family: var(--font-mono); font-size: 11px; color: var(--mute-text); margin-top: 2px; }
+  .donts { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 12px; }
+  .donts li { display: flex; gap: 12px; font-size: 15px; color: var(--slate); line-height: 1.5; }
+  .donts li::before { content: "✕"; color: var(--alert); flex: none; font-family: var(--font-mono); }
+  code { font-family: var(--font-mono); font-size: 0.92em; color: var(--cyan); }
+  @media (max-width: 920px){ .swatches { grid-template-columns: 1fr 1fr; } .facts li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10</div>
+
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="home.html"><img src="assets/wordmark.png" alt="STARCHITECT"><span class="pill"><b>A HYPATIUS</b>PLATFORM</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="a-platform.html">Platform</a>
+      <a href="a-capabilities.html">Capabilities</a>
+      <a href="a-use-cases.html">Use Cases</a>
+      <a href="a-about.html">Company</a>
+      <a href="a-glossary.html" class="active">Resources</a>
+      <a href="home.html#briefing" class="btn btn-primary">Request briefing</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="sub-hero grid-bg">
+  <div class="glow"></div>
+  <div class="container">
+    <div class="crumb"><a href="home.html">STARCHITECT</a> / Resources / Press Kit</div>
+    <h1>Press kit.</h1>
+    <p class="lead">Approved boilerplate, a single-glance fact sheet, leadership bios, and brand assets for press and partners. Use the language as-is.</p>
+  </div>
+</header>
+
+<div class="anchor">
+  <div class="anchor-inner">
+    <a href="#boilerplate" data-spy>Boilerplate</a>
+    <a href="#facts" data-spy>Fact Sheet</a>
+    <a href="#leadership" data-spy>Leadership</a>
+    <a href="#brand" data-spy>Brand Assets</a>
+    <a href="#contact" data-spy>Contact</a>
+  </div>
+</div>
+
+<!-- BOILERPLATE -->
+<section id="boilerplate" class="sec-dark grid-bg">
+  <div class="container narrow">
+    <div class="sec-head reveal" style="display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:36px;">
+      <span class="eyebrow">01 · Boilerplate</span>
+      <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);">Approved language. Use as-is.</h2>
+      <p class="lead">Three variants for different lengths. Pick the version that fits the format — don't combine sentences across versions; each is internally consistent.</p>
+    </div>
+    <div class="reveal" data-delay="1">
+      <div class="boiler">
+        <div class="meta"><span class="len">One sentence · 25–30 words</span><button class="copy">Copy</button></div>
+        <p>STARCHITECT is a full-stack BMC4I platform for CJADC2 and dynamic space operations, built by HYPATIUS LLC — a non-traditional defense contractor based in Charleston, South Carolina.</p>
+      </div>
+      <div class="boiler">
+        <div class="meta"><span class="len">Short · 60–80 words</span><button class="copy">Copy</button></div>
+        <p>STARCHITECT, a HYPATIUS platform, is the operating system for space warfare and Combined Joint All-Domain Command and Control (CJADC2). It fuses aerospace-grade astrodynamics with a decentralized, survivable command-and-control mesh — engineered to fight through Denied, Degraded, Intermittent, and Limited (DDIL) network conditions while operating at machine speed. HYPATIUS LLC is a small business and non-traditional defense contractor headquartered in Charleston, South Carolina.</p>
+      </div>
+      <div class="boiler">
+        <div class="meta"><span class="len">Long · 130–150 words</span><button class="copy">Copy</button></div>
+        <p>STARCHITECT is a full-stack Battle Management Command, Control, Communications, Computers, and Intelligence (BMC4I) platform built by HYPATIUS LLC. It directly addresses four U.S. national priority programs: Combined Joint All-Domain Command and Control (CJADC2), BMC4I modernization, multi-domain wargaming, and the Golden Dome homeland missile defense initiative.</p>
+        <p>The platform combines aerospace-grade astrodynamics — based on the open-source Orekit and poliastro libraries — with a decentralized Kubernetes (K3s) and NATS messaging mesh that survives kinetic, cyber, and network attack. STARCHITECT's CJADC2 MCP Server provides AI-accelerated decision support with sub-500ms multi-domain correlation, while its five-tier PACE architecture ensures mission continuity through progressive infrastructure degradation.</p>
+        <p>HYPATIUS LLC is a small business and non-traditional defense contractor headquartered in Charleston, South Carolina. UEI: UKELB3UV76V6. CAGE: 19S89.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACT SHEET -->
+<section id="facts" class="sec-void grid-bg fine">
+  <div class="container narrow">
+    <div class="sec-head reveal" style="display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:32px;">
+      <span class="eyebrow cyan">02 · Fact Sheet</span>
+      <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);">Single-glance reference.</h2>
+    </div>
+    <h3 style="color:var(--bone);font-size:18px;margin-bottom:8px;" class="reveal">The company</h3>
+    <ul class="facts reveal" data-delay="1">
+      <li><b>Legal name</b><span>HYPATIUS LLC</span></li>
+      <li><b>Founded</b><span>2024</span></li>
+      <li><b>Headquarters</b><span>Charleston, South Carolina</span></li>
+      <li><b>Status</b><span>Small business · Non-traditional defense contractor</span></li>
+      <li><b>UEI</b><span>UKELB3UV76V6</span></li>
+      <li><b>CAGE Code</b><span>19S89</span></li>
+      
+      <li><b>Press email</b><span><code>press@hypati.us</code></span></li>
+      <li><b>Phone</b><span><code>253.230.4166</code></span></li>
+      <li><b>Chief Executive Officer</b><span>Stan Kennedy</span></li>
+      <li><b>Founder &amp; CTO</b><span>James LeMieux</span></li>
+    </ul>
+    <h3 style="color:var(--bone);font-size:18px;margin:40px 0 8px;" class="reveal">Headline performance numbers</h3>
+    <ul class="facts perf reveal" data-delay="1">
+      <li><b>&lt;500ms</b><span>AI-driven multi-domain correlation latency</span></li>
+      <li><b>&lt;100ms</b><span>NATS pub/sub synchronization across the constellation mesh</span></li>
+      <li><b>160–300s</b><span>hypersonic engagement window the platform is designed to close</span></li>
+      <li><b>5–15 min</b><span>legacy sensor-to-shooter cycle time STARCHITECT replaces</span></li>
+      <li><b>10,000×</b><span>simulation-speed acceleration for forward-prediction scenarios</span></li>
+      <li><b>5,000+</b><span>intercept permutations calculated in under 15 seconds via KEDA autoscaling</span></li>
+      <li><b>$200</b><span>entry-point hardware cost per node for homelab-scale deployment</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="sec-dark grid-bg">
+  <div class="container">
+    <div class="sec-head reveal" style="display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:36px;">
+      <span class="eyebrow">03 · Leadership</span>
+      <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);">The team.</h2>
+      <p class="lead">For full bios and high-resolution headshots, contact <code>press@hypati.us</code>.</p>
+    </div>
+    <div class="team reveal" data-delay="1">
+      <div class="member"><div class="photo">SK</div><h3>Stan Kennedy</h3><div class="role">Chief Executive Officer</div><p>Strategy, partnerships, and government engagement.</p></div>
+      <div class="member"><div class="photo">JL</div><h3>James LeMieux</h3><div class="role">Founder &amp; Chief Technology Officer</div><p>Founder and architect of the STARCHITECT platform.</p></div>
+      <div class="member"><div class="photo">JB</div><h3>Jordan Broe</h3><div class="role">Co-Founder &amp; Chief Marketing Officer</div><p>Brand, creative, and market-facing strategy.</p></div>
+      <div class="member"><div class="photo">SL</div><h3>Shawna LeMieux</h3><div class="role">Chief of Staff</div><p>Operations, people, and execution across the portfolio.</p></div>
+      <div class="member"><div class="photo">MO</div><h3>Maureen O'Brien</h3><div class="role">Executive Advisor</div><p>Former CEO, Oakman Aerospace. U.S. Navy veteran.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND ASSETS -->
+<section id="brand" class="sec-paper">
+  <div class="container narrow">
+    <div class="sec-head reveal" style="display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:32px;">
+      <span class="eyebrow">04 · Brand Assets</span>
+      <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);">Logo, palette, typography.</h2>
+      <p class="lead">For asset downloads — logos, brand guide, approved imagery — email <code>press@hypati.us</code>.</p>
+    </div>
+    <h3 style="color:var(--ink);font-size:18px;margin-bottom:8px;" class="reveal">Color palette</h3>
+    <div class="swatches reveal" data-delay="1">
+      <div class="sw"><div class="chip" style="background:#060B17"></div><div class="info"><div class="nm">Void</div><div class="hex">#060B17</div></div></div>
+      <div class="sw"><div class="chip" style="background:#0A1322"></div><div class="info"><div class="nm">Deep Navy</div><div class="hex">#0A1322</div></div></div>
+      <div class="sw"><div class="chip" style="background:#D4A03B"></div><div class="info"><div class="nm">Gold</div><div class="hex">#D4A03B</div></div></div>
+      <div class="sw"><div class="chip" style="background:#2EB5C9"></div><div class="info"><div class="nm">Cyan</div><div class="hex">#2EB5C9</div></div></div>
+      <div class="sw"><div class="chip" style="background:#EFE9DD"></div><div class="info"><div class="nm">Bone</div><div class="hex">#EFE9DD</div></div></div>
+    </div>
+    <h3 style="color:var(--ink);font-size:18px;margin:36px 0 8px;" class="reveal">Typography</h3>
+    <table class="spec reveal" data-delay="1">
+      <tr><th>Role</th><th>Typeface</th></tr>
+      <tr><td class="mono">Display</td><td>Bebas Neue — the STARCHITECT wordmark, big figures, section indices</td></tr>
+      <tr><td class="mono">Interface</td><td>Rajdhani — headlines, body copy, labels</td></tr>
+      <tr><td class="mono">Data</td><td>IBM Plex Mono — eyebrows, tables, footers, technical references</td></tr>
+    </table>
+    <h3 style="color:var(--ink);font-size:18px;margin:36px 0 8px;" class="reveal">Things not to do</h3>
+    <ul class="donts reveal" data-delay="1">
+      <li>Don't recolor the wordmark to match a publication's house style.</li>
+      <li>Don't combine the STARCHITECT and HYPATIUS logos as peers — STARCHITECT is a HYPATIUS platform, not a co-brand.</li>
+      <li>Don't add taglines or descriptors to the wordmark itself.</li>
+      <li>If in doubt, ask. Email <code>press@hypati.us</code> before publication.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="ctaband">
+  <div class="container narrow">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center;">05 · Contact</span>
+      <h2 class="display" style="font-size:clamp(34px,5vw,56px);margin-top:16px;">Press contact.</h2>
+      <p class="lead">Press inquiries: <code style="font-size:1.05em;">press@hypati.us</code></p>
+      <p style="color:var(--slate);margin-top:8px;">After-hours, defense-relevant breaking news only: text <code>253.230.4166</code></p>
+      <p style="color:var(--mute-text);font-family:var(--font-mono);font-size:12px;margin-top:18px;">Response SLA: 24 hours, business days · Subject: [Publication] — [Topic] — [Deadline]</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand"><img src="assets/wordmark.png" alt="STARCHITECT"><p>The operating system for space warfare and CJADC2.</p><div class="contact">leadership@hypati.us<br>253.230.4166<br>Charleston, SC</div></div>
+    <div class="footer-col"><h4>Platform</h4><a href="a-platform.html#os">The OS layer</a><a href="a-platform.html#architecture">Architecture</a><a href="a-capabilities.html">Capabilities</a><a href="a-use-cases.html">Use cases</a></div>
+    <div class="footer-col"><h4>Resources</h4><a href="a-glossary.html">Glossary</a><a href="a-press-kit.html">Press kit</a><a href="home.html#acquisition">Acquisition</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="a-about.html">About</a><a href="a-about.html#leadership">Leadership</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us ↗</a></div>
+  </div>
+  <div class="footer-bottom"><div>© 2026 HYPATIUS LLC · STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 · CAGE 19S89</div></div>
+  <div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.boiler .copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.closest('.boiler').querySelectorAll('p');
+      var out = Array.prototype.map.call(text, function (p) { return p.textContent; }).join('\n\n');
+      navigator.clipboard && navigator.clipboard.writeText(out);
+      btn.textContent = 'Copied ✓'; btn.classList.add('done');
+      setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1800);
+    });
+  });
+</script>
+<script src="site.js"></script>
+</body>
+</html>

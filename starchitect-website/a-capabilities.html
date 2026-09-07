@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARCHITECT — Capabilities</title>
+<meta name="description" content="Four capabilities, one integrated platform: real-time physics, AI decision support, decentralized mesh, open integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="sub.css">
+<style>
+  .cap-block { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .cap-block.flip .cap-text { order: 2; }
+  .cap-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+  .cap-head .ico { width: 52px; height: 52px; }
+  .cap-head .num { font-family: var(--font-display); font-size: 44px; color: var(--gold); letter-spacing: 0.04em; line-height: 1; }
+  .cap-head .num.cyan { color: var(--cyan); }
+  @media (max-width: 920px) { .cap-block { grid-template-columns: 1fr; gap: 28px; } .cap-block.flip .cap-text { order: 0; } }
+</style>
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10</div>
+
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="home.html"><img src="assets/wordmark.png" alt="STARCHITECT"><span class="pill"><b>A HYPATIUS</b>PLATFORM</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="a-platform.html">Platform</a>
+      <a href="a-capabilities.html" class="active">Capabilities</a>
+      <a href="a-use-cases.html">Use Cases</a>
+      <a href="a-about.html">Company</a>
+      <a href="a-glossary.html">Resources</a>
+      <a href="home.html#briefing" class="btn btn-primary">Request briefing</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="sub-hero grid-bg">
+  <div class="glow"></div>
+  <div class="container">
+    <div class="crumb"><a href="home.html">STARCHITECT</a> / Capabilities</div>
+    <h1>Four capabilities. <span class="gold">One integrated platform.</span></h1>
+    <p class="lead">Physics, decision support, survivability, and integration — engineered as one system, not four bolted-together tools.</p>
+  </div>
+</header>
+
+<div class="anchor">
+  <div class="anchor-inner">
+    <a href="#physics" data-spy>01 · Physics</a>
+    <a href="#ai" data-spy>02 · Decision Support</a>
+    <a href="#mesh" data-spy>03 · Mesh</a>
+    <a href="#integration" data-spy>04 · Integration</a>
+  </div>
+</div>
+
+<!-- 01 PHYSICS -->
+<section id="physics" class="sec-dark grid-bg">
+  <div class="container">
+    <div class="cap-block">
+      <div class="cap-text reveal">
+        <div class="cap-head"><span class="num">01</span><img class="ico" src="assets/glyphs/glyph_satellite_gold.png" alt=""></div>
+        <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);margin-bottom:18px;">High-fidelity, real-time physics.</h2>
+        <div class="prose">
+          <p>Aerospace-grade astrodynamics — Orekit and poliastro — orchestrated with packet-level network simulation in ns-3. STARCHITECT models not just <strong>where the spacecraft is</strong>, but the end-to-end data path: live latency, link margin, and the comms topology that determines whether a command actually arrives.</p>
+          <p>An EKF pipeline tracks numerical propagation where legacy TLE models drift — the difference between flagging a coordinated proximity approach and missing it.</p>
+        </div>
+      </div>
+      <div class="reveal" data-delay="1">
+        <table class="spec">
+          <tr><th>Property</th><th>STARCHITECT</th></tr>
+          <tr><td>Propagation</td><td class="mono">Numerical (Orekit)</td></tr>
+          <tr><td>Estimation</td><td class="mono">Extended Kalman Filter</td></tr>
+          <tr><td>Network model</td><td class="mono">ns-3 packet-level</td></tr>
+          <tr><td>Regimes</td><td class="mono">LEO · GEO · CISLUNAR</td></tr>
+          <tr><td>Telemetry</td><td class="mono">Latency + link margin</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 AI -->
+<section id="ai" class="sec-void grid-bg fine">
+  <div class="container">
+    <div class="cap-block flip">
+      <div class="reveal" data-delay="1">
+        <table class="spec">
+          <tr><th>Property</th><th>STARCHITECT</th></tr>
+          <tr><td>Correlation latency</td><td class="mono">&lt; 500 ms</td></tr>
+          <tr><td>Server</td><td class="mono">CJADC2 MCP Server</td></tr>
+          <tr><td>Vector store</td><td class="mono">Qdrant</td></tr>
+          <tr><td>Threat injection</td><td class="mono">Natural language</td></tr>
+          <tr><td>Output</td><td class="mono">Operator-verified CoAs</td></tr>
+        </table>
+        <div class="callout cyan" style="margin-top:24px;"><div class="k">Operator-in-the-loop</div><p>The correlator proposes. The operator disposes. Every Course of Action is surfaced for human verification — AI accelerates the decision, it does not make it.</p></div>
+      </div>
+      <div class="cap-text reveal">
+        <div class="cap-head"><span class="num cyan">02</span><img class="ico" src="assets/glyphs/glyph_brain_cyan.png" alt=""></div>
+        <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);margin-bottom:18px;">AI-accelerated decision support.</h2>
+        <div class="prose">
+          <p>The CJADC2 MCP Server and AI Battlespace Correlator synthesize multi-domain sensor feeds into <strong>operator-verified Courses of Action</strong> in under 500 milliseconds — collapsing a five-to-fifteen-minute manual cross-dashboard cycle into a single, auditable step.</p>
+          <p>Threats inject in natural language. Commanders ask questions of the battlespace the way they'd brief a staff officer, and get a ranked, sourced answer back.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 MESH -->
+<section id="mesh" class="sec-dark grid-bg">
+  <div class="container">
+    <div class="cap-block">
+      <div class="cap-text reveal">
+        <div class="cap-head"><span class="num">03</span><img class="ico" src="assets/glyphs/glyph_mesh_gold.png" alt=""></div>
+        <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);margin-bottom:18px;">Decentralized, local-first mesh.</h2>
+        <div class="prose">
+          <p>Every node is a full operational stack — no single point of failure, no cloud tether. The five-tier <strong>PACE</strong> degradation model (Primary, Alternate, Contingency, Emergency) maps to a National Survivability Architecture that keeps BMC4I functions running as infrastructure is progressively denied.</p>
+          <p>When a ground node is severed by kinetic strike, cyber attack, or jamming, surviving nodes operate autonomously. On reconnection, CRDT merge protocols reconcile divergent state with <strong>zero data loss</strong>.</p>
+        </div>
+      </div>
+      <div class="reveal" data-delay="1">
+        <table class="spec">
+          <tr><th>Tier</th><th>Posture</th></tr>
+          <tr><td class="mono">T0 · Full</td><td>All nodes connected, full correlation</td></tr>
+          <tr><td class="mono">T1 · Reduced</td><td>Prioritized C2 over degraded links</td></tr>
+          <tr><td class="mono">T2 · Island</td><td>Regional clusters operate autonomously</td></tr>
+          <tr><td class="mono">T3 · Single</td><td>One node carries full stack</td></tr>
+          <tr><td class="mono">T4 · Client</td><td>Local command; merge on reconnect</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 INTEGRATION -->
+<section id="integration" class="sec-paper">
+  <div class="container">
+    <div class="cap-block flip">
+      <div class="reveal" data-delay="1">
+        <table class="spec">
+          <tr><th>Surface</th><th>Use</th></tr>
+          <tr><td class="mono">REST / GraphQL</td><td>Resources &amp; composed queries</td></tr>
+          <tr><td class="mono">WebSocket</td><td>Live telemetry streams</td></tr>
+          <tr><td class="mono">Python SDK</td><td>Automation &amp; analysis</td></tr>
+          <tr><td class="mono">MATLAB SDK</td><td>Engineer-side parity</td></tr>
+          <tr><td class="mono">FMI / FMU</td><td>Sandboxed proprietary physics</td></tr>
+        </table>
+      </div>
+      <div class="cap-text reveal">
+        <div class="cap-head"><span class="num">04</span><img class="ico" src="assets/glyphs/glyph_globe_gold.png" alt=""></div>
+        <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);margin-bottom:18px;">Open, API-first integration.</h2>
+        <div class="prose">
+          <p>REST, GraphQL, and WebSocket, with auto-generated Python and MATLAB SDKs at parity with the core. FMI/FMU sandbox vaulting lets defense primes inject proprietary physics as <strong>compiled binaries — without exposing the underlying IP</strong>.</p>
+          <p>The same interface serves a homelab cluster and an allied-nation node. Open standards, documented endpoints, no vendor lock-in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctaband">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="display" style="font-size:clamp(34px,5vw,60px);">See it against your mission.</h2>
+      <p class="lead">STARCHITECT is available for demonstration in unclassified environments.</p>
+      <div class="row">
+        <a href="home.html#briefing" class="btn btn-primary btn-lg">Request a briefing →</a>
+        <a href="a-use-cases.html" class="btn btn-outline btn-lg">See use cases →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand"><img src="assets/wordmark.png" alt="STARCHITECT"><p>The operating system for space warfare and CJADC2.</p><div class="contact">leadership@hypati.us<br>253.230.4166<br>Charleston, SC</div></div>
+    <div class="footer-col"><h4>Platform</h4><a href="a-platform.html#os">The OS layer</a><a href="a-platform.html#architecture">Architecture</a><a href="a-capabilities.html">Capabilities</a><a href="a-use-cases.html">Use cases</a></div>
+    <div class="footer-col"><h4>Solutions</h4><a href="a-about.html">For government</a><a href="a-platform.html#integration">For primes</a><a href="home.html#acquisition">Acquisition</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="a-about.html">About</a><a href="a-about.html#leadership">Leadership</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us ↗</a></div>
+  </div>
+  <div class="footer-bottom"><div>© 2026 HYPATIUS LLC · STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 · CAGE 19S89</div></div>
+  <div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

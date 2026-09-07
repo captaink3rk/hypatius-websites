@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARCHITECT — The Brief · Direction C</title>
+<meta name="description" content="The operating system for space warfare and BMC3I. A HYPATIUS platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* ===== Direction C — THE BRIEF (institutional / authoritative) ===== */
+  :root { --violet: #8B6FD6; --violet-deep: #6B4FB8; }
+  body { background: var(--deep-navy); }
+
+  /* live telemetry proof bar — restrained */
+  .telebar { position: fixed; top: 97px; left: 0; right: 0; z-index: 80;
+    background: rgba(10,19,34,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hair); font-family: var(--font-mono); }
+  .telebar-inner { max-width: var(--maxw); margin: 0 auto; padding: 8px var(--pad-x); display: flex; align-items: center; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+  .telebar-inner::-webkit-scrollbar { display: none; }
+  .tb { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; flex: none; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute-text); }
+  .tb b { color: var(--bone); font-weight: 500; }
+  .tb .g { color: var(--gold); } .tb .c { color: var(--cyan); }
+  .tb .live { width: 7px; height: 7px; border-radius: 50%; background: var(--go); flex: none; box-shadow: 0 0 8px var(--go); animation: tbblink 2.2s infinite; }
+  @keyframes tbblink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .tb-sep { width: 1px; height: 13px; background: var(--hair); flex: none; }
+
+  /* stat hero */
+  .hero { position: relative; padding-top: 184px; padding-bottom: 96px; overflow: hidden; }
+  .hero .container { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center; }
+  .hero h1 { font-family: var(--font-sans); font-weight: 700; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.04; color: var(--bone); margin: 22px 0 0; letter-spacing: 0.005em; }
+  .hero h1 .gold { color: var(--gold); }
+  .hero .lead { margin-top: 22px; max-width: 540px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+  /* big stat panel with registration ticks */
+  .statpanel { border: 1px solid var(--hair); border-radius: 10px; background: var(--panel); padding: 44px 40px; position: relative; }
+  .statpanel .stat-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute-text); }
+  .statpanel .big { font-family: var(--font-display); font-size: clamp(64px, 8vw, 104px); color: var(--gold); line-height: 0.92; letter-spacing: 0.01em; margin-top: 14px; }
+  .statpanel .cap { font-size: 16px; color: var(--slate); margin-top: 10px; line-height: 1.5; }
+  .statpanel .row { display: flex; gap: 0; border-top: 1px solid var(--hair); margin-top: 30px; }
+  .statpanel .row .c { flex: 1; padding-top: 18px; }
+  .statpanel .row .c + .c { border-left: 1px solid var(--hair); padding-left: 20px; }
+  .statpanel .row .n { font-family: var(--font-display); font-size: 30px; color: var(--bone); line-height: 1; }
+  .statpanel .row .n.cyan { color: var(--cyan); }
+  .statpanel .row .l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute-text); margin-top: 7px; }
+
+  /* OS argument as numbered index */
+  .argmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair); border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; margin-top: 12px; }
+  .arg { background: var(--panel); padding: 34px 30px; }
+  .arg .ai { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--gold); }
+  .arg h3 { color: var(--bone); font-size: 19px; margin: 14px 0 8px; }
+  .arg p { font-size: 14px; color: var(--slate); line-height: 1.55; }
+
+  /* capability rows — pitch pattern (icon · header · proof) */
+  .caprows { border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; margin-top: 12px; }
+  .caprow { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 22px; padding: 26px 30px; border-bottom: 1px solid var(--hair); transition: background .2s; }
+  .caprow:last-child { border-bottom: 0; }
+  .caprow:hover { background: var(--panel); }
+  .caprow .ico { width: 44px; height: 44px; }
+  .caprow .ch { font-family: var(--font-sans); font-weight: 700; font-size: 19px; color: var(--bone); letter-spacing: 0.02em; text-transform: uppercase; }
+  .caprow .cs { font-size: 14px; color: var(--slate); margin-top: 3px; }
+  .caprow .proof { font-family: var(--font-display); font-size: 38px; color: var(--gold); line-height: 1; text-align: right; }
+  .caprow .proof small { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--mute-text); margin-top: 6px; }
+
+  /* Hypatius platform family */
+  .family { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
+  .plat { border: 1px solid var(--hair); border-top-width: 3px; border-radius: 8px; background: var(--panel); padding: 30px; }
+  .plat.star { border-top-color: var(--gold); }
+  .plat.ali { border-top-color: var(--cyan); }
+  .plat.crat { border-top-color: var(--violet); }
+  .plat .pk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; }
+  .plat.star .pk { color: var(--gold); } .plat.ali .pk { color: var(--cyan); } .plat.crat .pk { color: var(--violet); }
+  .plat h3 { font-family: var(--font-display); font-weight: 400; font-size: 30px; letter-spacing: 0.04em; color: var(--bone); }
+  .plat .role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute-text); margin: 4px 0 14px; }
+  .plat p { font-size: 14px; color: var(--slate); line-height: 1.55; }
+  .plat.star { box-shadow: 0 0 0 1px var(--hair-gold), 0 20px 50px -30px rgba(212,160,59,0.4); }
+  .family-note { text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--mute-text); margin-top: 26px; }
+
+  /* acquisition — paper/brief treatment */
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 14px; }
+  .phase { background: var(--paper-card); border: 1px solid var(--paper-rule); border-top: 3px solid var(--gold-deep); border-radius: 8px; padding: 30px; }
+  .phase .pl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 12px; }
+  .phase h3 { color: var(--ink); margin-bottom: 6px; }
+  .phase .pt { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-bottom: 12px; }
+  .phase p { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+  .trust { margin-top: 38px; text-align: center; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; color: var(--gold-deep); }
+
+  .cta { text-align: center; }
+  .cta .lead { max-width: 560px; margin: 18px auto 0; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+
+  @media (max-width: 920px) {
+    .telebar { top: 88px; }
+    .hero .container { grid-template-columns: 1fr; gap: 40px; }
+    .argmap, .family, .phases { grid-template-columns: 1fr; }
+    .caprow { grid-template-columns: 48px 1fr; }
+    .caprow .proof { grid-column: 2; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10</div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="evolve.html">
+      <img src="assets/wordmark.png" alt="STARCHITECT">
+      <span class="pill"><b>A HYPATIUS</b>PLATFORM</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#family">Platforms</a>
+      <a href="#acquisition">Acquisition</a>
+      <a href="a-about.html">Company</a>
+      <a href="a-glossary.html">Resources</a>
+      <a href="#briefing" class="btn btn-primary">Request briefing</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- LIVE TELEMETRY PROOF BAR -->
+<div class="telebar" aria-hidden="true">
+  <div class="telebar-inner">
+    <span class="tb"><span class="live"></span><b>MESH NOMINAL</b> · 5-TIER PACE</span>
+    <span class="tb-sep"></span>
+    <span class="tb">CORRELATOR <span class="g" data-latency>418 ms</span></span>
+    <span class="tb-sep"></span>
+    <span class="tb">TRACKED <span class="c" data-tracked>4,471</span> · GEO/CISLUNAR</span>
+    <span class="tb-sep"></span>
+    <span class="tb">UEI UKELB3UV76V6</span>
+    <span class="tb-sep"></span>
+    <span class="tb"><span data-utc>00:00:00 UTC</span></span>
+  </div>
+</div>
+
+<!-- STAT HERO -->
+<header class="hero grid-bg fine">
+  <div class="container">
+    <div class="hero-head reveal in">
+      <span class="eyebrow">STARCHITECT · ADVANCED RECONNAISSANCE</span>
+      <h1>Not a competitor to the primes. <span class="gold">The operating system they run on.</span></h1>
+      <p class="lead">STK does physics. AFSIM does campaign analysis. MATLAB does math. STARCHITECT operationalizes all three — the survivable execution layer between high-fidelity simulation and live multi-domain command.</p>
+      <div class="hero-ctas">
+        <a href="#briefing" class="btn btn-primary btn-lg">Request a briefing →</a>
+        <a href="#acquisition" class="btn btn-outline btn-lg">Acquisition pathways</a>
+      </div>
+    </div>
+    <div class="statpanel reg reveal in" data-delay="1">
+      <div class="stat-eyebrow">Addressable pipeline · SDA Tranche 3</div>
+      <div class="big">$1.7B</div>
+      <div class="cap">Reconstituting the optical ring — contested-space mod/sim that integrates with current platforms.</div>
+      <div class="row">
+        <div class="c"><div class="n cyan">&lt;500ms</div><div class="l">AI correlation</div></div>
+        <div class="c"><div class="n">100%</div><div class="l">FOSS backbone</div></div>
+        <div class="c"><div class="n">63</div><div class="l">Capability modules</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- OS ARGUMENT -->
+<section class="sec-dark grid-bg">
+  <div class="container">
+    <div class="reveal" style="max-width:780px;margin-bottom:42px;">
+      <span class="eyebrow">01 · The Architecture</span>
+      <h2 class="display" style="margin-top:18px;">Engineer to operator. Open standards. No vendor lock-in.</h2>
+    </div>
+    <div class="argmap reveal" data-delay="1">
+      <div class="arg"><div class="ai">01 · INPUTS</div><h3>Your existing IP</h3><p>STK, AFSIM, MATLAB, and FMI/FMU binaries inject through sandbox vaulting — proprietary physics stays compiled and protected.</p></div>
+      <div class="arg"><div class="ai">02 · ENGINE</div><h3>The survivable OS</h3><p>Real-time astrodynamics, AI correlation, and a decentralized mesh that fights through DDIL. The cloud-native execution layer the primes were missing.</p></div>
+      <div class="arg"><div class="ai">03 · OUTPUT</div><h3>Live multi-domain C2</h3><p>From a $200-per-node prototype to a national-scale constellation mesh — the same interface, edge to cloud, without rewriting contractor code.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY ROWS -->
+<section id="capabilities" class="sec-void grid-bg fine">
+  <div class="container">
+    <div class="reveal" style="max-width:780px;margin-bottom:30px;">
+      <span class="eyebrow cyan">02 · Capabilities</span>
+      <h2 class="display" style="margin-top:18px;">Lead with the icon. Land the claim.</h2>
+      <p class="lead" style="margin-top:18px;">A number beats an adjective. Every capability proves out on validated physics — not a slide deck.</p>
+    </div>
+    <div class="caprows reveal" data-delay="1">
+      <div class="caprow">
+        <img class="ico" src="assets/glyphs/glyph_satellite_gold.png" alt="">
+        <div><div class="ch">Space-domain mod/sim</div><div class="cs">Wargaming &amp; BMC3I simulation for contested orbits — aerospace-grade astrodynamics on Orekit and poliastro.</div></div>
+        <div class="proof">$1.7B<small>MODELED PIPELINE</small></div>
+      </div>
+      <div class="caprow">
+        <img class="ico" src="assets/glyphs/glyph_brain_cyan.png" alt="">
+        <div><div class="ch">AI threat modeling</div><div class="cs">EKF-driven covariance tracking on live tracks. Natural-language threat injection. Operator-verified courses of action.</div></div>
+        <div class="proof">&lt;500ms<small>CORRELATION</small></div>
+      </div>
+      <div class="caprow">
+        <img class="ico" src="assets/glyphs/glyph_mesh_gold.png" alt="">
+        <div><div class="ch">PACE-tier mesh C2</div><div class="cs">Resilient routing that degrades gracefully under jamming. Every node is a complete operational stack.</div></div>
+        <div class="proof">5-TIER<small>SURVIVABILITY</small></div>
+      </div>
+      <div class="caprow">
+        <img class="ico" src="assets/glyphs/glyph_globe_gold.png" alt="">
+        <div><div class="ch">Multi-level security</div><div class="cs">AES-256 multi-tenant isolation, enforced per lobby. Built for operators — not procurement bureaucrats.</div></div>
+        <div class="proof">AES-256<small>TENANT ISOLATION</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HYPATIUS PLATFORM FAMILY -->
+<section id="family" class="sec-dark grid-bg">
+  <div class="container">
+    <div class="reveal" style="max-width:780px;margin-bottom:42px;">
+      <span class="eyebrow">03 · The Parent System</span>
+      <h2 class="display" style="margin-top:18px;">Three platforms. One system.</h2>
+      <p class="lead" style="margin-top:18px;">Every Hypatius platform inherits the void, the grid, and the type. The mark and the key change — the system does not.</p>
+    </div>
+    <div class="family reveal" data-delay="1">
+      <div class="plat star">
+        <div class="pk">● #D4A03B · GOLD</div>
+        <h3>STARCHITECT</h3>
+        <div class="role">Advanced Reconnaissance</div>
+        <p>Discovery &amp; space-domain wargaming. The flagship key — gold carries every STARCHITECT claim.</p>
+      </div>
+      <div class="plat ali">
+        <div class="pk">● #2EB5C9 · CYAN</div>
+        <h3><a href="https://alidade.us" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">ALIDADE ↗</a></h3>
+        <div class="role">Capture Intelligence</div>
+        <p>Capture decision intelligence for GovCon. Data-forward — cyan signals the analytic layer.</p>
+      </div>
+      <div class="plat crat">
+        <div class="pk">● #8B6FD6 · VIOLET</div>
+        <h3>CRATON</h3>
+        <div class="role">GovCon ERP · Y2</div>
+        <p>Deterministic execution backbone. Violet marks the year-two ERP that runs the won work.</p>
+      </div>
+    </div>
+    <div class="family-note">HYPATIUS · PARENT SYSTEM — the mark and key change, the system does not.</div>
+  </div>
+</section>
+
+<!-- ACQUISITION (paper) -->
+<section id="acquisition" class="sec-paper">
+  <div class="container">
+    <div class="reveal" style="max-width:780px;">
+      <span class="eyebrow">04 · Acquisition</span>
+      <h2 class="display" style="margin-top:18px;">Ready for rapid capability insertion.</h2>
+      <p class="lead" style="margin-top:18px;">As a small business and non-traditional defense contractor, HYPATIUS LLC is positioned for small-business set-aside and rapid-acquisition awards. STARCHITECT aligns to all three CSO Capability Areas. OTA, SBIR Phase II, and SpaceWERX STRATFI pathways are open.</p>
+    </div>
+    <div class="phases reveal" data-delay="1">
+      <div class="phase"><div class="pl">Phase 1 · Months 1–6</div><h3>Wargaming &amp; M&amp;S</h3><div class="pt">Lowest barrier to entry</div><p>Core simulation engine for USSF/SPACECOM training, M&amp;S, and multi-domain exercises.</p></div>
+      <div class="phase"><div class="pl">Phase 2 · Months 6–18</div><h3>Software-in-the-loop</h3><div class="pt">Pre-launch validation</div><p>Contractors validate edge flight software and physics binaries prior to launch.</p></div>
+      <div class="phase"><div class="pl">Phase 3 · Months 18+</div><h3>Live C2 operations</h3><div class="pt">Operational transition</div><p>The same messaging bus as live flight hardware — transition directly into operations.</p></div>
+    </div>
+    <div class="trust reveal">UEI UKELB3UV76V6 · CAGE 19S89 · CHARLESTON, SC</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="briefing" class="sec-void grid-bg fine">
+  <div class="container cta">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center;">05 · Let's Talk</span>
+      <h2 class="display" style="margin-top:18px;">We prove capability. We do not pitch it.</h2>
+      <p class="lead">STARCHITECT is available for demonstration in unclassified environments. A GovCloud-hosted environment is pending for cleared USSF and IC acquisition stakeholders.</p>
+      <div class="cta-actions">
+        <a href="home.html" class="btn btn-primary btn-lg">Request a briefing →</a>
+        <a href="#" class="btn btn-outline btn-lg">Read the whitepaper</a>
+      </div>
+      <div style="margin-top:30px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;color:var(--mute-text);">leadership@hypati.us · 253.230.4166 · CHARLESTON, SC</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/wordmark.png" alt="STARCHITECT">
+      <p>The operating system for space warfare and BMC3I.</p>
+      <div class="contact">leadership@hypati.us<br>253.230.4166<br>Charleston, SC</div>
+    </div>
+    <div class="footer-col"><h4>Platform</h4><a href="#capabilities">Capabilities</a><a href="#family">Platforms</a><a href="#acquisition">Acquisition</a></div>
+    <div class="footer-col"><h4>Solutions</h4><a href="#briefing">For government</a><a href="#briefing">For primes</a><a href="#briefing">For investors</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="a-about.html">About</a><a href="a-glossary.html">Glossary</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us ↗</a></div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 HYPATIUS LLC · STARCHITECT is a HYPATIUS platform.</div>
+    <div>UEI UKELB3UV76V6 · CAGE 19S89</div>
+  </div>
+  <div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>
+</footer>
+
+<script src="home-fx.js"></script>
+</body>
+</html>

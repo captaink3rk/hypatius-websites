@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARCHITECT — Glossary</title>
+<meta name="description" content="The vocabulary of dynamic space operations: CJADC2, DDIL, PACE, MDAO, and the STARCHITECT architecture, defined.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="sub.css">
+<style>
+  .controls { position: sticky; top: 97px; z-index: 60; background: rgba(8,14,26,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hair); }
+  .controls-inner { max-width: 980px; margin: 0 auto; padding: 16px var(--pad-x); }
+  .search-row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+  .search-row input { flex: 1; padding: 11px 14px; background: var(--void); border: 1px solid var(--hair); border-radius: 4px; color: var(--bone); font-family: var(--font-sans); font-size: 15px; }
+  .search-row input:focus { outline: none; border-color: var(--gold); }
+  .search-row .count { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute-text); white-space: nowrap; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 7px 14px; border: 1px solid var(--hair); border-radius: 4px; background: var(--panel); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); cursor: pointer; transition: all .15s; }
+  .chip:hover { border-color: var(--structure); color: var(--bone); }
+  .chip.active { background: var(--gold); border-color: var(--gold); color: var(--void); }
+  .alpha { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 12px; }
+  .alpha a { width: 26px; height: 26px; line-height: 26px; text-align: center; font-family: var(--font-mono); font-size: 12px; color: var(--mute-text); border-radius: 3px; }
+  .alpha a.has { color: var(--cyan); } .alpha a.has:hover { background: var(--panel-hi); color: var(--bone); }
+  .alpha a.empty { opacity: 0.3; pointer-events: none; }
+
+  .entries { max-width: 980px; margin: 0 auto; padding: 48px var(--pad-x) 0; }
+  .letter { font-family: var(--font-display); font-size: 38px; color: var(--gold); letter-spacing: 0.04em; border-bottom: 2px solid var(--hair-gold); padding-bottom: 8px; margin: 40px 0 10px; scroll-margin-top: 220px; }
+  .entry { padding: 22px 0; border-bottom: 1px solid var(--hair); }
+  .entry .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 4px; }
+  .entry h3 { color: var(--bone); font-size: 21px; }
+  .entry .ab { font-family: var(--font-mono); font-size: 13px; color: var(--cyan); }
+  .entry .cat { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-left: auto; border: 1px solid var(--hair-gold); border-radius: 3px; padding: 3px 8px; }
+  .entry p { font-size: 15px; color: var(--slate); line-height: 1.6; margin-top: 6px; }
+  .entry .see { margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--mute-text); }
+  .entry .see b { color: var(--slate); font-weight: 500; }
+  .empty-state { text-align: center; color: var(--mute-text); font-family: var(--font-mono); padding: 60px 0; }
+</style>
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10</div>
+
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="home.html"><img src="assets/wordmark.png" alt="STARCHITECT"><span class="pill"><b>A HYPATIUS</b>PLATFORM</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="a-platform.html">Platform</a>
+      <a href="a-capabilities.html">Capabilities</a>
+      <a href="a-use-cases.html">Use Cases</a>
+      <a href="a-about.html">Company</a>
+      <a href="a-glossary.html" class="active">Resources</a>
+      <a href="home.html#briefing" class="btn btn-primary">Request briefing</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="sub-hero grid-bg">
+  <div class="glow"></div>
+  <div class="container">
+    <div class="crumb"><a href="home.html">STARCHITECT</a> / Resources / Glossary</div>
+    <h1>The vocabulary of <span class="gold">dynamic space operations.</span></h1>
+    <p class="lead">CJADC2, DDIL, PACE, MDAO, the Three Burns kill chain — the acronyms and architecture behind the platform, defined in plain language.</p>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-row">
+      <input type="text" id="search" placeholder="Search terms, acronyms, definitions…" aria-label="Search glossary">
+      <span class="count" id="count"></span>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="alpha" id="alpha"></div>
+  </div>
+</div>
+
+<section class="sec-dark grid-bg" style="padding-top:0;padding-bottom:96px;">
+  <div class="entries" id="entries"></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand"><img src="assets/wordmark.png" alt="STARCHITECT"><p>The operating system for space warfare and CJADC2.</p><div class="contact">leadership@hypati.us<br>253.230.4166<br>Charleston, SC</div></div>
+    <div class="footer-col"><h4>Platform</h4><a href="a-platform.html#os">The OS layer</a><a href="a-platform.html#architecture">Architecture</a><a href="a-capabilities.html">Capabilities</a><a href="a-use-cases.html">Use cases</a></div>
+    <div class="footer-col"><h4>Resources</h4><a href="a-glossary.html">Glossary</a><a href="a-press-kit.html">Press kit</a><a href="home.html#acquisition">Acquisition</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="a-about.html">About</a><a href="a-about.html#leadership">Leadership</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us ↗</a></div>
+  </div>
+  <div class="footer-bottom"><div>© 2026 HYPATIUS LLC · STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 · CAGE 19S89</div></div>
+  <div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>
+</footer>
+
+<script src="glossary-data.js"></script>
+<script>
+(function () {
+  var DATA = (window.STARCHITECT_GLOSSARY || []).slice().sort(function (a, b) {
+    return a.term.toLowerCase().localeCompare(b.term.toLowerCase());
+  });
+  var cats = ['All'].concat(Array.from(new Set(DATA.map(function (d) { return d.category; }))).sort());
+  var activeCat = 'All', query = '';
+  var chipsEl = document.getElementById('chips');
+  var alphaEl = document.getElementById('alpha');
+  var entriesEl = document.getElementById('entries');
+  var countEl = document.getElementById('count');
+  var searchEl = document.getElementById('search');
+
+  cats.forEach(function (c) {
+    var b = document.createElement('button');
+    b.className = 'chip' + (c === 'All' ? ' active' : '');
+    b.textContent = c;
+    b.onclick = function () {
+      activeCat = c;
+      Array.prototype.forEach.call(chipsEl.children, function (x) { x.classList.toggle('active', x.textContent === c); });
+      render();
+    };
+    chipsEl.appendChild(b);
+  });
+
+  searchEl.addEventListener('input', function () { query = searchEl.value.trim().toLowerCase(); render(); });
+
+  function filtered() {
+    return DATA.filter(function (d) {
+      if (activeCat !== 'All' && d.category !== activeCat) return false;
+      if (!query) return true;
+      var hay = (d.term + ' ' + (d.abbrev || '') + ' ' + d.definition).toLowerCase();
+      return hay.indexOf(query) !== -1;
+    });
+  }
+
+  function render() {
+    var list = filtered();
+    countEl.textContent = list.length + ' / ' + DATA.length + ' terms';
+    // group by letter
+    var groups = {};
+    list.forEach(function (d) {
+      var L = d.term[0].toUpperCase();
+      if (!/[A-Z]/.test(L)) L = '#';
+      (groups[L] = groups[L] || []).push(d);
+    });
+    var letters = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    // alpha bar
+    alphaEl.innerHTML = '';
+    letters.forEach(function (L) {
+      if (L === '#' && !groups['#']) return;
+      var a = document.createElement('a');
+      a.textContent = L;
+      if (groups[L]) { a.className = 'has'; a.href = '#L-' + L; }
+      else { a.className = 'empty'; }
+      alphaEl.appendChild(a);
+    });
+    // entries
+    entriesEl.innerHTML = '';
+    if (!list.length) { entriesEl.innerHTML = '<div class="empty-state">No terms match — clear the filter or search.</div>'; return; }
+    letters.forEach(function (L) {
+      if (!groups[L]) return;
+      var h = document.createElement('div');
+      h.className = 'letter'; h.id = 'L-' + L; h.textContent = L;
+      entriesEl.appendChild(h);
+      groups[L].forEach(function (d) {
+        var e = document.createElement('div');
+        e.className = 'entry';
+        var head = '<div class="head"><h3>' + d.term + '</h3>' + (d.abbrev ? '<span class="ab">' + d.abbrev + '</span>' : '') + '<span class="cat">' + d.category + '</span></div>';
+        var see = d.seeAlso ? '<div class="see">See also: <b>' + d.seeAlso + '</b></div>' : '';
+        e.innerHTML = head + '<p>' + d.definition + '</p>' + see;
+        entriesEl.appendChild(e);
+      });
+    });
+  }
+  render();
+})();
+</script>
+<script src="site.js"></script>
+</body>
+</html>
