@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARCHITECT — Company</title>
+<meta name="description" content="STARCHITECT is the flagship platform of HYPATIUS LLC — a defense-technology venture in Charleston, SC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="sub.css">
+<style>
+  .hyp-lockup { display: flex; align-items: center; gap: 20px; padding: 28px 32px; border: 1px solid var(--hair); border-radius: 10px; background: var(--panel); flex-wrap: wrap; }
+  .hyp-lockup img { height: 38px; }
+  .hyp-lockup .txt { border-left: 1px solid var(--structure); padding-left: 20px; }
+  .hyp-lockup .txt .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+  .hyp-lockup .txt p { font-size: 14px; color: var(--slate); margin-top: 4px; }
+  .subs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  .sub { background: var(--panel); border: 1px solid var(--hair); border-top: 3px solid var(--gold); border-radius: 8px; padding: 26px; }
+  .sub.dim { border-top-color: var(--structure); opacity: 0.7; }
+  .sub .nm { font-family: var(--font-display); font-size: 26px; color: var(--bone); letter-spacing: 0.03em; }
+  .sub .role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin: 8px 0 12px; }
+  .sub.dim .role { color: var(--mute-text); }
+  .sub p { font-size: 14px; color: var(--slate); line-height: 1.5; }
+  .facts { list-style: none; margin-top: 8px; border: 1px solid var(--hair); border-radius: 8px; overflow: hidden; }
+  .facts li { display: grid; grid-template-columns: 240px 1fr; gap: 24px; padding: 16px 22px; border-bottom: 1px solid var(--hair); background: var(--panel); font-size: 15px; }
+  .facts li:last-child { border-bottom: 0; }
+  .facts li b { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); }
+  .facts li span { color: var(--bone); }
+  @media (max-width: 920px){ .subs { grid-template-columns: 1fr; } .facts li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+</head>
+<body>
+
+<div class="classification">UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10</div>
+
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="home.html"><img src="assets/wordmark.png" alt="STARCHITECT"><span class="pill"><b>A HYPATIUS</b>PLATFORM</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="a-platform.html">Platform</a>
+      <a href="a-capabilities.html">Capabilities</a>
+      <a href="a-use-cases.html">Use Cases</a>
+      <a href="a-about.html" class="active">Company</a>
+      <a href="a-glossary.html">Resources</a>
+      <a href="home.html#briefing" class="btn btn-primary">Request briefing</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="sub-hero grid-bg">
+  <div class="glow"></div>
+  <div class="container">
+    <div class="crumb"><a href="home.html">STARCHITECT</a> / Company</div>
+    <h1>Built by operators. <span class="gold">Backed by HYPATIUS.</span></h1>
+    <p class="lead">STARCHITECT is the flagship platform of HYPATIUS LLC — a defense-technology venture building the operating systems for contested domains.</p>
+  </div>
+</header>
+
+<div class="anchor">
+  <div class="anchor-inner">
+    <a href="#hypatius" data-spy>HYPATIUS</a>
+    <a href="#leadership" data-spy>Leadership</a>
+    <a href="#credentials" data-spy>Credentials</a>
+  </div>
+</div>
+
+<!-- HYPATIUS -->
+<section id="hypatius" class="sec-dark grid-bg">
+  <div class="container">
+    <div class="split wide-left" style="margin-bottom:48px;">
+      <div class="reveal">
+        <span class="eyebrow">01 · The Parent Brand</span>
+        <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);margin:16px 0 20px;">HYPATIUS builds operating systems for contested domains.</h2>
+        <div class="prose">
+          <p>Charleston-based, engineering-deep. HYPATIUS LLC operates a portfolio of platforms for the hardest operational environments — where the network is denied, the timeline is compressed, and failure is not an option.</p>
+          <p><strong>STARCHITECT is the flagship</strong>: the space-warfare and CJADC2 platform, and the proving ground for the survivability architecture that defines the HYPATIUS approach.</p>
+        </div>
+        <a href="https://hypati.us" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:8px;">Visit hypati.us ↗</a>
+      </div>
+      <div class="reveal" data-delay="1">
+        <div class="hyp-lockup">
+          <img src="assets/hypatius.png" alt="HYPATIUS">
+          <div class="txt"><div class="k">Parent Company</div><p>HYPATIUS LLC · Charleston, SC<br>Non-traditional defense contractor</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="subs reveal" data-delay="2">
+      <div class="sub"><div class="nm">STARCHITECT</div><div class="role">Space &amp; CJADC2 · Flagship</div><p>The operating system for space warfare — tactical C2 that fights through DDIL at machine speed.</p></div>
+      <div class="sub dim"><div class="nm">Platform II</div><div class="role">Portfolio · HYPATIUS</div><p>Additional HYPATIUS platform. Details under the parent brand.</p></div>
+      <div class="sub dim"><div class="nm">Platform III</div><div class="role">Portfolio · HYPATIUS</div><p>Additional HYPATIUS platform. Details under the parent brand.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="sec-void grid-bg fine">
+  <div class="container">
+    <div class="sec-head reveal" style="display:flex;flex-direction:column;gap:16px;max-width:760px;margin-bottom:44px;">
+      <span class="eyebrow cyan">02 · Leadership</span>
+      <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);">The team.</h2>
+      <p class="lead">Deep expertise spanning astrodynamics, joint-force space doctrine, distributed systems, and tactical communications.</p>
+    </div>
+    <div class="team reveal" data-delay="1">
+      <div class="member"><div class="photo">SK</div><h3>Stan Kennedy</h3><div class="role">Chief Executive Officer</div><p>Three decades in national security space — small-satellite programs, mission operations, and space-industry consortia. U.S. Air Force veteran.</p></div>
+      <div class="member"><div class="photo">JL</div><h3>James LeMieux</h3><div class="role">Founder &amp; Chief Technology Officer</div><p>Founder and architect of the STARCHITECT platform — event-driven fabric, federated K3s nodes, NATS backbone, physics orchestration.</p></div>
+      <div class="member"><div class="photo">JB</div><h3>Jordan Broe</h3><div class="role">Co-Founder &amp; Chief Marketing Officer</div><p>Brand, creative, proposals, and market-facing strategy across the HYPATIUS portfolio.</p></div>
+      <div class="member"><div class="photo">SL</div><h3>Shawna LeMieux</h3><div class="role">Chief of Staff</div><p>Runs operations, people, and execution across the HYPATIUS portfolio.</p></div>
+      <div class="member"><div class="photo">MO</div><h3>Maureen O'Brien</h3><div class="role">Executive Advisor</div><p>Former CEO of Oakman Aerospace. 20+ years in aerospace strategy, program management, ITAR/export control, and modeling &amp; simulation. U.S. Navy veteran.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" class="sec-paper">
+  <div class="container narrow">
+    <div class="sec-head reveal" style="display:flex;flex-direction:column;gap:16px;max-width:760px;margin-bottom:36px;">
+      <span class="eyebrow">03 · Credentials</span>
+      <h2 class="display" style="font-size:clamp(28px,3.6vw,44px);">Ready for direct award.</h2>
+      <p class="lead">As a small business and non-traditional defense contractor, HYPATIUS LLC is positioned for small-business set-aside and rapid-acquisition awards, and aligns to OTA, SBIR Phase II, and SpaceWERX STRATFI pathways.</p>
+    </div>
+    <ul class="facts reveal" data-delay="1" style="background:transparent;">
+      <li><b>Entity</b><span>HYPATIUS LLC</span></li>
+      <li><b>Classification</b><span>Small business · Non-traditional defense contractor</span></li>
+      <li><b>UEI</b><span>UKELB3UV76V6</span></li>
+      <li><b>CAGE</b><span>19S89</span></li>
+      
+      <li><b>Location</b><span>Charleston, South Carolina</span></li>
+      <li><b>Contact</b><span>leadership@hypati.us · 253.230.4166</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctaband">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="display" style="font-size:clamp(34px,5vw,60px);">Let's talk.</h2>
+      <p class="lead">STARCHITECT is available for demonstration in unclassified environments.</p>
+      <div class="row">
+        <a href="home.html#briefing" class="btn btn-primary btn-lg">Request a briefing →</a>
+        <a href="https://hypati.us" target="_blank" rel="noopener" class="btn btn-outline btn-lg">About HYPATIUS ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand"><img src="assets/wordmark.png" alt="STARCHITECT"><p>The operating system for space warfare and CJADC2.</p><div class="contact">leadership@hypati.us<br>253.230.4166<br>Charleston, SC</div></div>
+    <div class="footer-col"><h4>Platform</h4><a href="a-platform.html#os">The OS layer</a><a href="a-platform.html#architecture">Architecture</a><a href="a-capabilities.html">Capabilities</a><a href="a-use-cases.html">Use cases</a></div>
+    <div class="footer-col"><h4>Solutions</h4><a href="a-about.html">For government</a><a href="a-platform.html#integration">For primes</a><a href="home.html#acquisition">Acquisition</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="a-about.html">About</a><a href="a-about.html#leadership">Leadership</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us ↗</a></div>
+  </div>
+  <div class="footer-bottom"><div>© 2026 HYPATIUS LLC · STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 · CAGE 19S89</div></div>
+  <div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

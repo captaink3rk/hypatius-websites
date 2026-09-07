@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STARCHITECT — Use Cases · Active On Orbit</title>
+<meta name="description" content="Unclassified scenarios, active on orbit this quarter. The STARCHITECT orbital threat scope.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="site2.css">
+<style>
+  .tracks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 12px; }
+  .track { background: var(--panel); border: 1px solid var(--hair); border-left: 3px solid var(--gold); border-radius: 6px; padding: 26px 28px; }
+  .track.red { border-left-color: var(--alert); } .track.cyan { border-left-color: var(--cyan); }
+  .track .tk { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .track.red .tk { color: var(--alert); } .track.cyan .tk { color: var(--cyan); }
+  .track h3 { color: var(--bone); font-size: 19px; margin-bottom: 6px; }
+  .track .status { font-family: var(--font-mono); font-size: 12px; color: var(--slate); margin-bottom: 12px; }
+  .track p { font-size: 14px; color: var(--slate); line-height: 1.5; }
+  @media (max-width: 920px) { .tracks { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-chrome="on" data-route="use-cases">
+
+<header class="phero grid-bg fine">
+  <div class="container">
+    <span class="eyebrow cyan">Use Cases · Active On Orbit</span>
+    <h1>Unclassified scenarios. <span class="cyan">This quarter.</span></h1>
+    <p class="lead">STARCHITECT is not built for training simulations. It is built for the orbital battlespace as it exists today. Select an engagement to put it on the scope.</p>
+    <div class="phero-ctas">
+      <a href="home.html#briefing" class="btn btn-primary btn-lg">Request a briefing →</a>
+      <a href="resilience.html" class="btn btn-outline btn-lg">See the resilience model</a>
+    </div>
+  </div>
+</header>
+
+<!-- THREAT SCOPE -->
+<section class="sec-void grid-bg fine" style="padding-top:60px;">
+  <div class="container">
+    <div class="scope-wrap reveal">
+      <div class="scope-copy">
+        <span class="eyebrow">01 · The Scope</span>
+        <p class="lead" style="margin-top:18px;">Distinguishing a coordinated proximity approach from routine station-keeping requires numerical propagators — exactly what the EKF pipeline tracks. Legacy TLE propagators break on non-Keplerian maneuvers.</p>
+        <div class="scope-tabs">
+          <button class="scope-tab on" data-scope-tab="tjs">
+            <span><span class="st-name">TJS-3 &amp; TJS-10</span><span class="st-meta">China GEO · converging &lt;1 km cross-track</span></span>
+            <span class="st-arrow">▸</span>
+          </button>
+          <button class="scope-tab" data-scope-tab="sj29">
+            <span><span class="st-name">SJ-29A/B vs USA-325</span><span class="st-meta">GSSAP custody · 12-hour cycle</span></span>
+            <span class="st-arrow">▸</span>
+          </button>
+          <button class="scope-tab" data-scope-tab="cosmos">
+            <span><span class="st-name">Cosmos 2589</span><span class="st-meta">Russia · circularizing · sub-sat watch</span></span>
+            <span class="st-arrow">▸</span>
+          </button>
+        </div>
+        <p style="margin-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;color:var(--mute-text);">All scenarios sourced from open-source orbital intelligence. Unclassified.</p>
+      </div>
+      <div class="scope">
+        <div class="scope-top">
+          <span class="t"><span class="live"></span>ORBITAL THREAT SCOPE</span>
+          <span class="rate" data-scope-rate>CONVERGING</span>
+        </div>
+        <canvas id="scopeCanvas"></canvas>
+        <div class="scope-foot">
+          <div class="sf"><div class="k">Closing range</div><div class="v" data-scope-range>18.0 km</div></div>
+          <div class="sf"><div class="k">Engagement</div><div class="v cyan" data-scope-status>TJS-3 / TJS-10</div></div>
+          <div class="sf"><div class="k">Regime</div><div class="v cyan" data-scope-name>GEO · cross-track</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIO LIBRARY -->
+<section class="sec-dark grid-bg">
+  <div class="container">
+    <div class="shead reveal" style="margin-bottom:30px;">
+      <span class="eyebrow cyan">02 · The Library</span>
+      <h2 class="display">Tracked objects. Open-source intelligence.</h2>
+    </div>
+    <div class="tracks reveal" data-delay="1">
+      <div class="track red">
+        <div class="tk">Case 01 — China GEO</div>
+        <h3>TJS-3 &amp; TJS-10</h3>
+        <div class="status">CONVERGING · CLOSEST APPROACH ~20 MAR 2026</div>
+        <p>Converging &lt;1 km cross-track. Distinguishing a coordinated proximity approach from routine station-keeping requires numerical propagators — exactly what STARCHITECT's EKF pipeline tracks.</p>
+      </div>
+      <div class="track cyan">
+        <div class="tk">Case 02 — SJ-29A/B vs USA-325</div>
+        <h3>US GSSAP close-approach cycle</h3>
+        <div class="status">ACTIVE · 12-HOUR CYCLE</div>
+        <p>China's SJ-29A/B pair cycling within 11–22 km of USA-325. Blue/Red orbital chess made real — demonstrable in the wargaming arena with the Three-Burns kill chain.</p>
+      </div>
+      <div class="track">
+        <div class="tk">Case 03 — Russia</div>
+        <h3>Cosmos 2589</h3>
+        <div class="status">CIRCULARIZING · GEO ARRIVAL ~17 APR 2026</div>
+        <p>Non-Keplerian circularization with sub-satellite deployment — the exact maneuver profile that breaks legacy TLE propagators. Numerical propagator tracking is the required solution.</p>
+      </div>
+      <div class="track red">
+        <div class="tk">Case 04 — Strait of Hormuz</div>
+        <h3>GPS / GNSS attack</h3>
+        <div class="status">ACTIVE · 1,100+ VESSELS DISRUPTED</div>
+        <p>Jamming and spoofing during the campaign against Iran disrupted over 1,100 ships. STARCHITECT's NATS mesh and PACE-tier routing are the space-domain equivalent of GPS resilience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec-void grid-bg fine">
+  <div class="container cta">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center;">Let's Talk</span>
+      <h2 class="display" style="margin-top:18px;">Live track catalogs are demonstrated in a cleared briefing.</h2>
+      <p class="lead">What's shown here runs in unclassified environments. The full correlator pipeline against the live catalog is need-to-know.</p>
+      <div class="cta-actions">
+        <a href="home.html#briefing" class="btn btn-primary btn-lg">Request a briefing →</a>
+        <a href="security.html" class="btn btn-outline btn-lg">See tiered access</a>
+      </div>
+      <div class="cta-contact">leadership@hypati.us · 253.230.4166 · CHARLESTON, SC</div>
+    </div>
+  </div>
+</section>
+
+<script src="home-fx.js"></script>
+</body>
+</html>
