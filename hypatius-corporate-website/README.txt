@@ -1,5 +1,5 @@
 HYPATIUS corporate website — hypati.us
-Deploy folder: hypatius-website/   (Vercel Root Directory must equal this name)
+Deploy folder: hypatius-corporate-website/   (Vercel Root Directory must equal this name)
 Built 2026-09-07 from the HYPATIUS Design System project.
 
 WHAT CHANGED IN THIS BUILD
@@ -24,7 +24,7 @@ DEPLOY STEPS
 1. github.com/captaink3rk/hypatius-websites -> Add file -> Upload files -> drag this whole folder -> wait for every
    progress bar (the intro video is large) -> Commit.
 2. Vercel -> hypatius-website -> Settings -> Git: connect to captaink3rk/hypatius-websites if not already.
-   Settings -> General -> Root Directory = hypatius-website -> Save. Settings -> Domains: confirm hypati.us + www.
+   Settings -> General -> Root Directory = hypatius-corporate-website -> Save. Settings -> Domains: confirm hypati.us + www.
 3. Deployments -> redeploy the NEWEST commit (or edit this README on GitHub to fire the webhook).
 4. Check https://hypati.us footer reads "© 2026 HYPATIUS LLC · UEI UKELB3UV76V6 · CAGE 19S89".
 
