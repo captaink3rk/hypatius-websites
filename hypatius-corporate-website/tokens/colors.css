@@ -1,0 +1,104 @@
+/* ============================================================
+   HYPATIUS — Color tokens
+   "Blackout" theme: navy void spine, cobalt + aqua signal accents,
+   gold reserved for in-development / premium status only.
+   ============================================================ */
+:root {
+  /* ---- Navy spine (60–70% of visual weight) ---- */
+  --navy-900: #060F1C;   /* void / page background */
+  --navy-800: #0B1929;   /* raised panels, nav, footer-adjacent */
+  --navy-700: #14253E;
+  --navy-600: #1F3354;   /* tile borders */
+  --navy-500: #2A3A52;
+  --void-black: #04090F;  /* footer / deepest surface */
+
+  /* ---- Cobalt (primary action + structural accent) ---- */
+  --cobalt-700: #0F2E6B;
+  --cobalt-600: #133D8F;
+  --cobalt-500: #1A4FBA;  /* primary button fill, accent rules */
+  --cobalt-400: #3B7BD9;  /* eyebrow / link text on dark */
+
+  /* ---- Aqua (signal / "live" accent — the comm beam) ---- */
+  --aqua-500: #2A8DA0;
+  --aqua-400: #4FC3D9;    /* the brand signal color */
+  --aqua-300: #7FD7E5;
+
+  /* ---- Gold (in-development / premium status, used sparingly) ---- */
+  --gold-500: #C9A961;
+
+  /* ---- Slate text + neutral panel scale (Blackout-inverted) ---- */
+  --slate-50:  #0B1929;   /* raised panel on void */
+  --slate-100: #10203A;
+  --slate-200: #22324C;   /* hairline borders */
+  --slate-300: #C9D4E2;   /* bright body text on dark */
+  --slate-400: #8FA0B5;   /* muted / caption text */
+  --slate-500: #90A0B4;   /* form labels */
+  --slate-600: #B9C5D4;   /* default body text */
+  --slate-700: #CBD6E4;
+  --slate-800: #DCE5EF;
+
+  /* ---- Near-white display ink ---- */
+  --ink-bright: #F2F6FA;  /* headings on dark */
+  --ink-pure:   #FFFFFF;
+
+  /* ============================================================
+     SEMANTIC ALIASES — author against these, not raw scales
+     ============================================================ */
+  --bg-page:        var(--navy-900);
+  --bg-section:     var(--navy-900);
+  --bg-section-alt: var(--navy-800);
+  --surface-card:   #0E1E33;   /* the canonical card fill on Blackout */
+  --surface-raised: var(--navy-800);
+  --surface-sunken: var(--void-black);
+
+  --border-hairline: var(--slate-200);
+  --border-structural: var(--navy-600);
+
+  --text-display:  var(--ink-bright);
+  --text-heading:  var(--ink-bright);
+  --text-body:     var(--slate-600);
+  --text-bright:   var(--slate-300);
+  --text-muted:    var(--slate-400);
+  --text-label:    var(--slate-500);
+
+  --accent-primary: var(--cobalt-500);   /* primary action */
+  --accent-link:    var(--cobalt-400);   /* eyebrows, inline links */
+  --accent-signal:  var(--aqua-400);     /* "live", beams, highlights */
+  --accent-premium: var(--gold-500);     /* "in development" */
+
+  --focus-ring: var(--cobalt-400);
+}
+
+/* ============================================================
+   LIGHT VARIANT — opt-in via <html data-theme="light"> (or any
+   ancestor). Blackout/dark stays canonical (:root); this remaps the
+   SEMANTIC aliases only — raw scales are unchanged. Dark "bands"
+   (.section--dark, .platform-tile, .cta-strip, heroes) stay dark on
+   purpose in both themes.
+   ============================================================ */
+[data-theme="light"] {
+  --bg-page:        #EDF1F7;
+  --bg-section:     #EDF1F7;
+  --bg-section-alt: #FFFFFF;
+  --surface-card:   #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-sunken: #E2E8F1;
+
+  --border-hairline:   #D6E0EC;
+  --border-structural: #C2D0E0;
+
+  --text-display: #0B1929;
+  --text-heading: #0B1929;
+  --text-body:    #44546B;
+  --text-bright:  #1F3354;
+  --text-muted:   #6B7B92;
+  --text-label:   #6B7B92;
+
+  --accent-primary: var(--cobalt-500);
+  --accent-link:    var(--cobalt-600);
+  --accent-signal:  var(--aqua-500);   /* darker aqua for contrast on white */
+  --accent-premium: #9A7B2E;           /* darker gold reads on white */
+
+  --focus-ring: var(--cobalt-500);
+  background: var(--bg-page);
+}
