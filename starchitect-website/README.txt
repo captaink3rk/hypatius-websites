@@ -24,3 +24,4 @@ Vercel: hypatius / starchitect-website → Root Directory = `starchitect-website
 - Fonts (Bebas Neue, Rajdhani, IBM Plex Mono) load from Google Fonts.
 
 © 2026 HYPATIUS LLC. STARCHITECT is a HYPATIUS platform.
+
