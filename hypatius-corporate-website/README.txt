@@ -16,6 +16,8 @@ WHAT CHANGED IN THIS BUILD
 - Careers shelved: page removed, all links dropped, Company page careers block and form option removed.
 - Insights tab replaced by News (news.html); Kennedy release is the first item. Footer links updated.
 - Assets under /site/ are immutable-cached for a year: flagship.css/.js renamed to flagship-v5.css/.js so the new MDO styles load. ALWAYS rename an asset you replace (e.g. -v6) instead of overwriting.
+- Rev 5.3: Stan Kennedy bio on Company replaced with a condensed version of his own bio (Oakman/Redwire, AIAA, SFCC, ITAC-1, degrees); removed unsourced "three decades"/"USAF veteran" claims.
+- Rev 5.2: Tweaks review panel markup removed from all shipped pages; Platforms mobile drawer now includes News.
 - vercel.json: cleanUrls, no trailing slash, immutable cache on /site/*.
 - Hero imagery: every file with a baked-in HYPATIUS wordmark was retired. Replacements carry a -v2 suffix
   (hero-orbital-v2, hero-maritime-v2, platforms-hero-v2, beam-divider-v2, cta-v2). Only clean, text-free heroes ship.
