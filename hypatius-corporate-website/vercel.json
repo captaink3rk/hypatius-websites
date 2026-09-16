@@ -1,1 +1,38 @@
-{"cleanUrls": true, "trailingSlash": false, "rewrites": [{"source": "/news/stanley-kennedy-ceo", "destination": "/news-stanley-kennedy-ceo.html"}], "headers": [{"source": "/site/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]}]}
+{
+ "cleanUrls": true,
+ "trailingSlash": false,
+ "rewrites": [
+  {
+   "source": "/news/stanley-kennedy-ceo",
+   "destination": "/news-stanley-kennedy-ceo.html"
+  }
+ ],
+ "headers": [
+  {
+   "source": "/site/(.*)",
+   "headers": [
+    {
+     "key": "Cache-Control",
+     "value": "public, max-age=31536000, immutable"
+    }
+   ]
+  }
+ ],
+ "redirects": [
+  {
+   "source": "/starchitect",
+   "destination": "https://starchitect.us",
+   "permanent": true
+  },
+  {
+   "source": "/alidade",
+   "destination": "https://alidade.us",
+   "permanent": true
+  },
+  {
+   "source": "/craton",
+   "destination": "https://craton.us",
+   "permanent": true
+  }
+ ]
+}

@@ -1,49 +1,25 @@
 /* ============================================================
-   HYPATIUS — Webfonts (company-wide)
-   Corporate + STARCHITECT faces ship as real files:
-     Bebas Neue    -> display
-     Rajdhani      -> interface / body
-     IBM Plex Mono -> data, eyebrows, stamps
-   ALIDADE brand/deck faces (Barlow Condensed + Inter) and the
-   live-app HUD faces (IBM Plex Sans + IBM Plex Serif) load from
-   Google Fonts — these are the exact families the sources name,
-   not substitutes. IBM Plex Mono ships as local TTFs above.
+   HYPATIUS — Webfonts · self-hosted (v3, 16 Sep 2026)
+   Bebas Neue (display) · Rajdhani (body/UI) · IBM Plex Mono (labels)
+   Served from /site/fonts/ (latin subsets, OFL 1.1). Replaces the
+   Google Fonts @import: no font request leaves the visitor's
+   machine, and the site starts offline. Paths are relative to this
+   file. Anything under /site/ is immutable-cached for a year, so a
+   replaced face gets a new filename, never the same one.
    ============================================================ */
-/* CRATON display face — decided 14 Sep 2026. Self-hosted: the web kit requires it
-   (font-display: swap, LCP < 2.0 s on 4G), and a network that blocks Google Fonts
-   would otherwise drop the stack onto Bebas Neue, which is UPPERCASE-ONLY — every
-   sentence-case CRATON headline would silently render as a shout. */
-@font-face{font-family:"Big Shoulders Display";src:url("../assets/fonts/big-shoulders-display-latin-600-normal.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"Big Shoulders Display";src:url("../assets/fonts/big-shoulders-display-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Big Shoulders Display";src:url("../assets/fonts/big-shoulders-display-latin-800-normal.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
-/* ALIDADE faces · self-hosted (16 Sep 2026, pass 2). Replaces the Google Fonts @import: Barlow Condensed + Inter latin woff2 from assets/fonts/. IBM Plex Mono is declared below; IBM Plex Sans falls back to the system stack until a subset is added. */
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"Barlow Condensed";src:url("../assets/fonts/BarlowCondensed-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-/* IBM Plex Sans (variable, 100-700) + Plex Serif · self-hosted · used by tokens/alidade-hud.css (the live ALIDADE app's HUD stacks) */
-@font-face{font-family:"IBM Plex Sans";src:url("../assets/fonts/IBMPlexSansVar-Roman.woff2") format("woff2");font-weight:100 700;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Sans";src:url("../assets/fonts/IBMPlexSansVar-Italic.woff2") format("woff2");font-weight:100 700;font-style:italic;font-display:swap}
-@font-face{font-family:"IBM Plex Serif";src:url("../assets/fonts/IBMPlexSerif-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Serif";src:url("../assets/fonts/IBMPlexSerif-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"IBM Plex Serif";src:url("../assets/fonts/IBMPlexSerif-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter";src:url("../assets/fonts/Inter-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter";src:url("../assets/fonts/Inter-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter";src:url("../assets/fonts/Inter-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter";src:url("../assets/fonts/Inter-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-/* IBM Plex Sans (variable, 100–700) + IBM Plex Serif · self-hosted from the IBM Plex release (OFL 1.1). Used by tokens/alidade-hud.css. */
-@font-face{font-family:"IBM Plex Sans";src:url("../assets/fonts/IBMPlexSansVar-Roman.woff2") format("woff2");font-weight:100 700;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Sans";src:url("../assets/fonts/IBMPlexSansVar-Italic.woff2") format("woff2");font-weight:100 700;font-style:italic;font-display:swap}
-@font-face{font-family:"IBM Plex Serif";src:url("../assets/fonts/IBMPlexSerif-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Serif";src:url("../assets/fonts/IBMPlexSerif-Italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
-@font-face{font-family:"IBM Plex Serif";src:url("../assets/fonts/IBMPlexSerif-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"Bebas Neue";src:url("../assets/fonts/BebasNeue-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url("../assets/fonts/Rajdhani-Light.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url("../assets/fonts/Rajdhani-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url("../assets/fonts/Rajdhani-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url("../assets/fonts/Rajdhani-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"Rajdhani";src:url("../assets/fonts/Rajdhani-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("../assets/fonts/IBMPlexMono-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("../assets/fonts/IBMPlexMono-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("../assets/fonts/IBMPlexMono-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("../assets/fonts/IBMPlexMono-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{ font-family:"Bebas Neue"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../site/fonts/BebasNeue-Regular.woff2") format("woff2"); }
+@font-face{ font-family:"Rajdhani"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../site/fonts/Rajdhani-Regular.woff2") format("woff2"); }
+@font-face{ font-family:"Rajdhani"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("../site/fonts/Rajdhani-Medium.woff2") format("woff2"); }
+@font-face{ font-family:"Rajdhani"; font-style:normal; font-weight:600; font-display:swap;
+  src:url("../site/fonts/Rajdhani-SemiBold.woff2") format("woff2"); }
+@font-face{ font-family:"Rajdhani"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("../site/fonts/Rajdhani-Bold.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../site/fonts/IBMPlexMono-Regular.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("../site/fonts/IBMPlexMono-Medium.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("../site/fonts/IBMPlexMono-Bold.woff2") format("woff2"); }

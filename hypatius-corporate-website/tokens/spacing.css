@@ -1,61 +1,44 @@
 /* ============================================================
-   HYPATIUS — Spacing, layout, radius, borders.
-   4px base unit across all three tiers. Radius is the one place
-   the tiers genuinely differ: corporate is near-square (2px),
-   STARCHITECT is technical (4/8), ALIDADE is glass (5/8/12).
+   HYPATIUS — Spacing, layout & shape tokens
    ============================================================ */
-:root{
-  --sp-0:0; /* @kind spacing */
-  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px;
-  --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px; --sp-10:128px;
+:root {
+  /* ---- Layout widths ---- */
+  --max-w: 1280px;
+  --max-w-narrow: 960px;
+  --gutter: clamp(1.25rem, 4vw, 3rem); /* @kind spacing */
+  --section-y: clamp(4rem, 9vw, 8rem); /* @kind spacing */
 
-  --layout-max:1280px;
-  --layout-narrow:960px;
-  --gutter:clamp(1.25rem,4vw,3rem); /* @kind spacing */
-  --section-y:clamp(4rem,9vw,8rem); /* @kind spacing */
-  --layout-pad-x:24px;
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
 
-  /* ---- Radius — corporate is near-square; 2px is the brand round ---- */
-  --radius-none:0;
-  --radius-tick:2px;
-  --radius-control:2px;   /* buttons, inputs */
-  --radius-card:2px;      /* cards, panels */
-  --radius-container:2px;
-  --radius-pill:999px;    /* status pills */
-  --radius-full:50%;      /* dots, avatars */
+  /* ---- Radius — HYPATIUS is near-square. 2px is the brand "round". ---- */
+  --radius-sharp: 0;
+  --radius: 2px;
+  --radius-pill: 50%;     /* dots / avatars only */
 
   /* ---- Borders ---- */
-  --bw-hair:1px;
-  --bw-rule:2px;
-  --bw-accent:2px;   /* top-accent strip on corporate cards */
-  --hairline:1px;
+  --border-w: 1px;
+  --border-accent-w: 2px;  /* top-accent strips on cards */
 
-  /* ---- Product chrome ---- */
-  --rail-w:56px; /* @kind spacing */
-  --topbar-h:50px; /* @kind spacing */
-  --z-nav:100; /* @kind other */
-}
+  /* ---- Elevation — flat brand. Borders do the work, not shadows. ---- */
+  --shadow-none: none;
+  --shadow-glow-aqua: 0 0 8px var(--aqua-400);   /* the only "glow": signal dots */
+  --shadow-lift: 0 8px 28px rgba(0, 0, 0, 0.35);  /* hover lift on tiles */
 
-[data-brand="starchitect"]{
-  --radius-control:4px;
-  --radius-card:8px;
-  --radius-container:12px;
-  --bw-accent:4px;   /* the gold/cyan top-accent rule */
-  --section-pad-y:96px;
-}
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1); /* @kind other */
+  --dur-fast: 0.2s; /* @kind other */
+  --dur: 0.3s; /* @kind other */
+  --dur-slow: 0.9s; /* @kind other */
 
-[data-brand="alidade"]{
-  --radius-tick:4px;
-  --radius-control:5px;
-  --radius-card:8px;
-  --radius-container:10px;
-  --radius-modal:12px;
-  --radius-input:6px;
-  --hairline:0.5px;
-  --bw-accent:2px;   /* teal left-edge bar */
-  --pad-card:12px 14px;
-  --pad-section:10px 14px;
-  --pad-pill:2px 7px;
-  --pad-btn:7px 12px;
-  --pad-page:14px 16px;
+  /* ---- Z ---- */
+  --z-nav: 100; /* @kind other */
 }
