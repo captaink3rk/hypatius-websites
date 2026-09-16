@@ -1,0 +1,7 @@
+/* ============================================================
+   HYPATIUS — Webfonts
+   Bebas Neue (display) · Rajdhani (body/UI) · IBM Plex Mono (labels)
+   Served from Google Fonts. Consumers link styles.css which reaches
+   this file; the @import below pulls the @font-face declarations.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');

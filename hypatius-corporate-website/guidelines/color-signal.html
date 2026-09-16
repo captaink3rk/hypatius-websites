@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Cobalt + Aqua Signal" subtitle="Cobalt = primary action · Aqua = the live signal accent" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { background: var(--navy-900); padding: 18px; }
+  .row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+  .sw { border-radius: var(--radius); height: 84px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; }
+  .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,0.92); }
+  .hex { font-family: var(--font-mono); font-size: 9px; color: rgba(255,255,255,0.6); }
+  .dark .name, .dark .hex { color: var(--navy-900); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background:#0F2E6B"><span class="name">cobalt-700</span><span class="hex">#0F2E6B</span></div>
+    <div class="sw" style="background:#133D8F"><span class="name">cobalt-600</span><span class="hex">#133D8F</span></div>
+    <div class="sw" style="background:#1A4FBA"><span class="name">cobalt-500</span><span class="hex">#1A4FBA</span></div>
+    <div class="sw" style="background:#3B7BD9"><span class="name">cobalt-400</span><span class="hex">#3B7BD9</span></div>
+    <div class="sw" style="background:#2A8DA0"><span class="name">aqua-500</span><span class="hex">#2A8DA0</span></div>
+    <div class="sw dark" style="background:#4FC3D9"><span class="name">aqua-400</span><span class="hex">#4FC3D9</span></div>
+    <div class="sw dark" style="background:#7FD7E5"><span class="name">aqua-300</span><span class="hex">#7FD7E5</span></div>
+  </div>
+</body>
+</html>

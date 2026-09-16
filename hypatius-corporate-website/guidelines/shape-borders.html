@@ -1,0 +1,20 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Shape & Borders" subtitle="Near-square: 2px radius, hairline borders, top-accent strips" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { background: var(--navy-900); padding: 20px; display: flex; gap: 16px; align-items: stretch; }
+  .box { flex: 1; background: var(--surface-card); border: 1px solid var(--slate-200); padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--slate-400); }
+  .val { font-family: var(--font-body); font-weight: 700; color: var(--ink-bright); font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="box" style="border-radius:0"><span class="val">radius-sharp</span><span class="lbl">0px — slabs</span></div>
+  <div class="box" style="border-radius:2px"><span class="val">radius</span><span class="lbl">2px — default</span></div>
+  <div class="box" style="border-top:2px solid var(--cobalt-500);border-radius:2px"><span class="val">top-accent</span><span class="lbl">2px cobalt strip</span></div>
+  <div class="box" style="border-top:2px solid var(--gold-500);border-radius:2px"><span class="val">top-accent gold</span><span class="lbl">in-development</span></div>
+</body>
+</html>

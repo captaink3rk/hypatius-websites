@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HYPATIUS</title>
+<style>
+html,body{margin:0;height:100%;background:#060B17;overflow:hidden;font-family:"IBM Plex Mono",ui-monospace,monospace}
+a{color:#4FC3D9}a:hover{color:#D4A03B}
+.stage{position:fixed;inset:0;display:grid;place-items:center;background:#060B17}
+video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 900ms ease}
+video.ready{opacity:1}
+.skip{position:fixed;right:clamp(1rem,3vw,2.5rem);bottom:clamp(1rem,3vw,2.5rem);color:#9FB3C8;text-decoration:none;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.75rem 1rem;border:1px solid rgba(159,179,200,0.35);opacity:0;transition:opacity 600ms ease 1.5s,border-color 200ms,color 200ms;min-height:44px;display:inline-flex;align-items:center}
+.skip.show{opacity:1}
+.skip:hover{color:#fff;border-color:#4FC3D9}
+.fade{position:fixed;inset:0;background:#060B17;opacity:0;pointer-events:none;transition:opacity 700ms ease}
+.fade.on{opacity:1}
+@media (prefers-reduced-motion:reduce){video{transition:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+<video id="sting" src="site/video/hypatius-intro-sting-v2.mp4" poster="site/img/intro-poster.png" autoplay muted playsinline preload="auto"></video>
+</div>
+<a class="skip" id="skip" href="home.html">Skip intro</a>
+<div class="fade" id="fade"></div>
+<script>
+(function(){
+var dest="home.html",v=document.getElementById("sting"),skip=document.getElementById("skip"),fade=document.getElementById("fade"),done=false;
+function go(){if(done)return;done=true;fade.classList.add("on");setTimeout(function(){location.replace(dest)},700)}
+if(sessionStorage.getItem("hyp-intro-seen")){location.replace(dest);return}
+sessionStorage.setItem("hyp-intro-seen","1");
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){go();return}
+v.addEventListener("canplay",function(){v.classList.add("ready");skip.classList.add("show")});
+v.addEventListener("ended",go);
+v.addEventListener("error",go);
+skip.addEventListener("click",function(e){e.preventDefault();go()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.key==="Enter")go()});
+setTimeout(go,11000);
+})();
+</script>
+</body>
+</html>
