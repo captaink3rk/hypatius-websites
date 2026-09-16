@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="alidade">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALIDADE mobile — Bearings + Ask</title>
+<!-- PREVIEW FONT PATH ONLY. The installed design system supplies these faces
+     from tokens/fonts.css. Self-host before deploying — see 01-AUDIT.md §6.2. -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/alidade-v2.css">
+<link rel="stylesheet" href="../../css/alidade-product-v2.css">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{ margin:0; background:#04080F; color:var(--al-t2);
+        font-family:var(--al-font-ui); -webkit-font-smoothing:antialiased; }
+  .page{ max-width:1560px; margin:0 auto; padding:clamp(2rem,5vw,4rem) clamp(1.25rem,4vw,3rem) 5rem; }
+
+  h1,h2,h3{ font-family:var(--al-font-display); font-weight:500; color:var(--al-t1);
+            letter-spacing:.02em; margin:0; line-height:1.08; }
+  .eyebrow{ font-family:var(--al-font-mono); font-size:11px; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--al-t3);
+            display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+  .eyebrow::before{ content:""; width:28px; height:1px; background:var(--al-teal); }
+  .lede{ max-width:62ch; margin-top:18px; font-size:16px; line-height:1.6; }
+
+  /* ---- device frame ---- */
+  .frames{ display:grid; grid-template-columns:repeat(2,1fr);
+           gap:clamp(1.5rem,3vw,2.5rem); margin-top:48px; }
+  @media (min-width:1620px){ .frames{ grid-template-columns:repeat(4,1fr); } }
+  @media (max-width:740px){ .frames{ grid-template-columns:1fr; } }
+  .unit{ display:grid; gap:14px; justify-items:center; }
+  .cap{ text-align:center; max-width:34ch; }
+  .cap h3{ font-size:19px; }
+  .cap p{ font-size:13.5px; margin:8px 0 0; color:var(--al-t2); line-height:1.55; }
+
+  .phone{
+    width:320px; height:660px; flex:none; position:relative;
+    border-radius:44px; padding:11px;
+    background:linear-gradient(160deg,#1a2740,#0a1220);
+    box-shadow:0 40px 90px -50px rgba(0,0,0,.9), inset 0 0 0 1px rgba(143,200,220,.14);
+  }
+  .screen{
+    position:relative; width:100%; height:100%; overflow:hidden;
+    border-radius:34px; background:var(--al-bg);
+    display:grid; grid-template-rows:auto 1fr auto;
+  }
+  .notch{ position:absolute; top:11px; left:50%; transform:translateX(-50%);
+          width:104px; height:24px; border-radius:14px; background:#060B14; z-index:6; }
+
+  .stat{ display:flex; justify-content:space-between; align-items:center;
+         padding:16px 20px 8px; position:relative; z-index:7; font-family:var(--al-font-mono);
+         font-size:10.5px; color:var(--al-t2); letter-spacing:.06em; }
+  .body{ overflow:hidden; padding:6px 18px 12px; display:flex; flex-direction:column; min-height:0; }
+  .tabbar{ display:grid; grid-template-columns:repeat(3,1fr);
+           border-top:var(--al-hairline) solid var(--al-bf);
+           padding:9px 8px 22px; background:var(--al-srf); }
+  .tabbar button{ background:none; border:0; display:grid; gap:5px; justify-items:center;
+                  color:var(--al-t3); font-family:var(--al-font-mono); font-size:8.5px;
+                  letter-spacing:.14em; text-transform:uppercase; cursor:pointer; }
+  .tabbar button[aria-current]{ color:var(--al-teal); }
+  .tabbar svg{ width:20px; height:20px; stroke:currentColor; fill:none;
+               stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+
+  .hdr{ display:flex; align-items:baseline; justify-content:space-between;
+        padding:4px 2px 14px; }
+  .hdr h2{ font-size:23px; letter-spacing:.1em; text-transform:uppercase; }
+
+  .m-card{ background:var(--al-srf); border:var(--al-hairline) solid var(--al-bf);
+           border-radius:var(--al-radius-card); padding:13px; margin-bottom:10px; }
+  .m-title{ font-size:13.5px; color:var(--al-t1); font-weight:500; line-height:1.35; }
+  .m-meta{ font-family:var(--al-font-mono); font-size:9.5px; color:var(--al-t3);
+           letter-spacing:.06em; margin-top:5px; }
+
+  /* ---- the listening ring: the ONE permitted live element ---- */
+  .ask{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+        gap:22px; height:100%; padding-bottom:6px; }
+  .ring{ position:relative; width:184px; height:184px; display:grid; place-items:center; }
+  .ring::before,.ring::after{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    border:1px solid var(--al-teal); opacity:0;
+    animation:listen 3.2s var(--al-ease) infinite;
+  }
+  .ring::after{ animation-delay:1.6s; }
+  @keyframes listen{
+    0%  { transform:scale(.62); opacity:.55; }
+    70% { opacity:.06; }
+    100%{ transform:scale(1);   opacity:0; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ring::before,.ring::after{ animation:none; opacity:.3; transform:scale(.82); }
+  }
+  .mark{ width:98px; height:98px; display:grid; place-items:center;
+         border-radius:50%; background:rgba(33,224,205,.07);
+         border:var(--al-hairline) solid var(--al-teal-edge); }
+
+  .quote{ text-align:center; font-size:15px; color:var(--al-t1);
+          line-height:1.5; max-width:24ch; }
+  .listening{ display:flex; align-items:center; gap:7px;
+              font-family:var(--al-font-mono); font-size:10px;
+              letter-spacing:.18em; text-transform:uppercase; color:var(--al-teal); }
+  .listening::before{ content:"●"; font-size:8px; }
+
+  .tools{ width:100%; display:grid; gap:7px; }
+  .tool{ display:flex; align-items:center; gap:9px;
+         font-family:var(--al-font-mono); font-size:10.5px;
+         padding:8px 11px; background:var(--al-srf);
+         border:var(--al-hairline) solid var(--al-bf);
+         border-radius:var(--al-radius-input); }
+  .tool b{ color:var(--al-teal); font-weight:400; }
+  .tool span{ margin-left:auto; color:var(--al-t3); }
+
+  .foot-stamp{ font-family:var(--al-font-mono); font-size:8.5px; letter-spacing:.12em;
+               color:var(--al-t3); text-align:center; padding:8px 0 4px; }
+
+  .spec{ margin-top:64px; display:grid; gap:14px;
+         grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+  .spec > div{ background:var(--al-srf); border:var(--al-hairline) solid var(--al-bf);
+               border-left:2px solid var(--al-teal); border-radius:0 8px 8px 0; padding:18px; }
+  .spec h3{ font-size:17px; margin-bottom:8px; }
+  .spec p{ font-size:13.5px; margin:0; line-height:1.55; }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <img src="../../assets/logos/alidade-lockup-web-600.png" alt="ALIDADE — Hypatius Capture Intelligence" width="140"
+       style="display:block;width:140px;height:auto;margin-bottom:28px;filter:drop-shadow(0 0 22px rgba(33,224,205,.3))">
+  <p class="eyebrow">ALIDADE mobile · concept built</p>
+  <h1 style="font-size:clamp(32px,5vw,52px)">Take the morning bearing.<br>Hold the mark to ask.</h1>
+  <p class="lede">
+    Agents work overnight. The phone is where a human signs — approve a connection
+    request, release a report, hold an action. Ask a question out loud and the answer
+    comes back as a dial, not a paragraph. Three destinations, not nine: the desktop
+    HUD is for working a pursuit; the phone is for deciding one.
+  </p>
+  <p class="lede" style="color:var(--al-t3);font-size:14px">
+    This is the first built version of the surface. It existed only as a written
+    concept in the brand book; the live application ships an Expo client that the
+    design system had never read. Screens below are the design-system position —
+    reconcile the Expo client against them, not the other way round.
+  </p>
+
+  <div class="frames">
+
+    <!-- ============ 1 · BEARINGS ============ -->
+    <div class="unit">
+      <div class="phone"><div class="notch"></div><div class="screen">
+        <div class="stat"><span>06:40</span><span aria-hidden="true"></span><span>▮▮▮</span></div>
+        <div class="body">
+          <div class="hdr">
+            <h2>Bearings</h2>
+            <span class="al-pill al-pill--gold" style="font-size:9.5px">3 gates</span>
+          </div>
+
+          <div class="al-lbl" style="margin-bottom:8px">Your signature required</div>
+
+          <div class="al-gate" style="margin-bottom:14px;padding:12px">
+            <div class="al-gate__head" style="margin-bottom:6px">
+              <span class="al-state" data-state="consider" style="font-size:9.5px">Connection request</span>
+            </div>
+            <p class="al-gate__body" style="font-size:12.5px;margin-bottom:10px">
+              Pipeline agent wants to contact <b style="color:var(--al-t1);font-weight:500">Partner
+              B2F4-9XK</b> for the Ring-B gap. Scope: capability, past performance.
+              Withheld: pricing.</p>
+            <div class="al-gate__actions">
+              <button class="al-btn al-btn--gate" style="font-size:12px;padding:6px 12px">Approve</button>
+              <button class="al-btn al-btn--secondary" style="font-size:12px;padding:6px 12px">Hold</button>
+            </div>
+          </div>
+
+          <div class="al-lbl" style="margin:16px 0 8px">Pursuits · pWin</div>
+
+          <div class="m-card al-edge" data-band="high">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div><div class="m-title">SDA Tranche 3 tracking</div>
+                <div class="m-meta">AMENDMENT 04 · DUE +4D</div></div>
+              <div class="al-score" style="min-width:44px">
+                <div class="al-score__num" style="font-size:20px">92</div>
+                <div class="al-score__band" style="font-size:8px">Pursue</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-card al-edge" data-band="high" style="border-left-color:var(--al-teal)">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div><div class="m-title">Golden Dome SBI · Ring-B</div>
+                <div class="m-meta">DUAL-SOURCE NOW · DUE +18D</div></div>
+              <div class="al-score" style="min-width:44px">
+                <div class="al-score__num" style="font-size:20px">84</div>
+                <div class="al-score__band" style="font-size:8px">Pursue</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-card al-edge al-edge--gate" data-band="mid">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+              <div><div class="m-title">DOI wildfire logistics</div>
+                <div class="m-meta">GAP OPEN · NO PARTNER</div></div>
+              <div class="al-score" style="min-width:44px">
+                <div class="al-score__num" style="font-size:20px">71</div>
+                <div class="al-score__band" style="font-size:8px">Consider</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="foot-stamp">UEI UKELB3UV76V6 · CAGE 19S89</div>
+        </div>
+
+        <nav class="tabbar">
+          <button aria-current="page">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
+            Bearings</button>
+          <button>
+            <img src="../../assets/logos/alidade-mark-64.png" alt="" width="20" height="20" style="width:20px;height:20px;object-fit:contain">
+            Ask</button>
+          <button>
+            <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+            Grants</button>
+        </nav>
+      </div></div>
+      <div class="cap"><h3>Bearings</h3>
+        <p>The morning briefing. Gates first, because a held action is the only thing
+          that genuinely needs a person before coffee. Pursuits below, ranked, each
+          carrying its band as a mark and a word — not a colour alone.</p></div>
+    </div>
+
+    <!-- ============ 2 · ASK ============ -->
+    <div class="unit">
+      <div class="phone"><div class="notch"></div><div class="screen">
+        <div class="stat"><span>06:42</span><span aria-hidden="true"></span><span>▮▮▮</span></div>
+        <div class="body">
+          <div class="ask">
+            <div class="ring">
+              <div class="mark">
+                <img src="../../assets/logos/alidade-mark-256.png" alt="Hold to ask" width="62" height="62"
+                     style="width:62px;height:62px;object-fit:contain;filter:drop-shadow(0 0 16px rgba(33,224,205,.5))">
+              </div>
+            </div>
+
+            <div class="listening">listening</div>
+
+            <p class="quote">"Who else can build Ring-B buses inside eighteen months?"</p>
+
+            <div class="tools">
+              <div class="tool"><b>discover_tools</b><span>5 tools</span></div>
+              <div class="tool"><b>performer_lookup</b><span>4 producers</span></div>
+              <div class="tool"><b>procurement_lead_time</b><span>running…</span></div>
+            </div>
+          </div>
+          <div class="foot-stamp">Hold the mark to ask · release to send</div>
+        </div>
+
+        <nav class="tabbar">
+          <button><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>Bearings</button>
+          <button aria-current="page"><img src="../../assets/logos/alidade-mark-64.png" alt="" width="20" height="20" style="width:20px;height:20px;object-fit:contain">Ask</button>
+          <button><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Grants</button>
+        </nav>
+      </div></div>
+      <div class="cap"><h3>Ask</h3>
+        <p>The mark is the control. Hold it to speak; release to send. The listening
+          ring is the single live element permitted anywhere in the system, and it
+          stills completely under reduced-motion. Tool calls stream as they run —
+          the answer is never a black box.</p></div>
+    </div>
+
+    <!-- ============ 3 · THE ANSWER ============ -->
+    <div class="unit">
+      <div class="phone"><div class="notch"></div><div class="screen">
+        <div class="stat"><span>06:42</span><span aria-hidden="true"></span><span>▮▮▮</span></div>
+        <div class="body">
+          <div class="hdr"><h2 style="font-size:19px">Bearing</h2>
+            <span class="al-lbl">run 9a12 · 6 calls</span></div>
+
+          <p style="font-size:13.5px;color:var(--al-t1);margin:0 0 18px;line-height:1.5">
+            Four producers can deliver Ring-B buses. Only one fits inside eighteen
+            months, and only on an OTA follow-on.</p>
+
+          <div data-band="high" style="margin-bottom:6px">
+            <svg viewBox="0 0 300 172" class="al-dial" role="img"
+                 aria-label="Bearing dial. OTA follow-on at 14 to 19 months is the recommendation. Task order 10 to 13. FAR Part 15, 26 to 34.">
+              <g class="al-dial__tick">
+                <line x1="30" y1="152" x2="42" y2="152"/>
+                <line x1="150" y1="30" x2="150" y2="42"/>
+                <line x1="270" y1="152" x2="258" y2="152"/>
+              </g>
+              <path class="al-dial__track" d="M 30 152 A 120 120 0 0 1 270 152"/>
+              <path class="al-dial__range" d="M 96 58 A 120 120 0 0 1 142 33"/>
+              <line class="al-dial__needle" x1="150" y1="152" x2="112" y2="60"/>
+              <circle class="al-dial__hub" cx="150" cy="152" r="4.5"/>
+              <text x="26" y="168" fill="#7D92B5" font-size="9" font-family="IBM Plex Mono, monospace">0</text>
+              <text x="140" y="24" fill="#7D92B5" font-size="9" font-family="IBM Plex Mono, monospace">20</text>
+              <text x="262" y="168" fill="#7D92B5" font-size="9" font-family="IBM Plex Mono, monospace">40</text>
+            </svg>
+          </div>
+
+          <div style="display:grid;gap:8px;font-size:12.5px;margin-top:10px">
+            <div style="display:flex;justify-content:space-between">
+              <span class="al-state" data-state="pursue" style="font-size:10px">OTA follow-on</span>
+              <b style="color:var(--al-t1);font-weight:500;font-variant-numeric:tabular-nums">14–19 mo</b></div>
+            <div style="display:flex;justify-content:space-between;color:var(--al-t2)">
+              <span>Task order</span><span style="font-variant-numeric:tabular-nums">10–13 mo</span></div>
+            <div style="display:flex;justify-content:space-between;color:var(--al-t2)">
+              <span>FAR Part 15</span><span style="font-variant-numeric:tabular-nums">26–34 mo</span></div>
+          </div>
+
+          <div class="al-ledger" style="margin-top:16px;padding:10px 0 0">
+            <span class="al-ledger__time">06:42:04</span>
+            <span class="al-ledger__tool">performer_lookup</span>
+            <span class="al-ledger__mode" data-mode="auto">auto</span>
+          </div>
+          <div class="al-ledger" style="border:0;padding:6px 0 0">
+            <span class="al-ledger__time">06:42:06</span>
+            <span class="al-ledger__tool">procurement_lead_time</span>
+            <span class="al-ledger__mode" data-mode="auto">auto</span>
+          </div>
+          <div class="foot-stamp">Tap any line to open its citations</div>
+        </div>
+
+        <nav class="tabbar">
+          <button><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>Bearings</button>
+          <button aria-current="page"><img src="../../assets/logos/alidade-mark-64.png" alt="" width="20" height="20" style="width:20px;height:20px;object-fit:contain">Ask</button>
+          <button><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Grants</button>
+        </nav>
+      </div></div>
+      <div class="cap"><h3>The answer is a dial</h3>
+        <p>A bearing, not a paragraph. Three pathways on one arc with the needle on
+          the recommendation, and the run ledger underneath so the answer can be
+          taken apart. This is the brand's signature data-viz doing real work on
+          the smallest surface it will ever run on.</p></div>
+    </div>
+
+    <!-- ============ 4 · GRANTS ============ -->
+    <div class="unit">
+      <div class="phone"><div class="notch"></div><div class="screen">
+        <div class="stat"><span>06:45</span><span aria-hidden="true"></span><span>▮▮▮</span></div>
+        <div class="body">
+          <div class="hdr"><h2 style="font-size:21px">Grants</h2>
+            <span class="al-pill al-pill--violet" style="font-size:9.5px">◆ 4 active</span></div>
+
+          <p style="font-size:13px;margin:0 0 16px;line-height:1.5">
+            A grant is a signed scope between tenants. It travels with every tool call,
+            whatever client made it.</p>
+
+          <div class="al-watermark" style="margin-bottom:10px">
+            <div class="al-watermark__tag">Partner · B2F4-9XK · active</div>
+            <div style="display:grid;gap:6px;font-family:var(--al-font-mono);font-size:10.5px;margin-top:8px">
+              <div style="display:flex;justify-content:space-between">
+                <span style="color:var(--al-t3)">SCOPE</span>
+                <span style="color:var(--al-t1)">teaming · proposal</span></div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="color:var(--al-t3)">FIELDS</span>
+                <span style="color:var(--al-t1)">capability, past_perf</span></div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="color:var(--al-t3)">WITHHELD</span>
+                <span style="color:var(--al-violet)">pricing, staffing</span></div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="color:var(--al-t3)">EXPIRES</span>
+                <span style="color:var(--al-t1)">on award or +90d</span></div>
+            </div>
+            <button class="al-btn al-btn--secondary" style="margin-top:11px;font-size:11.5px;padding:5px 10px">Revoke</button>
+          </div>
+
+          <div class="al-watermark" style="margin-bottom:10px">
+            <div class="al-watermark__tag">Partner · 7K1C-4QM · active</div>
+            <div style="display:grid;gap:6px;font-family:var(--al-font-mono);font-size:10.5px;margin-top:8px">
+              <div style="display:flex;justify-content:space-between">
+                <span style="color:var(--al-t3)">SCOPE</span>
+                <span style="color:var(--al-t1)">teaming</span></div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="color:var(--al-t3)">EXPIRES</span>
+                <span style="color:var(--al-t1)">+30d</span></div>
+            </div>
+          </div>
+
+          <div class="m-card al-edge al-edge--risk">
+            <div class="al-state" data-state="risk" style="font-size:9.5px;margin-bottom:5px">Denied · logged</div>
+            <div style="font-size:12.5px;color:var(--al-t1);line-height:1.45">
+              export_pdf requested outside granted scope. Denial written to the ledger.</div>
+            <div class="m-meta">06:41:58 · PARTNER J9D2-5XT</div>
+          </div>
+
+          <div class="foot-stamp">Denials are recorded like successes</div>
+        </div>
+
+        <nav class="tabbar">
+          <button><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>Bearings</button>
+          <button><img src="../../assets/logos/alidade-mark-64.png" alt="" width="20" height="20" style="width:20px;height:20px;object-fit:contain">Ask</button>
+          <button aria-current="page"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Grants</button>
+        </nav>
+      </div></div>
+      <div class="cap"><h3>The grant wallet</h3>
+        <p>What you have given away, to whom, and when it expires — revocable from
+          the phone. Violet throughout, because violet is the partner and consent
+          accent and nothing else ever uses it.</p></div>
+    </div>
+
+  </div>
+
+  <!-- ============ THE RULES ============ -->
+  <h2 style="font-size:clamp(26px,3.4vw,38px);margin-top:72px">Rules this surface holds to</h2>
+  <div class="spec">
+    <div>
+      <h3>Three destinations, not nine</h3>
+      <p>The desktop HUD has nine surfaces because a capture manager works there all
+        day. The phone has three because it exists for deciding, not working. Porting
+        the nine-surface IA to a 390px viewport is the single most likely mistake.</p>
+    </div>
+    <div>
+      <h3>One live element</h3>
+      <p>The listening ring, and nothing else. No skeleton shimmer, no pulsing dots,
+        no animated counters. It stills entirely under <code style="font-family:var(--al-font-mono);font-size:12px;color:var(--al-teal)">prefers-reduced-motion</code>.</p>
+    </div>
+    <div>
+      <h3>The mark is a control</h3>
+      <p>On mobile the crystalline A is not decoration — it is the press target and
+        the listening instrument. It is never recoloured and never given a solid
+        fill; the teal glow is the only treatment.</p>
+    </div>
+    <div>
+      <h3>Answers are bearings</h3>
+      <p>A dial with a needle on the recommendation beats a paragraph on a phone
+        held one-handed in a parking lot. Text is the fallback, not the default.</p>
+    </div>
+    <div>
+      <h3>State is never colour alone</h3>
+      <p>Every band carries its mark (▲ ● ■) and its word. A score read in sunlight
+        through polarised lenses still resolves.</p>
+    </div>
+    <div>
+      <h3>Tap targets, honestly</h3>
+      <p>44×44pt minimum on every control including the gate buttons. An approval
+        is the highest-consequence tap in the product; it does not get a small target.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:48px;font-family:var(--al-font-mono);font-size:11px;color:var(--al-t3);letter-spacing:.06em">
+    Composite scenario data. No customer information appears.
+    HYPATIUS, LLC · UEI UKELB3UV76V6 · CAGE 19S89
+  </p>
+</div>
+</body>
+</html>
