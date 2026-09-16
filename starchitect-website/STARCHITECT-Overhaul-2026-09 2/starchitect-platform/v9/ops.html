@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="starchitect">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARCHITECT v9 · OPS · Sortie 08</title>
+<link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+<!-- Self-hosted faces. Zero CDN on this surface. -->
+<link rel="stylesheet" href="../../tokens/fonts-console.css">
+<link rel="stylesheet" href="../../tokens/console.css">
+<link rel="stylesheet" href="../../css/sc-console.css">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; } html,body{ margin:0; height:100%; background:var(--console-bg); overflow:hidden; }
+  button{ font:inherit; }
+  /* HUD placement on the theater */
+  .hud-tl{ position:absolute; left:16px; top:14px; display:flex; gap:8px; z-index:5; }
+  .hud-tr{ position:absolute; right:16px; top:14px; display:grid; gap:6px; z-index:5; }
+  .hud-bl{ position:absolute; left:16px; bottom:14px; display:flex; gap:8px; z-index:5; }
+  .hud-br{ position:absolute; right:16px; bottom:14px; z-index:5; }
+  .sc-hint{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.14em; text-transform:uppercase; color:var(--sc-label); }
+</style>
+</head>
+<body>
+<div class="sc-shell" id="shell">
+
+  <!-- ============================ TOP ============================ -->
+  <header class="sc-top">
+    <a class="sc-wordmark" href="hub.html" aria-label="STARCHITECT hub">
+      <img src="../../assets/brand/logo_star_word-h28.png" alt="STARCHITECT">
+    </a>
+    <nav class="sc-nav" aria-label="Platform">
+      <a href="hub.html">Hub</a><a href="briefing.html">Briefing</a><a href="ops.html" aria-current="page">Ops</a><a href="white-cell.html">White cell</a><a href="campaign.html">Campaign</a><a href="hangar.html">Hangar</a><a href="aar.html">AAR</a>
+    </nav>
+
+    <div class="sc-advisor" aria-live="polite">
+      <span class="sc-advisor__k">Advisor</span>
+      <span class="sc-advisor__t" id="advisor">Picture is amber. Custody 94 percent. GPS degrade armed, T minus 4.</span>
+    </div>
+
+    <div class="sc-res" role="group" aria-label="Resources">
+      <div class="sc-res__cell" id="resDv">
+        <span class="sc-res__ic" aria-hidden="true">◆</span>
+        <output class="sc-res__v" id="rDv">41.2</output>
+        <span class="sc-res__l">Δv budget m/s</span>
+      </div>
+      <div class="sc-res__cell" id="resBw">
+        <span class="sc-res__ic" aria-hidden="true">▲</span>
+        <output class="sc-res__v" id="rBw">340</output>
+        <span class="sc-res__l">downlink mbps</span>
+      </div>
+      <div class="sc-res__cell" id="resCap" data-state="watch">
+        <span class="sc-res__ic" aria-hidden="true">●</span>
+        <output class="sc-res__v" id="rCap">27</output>
+        <span class="sc-res__l">sat-min window</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px">
+      <span class="sc-mode" id="mode">Rehearsal · locked</span>
+      <div class="sc-clock">
+        <div class="sc-clock__v" id="clock" aria-label="Decision clock">00:00</div>
+        <div class="sc-clock__l">Decision clock</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================ RAIL ============================ -->
+  <aside class="sc-rail" aria-label="Control groups and alerts">
+    <div class="sc-lbl" style="padding:2px 2px 4px">Control groups · 1 to 5</div>
+    <div id="groups" role="group" aria-label="Control groups"></div>
+
+    <div class="sc-alerts" id="alerts" role="list" aria-label="Alerts">
+      <div class="sc-lbl" style="padding:2px 2px 4px">Alerts · click to fly</div>
+    </div>
+  </aside>
+
+  <!-- ============================ THEATER ============================ -->
+  <main class="sc-theater" id="theater">
+    <canvas class="sc-stage" id="stage" aria-label="Orbital theater. Blue force in cyan, red contact in red, ground sites in gold."></canvas>
+    <div class="sc-vignette"></div>
+    <div class="sc-edge" id="edge"></div>
+
+    <div class="hud-tl">
+      <button class="sc-chip" id="coaBtn" aria-pressed="false">◆ Mission · COA compare</button>
+      <button class="sc-chip" aria-pressed="true">⊕ Strategic · wargame command</button>
+      <button class="sc-chip" title="RIC frame popout">○ Tactical · RIC frame</button>
+    </div>
+    <div style="position:absolute;left:16px;top:56px;z-index:5"><span class="sc-hint">1 to 5 select · Q W E R A S D X orders · C commit · ⌘K command · click alert to fly</span></div>
+
+    <div class="hud-tr" id="callouts"></div>
+
+
+
+    <div class="sc-toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="sc-title" id="title">
+      <div>
+        <div class="sc-title__eyebrow">Season 3 · Northern Arc</div>
+        <img src="../../assets/brand/logo_star_word-h120.png" alt="STARCHITECT">
+        <h1>Sortie 08</h1>
+        <div class="sc-title__sub">Rehearsal · live COP · red cell level IV</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================ COMMAND DECK ============================ -->
+  <footer class="sc-deck">
+    <section class="sc-minimap-wrap" aria-label="Theater minimap">
+      <div class="sc-deck__h"><span><span class="sc-no">01</span>Theater · ground tracks</span><span id="mmSector">Sector 4 · GEO</span></div>
+      <div class="sc-minimap" id="minimap"><canvas id="mini"></canvas><div class="sc-minimap__cam" id="mmCam"></div><div class="sc-minimap__ping" id="mmPing"></div></div>
+    </section>
+
+    <section aria-label="Selection">
+      <div class="sc-deck__h"><span><span class="sc-no">02</span>Selection</span><span class="sc-state" data-state="track" id="selState">Tracking</span></div>
+      <div class="sc-sel">
+        <div class="sc-portrait" id="portrait">S1</div>
+        <div>
+          <div class="sc-sel__name" id="selName">TG1 Sentry</div>
+          <div class="sc-sel__sub" id="selSub">EO/IR custody pair · LEO 750 km</div>
+          <svg class="sc-wire" viewBox="0 0 260 44" id="wire" aria-hidden="true"></svg>
+        </div>
+        <dl class="sc-facts" id="facts"></dl>
+      </div>
+    </section>
+
+    <section aria-label="Command card">
+      <div class="sc-deck__h"><span><span class="sc-no">03</span>Command card</span><span class="sc-lbl" id="cardFor">TG1</span></div>
+      <div class="sc-card" id="card"></div>
+    </section>
+
+    <section aria-label="Maneuver and tasking queue">
+      <div class="sc-deck__h"><span><span class="sc-no">04</span>Queue</span>
+        <div class="sc-score"><span class="sc-score__team">Viper-2</span><span class="sc-score__pts" id="sB">0</span><span class="sc-score__pts" id="sR">0</span><span class="sc-score__team" data-side="red">Red</span></div>
+      </div>
+      <div class="sc-queue" id="queue"></div>
+    </section>
+  </footer>
+
+  <div class="sc-strip">Unclassified // Exercise</div>
+</div>
+
+<!-- feed sits over the deck's right edge on the theater -->
+<div class="sc-intent" id="intentBar" role="button" tabindex="0" aria-label="Open command palette" style="position:fixed;bottom:calc(var(--sc-deck-h) + var(--sc-strip-h) + 14px)">
+  <kbd>⌘K</kbd><span>intent · "shadow red leo lead at 3 km, cap 100 m/s"</span>
+</div>
+<div class="sc-feed" id="feed" style="position:fixed;right:16px;bottom:calc(var(--sc-deck-h) + var(--sc-strip-h) + 14px);width:300px;z-index:5"></div>
+
+<!-- ⌘K palette -->
+<div class="sc-palette" id="palette" data-open="false" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="sc-palette__box">
+    <div class="sc-palette__in"><kbd>⌘K</kbd><input id="palIn" placeholder="natural-language C2 · 78 MCP tools online" autocomplete="off"></div>
+    <div id="palList"></div>
+    <div class="sc-palette__out" id="palOut"></div>
+  </div>
+</div>
+
+<script src="ops.js"></script>
+<script>window.TOUR={title:"Operator cut",next:"campaign.html",steps:[
+ {sel:".sc-mode",cap:"Five real session modes from the repo. Rehearsal rides the live COP with task push disabled at the config layer. You cannot break the real world from here."},
+ {sel:"#groups",cap:"RTS grammar on real assets: control groups 1 to 5 on hotkeys. Sentry, Relay, Warden, Ground, and the red contact."},
+ {sel:"#alerts",cap:"Alerts deep-link. Click one and the camera flies to the threat, the minimap pings, and the command card swaps to the responding group."},
+ {sel:"#card",cap:"The command card: every legal order for the selection, one keystroke away. Real C2 verbs. Collect, slew, cross-cue, burn. Commit is gold and it is bigger."},
+ {sel:".sc-res",cap:"Resources force tradeoffs. Δv budget, downlink bandwidth, sensor tasking capacity. Over budget, the order is refused, with the mark and the word."},
+ {sel:"#minimap",cap:"Theater minimap. Live ground tracks from the same propagation driving the globe. Click to look."},
+ {sel:".sc-advisor",cap:"The advisor states the picture. One line, gold, cycling. No glow."},
+ {sel:"#feed",cap:"The red cell plays at machine speed. Every completed order scores MOP. Performance is measured, not vibes.",ms:5000}
+]}</script>
+<script src="tour.js"></script>
+</body>
+</html>

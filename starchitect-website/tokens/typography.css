@@ -1,0 +1,79 @@
+/* ============================================================
+   HYPATIUS — Typography
+   One company ladder. Corporate + STARCHITECT share three faces:
+     Bebas Neue (display) · Rajdhani (interface) · IBM Plex Mono (data)
+   ALIDADE brand/deck surfaces swap display/interface to
+   Barlow Condensed + Inter; ALIDADE product UI runs a native stack.
+   ============================================================ */
+:root{
+  --font-display:"Bebas Neue","Arial Narrow",Impact,sans-serif;
+  --font-interface:"Rajdhani","Inter","Segoe UI",sans-serif;
+  --font-body:var(--font-interface);
+  --font-mono:"IBM Plex Mono","JetBrains Mono",Consolas,monospace;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --font-serif:ui-serif,Georgia,"Times New Roman",serif;
+
+  /* ---- Fixed px ladder (decks, product, marketing) ---- */
+  --fs-hero:76px; --fs-stat:56px; --fs-h1:48px; --fs-h2:33px; --fs-section:26px;
+  --fs-h3:21px; --fs-subhead:18px; --fs-body:16px; --fs-label:13px;
+  --fs-eyebrow:11px; --fs-micro:10px;
+
+  /* ---- Fluid ladder (responsive marketing pages) ---- */
+  --display-1:clamp(3rem,7vw,6.3rem); /* @kind font */
+  --display-2:clamp(2.4rem,5.4vw,4.5rem); /* @kind font */
+  --h1:clamp(2.1rem,3.8vw,3rem); /* @kind font */
+  --h2:clamp(1.7rem,2.9vw,2.25rem); /* @kind font */
+  --h3:1.35rem; /* @kind font */
+  --body-lg:1.125rem; /* @kind font */
+  --body:1rem; /* @kind font */
+  --body-sm:0.9375rem; /* @kind font */
+  --caption:0.8125rem; /* @kind font */
+  --eyebrow:0.75rem; /* @kind font */
+
+  /* ---- Weights ---- */
+  --fw-light:300; /* @kind font */
+  --fw-regular:400; /* @kind font */
+  --fw-medium:500; /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700; /* @kind font */
+  --fw-body:500; /* @kind font */
+
+  /* ---- Line height ---- */
+  --lh-display:0.96; /* @kind other */
+  --lh-tight:1.1; /* @kind other */
+  --lh-snug:1.25; /* @kind other */
+  --lh-body:1.6; /* @kind other */
+
+  /* ---- Tracking (the brand runs wide) ---- */
+  --ls-display:0.02em; /* @kind other */
+  --ls-heading:0.025em; /* @kind other */
+  --ls-eyebrow:0.18em; /* @kind other */
+  --ls-label:0.12em; /* @kind other */
+  --ls-button:0.02em; /* @kind other */
+  --ls-brand:0.10em; /* @kind other */
+
+  /* ---- Composed roles ---- */
+  --type-eyebrow:var(--fw-semibold) var(--fs-eyebrow)/1.4 var(--font-mono);
+  --type-headline:var(--fw-bold) var(--fs-h2)/var(--lh-tight) var(--font-interface);
+  --type-body:var(--fw-medium) var(--fs-body)/var(--lh-body) var(--font-interface);
+  --type-data:var(--fw-regular) var(--fs-label)/1.5 var(--font-mono);
+}
+
+/* STARCHITECT tracks eyebrows a touch wider than corporate. */
+[data-brand="starchitect"]{ --ls-eyebrow:0.2em; /* @kind other */ }
+
+/* ALIDADE brand/deck type world. Inside the STARCHITECT console the
+   host chrome stays Bebas/Rajdhani; the ALIDADE workspace uses these. */
+[data-brand="alidade"]{
+  --font-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --font-interface:"Inter","Helvetica Neue",Arial,sans-serif;
+  --font-body:var(--font-interface);
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --ls-eyebrow:0.16em; /* @kind other */
+  --ls-label:0.10em; /* @kind other */
+  --ls-tracked:0.04em; /* @kind other */
+  --lh-display:1.15; /* @kind other */
+  /* product UI ladder — dense, two weights only (400/500) */
+  --fs-h2:16px; --fs-h3:14px; --fs-body:12px; --fs-label:11px;
+  --fs-eyebrow:10px; --fs-micro:9px; --fs-stat:54px; --fs-hero:104px;
+}

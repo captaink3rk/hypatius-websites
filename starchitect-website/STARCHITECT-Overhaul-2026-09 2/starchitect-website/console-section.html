@@ -1,0 +1,69 @@
+<!-- ============================================================
+     starchitect.us · drop-in section · "The console"
+     Paste into platform.html between the capabilities section and #briefing-cta.
+     Uses the shipped site's own classes (base.css): sec-void, grid-bg, container,
+     eyebrow, display, lead, statnum, statlabel, btn, btn-primary, rule, reveal.
+     Captures are real v9 platform renders, not div-built screenshots.
+     Every figure carries a proof line. No em dashes.
+     ============================================================ -->
+<section id="console" class="sec-void grid-bg fine reveal">
+  <div class="container">
+    <div class="eyebrow">§ 04 · The console</div>
+    <h2 class="display">Command grammar a trained operator already reads.</h2>
+    <p class="lead" style="max-width:62ch">
+      Control groups on hotkeys. A command card of every legal order. A resource bar that refuses an order
+      over budget. A minimap of the theater. A decision clock that never stops. The interaction model
+      that runs a multi-front engagement under time pressure, on real orbital assets, in one console.
+    </p>
+
+    <figure style="margin:40px 0 0;border:1px solid #243450;border-radius:8px;overflow:hidden;background:#0B1525">
+      <img src="captures/ops-console.jpg" alt="STARCHITECT operator console: control groups on the left, orbital theater with the selected asset bracketed, and a command deck with minimap, selection wireframe, command card and maneuver queue." loading="lazy" style="display:block;width:100%;height:auto">
+      <figcaption style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A8B0BD">
+        Ops · Sortie 08 · rehearsal on the live COP · task push disabled at the config layer
+      </figcaption>
+    </figure>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px" class="console-grid">
+      <figure style="margin:0;border:1px solid #243450;border-radius:8px;overflow:hidden;background:#0B1525">
+        <img src="captures/ops-lethal-alert.jpg" alt="A lethal proximity alert fires: the theater edge pulses red once, the minimap pings the contact, the selection turns hostile." loading="lazy" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#A8B0BD">Alerts deep-link. Click one and the camera flies.</figcaption>
+      </figure>
+      <figure style="margin:0;border:1px solid #243450;border-radius:8px;overflow:hidden;background:#0B1525">
+        <img src="captures/readiness-hub.jpg" alt="Readiness hub: next sortie, season standing with division badge, reps, quals with expiry, crew ELO, squadron ladder." loading="lazy" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#A8B0BD">Readiness is the deliverable. Ladder, divisions, quals.</figcaption>
+      </figure>
+      <figure style="margin:0;border:1px solid #243450;border-radius:8px;overflow:hidden;background:#0B1525">
+        <img src="captures/white-cell.jpg" alt="White cell: four live crews with decision clocks, a one-click inject library, the session timeline and friction flags." loading="lazy" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#A8B0BD">White cell. Degradation is the curriculum.</figcaption>
+      </figure>
+    </div>
+
+    <div class="rule" style="margin:48px 0 28px"></div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" class="console-stats">
+      <div>
+        <div class="statnum">1 to 5</div>
+        <div class="statlabel">Control groups on hotkeys</div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6B7588;margin:8px 0 0">Blue force task groups and the red contact. Q W E R A S D X stage orders on the selection. C commits.</p>
+      </div>
+      <div>
+        <div class="statnum">Δv · downlink · tasking</div>
+        <div class="statlabel">Three resources, one refusal rule</div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6B7588;margin:8px 0 0">An order over the Δv budget is refused, with the mark and the word. The budget is the math from the Δv dashboard.</p>
+      </div>
+      <div>
+        <div class="statnum">Zero</div>
+        <div class="statlabel">External requests on a product surface</div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6B7588;margin:8px 0 0">Fonts, theater and tour ship self-hosted. Verified by the design system's harness on every screen at 1440 and 390.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:36px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#6B7588">
+      Screens are v9 design-system renders on composite exercise data. No customer or operational data appears.
+    </p>
+    <a class="btn btn-primary" href="#briefing-cta" style="margin-top:22px">Request a briefing</a>
+  </div>
+</section>
+<style>
+  @media (max-width:900px){ .console-grid, .console-stats{ grid-template-columns:1fr !important; } }
+</style>

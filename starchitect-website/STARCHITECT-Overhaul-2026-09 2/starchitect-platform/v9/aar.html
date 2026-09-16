@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="starchitect">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARCHITECT v9 · AAR · Sortie 06 replay</title>
+<link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../tokens/fonts-console.css">
+<link rel="stylesheet" href="../../tokens/console.css">
+<link rel="stylesheet" href="../../css/sc-console.css">
+<link rel="stylesheet" href="../../css/sc-page.css">
+</head>
+<body>
+<div class="sc-page">  <header class="sc-top" style="grid-template-columns:auto minmax(0,1fr) auto">
+    <a class="sc-wordmark" href="hub.html" aria-label="STARCHITECT hub"><img src="../../assets/brand/logo_star_word-h28.png" alt="STARCHITECT"></a>
+    <nav class="sc-nav sc-nav--grouped" aria-label="Platform"><span class="g"><a href="hub.html">Hub</a><a href="briefing.html">Briefing</a><a href="ops.html">Ops</a><a href="white-cell.html">White cell</a></span><span class="g"><a href="campaign.html">Campaign</a><a href="season.html">Season</a><a href="hangar.html">Hangar</a></span><span class="g"><a href="aar.html" aria-current="page">AAR</a><a href="command.html">Command</a></span><span class="g"><a href="connect.html">Connect</a></span></nav>
+    <div style="display:flex;align-items:center;gap:12px"><span class="pill" data-tone="cyan">Replay · commit-stepped</span></div>
+  </header>
+  <main class="wrap"><div class="page-h"><div><div class="eyebrow">After action · Sortie 06 · Crucible Arc</div><h1>Every commit is a keyframe.</h1><div class="meta">Camera-tracked replay · decision audit trail · measures card</div></div><div><div style="display:flex;gap:8px"><a class="btn btn--ghost" href="#">Export measures card</a><a class="btn btn--gold" href="#">Push to ledger</a></div></div></div><div class="bento"><section class="cell c7" ><div class="cell__h"><span><span class="sc-no">01</span>Commit timeline</span><span><span class="sc-lbl">8 commits · step with ← →</span></span></div>
+  <div class="timeline">
+    <div class="tl"><span class="t">00:00</span><span>Sortie start. Custody 100%. Δv 41.2 m/s.</span></div>
+    <div class="tl"><span class="t">02:14</span><span><b style="color:var(--console-txt)">Commit 1</b> · TG3 standoff shadow · 6.2 m/s · <span style="color:var(--console-green)">+25 MOP first COA under 60 s</span></span></div>
+    <div class="tl"><span class="t">06:12</span><span><span class="r">Red</span> decoy release. Track uncertainty ±1.85 km.</span></div>
+    <div class="tl"><span class="t">06:40</span><span><b style="color:var(--console-txt)">Commit 2</b> · TG1 cross-cue · GEODSS optical · track reacquired ±0.09 km</span></div>
+    <div class="tl"><span class="t">11:40</span><span>Inject: jammer sweep X-band (Strand).</span></div>
+    <div class="tl"><span class="t">12:03</span><span><b style="color:var(--console-txt)">Commit 3</b> · TG2 crosslink on · relay retask 11 s · <span style="color:var(--console-green)">+25 MOP</span></span></div>
+    <div class="tl"><span class="t">16:05</span><span><b style="color:var(--console-txt)">Commit 4</b> · TG3 evasive burn · 6.2 m/s · Pc .001</span></div>
+    <div class="tl"><span class="t">24:00</span><span>GPS degrade window survived. Custody 94%. <span style="color:var(--console-green)">+40 MOP</span></span></div>
+  </div></section><section class="cell c5" ><div class="cell__h"><span><span class="sc-no">02</span>Measures card</span><span><span class="sc-lbl">MOP · MOE · MOM</span></span></div>
+  <div class="rows">
+    <div class="row"><span class="sc-lbl">MOP</span><b>Custody maintained 02:00+</b><span class="n" style="color:var(--console-green)">+15</span></div>
+    <div class="row"><span class="sc-lbl">MOP</span><b>First COA commit 38 s</b><span class="n" style="color:var(--console-green)">+25</span></div>
+    <div class="row"><span class="sc-lbl">MOP</span><b>GPS degrade survived, no break</b><span class="n" style="color:var(--console-green)">+40</span></div>
+    <div class="row"><span class="sc-lbl">MOP</span><b>Relay retask 11 s</b><span class="n" style="color:var(--console-green)">+25</span></div>
+    <div class="row"><span class="sc-lbl">MOE</span><b>Decision latency vs crew baseline</b><span class="pill" data-tone="mint">down 19%</span></div>
+    <div class="row"><span class="sc-lbl">MOM</span><b>Contribution to squadron readiness</b><span class="pill" data-tone="mint">+1.2 pts</span></div>
+  </div>
+  <div class="stat" style="margin-top:14px"><span class="v">185</span><span class="l">MOP this sortie · season best 214</span></div></section><section class="cell c12" ><div class="cell__h"><span><span class="sc-no">03</span>Debrief · what the ledger says</span><span><span class="sc-lbl">3 notes</span></span></div>
+  <div class="rows">
+    <div class="row"><span class="sc-state" data-state="go"><span class="sc-sr">go</span></span><b>Commit 1 inside the 60 s window. Repeat.</b><span></span></div>
+    <div class="row"><span class="sc-state" data-state="watch"><span class="sc-sr">watch</span></span><b>Δv spent 12.4 of 41.2. Two burns where one cross-cue would have held.</b><span></span></div>
+    <div class="row"><span class="sc-state" data-state="watch"><span class="sc-sr">watch</span></span><b>Relay retask started 6 s after GPS degrade arming. Start it at arming.</b><span></span></div>
+  </div>
+  <span class="proof">Every note traces to a ledger entry. Nothing here is a vibe.</span></section></div>  </main>
+  <div class="sc-strip">Unclassified // Exercise</div>
+</div>
+</body>
+</html>

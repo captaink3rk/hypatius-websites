@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="starchitect">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARCHITECT v9 · Hub · Viper-2</title>
+<link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../tokens/fonts-console.css">
+<link rel="stylesheet" href="../../tokens/console.css">
+<link rel="stylesheet" href="../../css/sc-console.css">
+<link rel="stylesheet" href="../../css/sc-page.css">
+</head>
+<body>
+<div class="sc-page">
+  <header class="sc-top" style="grid-template-columns:auto minmax(0,1fr) auto auto">
+    <a class="sc-wordmark" href="hub.html" aria-label="STARCHITECT hub"><img src="../../assets/brand/logo_star_word-h28.png" alt="STARCHITECT"></a>
+    <nav class="sc-nav sc-nav--grouped" aria-label="Platform">
+      <span class="g"><a href="hub.html" aria-current="page">Hub</a><a href="#">Briefing</a><a href="ops.html">Ops</a><a href="#">White cell</a></span>
+      <span class="g"><a href="#">Campaign</a><a href="#">Season</a><a href="#">Hangar</a></span>
+      <span class="g"><a href="#">AAR</a><a href="#">Measures</a><a href="#">Report</a></span>
+      <span class="g"><a href="#">Connect</a><a href="#" title="Planner, Mesh, Command, Engineering">More ▾</a></span>
+    </nav>
+    <div class="sc-res" role="group" aria-label="Crew status">
+      <div class="sc-res__cell"><span class="sc-res__ic" aria-hidden="true">◆</span><output class="sc-res__v">1847</output><span class="sc-res__l">Crew ELO</span></div>
+      <div class="sc-res__cell"><span class="sc-res__ic" aria-hidden="true">▲</span><output class="sc-res__v">72</output><span class="sc-res__l">LP · W5 of 8</span></div>
+      <div class="sc-res__cell"><span class="sc-res__ic" aria-hidden="true">●</span><output class="sc-res__v">6/6</output><span class="sc-res__l">Mesh · PACE P</span></div>
+    </div>
+    <span class="sc-mode">Obsidian II</span>
+  </header>
+
+  <main class="wrap">
+    <div class="bento">
+
+      <section class="cell sortie c8" aria-labelledby="ns">
+        <div class="meta">Next sortie · Crucible Arc · 07 of 12</div>
+        <h1 id="ns">Contested custody. GPS degraded.</h1>
+        <div class="meta">Crew Viper-2 · rehearsal vs live COP · red cell level IV · est 40 min</div>
+        <div style="display:flex;gap:12px;margin-top:22px;flex-wrap:wrap">
+          <a class="btn btn--gold" href="ops.html">Enter briefing</a>
+          <a class="btn btn--ghost" href="#"><span class="sc-state" data-state="watch"><span class="sc-sr">watch</span></span>White cell: 2 injects planned</a>
+        </div>
+      </section>
+
+      <section class="cell c4">
+        <div class="cell__h"><span><span class="sc-no">01</span>Season standing</span><span class="sc-state" data-state="go">2 promos</span></div>
+        <div class="division">
+          <div class="division__badge"><img src="../../assets/glyphs/glyph_shield_gold.png" alt=""></div>
+          <div><div class="division__name">Obsidian II</div><div class="sub" style="margin-top:4px">Division · Northern Arc ladder</div></div>
+        </div>
+        <div class="lp" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="League points to Obsidian I"><i style="width:72%"></i></div>
+        <div class="kv"><span>72 / 100 LP to Obsidian I</span><span>Week 5 of 8</span></div>
+        <a href="#" style="display:inline-block;margin-top:14px;font-family:var(--sc-font-mono);font-size:var(--sc-fs-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--console-cyan);text-decoration:none">Full ladder →</a>
+      </section>
+
+      <section class="cell c4">
+        <div class="cell__h"><span><span class="sc-no">02</span>Reps · Season 3</span><span class="sc-lbl">7 sortie streak</span></div>
+        <div class="big"><span class="n">34</span><span class="d">/40</span></div>
+        <div class="sub">Reps banked. Streak alive. Next rep expires in 2 days.</div>
+      </section>
+
+      <section class="cell c4">
+        <div class="cell__h"><span><span class="sc-no">03</span>Quals</span><span class="sc-state" data-state="watch">1 expiring</span></div>
+        <div class="quals">
+          <div class="qual"><b>Orbit Warfare II</b><span class="sc-state" data-state="watch">Expires 12d</span></div>
+          <div class="qual"><b>DDIL Ops</b><span class="sc-state" data-state="go">Current</span></div>
+          <div class="qual"><b>Electronic Warfare I</b><span class="sc-state" data-state="go">Current</span></div>
+        </div>
+        <div class="sub">DDIL: denied, disrupted, intermittent, and limited. Renew in sortie 07.</div>
+      </section>
+
+      <section class="cell c4">
+        <div class="cell__h"><span><span class="sc-no">04</span>Crew ELO</span><span class="sc-state" data-state="go">12 last sortie</span></div>
+        <div class="big"><span class="n">1847</span></div>
+        <div class="sub">Hidden MMR trending +3.4%. Decision latency p50 38 s against a 61 s baseline.</div>
+        <span class="sc-proof" style="display:block;margin-top:10px;font-family:var(--sc-font-mono);font-size:var(--sc-fs-micro);letter-spacing:.06em;color:var(--sc-label)">Source: readiness service, MOP rollup, season 3 to date. Exercise data.</span>
+      </section>
+
+      <section class="cell c8">
+        <div class="cell__h"><span><span class="sc-no">05</span>Squadron ladder · Delta 9 · weekly</span><span class="sc-lbl">MOP per sortie</span></div>
+        <table>
+          <thead><tr><th>#</th><th>Crew</th><th>Division</th><th>ELO</th><th>MOP / sortie</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td class="n">Kestrel-1</td><td>Obsidian I</td><td>1912</td><td>176</td><td><span class="sc-state" data-state="go">up</span></td></tr>
+            <tr class="you"><td>2</td><td class="n">Viper-2 · you</td><td>Obsidian II</td><td>1847</td><td>168</td><td><span class="sc-state" data-state="go">up 2</span></td></tr>
+            <tr><td>3</td><td class="n">Halo-4</td><td>Obsidian II</td><td>1801</td><td>151</td><td><span class="sc-state" data-state="lethal">down</span></td></tr>
+            <tr><td>4</td><td class="n">Sable-3</td><td>Granite I</td><td>1744</td><td>139</td><td><span class="sc-state" data-state="go">up</span></td></tr>
+            <tr><td>5</td><td class="n">Onyx-7</td><td>Granite II</td><td>1690</td><td>122</td><td><span class="sc-state" data-state="historical">hold</span></td></tr>
+          </tbody>
+        </table>
+        <div class="sub">Top Obsidian crews qualify for Space Flag slots at season close. Apex track opens week 7.</div>
+      </section>
+
+      <section class="cell c4">
+        <div class="cell__h"><span><span class="sc-no">06</span>Feed</span><span class="sc-lbl">live</span></div>
+        <ul class="feed">
+          <li><b>Viper-2</b><span>survived GPS degrade, custody held <span class="sc-mop">+40 MOP</span></span></li>
+          <li><b>Kestrel-1</b><span>promoted to Obsidian I</span></li>
+          <li><b data-side="red">Red cell</b><span>new behavior pack: Decoy Screen IV</span></li>
+          <li><b>Squadron</b><span>readiness rollup 87%, up 3 this week</span></li>
+          <li><b>White cell</b><span>Season 3 finale: persistent exercise, 72 hr</span></li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="sc-strip">Unclassified // Exercise</div>
+</div>
+<script>window.TOUR={title:"Readiness cut",next:"briefing.html",steps:[
+ {sel:".sortie",cap:"The next sortie is the first thing a crew sees. One headline, one meta line, one gold action."},
+ {sel:".division",cap:"The division is a rank and a rank is a badge. Obsidian II, 72 LP to Obsidian I, week 5 of 8. Visible rank resets each season; hidden MMR carries."},
+ {sel:".quals",cap:"Quals with expiry. State is never colour alone: the mark and the word carry it."},
+ {sel:"table",cap:"The squadron ladder. Weekly and season views keep it open to new crews. Top Obsidian crews take Space Flag slots."}
+]}</script>
+<script src="tour.js"></script>
+</body>
+</html>

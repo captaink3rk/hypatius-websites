@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Decisions" title="Command grammar · arcade mode retired, the grammar promoted" -->
+<html lang="en" data-brand="starchitect">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision · command grammar</title>
+<link rel="stylesheet" href="../tokens/fonts-console.css">
+<link rel="stylesheet" href="../tokens/console.css">
+<link rel="stylesheet" href="../css/sc-console.css">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{ margin:0; background:var(--console-bg); color:var(--console-body); font-family:var(--sc-font-ui); font-size:14px; padding:32px; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:var(--sc-font-display); font-weight:400; color:var(--console-txt); letter-spacing:.03em; margin:0; line-height:1; }
+  .tag{ display:inline-flex; align-items:center; gap:8px; font-family:var(--sc-font-mono); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--console-mute); margin-bottom:14px; }
+  .tag::before{ content:""; width:8px; height:8px; background:var(--console-gold); }
+  p{ max-width:76ch; line-height:1.6; }
+  .verdict{ display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center; margin:24px 0 36px; padding:20px 22px; background:var(--console-panel); border:1px solid var(--console-line); border-left:3px solid var(--console-gold); border-radius:0 var(--console-radius) var(--console-radius) 0; }
+  .verdict img{ width:120px; height:auto; }
+  .verdict p{ margin:0; font-size:15.5px; color:var(--console-txt); }
+  table{ width:100%; border-collapse:collapse; font-size:13px; margin-top:12px; }
+  th{ font-family:var(--sc-font-mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--console-mute); text-align:left; font-weight:700; padding:10px 12px; border-bottom:1px solid var(--console-line2); }
+  td{ padding:11px 12px; border-bottom:1px solid var(--console-line); vertical-align:top; }
+  td:first-child{ color:var(--console-txt); font-weight:600; }
+  code{ font-family:var(--sc-font-mono); font-size:12px; color:var(--console-cyan); }
+  .sw{ display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-2px; margin-right:6px; border:1px solid rgba(234,243,251,.18); }
+  .pair{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+  @media (max-width:820px){ .pair{ grid-template-columns:1fr; } }
+  .panel{ padding:16px; border-radius:var(--console-radius); border:1px solid var(--console-line); background:var(--console-panel); }
+  .panel h3{ font-size:20px; margin-bottom:4px; }
+  .panel .sub{ font-family:var(--sc-font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--console-mute); margin-bottom:14px; }
+  /* the retired arcade look, quoted for the record */
+  .arc-btn{ display:grid; place-items:center; height:56px; border-radius:5px; border:1px solid #3E5570; background:linear-gradient(180deg,#1B2A40,#0E1624); color:#8FC8FF; font-size:18px; position:relative; }
+  .arc-btn i{ position:absolute; right:4px; bottom:2px; font-family:var(--sc-font-mono); font-size:9px; font-style:normal; color:#E8A33D; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+  section{ margin-top:44px; }
+  .no{ color:var(--console-gold); }
+</style>
+</head>
+<body>
+
+<div class="tag">Decisions · resolved 16 Sep 2026</div>
+<h1 style="font-size:36px">The command interface is not a mode. It is the console.</h1>
+
+<div class="verdict">
+  <img src="../assets/brand/starchitect-mark-h96.png" alt="">
+  <p><b style="font-weight:600">Arcade mode is retired. The grammar it carried is promoted into FUSION as first-class, always-on, namespaced components.</b>
+  Portrait, wireframe, command card, minimap, control groups, resources, alerts, the advisor line: all of it ships on every ops surface, in gold, cyan, mint and red on the void, with Bebas, Rajdhani and Plex Mono. There is no blue. There is no toggle. There is no training tier that gets the good console and an accreditation tier that does not.</p>
+</div>
+
+<section>
+  <h2 style="font-size:24px">Why</h2>
+  <p style="margin-top:12px">
+    v8 got the insight right and the packaging wrong. The insight: the real-time strategy interaction model is the
+    best-tested command interface in existence. Tens of millions of people learned to run a multi-front engagement
+    under a decision clock through control groups, a command card and a minimap. The packaging: v8 put that grammar
+    in <code>skin-sc.css</code>, gated it to <code>body.arcade</code>, painted it <span class="sw" style="background:#8FC8FF"></span><code>#8FC8FF</code>
+    and <span class="sw" style="background:#3E5570"></span><code>#3E5570</code>, and labelled it "SC2 nod, never accreditation surfaces."
+  </p>
+  <p style="margin-top:12px">
+    That framing treats the grammar as a costume. It is not. A control group on a hotkey is a faster way to select a
+    task group than a dropdown. A command card is a faster way to see every legal order than a context menu. A minimap
+    is a faster way to know where the theater is than a scroll. These are ergonomics, and ergonomics belong on the
+    surface a commander actually uses. The blue was the problem. The grammar never was.
+  </p>
+</section>
+
+<section>
+  <h2 style="font-size:24px">The mapping</h2>
+  <p style="margin-top:12px;color:var(--console-mute)">Pattern, then what it does in a space C2 console, then the brand token that carries it. Patterns are interaction conventions; no third-party art, name or trade dress is used or referenced.</p>
+  <table>
+    <thead><tr><th>RTS pattern</th><th>STARCHITECT function</th><th>Position</th><th>Carrier</th></tr></thead>
+    <tbody>
+      <tr><td>Control groups on hotkeys</td><td>Task groups 1 to 5. Blue force and the red contact.</td><td>Left rail</td><td><span class="sw" style="background:#E8A33D"></span>Gold numeral · cyan FUI bracket on the live selection</td></tr>
+      <tr><td>Unit portrait + wireframe</td><td>Selected asset designator and subsystem health: array, bus, payload.</td><td>Deck · 02</td><td><span class="sw" style="background:#7FE8D8"></span>Mint nominal · gold degraded · red failed</td></tr>
+      <tr><td>Command card grid</td><td>Every legal order for the selection. Twelve slots, hotkey in the corner, cooldown as a sweep.</td><td>Deck · 03</td><td><span class="sw" style="background:#40B4E5"></span>Cyan glyph · gold hotkey · commit spans two, in gold</td></tr>
+      <tr><td>Minimap</td><td>Theater ground tracks with the camera reticle. Click to fly.</td><td>Deck · 01</td><td>Cyan blue force · red hostile · gold sites and reticle</td></tr>
+      <tr><td>Resource bar</td><td>Δv budget, downlink bandwidth, sensor tasking capacity. Over budget refuses the order.</td><td>Top right</td><td>Cyan nominal · gold watch · red refused, with the mark and the word</td></tr>
+      <tr><td>Build queue</td><td>Maneuver and tasking queue. Stack of five, ETA, progress, cancel before ignition.</td><td>Deck · 04</td><td>Gold group tag · cyan ETA and bar</td></tr>
+      <tr><td>Alert pings</td><td>Alerts deep-link to the responding group, ping the minimap, and pulse the screen edge once for a lethal state.</td><td>Left rail, theater edge</td><td>State-coloured left bar · one red edge pulse · stills under reduced motion</td></tr>
+      <tr><td>Advisor voice</td><td>The picture, stated. One line, cycling, no jokes.</td><td>Top bar centre</td><td>Gold mono. No text shadow. No glow.</td></tr>
+      <tr><td>Idle worker alert</td><td>Idle asset: a blue-force group with nothing staged for 40 seconds.</td><td>On the group</td><td>Gold ○ Idle mark, slow pulse</td></tr>
+      <tr><td>Ladder, leagues, MMR</td><td>The readiness service: crew ELO, divisions, LP, seasons, quals with expiry.</td><td>Hub</td><td>Gold division badge on the shield glyph · cyan to mint LP bar</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2 style="font-size:24px">Same order button, both ways</h2>
+  <div class="pair">
+    <div class="panel">
+      <h3>v8 arcade · retired</h3>
+      <div class="sub">skin-sc.css · body.arcade · training tier only</div>
+      <div class="grid4">
+        <div class="arc-btn">◐<i>Q</i></div><div class="arc-btn">⚡<i>W</i></div><div class="arc-btn">◈<i>E</i></div><div class="arc-btn">↯<i>R</i></div>
+      </div>
+      <p style="margin:12px 0 0;font-size:12.5px">Steel-blue gradient, off-palette stroke, a glow on hover. Reads as a game skin because it borrowed a game's colours instead of ours.</p>
+    </div>
+    <div class="panel">
+      <h3>v9 FUSION · always on</h3>
+      <div class="sub">css/sc-console.css · .sc-order · every ops surface</div>
+      <div class="grid4">
+        <button class="sc-order" style="height:56px"><span class="sc-order__t">Task collect</span><span class="sc-order__g">◎</span><kbd class="sc-order__k">Q</kbd></button>
+        <button class="sc-order" style="height:56px"><span class="sc-order__t">Slew</span><span class="sc-order__g">↻</span><kbd class="sc-order__k">W</kbd></button>
+        <button class="sc-order" style="height:56px" data-cooldown="12s"><span class="sc-order__t">Cross-cue</span><span class="sc-order__g">▲</span><kbd class="sc-order__k">E</kbd></button>
+        <button class="sc-order" style="height:56px" data-cost="high"><span class="sc-order__t">Burn</span><span class="sc-order__g">⌁</span><kbd class="sc-order__k">R</kbd></button>
+      </div>
+      <p style="margin:12px 0 0;font-size:12.5px">Bento cell, cyan glyph, gold hotkey, the order named in the corner, cooldown as a gold-lit sweep. Same grammar. Our identity.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 style="font-size:24px">What else v9 fixes while it is there</h2>
+  <table>
+    <thead><tr><th>Finding in v8</th><th>Rule</th><th>v9</th></tr></thead>
+    <tbody>
+      <tr><td>Cesium loads from cesium.com; the tour loads React from unpkg</td><td>Zero CDN on product surfaces. DDIL posture.</td><td>Offline procedural theater in <code>ops.js</code>; fonts self-hosted from <code>assets/fonts/</code>. Repo keeps Cesium, self-hosted.</td></tr>
+      <tr><td>Globe entities drawn in v6 colours (<code>#2EB5C9 #FFC24B #4FD98A #FF4A3D</code>)</td><td>One palette per artifact</td><td>Entities and trails on the FUSION four.</td></tr>
+      <tr><td>Three CSS generations stacked: v5 arena, v7 ops, v8 skin with <code>!important</code></td><td>Author against tokens; namespace product classes</td><td>One <code>sc-</code> layer on <code>tokens/console.css</code>. No overrides.</td></tr>
+      <tr><td>Em dashes in visible UI strings</td><td>Craft discipline: none anywhere visible</td><td>None. Periods and middots.</td></tr>
+      <tr><td>Adjutant line quoting a game's voice line</td><td>Mission-grade voice; no third-party references</td><td>Advisor states the picture. Nothing else.</td></tr>
+      <tr><td>7.5 and 8 px mono</td><td>Legibility floor</td><td><code>--sc-fs-micro: 10px</code>. Nothing renders smaller.</td></tr>
+      <tr><td>Win bands and alert severity carried by hue alone</td><td>State is never colour alone</td><td><code>.sc-state</code>: ▲ ● ■ ◆ ○ with the word, on every stateful element.</td></tr>
+      <tr><td>Minimap overlapped the COA and queue panels when arcade was on</td><td>Grid cells equal content</td><td>Minimap owns deck cell 01.</td></tr>
+      <tr><td>Hub nav: 17 items on one line, overflowing</td><td>Nav one line, ≤ 80px</td><td>Four groups plus More.</td></tr>
+      <tr><td><code>--console-mute</code> as label ink: 3.70:1 on the field, 3.40:1 on panel</td><td>AA for text under 18 px</td><td>Additive <code>--sc-label #7B8CA3</code> for anything read; the locked token stays for decoration.</td></tr>
+      <tr><td>Rows and orders as <code>div</code>s with click handlers</td><td>Keyboard-first console</td><td>Buttons. Focus rings. Arrow-free: 1 to 5, Q to X, C, ⌘K.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<p style="margin-top:40px;font-family:var(--sc-font-mono);font-size:10px;letter-spacing:.08em;color:var(--console-mute)">
+  HYPATIUS, LLC · small business · non-traditional defense contractor · UEI UKELB3UV76V6 · CAGE 19S89
+</p>
+</body>
+</html>

@@ -1,0 +1,1262 @@
+[
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (30 interactive)"
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "ops",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (22 interactive)"
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "ops",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (16 interactive)"
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "hub",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (16 interactive)"
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "hub",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (14 interactive)"
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "briefing",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (14 interactive)"
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "briefing",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (21 interactive)"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (21 interactive)"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "white-cell",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (13 interactive)"
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "command",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (13 interactive)"
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "command",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (11 interactive)"
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "season",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (11 interactive)"
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "season",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (25 interactive)"
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "campaign",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (25 interactive)"
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "campaign",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (11 interactive)"
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "connect",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (11 interactive)"
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "connect",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (13 interactive)"
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "aar",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (13 interactive)"
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "aar",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (11 interactive)"
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "hangar",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (11 interactive)"
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "no-em-dash",
+  "ok": true,
+  "detail": "em dash in visible text"
+ },
+ {
+  "screen": "hangar",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ }
+]

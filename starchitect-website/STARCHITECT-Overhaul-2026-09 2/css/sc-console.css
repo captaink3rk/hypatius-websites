@@ -1,0 +1,481 @@
+/* ============================================================
+   STARCHITECT — sc- console component layer · v9
+   Requires tokens/console.css (v8 FUSION, locked). This file
+   ADDS to it. It changes no locked value.
+
+   Thesis: the command interface is not a mode. It is the console.
+   v8 carried the RTS grammar (portrait, wireframe, command card,
+   minimap, control groups, adjutant) in a side-skin gated to the
+   training tier and painted in a blue that is not ours. v9 promotes
+   every one of those patterns into the FUSION identity as first-
+   class, always-on, namespaced components. There is no arcade mode.
+
+   Colour doctrine (from console.css, unchanged):
+     cyan  #40B4E5  telemetry, tracking, FUI hairline
+     gold  #E8A33D  decision, signal, hotkey, mode
+     mint  #7FE8D8  effects, go, positive telemetry
+     red   #FF5A4A  lethal states ONLY
+   Type: Bebas Neue display and digits, Rajdhani UI, IBM Plex Mono data.
+   Geometry: 12px bento cells, 8px small. FUI brackets on LIVE selection only.
+   Craft: no em dashes in visible strings. Mono floor 10px. 44px hit targets.
+   ============================================================ */
+
+:root{
+  /* ---- v9 additive tokens ---- */
+  --sc-font-display:"Bebas Neue","Arial Narrow",sans-serif;
+  --sc-font-ui:"Rajdhani",system-ui,sans-serif;
+  --sc-font-mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --sc-fs-micro:10px;      /* the floor. Nothing renders smaller. */
+  --sc-fs-label:11px;
+  --sc-fs-body:13px;
+  --sc-fs-ui:14px;
+  --sc-fs-digit:26px;
+  --sc-fs-clock:34px;
+
+  --sc-hit:44px;           /* minimum interactive target */
+
+  --sc-ease:cubic-bezier(.16,1,.3,1);
+  --sc-dur-1:150ms; --sc-dur-2:220ms; --sc-dur-3:400ms; --sc-dur-4:550ms;
+
+  /* shell geometry */
+  --sc-top-h:52px;
+  --sc-rail-w:236px;
+  --sc-deck-h:238px;
+  --sc-strip-h:20px;
+
+  /* LABEL INK. The locked --console-mute (#5B6C80) measures 3.70:1 on the field
+     and 3.40:1 on a panel: a fail for text under 18px, and it is the label colour
+     on every v8 surface. This is the same defect the ALIDADE audit found in its
+     own microlabel. The locked value is not changed. It stays for hairline
+     decoration and disabled glyphs. Anything a person must READ uses this,
+     which is the same family at 5.33:1 on panel and 4.98:1 on inset. */
+  --sc-label:#7B8CA3;
+
+  /* state fills derived from the doctrine, never new hues */
+  --sc-cyan-fill:rgba(64,180,229,.08);  --sc-cyan-edge:rgba(64,180,229,.45);
+  --sc-gold-fill:rgba(232,163,61,.09);  --sc-gold-edge:rgba(232,163,61,.5);
+  --sc-mint-fill:rgba(127,232,216,.08); --sc-mint-edge:rgba(127,232,216,.45);
+  --sc-red-fill:rgba(255,90,74,.09);    --sc-red-edge:rgba(255,90,74,.5);
+  --sc-scrim:rgba(6,9,15,.86);
+}
+
+/* ============================================================
+   0 · SHELL
+   ============================================================ */
+.sc-shell{
+  position:fixed; inset:0; display:grid;
+  grid-template-rows:var(--sc-top-h) 1fr var(--sc-deck-h) var(--sc-strip-h);
+  grid-template-columns:var(--sc-rail-w) 1fr;
+  grid-template-areas:"top top" "rail theater" "deck deck" "strip strip";
+  background:var(--console-bg); color:var(--console-txt);
+  font-family:var(--sc-font-ui); font-size:var(--sc-fs-ui);
+  -webkit-font-smoothing:antialiased;
+}
+.sc-shell > .sc-top    { grid-area:top; }
+.sc-shell > .sc-rail   { grid-area:rail; }
+.sc-shell > .sc-theater{ grid-area:theater; }
+.sc-shell > .sc-deck   { grid-area:deck; }
+.sc-shell > .sc-strip  { grid-area:strip; }
+.sc-theater{ position:relative; min-width:0; min-height:0; }
+
+/* hairline dividers via grid gap against a contrasting parent, not stacked borders */
+.sc-cells{ display:grid; gap:1px; background:var(--console-line); }
+.sc-cells > *{ background:var(--console-panel); }
+
+.sc-mono{ font-family:var(--sc-font-mono); font-variant-numeric:tabular-nums; }
+.sc-lbl{
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--sc-label);
+}
+.sc-digit{ font-family:var(--sc-font-display); font-size:var(--sc-fs-digit); line-height:1; letter-spacing:.02em; color:var(--console-txt); }
+
+/* ============================================================
+   1 · STATE MARK  ·  state is never colour alone
+   ▲ go / nominal      ● watch / armed       ■ lethal / refused
+   ◆ decision / commit ○ idle / untasked     · historical
+   The mark and the word carry it; the hue is the third channel.
+   ============================================================ */
+.sc-state{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; white-space:nowrap;
+  color:var(--state,var(--console-body));
+}
+.sc-state::before{ content:"●"; font-size:9px; line-height:1; }
+.sc-state[data-state="go"],
+.sc-state[data-state="nominal"]{ --state:var(--console-green); }
+.sc-state[data-state="go"]::before,
+.sc-state[data-state="nominal"]::before{ content:"▲"; }
+.sc-state[data-state="watch"],
+.sc-state[data-state="armed"]{ --state:var(--console-gold); }
+.sc-state[data-state="lethal"],
+.sc-state[data-state="refused"],
+.sc-state[data-state="lost"]{ --state:var(--console-red); }
+.sc-state[data-state="lethal"]::before,
+.sc-state[data-state="refused"]::before,
+.sc-state[data-state="lost"]::before{ content:"■"; }
+.sc-state[data-state="commit"]{ --state:var(--console-gold); }
+.sc-state[data-state="commit"]::before{ content:"◆"; }
+.sc-state[data-state="idle"]{ --state:var(--console-gold); }
+.sc-state[data-state="idle"]::before{ content:"○"; }
+.sc-state[data-state="track"]{ --state:var(--console-cyan); }
+.sc-state[data-state="historical"]{ --state:var(--sc-label); }
+.sc-state[data-state="historical"]::before{ content:"·"; }
+.sc-sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+/* ============================================================
+   2 · FUI SELECTION BRACKETS  ·  live selection only
+   ============================================================ */
+.sc-live{ position:relative; }
+.sc-live::before,.sc-live::after{
+  content:""; position:absolute; width:var(--console-bracket-size); height:var(--console-bracket-size);
+  pointer-events:none;
+}
+.sc-live::before{ top:-3px; left:-3px; border-top:var(--console-bracket); border-left:var(--console-bracket); border-top-left-radius:6px; }
+.sc-live::after { bottom:-3px; right:-3px; border-bottom:var(--console-bracket); border-right:var(--console-bracket); border-bottom-right-radius:6px; }
+
+/* ============================================================
+   3 · TOP BAR  ·  wordmark · mode · advisor · resources · clock
+   ============================================================ */
+.sc-top{
+  display:grid; grid-template-columns:auto auto minmax(0,1fr) auto auto; align-items:center; gap:14px;
+  padding:0 16px; background:linear-gradient(180deg,var(--console-bg2),var(--console-bg));
+  border-bottom:1px solid var(--console-line);
+}
+.sc-wordmark img{ display:block; height:14px; width:auto; }
+.sc-nav{ display:flex; gap:14px; }
+.sc-nav a{
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--sc-label); text-decoration:none;
+  padding:0 4px; min-height:44px; display:inline-flex; align-items:center; border-bottom:2px solid transparent;
+}
+.sc-nav a:hover{ color:var(--console-body); }
+.sc-nav a[aria-current="page"]{ color:var(--console-gold); border-bottom-color:var(--console-gold); }
+
+/* the mode chip: gold, because mode is a decision state */
+.sc-mode{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--console-gold);
+  border:1px solid var(--sc-gold-edge); background:var(--sc-gold-fill);
+  border-radius:var(--console-radius); padding:7px 12px; white-space:nowrap;
+}
+.sc-mode::before{ content:"◆"; font-size:8px; }
+
+/* THE ADVISOR LINE. The "adjutant" promoted from an arcade banner to
+   a first-class, always-on telemetry voice. One line, gold, mono, no
+   glow, no jokes. It states the picture. */
+.sc-advisor{
+  min-width:0; display:flex; align-items:center; gap:10px; justify-content:flex-start;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-label); font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--console-gold);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.sc-advisor__k{ color:var(--sc-label); }
+.sc-advisor__t{ animation:scAdvisorIn var(--sc-dur-3) var(--sc-ease); overflow:hidden; text-overflow:ellipsis; min-width:0; }
+@keyframes scAdvisorIn{ from{ opacity:0; transform:translateY(-4px);} to{ opacity:1; transform:none;} }
+
+/* RESOURCES  ·  Δv · downlink · tasking. Top-right, where an RTS
+   keeps them, because the operator glances there before every order. */
+.sc-res{ display:flex; gap:1px; background:var(--console-line); border-radius:var(--console-radius); overflow:hidden; border:1px solid var(--console-line); }
+.sc-res__cell{
+  display:grid; grid-template-columns:auto auto; gap:2px 10px; align-items:center;
+  padding:5px 10px; background:var(--console-panel); min-width:108px;
+}
+.sc-res__ic{ grid-row:1/3; font-size:12px; color:var(--console-cyan); }
+.sc-res__v{ font-family:var(--sc-font-display); font-size:22px; line-height:1; color:var(--console-txt); letter-spacing:.02em; }
+.sc-res__l{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.14em; color:var(--sc-label); text-transform:uppercase; }
+.sc-res__cell[data-state="watch"] .sc-res__ic,
+.sc-res__cell[data-state="watch"] .sc-res__v{ color:var(--console-gold); }
+.sc-res__cell[data-state="refused"] .sc-res__ic,
+.sc-res__cell[data-state="refused"] .sc-res__v{ color:var(--console-red); }
+.sc-res__cell[data-state="refused"]{ animation:scRefuse var(--sc-dur-3) var(--sc-ease) 2; }
+@keyframes scRefuse{ 0%,100%{ background:var(--console-panel);} 50%{ background:var(--sc-red-fill);} }
+
+/* DECISION CLOCK  ·  gold digits, the one number that never stops */
+.sc-clock{ text-align:right; }
+.sc-clock__v{ font-family:var(--sc-font-display); font-size:var(--sc-fs-clock); line-height:1; color:var(--console-gold); letter-spacing:.04em; }
+.sc-clock__l{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.2em; color:var(--sc-label); text-transform:uppercase; margin-top:2px; }
+
+/* ============================================================
+   4 · LEFT RAIL  ·  control groups + alerts
+   ============================================================ */
+.sc-rail{
+  display:flex; flex-direction:column; gap:8px; padding:12px;
+  border-right:1px solid var(--console-line); background:var(--console-bg); overflow-y:auto;
+}
+.sc-rail::-webkit-scrollbar{ width:6px; } .sc-rail::-webkit-scrollbar-thumb{ background:var(--console-line2); border-radius:6px; }
+
+/* CONTROL GROUP  ·  hotkey 1..5. The number is the affordance. */
+.sc-group{
+  display:grid; grid-template-columns:34px 1fr auto; gap:0 10px; align-items:center;
+  min-height:var(--sc-hit); padding:9px 12px 9px 10px;
+  background:var(--console-panel); border:1px solid var(--console-line);
+  border-radius:var(--console-radius); cursor:pointer; text-align:left;
+  color:inherit; font:inherit; width:100%;
+  transition:border-color var(--sc-dur-1) var(--sc-ease), background var(--sc-dur-1) var(--sc-ease);
+}
+.sc-group:hover{ border-color:var(--console-line2); }
+.sc-group:focus-visible{ outline:2px solid var(--console-cyan); outline-offset:2px; }
+.sc-group[aria-pressed="true"]{ border-color:var(--sc-cyan-edge); background:var(--sc-cyan-fill); }
+.sc-group__n{
+  font-family:var(--sc-font-display); font-size:24px; line-height:1; color:var(--console-gold);
+  border-right:1px solid var(--console-line); padding-right:8px; text-align:center;
+}
+.sc-group__name{ font-family:var(--sc-font-ui); font-weight:700; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; max-width:150px; letter-spacing:.06em; color:var(--console-txt); text-transform:uppercase; line-height:1.15; }
+.sc-group__sub{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.1em; color:var(--sc-label); text-transform:uppercase; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:150px; }
+.sc-group[data-side="red"] .sc-group__n{ color:var(--console-red); }
+.sc-group[data-side="red"] .sc-group__sub{ color:var(--console-red); }
+/* the idle indicator. An untasked asset is a wasted asset. */
+.sc-group__idle{ grid-column:3; grid-row:1/3; align-self:center; }
+.sc-group__idle[hidden]{ display:none; }
+.sc-group[data-idle="true"]{ border-color:var(--sc-gold-edge); }
+.sc-group[data-idle="true"] .sc-group__idle{ animation:scIdle 2.4s var(--sc-ease) infinite; }
+@keyframes scIdle{ 0%,100%{ opacity:1;} 50%{ opacity:.35;} }
+
+/* ALERTS  ·  deep-link to the responding group */
+.sc-alerts{ display:flex; flex-direction:column; gap:6px; margin-top:auto; }
+.sc-alert{
+  display:grid; gap:3px; min-height:var(--sc-hit); padding:9px 12px 9px 11px;
+  background:var(--console-panel); border:1px solid var(--console-line); border-left:3px solid var(--console-cyan);
+  border-radius:0 var(--console-radius) var(--console-radius) 0; cursor:pointer; text-align:left; color:inherit; font:inherit; width:100%;
+}
+.sc-alert:focus-visible{ outline:2px solid var(--console-cyan); outline-offset:2px; }
+.sc-alert__t{ font-family:var(--sc-font-ui); font-weight:700; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--console-txt); display:flex; align-items:center; gap:8px; }
+.sc-alert__d{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.08em; color:var(--console-body); }
+.sc-alert[data-state="lethal"]{ border-left-color:var(--console-red); background:var(--sc-red-fill); }
+.sc-alert[data-state="watch"] { border-left-color:var(--console-gold); background:var(--sc-gold-fill); }
+.sc-alert[data-state="go"]    { border-left-color:var(--console-green); }
+
+/* ============================================================
+   5 · THEATER  ·  the stage. Canvas or Cesium underneath; HUD on top.
+   ============================================================ */
+.sc-theater canvas.sc-stage{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.sc-vignette{ position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 55%, rgba(6,9,15,.7) 100%); }
+/* screen-edge lethal pulse. One pulse, then still. */
+.sc-edge{ position:absolute; inset:0; pointer-events:none; opacity:0;
+  box-shadow:inset 0 0 0 2px var(--console-red), inset 0 0 90px rgba(255,90,74,.35); }
+.sc-edge[data-fire="true"]{ animation:scEdge 900ms var(--sc-ease) 1; }
+@keyframes scEdge{ 0%{ opacity:0;} 15%{ opacity:1;} 100%{ opacity:0;} }
+
+/* HUD chips floating on the theater */
+.sc-chip{
+  display:inline-flex; align-items:center; gap:8px; min-height:32px;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--console-body);
+  border:1px solid var(--console-line2); background:var(--sc-scrim);
+  border-radius:var(--console-radius-sm); padding:6px 12px; cursor:pointer;
+}
+.sc-chip:hover{ border-color:var(--console-cyan); color:var(--console-txt); }
+.sc-chip:focus-visible{ outline:2px solid var(--console-cyan); outline-offset:2px; }
+.sc-chip[aria-pressed="true"]{ color:var(--console-green); border-color:var(--sc-mint-edge); background:var(--sc-mint-fill); }
+
+/* telemetry callouts (track lost / reacquired) */
+.sc-callout{
+  background:var(--sc-scrim); border:1px solid var(--console-line2); border-left:3px solid var(--console-cyan);
+  border-radius:0 var(--console-radius-sm) var(--console-radius-sm) 0; padding:9px 12px;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.06em; color:var(--console-body); line-height:1.6;
+  max-width:300px;
+}
+.sc-callout b{ display:block; font-weight:700; letter-spacing:.14em; color:var(--console-cyan); }
+.sc-callout[data-state="lethal"]{ border-left-color:var(--console-red); } .sc-callout[data-state="lethal"] b{ color:var(--console-red); }
+.sc-callout[data-state="go"]{ border-left-color:var(--console-green); } .sc-callout[data-state="go"] b{ color:var(--console-green); }
+
+/* toast */
+.sc-toast{
+  position:absolute; left:50%; top:104px; transform:translate(-50%,-8px); opacity:0; pointer-events:none;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-label); font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--console-txt); background:var(--sc-scrim); border:1px solid var(--console-line2);
+  border-radius:var(--console-radius-sm); padding:9px 14px; transition:opacity var(--sc-dur-2) var(--sc-ease), transform var(--sc-dur-2) var(--sc-ease);
+  max-width:70%;
+}
+.sc-toast[data-on="true"]{ opacity:1; transform:translate(-50%,0); }
+
+/* ============================================================
+   6 · COMMAND DECK  ·  the bottom bar. Minimap · selection · card · queue.
+   This is the RTS silhouette, and every pixel of it is FUSION.
+   ============================================================ */
+.sc-deck{
+  display:grid; grid-template-columns:300px 1fr 372px 300px; gap:1px;
+  background:var(--console-line); border-top:1px solid var(--console-line);
+}
+.sc-deck > section{ background:var(--console-panel); min-width:0; display:grid; grid-template-rows:auto 1fr; }
+.sc-deck__h{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:8px 12px; border-bottom:1px solid var(--console-line);
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--console-body);
+}
+.sc-deck__h .sc-no{ color:var(--console-cyan); margin-right:8px; }
+
+/* MINIMAP · the theater at a glance. Cyan blue force, red hostile,
+   mint effects, gold ground sites and the camera reticle. */
+.sc-minimap{ position:relative; overflow:hidden; background:var(--console-bg); }
+.sc-minimap canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.sc-minimap__cam{ position:absolute; border:1px solid var(--console-gold); pointer-events:none; }
+.sc-minimap__ping{
+  position:absolute; width:28px; height:28px; margin:-14px 0 0 -14px; border-radius:50%;
+  border:2px solid var(--console-red); pointer-events:none; opacity:0;
+}
+.sc-minimap__ping[data-fire="true"]{ animation:scPing 1.4s var(--sc-ease) 3; }
+@keyframes scPing{ 0%{ transform:scale(.3); opacity:1;} 100%{ transform:scale(1.6); opacity:0;} }
+
+/* SELECTION · portrait + wireframe + facts */
+.sc-sel{ display:grid; grid-template-columns:auto 1fr; gap:10px 14px; padding:10px 12px; align-content:start; min-height:0; overflow:hidden; }
+.sc-portrait{
+  width:72px; height:72px; display:grid; place-items:center;
+  font-family:var(--sc-font-display); font-size:30px; color:var(--console-cyan);
+  background:var(--console-inset); border:1px solid var(--console-line2); border-radius:var(--console-radius-sm);
+  position:relative;
+}
+.sc-portrait[data-side="red"]{ color:var(--console-red); }
+.sc-portrait img{ width:40px; height:40px; object-fit:contain; opacity:.95; }
+.sc-sel__name{ font-family:var(--sc-font-display); font-size:22px; letter-spacing:.04em; line-height:1; color:var(--console-txt); }
+.sc-sel__sub{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.12em; color:var(--sc-label); text-transform:uppercase; margin-top:4px; }
+/* the wireframe: subsystem health as strokes. mint nominal, gold degraded, red failed. */
+.sc-wire{ display:block; width:100%; max-width:300px; height:40px; margin-top:6px; }
+.sc-wire [data-health="nominal"]{ stroke:var(--console-green); }
+.sc-wire [data-health="degraded"]{ stroke:var(--console-gold); }
+.sc-wire [data-health="failed"]{ stroke:var(--console-red); }
+.sc-wire text{ font-family:var(--sc-font-mono); font-size:10px; letter-spacing:.06em; fill:var(--sc-label); }
+.sc-wire text[data-health="degraded"]{ fill:var(--console-gold); }
+.sc-wire text[data-health="failed"]{ fill:var(--console-red); }
+.sc-facts{ grid-column:1/-1; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--console-line); border:1px solid var(--console-line); border-radius:var(--console-radius-sm); overflow:hidden; }
+.sc-facts > div{ background:var(--console-inset); padding:5px 10px; }
+.sc-facts dt{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.14em; color:var(--sc-label); text-transform:uppercase; }
+.sc-facts dd{ margin:3px 0 0; font-family:var(--sc-font-mono); font-size:12px; color:var(--console-txt); font-variant-numeric:tabular-nums; }
+
+/* COMMAND CARD · 4×3 order grid. Every legal order for the selection,
+   one keystroke away. Gold hotkey, cyan glyph, cooldown as a gold sweep. */
+.sc-card{ display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(3,1fr); gap:5px; padding:8px 10px; min-height:0; }
+.sc-order{
+  position:relative; display:grid; place-items:center; min-height:44px; height:100%;
+  background:var(--console-inset); border:1px solid var(--console-line2);
+  border-radius:var(--console-radius-sm); cursor:pointer; color:var(--console-cyan); font:inherit; padding:0; overflow:hidden;
+  transition:border-color var(--sc-dur-1) var(--sc-ease), background var(--sc-dur-1) var(--sc-ease);
+}
+.sc-order:hover{ border-color:var(--console-cyan); background:var(--sc-cyan-fill); }
+.sc-order:focus-visible{ outline:2px solid var(--console-cyan); outline-offset:2px; }
+.sc-order:active{ transform:translateY(1px); }
+.sc-order__g{ font-size:20px; line-height:1; }
+.sc-order__k{
+  position:absolute; right:5px; bottom:3px;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700; color:var(--console-gold);
+}
+.sc-order__t{ position:absolute; left:6px; top:4px; font-family:var(--sc-font-mono); font-size:10px; letter-spacing:.04em; color:var(--sc-label); text-transform:uppercase; max-width:calc(100% - 12px); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.sc-order[data-cost="high"] .sc-order__g{ color:var(--console-gold); }
+.sc-order[data-lethal="true"] .sc-order__g{ color:var(--console-red); }
+.sc-order[disabled],.sc-order[aria-disabled="true"]{ opacity:.28; cursor:not-allowed; }
+.sc-order[data-cooldown]::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:conic-gradient(var(--sc-scrim) 0 var(--cd,60%), transparent var(--cd,60%));
+}
+.sc-order[data-cooldown]::before{
+  content:attr(data-cooldown); position:absolute; left:6px; bottom:3px; z-index:1;
+  font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); font-weight:700; color:var(--console-gold);
+}
+/* the commit ritual is gold and it is bigger. It is the highest-consequence tap in the console. */
+.sc-order--commit{ grid-column:span 2; border-color:var(--sc-gold-edge); background:var(--sc-gold-fill); color:var(--console-gold); }
+.sc-order--commit .sc-order__g{ font-family:var(--sc-font-display); font-size:20px; letter-spacing:.08em; color:var(--console-gold); }
+.sc-order--commit:hover{ background:rgba(232,163,61,.16); border-color:var(--console-gold); }
+
+/* QUEUE · maneuver and tasking. Stack of five, ETA, progress. */
+.sc-queue{ display:flex; flex-direction:column; gap:1px; background:var(--console-line); overflow-y:auto; }
+.sc-queue::-webkit-scrollbar{ width:6px; } .sc-queue::-webkit-scrollbar-thumb{ background:var(--console-line2); }
+.sc-qi{ display:grid; grid-template-columns:auto 1fr auto auto; gap:10px; align-items:center; padding:8px 12px; background:var(--console-panel); min-height:40px; }
+.sc-qi__tg{ font-family:var(--sc-font-display); font-size:16px; color:var(--console-gold); letter-spacing:.04em; }
+.sc-qi__o{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-label); letter-spacing:.06em; color:var(--console-txt); text-transform:uppercase; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.sc-qi__eta{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); color:var(--console-cyan); font-variant-numeric:tabular-nums; }
+.sc-qi__x{ font-family:var(--sc-font-mono); font-size:12px; color:var(--console-mute); background:none; border:0; cursor:pointer; min-width:28px; min-height:28px; }
+.sc-qi__x:hover{ color:var(--console-red); }
+.sc-qi__bar{ grid-column:1/-1; height:2px; background:var(--console-line); position:relative; }
+.sc-qi__bar i{ position:absolute; inset:0 auto 0 0; background:var(--console-cyan); }
+.sc-qi--empty{ color:var(--sc-label); font-family:var(--sc-font-mono); font-size:var(--sc-fs-label); letter-spacing:.06em; grid-template-columns:1fr; }
+
+/* ============================================================
+   7 · SCORE · FEED · CLASSIFICATION
+   ============================================================ */
+.sc-score{ display:flex; align-items:center; gap:6px; white-space:nowrap; font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.14em; text-transform:uppercase; color:var(--console-mute); }
+.sc-score__team{ font-family:var(--sc-font-display); font-size:15px; white-space:nowrap; letter-spacing:.04em; color:var(--console-cyan); }
+.sc-score__team[data-side="red"]{ color:var(--console-red); }
+.sc-score__pts{ font-family:var(--sc-font-display); font-size:16px; color:var(--console-txt); min-width:24px; text-align:center; background:var(--console-inset); border-radius:var(--console-radius-sm); padding:2px 6px; }
+
+.sc-feed{ display:flex; flex-direction:column; gap:3px; font-family:var(--sc-font-mono); font-size:var(--sc-fs-micro); letter-spacing:.06em; color:var(--console-body); }
+.sc-feed b{ color:var(--console-cyan); font-weight:700; }
+.sc-feed b[data-side="red"]{ color:var(--console-red); }
+.sc-feed .sc-mop{ color:var(--console-green); }
+
+.sc-strip{
+  display:flex; align-items:center; justify-content:center;
+  background:#1E9E3E; color:#04140A;
+  font-family:var(--sc-font-mono); font-size:10px; font-weight:700; letter-spacing:.3em; text-transform:uppercase;
+}
+
+/* ============================================================
+   8 · COMMAND PALETTE ⌘K · FUSION, not the retired chamfer
+   ============================================================ */
+.sc-palette{ position:fixed; inset:0; z-index:60; background:rgba(6,9,15,.78); backdrop-filter:blur(3px); display:none; }
+.sc-palette[data-open="true"]{ display:block; }
+.sc-palette__box{
+  max-width:680px; margin:14vh auto 0; background:var(--console-panel);
+  border:1px solid var(--console-line2); border-radius:var(--console-radius); overflow:hidden;
+}
+.sc-palette__in{ display:flex; gap:12px; align-items:center; padding:14px 18px; border-bottom:1px solid var(--console-line); }
+.sc-palette__in kbd{ font-family:var(--sc-font-mono); font-weight:700; color:var(--console-gold); font-size:12px; }
+.sc-palette__in input{ flex:1; background:none; border:0; outline:none; color:var(--console-txt); font-family:var(--sc-font-mono); font-size:14px; }
+.sc-palette__in input::placeholder{ color:var(--sc-label); }
+.sc-palette__row{ padding:10px 18px; font-family:var(--sc-font-mono); font-size:12px; color:var(--console-body); cursor:pointer; }
+.sc-palette__row[aria-selected="true"]{ color:var(--console-txt); background:var(--sc-cyan-fill); }
+.sc-palette__out{ display:none; padding:12px 18px; border-top:1px solid var(--console-line); font-family:var(--sc-font-mono); font-size:12px; color:var(--console-green); line-height:1.7; }
+.sc-palette__out[data-on="true"]{ display:block; }
+.sc-palette__out b{ color:var(--console-gold); font-weight:700; }
+
+/* ============================================================
+   9 · INTENT BAR · natural-language C2 sits with the deck
+   ============================================================ */
+.sc-intent{
+  position:absolute; left:50%; bottom:14px; transform:translateX(-50%); width:min(640px,80%);
+  display:flex; align-items:center; gap:10px; min-height:var(--sc-hit);
+  background:var(--sc-scrim); border:1px solid var(--console-line2); border-radius:var(--console-radius);
+  padding:0 14px; font-family:var(--sc-font-mono); font-size:12px; color:var(--sc-label); cursor:text;
+}
+.sc-intent kbd{ font-weight:700; color:var(--console-gold); }
+
+/* ============================================================
+   10 · TITLE CARD · letterbox intro, first 2.4s
+   ============================================================ */
+.sc-title{
+  position:absolute; inset:0; display:grid; place-items:center; text-align:center; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(6,9,15,.2), rgba(6,9,15,.9) 70%);
+  transition:opacity var(--sc-dur-4) var(--sc-ease);
+}
+.sc-title[data-gone="true"]{ opacity:0; }
+.sc-title__eyebrow{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-label); font-weight:700; letter-spacing:.34em; text-transform:uppercase; color:var(--console-cyan); }
+.sc-title img{ width:min(520px,56vw); height:auto; margin:18px auto 14px; display:block; filter:drop-shadow(0 4px 30px rgba(64,180,229,.3)); }
+.sc-title h1{ font-family:var(--sc-font-display); font-size:44px; letter-spacing:.06em; color:var(--console-txt); margin:0; line-height:1; }
+.sc-title__sub{ font-family:var(--sc-font-mono); font-size:var(--sc-fs-label); letter-spacing:.3em; text-transform:uppercase; color:var(--console-body); margin-top:12px; }
+
+/* ============================================================
+   11 · MOTION DISCIPLINE
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  .sc-shell *, .sc-shell *::before, .sc-shell *::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;
+  }
+  .sc-group[data-idle="true"] .sc-group__idle{ opacity:1; }
+}
+
+/* ============================================================
+   12 · RESPONSIVE · 1440 is the design width; 1180 collapses the rail.
+   ============================================================ */
+@media (max-width:1280px){
+  .sc-deck{ grid-template-columns:240px 1fr 320px 240px; }
+  .sc-res__cell{ min-width:100px; }
+}
+@media (max-width:1180px){
+  .sc-shell{ grid-template-columns:1fr; grid-template-areas:"top" "theater" "deck" "strip"; }
+  .sc-rail{ display:none; }
+  .sc-advisor{ display:none; }
+}
