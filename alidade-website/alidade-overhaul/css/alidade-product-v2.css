@@ -1,0 +1,447 @@
+/* ============================================================
+   ALIDADE — product class layer v2
+   Requires tokens/alidade-v2.css.
+
+   Changes from v1 (css/alidade-product.css):
+   1. NAMESPACED. Every class is `al-`, as CRATON namespaces `cr-`.
+      v1 shipped `.crd`, `.pill`, `.field`, `.tab`, `.kpi`, `.topbar`
+      into a global scope. `.field` and `.tab` in particular will
+      collide with almost any host stylesheet. v1 names are kept as
+      aliases at the bottom of this file so nothing breaks on drop-in;
+      delete that block once call sites are migrated.
+   2. STATE IS NEVER COLOUR ALONE. v1 carried win bands on teal/gold/
+      coral with no structural backup — invisible to the ~8% of men
+      with a red-green deficiency, to forced-colors mode, and to a
+      greyscale print of a deck. Every stateful component now carries
+      a MARK and a WORD alongside the hue.
+   3. ACCESSIBILITY FIXES. The KPI label failed AA in the shipped
+      product (t3 on srf2 = 2.94:1). Fixed at the token level.
+   4. ELEVATION is tokenised and bounded to docked chrome.
+   ============================================================ */
+
+/* ============================================================
+   1 · MICROLABEL
+   ============================================================ */
+.al-lbl{
+  text-transform:uppercase;
+  letter-spacing:var(--al-ls-label);
+  font-size:var(--al-fs-eyebrow);
+  color:var(--al-t3);
+  font-weight:var(--al-fw-medium);
+  line-height:1.3;
+}
+/* t3 is not permitted on srf3. Rail and modal chrome step up to t2. */
+.al-dock .al-lbl,
+.al-modal .al-lbl{ color:var(--al-t2); }
+
+/* ============================================================
+   2 · SURFACES
+   ============================================================ */
+.al-card{
+  background:var(--al-srf);
+  border:var(--al-hairline) solid var(--al-bf);
+  border-radius:var(--al-radius-card);
+  box-shadow:var(--al-elev-0);
+}
+.al-card--raised{ background:var(--al-srf2); border-color:var(--al-bm); }
+
+/* The left-edge accent bar. Rule: no radius on the barred edge. */
+.al-edge{
+  border-left:2px solid var(--al-teal);
+  border-top-left-radius:0;
+  border-bottom-left-radius:0;
+}
+.al-edge--gate { border-left-color:var(--al-gold); }
+.al-edge--grant{ border-left-color:var(--al-violet); }
+.al-edge--risk { border-left-color:var(--al-coral); }
+
+/* DOCKED CHROME — the only place elevation is permitted. */
+.al-dock{
+  background:color-mix(in srgb, var(--al-srf3) 88%, transparent);
+  border:var(--al-hairline) solid var(--al-bm);
+  box-shadow:var(--al-elev-dock);
+  backdrop-filter:var(--al-blur-dock);
+  -webkit-backdrop-filter:var(--al-blur-dock);
+}
+.al-modal{
+  background:var(--al-srf3);
+  border:var(--al-hairline) solid var(--al-bs);
+  border-radius:var(--al-radius-modal);
+  box-shadow:var(--al-elev-modal);
+}
+@media (prefers-reduced-transparency: reduce){
+  .al-dock{ background:var(--al-srf3); backdrop-filter:none; -webkit-backdrop-filter:none; }
+}
+
+/* ============================================================
+   3 · THE STATE MARK — the core v2 addition
+   A 10px geometric glyph that encodes state structurally. Pair it
+   with the word. The colour is the third channel, never the first.
+
+     ▲  high / pursue / go      (up, teal)
+     ●  mid  / consider / watch (hold, gold)
+     ■  low  / risk / gap       (stop, coral)
+     ◆  partner / consent       (violet)
+
+   These are the Unicode geometric marks the brand already uses in
+   mono status contexts, so this is not a new vocabulary — it is
+   the existing one made load-bearing.
+   ============================================================ */
+.al-state{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:var(--al-font-mono);
+  font-size:var(--al-fs-eyebrow);
+  letter-spacing:var(--al-ls-tracked);
+  text-transform:uppercase;
+  color:var(--band, var(--al-t2));
+  white-space:nowrap;
+}
+.al-state::before{
+  content:"●";
+  font-size:9px;
+  line-height:1;
+  flex:none;
+}
+.al-state[data-band="high"]::before,
+.al-state[data-state="pursue"]::before,
+.al-state[data-state="go"]::before{      content:"▲"; }
+.al-state[data-band="mid"]::before,
+.al-state[data-state="consider"]::before,
+.al-state[data-state="watch"]::before{   content:"●"; }
+.al-state[data-band="low"]::before,
+.al-state[data-state="risk"]::before,
+.al-state[data-state="gap"]::before{     content:"■"; }
+.al-state[data-state="partner"]::before,
+.al-state[data-state="consent"]::before{ content:"◆"; color:var(--al-violet); }
+.al-state[data-state="historical"]{ color:var(--al-t3); }
+.al-state[data-state="historical"]::before{ content:"·"; }
+
+/* Screen-reader text for anything where the mark is the only label. */
+.al-sr{
+  position:absolute; width:1px; height:1px;
+  padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* ============================================================
+   4 · PILLS
+   ============================================================ */
+.al-pill{
+  font-size:var(--al-fs-eyebrow);
+  padding:3px 8px;
+  border-radius:var(--al-radius-tick);
+  font-weight:var(--al-fw-medium);
+  letter-spacing:var(--al-ls-tracked);
+  display:inline-flex; align-items:center; gap:5px;
+  line-height:1.4;
+  border:var(--al-hairline) solid transparent;
+}
+.al-pill--teal  { background:var(--al-teal-fill);   color:var(--al-teal);   border-color:var(--al-teal-edge); }
+.al-pill--gold  { background:var(--al-gold-fill);   color:var(--al-gold);   border-color:var(--al-gold-edge); }
+.al-pill--coral { background:var(--al-coral-fill);  color:var(--al-coral);  border-color:var(--al-coral-edge); }
+.al-pill--violet{ background:var(--al-violet-fill); color:var(--al-violet); border-color:var(--al-violet-edge); }
+.al-pill--quiet { background:rgba(255,255,255,0.04);color:var(--al-t2);     border-color:var(--al-bf); }
+.al-pill--live::before{ content:"●"; font-size:8px; color:var(--al-teal); }
+
+/* ============================================================
+   5 · BUTTONS
+   ============================================================ */
+.al-btn{
+  font-family:inherit; cursor:pointer;
+  border-radius:var(--al-radius-control);
+  letter-spacing:var(--al-ls-tracked);
+  font-size:var(--al-fs-label);
+  display:inline-flex; align-items:center; gap:6px;
+  border:var(--al-hairline) solid transparent;
+  transition:background var(--al-dur-fast) var(--al-ease),
+             border-color var(--al-dur-fast) var(--al-ease),
+             color var(--al-dur-fast) var(--al-ease);
+}
+.al-btn--primary{
+  background:var(--al-teal); color:var(--al-on-teal);
+  font-weight:var(--al-fw-medium); padding:8px 14px;
+}
+.al-btn--primary:hover { background:#3CE9D8; }
+.al-btn--primary:active{ background:var(--al-teal-dk); color:var(--al-on-teal-dk); }
+
+.al-btn--secondary{
+  background:transparent; border-color:var(--al-bm);
+  color:var(--al-t1); padding:7px 12px;
+}
+.al-btn--secondary:hover { border-color:var(--al-bs); background:rgba(255,255,255,0.03); }
+.al-btn--secondary:active{ background:rgba(255,255,255,0.06); }
+
+/* Gold = the human gate. An approval is never a teal primary. */
+.al-btn--gate{
+  background:var(--al-gold-fill); border-color:var(--al-gold-edge);
+  color:var(--al-gold); padding:7px 12px; font-weight:var(--al-fw-medium);
+}
+.al-btn--gate:hover{ background:rgba(232,184,106,0.18); }
+
+.al-btn:disabled{ opacity:.4; cursor:not-allowed; }
+.al-btn:focus-visible{ outline:2px solid var(--al-teal); outline-offset:2px; }
+
+/* ============================================================
+   6 · FORM FIELDS — sit on the page field, "below the surface"
+   ============================================================ */
+.al-input{
+  background:var(--al-bg);
+  border:var(--al-hairline) solid var(--al-bm);
+  border-radius:var(--al-radius-input);
+  padding:9px 12px;
+  font-size:var(--al-fs-label);
+  color:var(--al-t1);
+  font-family:inherit;
+  width:100%;
+}
+.al-input::placeholder{ color:var(--al-t3); }
+.al-input:focus{ outline:2px solid var(--al-teal); outline-offset:2px; border-color:var(--al-teal-edge); }
+.al-input[aria-invalid="true"]{ border-color:var(--al-coral-edge); }
+
+.al-field{ display:grid; gap:6px; }
+.al-field__error{
+  display:flex; align-items:center; gap:6px;
+  font-size:var(--al-fs-eyebrow); color:var(--al-coral);
+}
+.al-field__error::before{ content:"■"; font-size:8px; } /* mark, not colour alone */
+
+/* ============================================================
+   7 · KPI — the AA fix lives here
+   ============================================================ */
+.al-kpi{
+  background:var(--al-srf2);
+  border:var(--al-hairline) solid var(--al-bm);
+  padding:14px;
+  border-radius:var(--al-radius-input);
+  box-shadow:var(--al-elev-0);
+}
+.al-kpi__label{
+  text-transform:uppercase; letter-spacing:var(--al-ls-label);
+  font-size:var(--al-fs-micro);
+  color:var(--al-t3);                 /* 4.83:1 on srf2 — was 2.94:1 */
+  font-weight:var(--al-fw-medium);
+}
+.al-kpi__value{
+  font-size:26px; font-weight:var(--al-fw-medium);
+  margin-top:5px; color:var(--al-t1);
+  font-variant-numeric:tabular-nums;
+}
+.al-kpi__meta{ font-size:var(--al-fs-micro); color:var(--al-t2); margin-top:3px; }
+.al-kpi--urgent{ background:var(--al-srf); border-color:var(--al-coral-edge); }
+.al-kpi--urgent .al-kpi__value{ color:var(--al-coral); }
+
+/* ============================================================
+   8 · WIN SCORE — figure + band + mark + word
+   ============================================================ */
+.al-score{ display:flex; flex-direction:column; align-items:center; min-width:56px; gap:3px; }
+.al-score__num{
+  font-size:24px; font-weight:var(--al-fw-medium); line-height:1;
+  font-variant-numeric:tabular-nums;
+  color:var(--band, var(--al-t1));
+}
+.al-score__band{
+  font-family:var(--al-font-mono); font-size:9px;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--band, var(--al-t2));
+  display:flex; align-items:center; gap:4px;
+}
+.al-score__band::before{ content:"●"; font-size:7px; }
+[data-band="high"] .al-score__band::before{ content:"▲"; }
+[data-band="low"]  .al-score__band::before{ content:"■"; }
+.al-score--was .al-score__num{ color:var(--al-t2); font-size:19px; }
+
+/* The seven-factor bar. Weights 20/20/15/15/10/10/10. */
+.al-factors{ display:flex; gap:2px; width:100%; }
+.al-factors__seg{ height:4px; border-radius:1px; background:var(--al-bm); position:relative; overflow:hidden; }
+.al-factors__seg > i{ position:absolute; inset:0 auto 0 0; background:var(--band, var(--al-teal)); display:block; }
+
+/* ============================================================
+   9 · PURSUIT ROW
+   ============================================================ */
+.al-row{
+  display:grid; grid-template-columns:auto 1fr auto;
+  gap:16px; align-items:center;
+  padding:13px 16px;
+  background:var(--al-srf);
+  border:var(--al-hairline) solid var(--al-bf);
+  border-radius:0 var(--al-radius-card) var(--al-radius-card) 0;
+  border-left:2px solid var(--al-structure);
+  transition:background var(--al-dur-fast) var(--al-ease), border-color var(--al-dur-fast) var(--al-ease);
+}
+.al-row[data-state="pursue"]    { border-left-color:var(--al-teal); }
+.al-row[data-state="consider"]  { border-left-color:var(--al-gold); }
+.al-row[data-state="risk"]      { border-left-color:var(--al-coral); }
+.al-row[data-state="historical"]{ border-left-color:var(--al-structure); opacity:.62; }
+.al-row:hover{ background:var(--al-srf2); }
+.al-row:focus-within{ border-color:var(--al-bs); }
+
+/* Bracket-in selection, carried over from the live HUD. It is the
+   one live-app *pattern* worth keeping: it marks the selection
+   structurally rather than flooding the row with colour. */
+.al-row[aria-selected="true"]{ position:relative; background:var(--al-teal-dk-fill); }
+.al-row[aria-selected="true"]::before,
+.al-row[aria-selected="true"]::after{
+  content:""; position:absolute; width:9px; height:9px; border:2px solid var(--al-teal);
+}
+.al-row[aria-selected="true"]::before{ top:-1px; left:1px;  border-right:0; border-bottom:0; }
+.al-row[aria-selected="true"]::after { bottom:-1px; right:-1px; border-left:0;  border-top:0; }
+
+/* ============================================================
+   10 · APPROVAL GATE — gold throughout. The agent proposes;
+   a person disposes. Gold is the colour of that moment.
+   ============================================================ */
+.al-gate{
+  background:var(--al-srf2);
+  border:var(--al-hairline) solid var(--al-gold-edge);
+  border-left:2px solid var(--al-gold);
+  border-radius:0 7px 7px 0;
+  padding:13px 15px;
+}
+.al-gate__head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+.al-gate__body{ font-size:var(--al-fs-label); color:var(--al-t2); margin-bottom:11px; line-height:var(--al-lh-body); }
+.al-gate__actions{ display:flex; align-items:center; gap:10px; }
+
+/* ============================================================
+   11 · WATERMARK BLOCK — violet. The moat, made visible.
+   ============================================================ */
+.al-watermark{
+  border:var(--al-hairline) solid var(--al-violet-edge);
+  border-radius:var(--al-radius-input);
+  padding:11px 13px;
+  background:rgba(180,153,224,0.05);
+}
+.al-watermark__tag{
+  font-size:var(--al-fs-micro); color:var(--al-violet);
+  letter-spacing:.1em; text-transform:uppercase;
+  font-weight:var(--al-fw-medium);
+  display:flex; align-items:center; gap:5px; margin-bottom:6px;
+}
+.al-watermark__tag::before{ content:"◆"; font-size:8px; }
+
+/* ============================================================
+   12 · THE LEDGER ROW — provenance on every agent surface.
+   "AI-assisted analysis with a complete, reviewable record of
+   every run — inputs, tools called, outputs."
+   ============================================================ */
+.al-ledger{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  font-family:var(--al-font-mono);
+  font-size:var(--al-fs-micro);
+  color:var(--al-t2);
+  padding:7px 12px;
+  border-top:var(--al-hairline) solid var(--al-bf);
+}
+.al-ledger__tool{ color:var(--al-teal); }
+.al-ledger__time{ color:var(--al-t3); font-variant-numeric:tabular-nums; }
+.al-ledger__mode{
+  border:var(--al-hairline) solid var(--al-bm);
+  border-radius:var(--al-radius-tick);
+  padding:1px 6px; letter-spacing:.12em; text-transform:uppercase;
+}
+.al-ledger__mode[data-mode="auto"]{ color:var(--al-teal); border-color:var(--al-teal-edge); }
+.al-ledger__mode[data-mode="gate"]{ color:var(--al-gold); border-color:var(--al-gold-edge); }
+
+/* ============================================================
+   13 · TABS, RAIL, TOPBAR
+   ============================================================ */
+.al-tabs{
+  display:inline-flex; align-items:center; gap:4px; padding:4px;
+  background:var(--al-srf); border:var(--al-hairline) solid var(--al-bf);
+  border-radius:7px;
+}
+.al-tab{
+  font-size:var(--al-fs-eyebrow); padding:7px 13px; border-radius:5px;
+  color:var(--al-t2); cursor:pointer; letter-spacing:var(--al-ls-tracked);
+  border:var(--al-hairline) solid transparent; background:none; font-family:inherit;
+}
+.al-tab:hover{ color:var(--al-t1); }
+.al-tab[aria-selected="true"]{ background:var(--al-srf2); color:var(--al-t1); border-color:var(--al-bm); }
+.al-tab:focus-visible{ outline:2px solid var(--al-teal); outline-offset:2px; }
+
+.al-topbar{
+  display:flex; align-items:center; gap:14px;
+  padding:0 16px; height:var(--al-topbar-h);
+  border-bottom:var(--al-hairline) solid var(--al-bf);
+  background:var(--al-srf);
+}
+.al-rail{
+  width:var(--al-rail-w); padding:10px 0;
+  display:flex; flex-direction:column; align-items:center; gap:5px;
+  background:var(--al-srf); border-right:var(--al-hairline) solid var(--al-bf);
+}
+.al-rail__item{
+  width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  border-radius:6px; color:var(--al-t2); cursor:pointer;
+  border:var(--al-hairline) solid transparent; background:none;
+}
+.al-rail__item:hover{ background:rgba(255,255,255,0.04); color:var(--al-t1); }
+.al-rail__item[aria-current="page"]{
+  background:var(--al-teal-fill); color:var(--al-teal);
+  border-color:var(--al-teal-edge);
+  box-shadow:inset 2px 0 0 var(--al-teal); /* structural, not colour alone */
+}
+.al-rail__item:focus-visible{ outline:2px solid var(--al-teal); outline-offset:2px; }
+
+/* ============================================================
+   14 · THE BEARING DIAL — ALIDADE's signature data-viz.
+   A needle on an arc. The needle IS the recommendation.
+   ============================================================ */
+.al-dial{ display:block; }
+.al-dial__track { fill:none; stroke:var(--al-bm); stroke-width:6; stroke-linecap:round; }
+.al-dial__range { fill:none; stroke:var(--band, var(--al-teal)); stroke-width:6; stroke-linecap:round; opacity:.9; }
+.al-dial__needle{ stroke:var(--al-t1); stroke-width:2; stroke-linecap:round; }
+.al-dial__hub   { fill:var(--al-t1); }
+.al-dial__tick  { stroke:var(--al-structure); stroke-width:1; }
+
+/* ============================================================
+   15 · CLAIM DISCIPLINE — copy components, not chrome.
+   Every external figure carries a proof line or ships bracketed.
+   ============================================================ */
+.al-proof{
+  font-family:var(--al-font-mono); font-size:var(--al-fs-micro);
+  letter-spacing:.06em; color:var(--al-t3);
+  margin-top:6px; display:block;
+}
+.al-pending{
+  font-family:var(--al-font-mono); font-size:inherit;
+  color:var(--al-gold); border:var(--al-hairline) dashed var(--al-gold-edge);
+  border-radius:var(--al-radius-tick); padding:0 6px;
+}
+.al-stamp{
+  font-family:var(--al-font-mono); font-size:12px; font-weight:var(--al-fw-medium);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--al-t3);
+}
+
+/* ============================================================
+   16 · FOCUS — visible everywhere, no exceptions.
+   ============================================================ */
+[data-brand="alidade"] :focus-visible{
+  outline:2px solid var(--al-teal);
+  outline-offset:2px;
+  border-radius:2px;
+}
+.al-skip{
+  position:absolute; left:8px; top:-48px; z-index:999;
+  background:var(--al-teal); color:var(--al-on-teal);
+  padding:10px 16px; border-radius:var(--al-radius-control);
+  font-weight:var(--al-fw-medium); text-decoration:none;
+  transition:top var(--al-dur-fast) var(--al-ease);
+}
+.al-skip:focus{ top:8px; }
+
+/* ============================================================
+   17 · v1 COMPATIBILITY ALIASES
+   Drop-in safety so existing kits keep rendering. Delete this
+   block once call sites move to the `al-` namespace.
+   ============================================================ */
+.crd{ background:var(--al-srf); border:var(--al-hairline) solid var(--al-bf); border-radius:var(--al-radius-card); }
+.crd-raised{ background:var(--al-srf2); border-color:var(--al-bm); }
+.lbl{ text-transform:uppercase; letter-spacing:var(--al-ls-label); font-size:var(--al-fs-eyebrow); color:var(--al-t3); font-weight:var(--al-fw-medium); }
+.kpi{ background:var(--al-srf2); padding:14px; border-radius:var(--al-radius-input); }
+.kpi-label{ text-transform:uppercase; letter-spacing:var(--al-ls-label); font-size:10px; color:var(--al-t3); font-weight:var(--al-fw-medium); }
+.kpi-value{ font-size:26px; font-weight:var(--al-fw-medium); margin-top:5px; color:var(--al-t1); font-variant-numeric:tabular-nums; }
+.btn-p{ background:var(--al-teal); border:none; color:var(--al-on-teal); font-weight:var(--al-fw-medium); padding:8px 14px; border-radius:var(--al-radius-control); }
+.btn-s{ background:transparent; border:var(--al-hairline) solid var(--al-bm); color:var(--al-t1); padding:7px 12px; border-radius:var(--al-radius-control); }
+.btn-g{ background:var(--al-gold-fill); border:var(--al-hairline) solid var(--al-gold-edge); color:var(--al-gold); padding:7px 12px; border-radius:var(--al-radius-control); }
