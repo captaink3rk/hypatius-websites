@@ -1,0 +1,172 @@
+/* ============================================================
+   CRATON · brand tier tokens — decided 14 Sep 2026
+   Marks and motif: Direction A "Bedrock" (stroked shield, three
+   strata, layered C). Palette ranking: 1 Bedrock (default) ·
+   2 Strata · 3 Basalt. Each palette ships dark (default) and
+   light. Scope with:
+     <div data-brand="craton">                          Bedrock dark
+     <div data-brand="craton" data-theme="light">       Bedrock light
+     <div data-brand="craton" data-craton-palette="strata">
+     <div data-brand="craton" data-craton-palette="basalt">
+   Raw scale is namespaced --cr-*; the semantic layer below maps
+   onto the shared --bg/--surface/--text/--accent names so every
+   component in the system re-themes without change.
+   Internal until the CMPO clears CRATON for external use.
+   ============================================================ */
+:root{
+  /* ---- Bedrock (1) ---- */
+  --cr-bed-page:#161C24; --cr-bed-surface:#1F2731; --cr-bed-raised:#2C3744; --cr-bed-hairline:#3A4553; --cr-bed-strong:#4A5566;
+  --cr-bed-bronze:#B08D57; --cr-bed-bronze-lt:#D9B985; --cr-bed-bronze-ink:#8C6B3A; --cr-bed-bronze-deep:#7A5A2E;
+  --cr-bed-slate:#7FA6B5; --cr-bed-slate-ink:#3F6F82;
+  --cr-bed-ink:#F1F3F5; --cr-bed-body:#C9CFD6; --cr-bed-muted:#8F99A5;
+  --cr-bed-paper:#EEEBE5; --cr-bed-paper-raised:#E3DFD7; --cr-bed-paper-line:#CFC9BE;
+  --cr-bed-ink-light:#1B2128; --cr-bed-body-light:#3B434D; --cr-bed-muted-light:#6B737D;
+  /* ---- Strata (2) · corporate navy + sandstone ---- */
+  --cr-str-sand:#C8A27A; --cr-str-sand-lt:#E0C39A; --cr-str-sand-ink:#8A6A3A; --cr-str-sand-deep:#6E5228;
+  /* ---- Basalt (3) · near-black + verdigris ---- */
+  --cr-bas-page:#0C0E10; --cr-bas-surface:#15181C; --cr-bas-raised:#22262B; --cr-bas-hairline:#2A2E33; --cr-bas-strong:#3A3F45;
+  --cr-bas-verdigris:#7FB8A4; --cr-bas-verdigris-lt:#A6D2C2; --cr-bas-verdigris-ink:#3F7A6A; --cr-bas-verdigris-deep:#2F5F52;
+  --cr-bas-bone:#EFE9DD; --cr-bas-body:#D8D4CA; --cr-bas-muted:#9A9890;
+  --cr-bas-paper:#F3F0EA; --cr-bas-paper-raised:#E6E2DA; --cr-bas-paper-line:#D3CEC4;
+  /* ---- shared semantic states (no red externally) ---- */
+  --cr-ok:#7FB8A4; --cr-ok-ink:#3F7A6A; --cr-warn:#D9B985; --cr-warn-ink:#8C6B3A;
+}
+
+/* ============ Bedrock · dark (default) ============ */
+[data-brand="craton"]{
+  --bg-page:var(--cr-bed-page); --bg-void:#0F1216; --bg-section-alt:var(--cr-bed-surface);
+  --surface-card:var(--cr-bed-surface); --surface-raised:var(--cr-bed-raised); --surface-panel:var(--cr-bed-raised);
+  --border-hairline:var(--cr-bed-hairline); --border-medium:var(--cr-bed-hairline); --border-strong:var(--cr-bed-strong);
+  --text-display:var(--cr-bed-ink); --text-heading:var(--cr-bed-ink); --text-body:var(--cr-bed-body); --text-bright:var(--cr-bed-ink); --text-muted:#9CA6B2; --text-label:#9CA6B2; /* a11y: was #8F99A5 — 4.18:1 on --surface-raised, now 4.90:1 */
+  --accent-primary:var(--cr-bed-bronze); --accent-primary-hover:var(--cr-bed-bronze-lt); --accent-on-primary:var(--cr-bed-surface);
+  --accent-link:var(--cr-bed-slate); --accent-signal:var(--cr-bed-slate); --accent-premium:var(--cr-bed-bronze); --accent-data:var(--cr-bed-slate);
+  --accent-strata:var(--cr-bed-bronze); --accent-strata-lt:var(--cr-bed-bronze-lt);
+  /* CRATON does not separate state by hue — see "State encoding" at the foot of this file.
+     --status-ok aliases the settled accent so there is ONE settled colour, not two near-identical ones
+     (--cr-ok #7FB8A4 vs --accent-signal #7FA6B5 differ by dE 4.0 and read as an inconsistency, not a distinction).
+     --status-warn aliases the live accent: attention is carried by the 45deg hatch and its word, never by colour.
+     Previously --cr-warn #D9B985 sat 1.26:1 from --accent-primary — adjacent marks were indistinguishable. */
+  --status-ok:var(--accent-signal); --status-warn:var(--accent-primary);
+  --focus-ring:var(--cr-bed-bronze);
+  --accent-eyebrow:var(--cr-bed-bronze); /* eyebrows, § proof marks, pillar numbers — the bronze that labels */
+  --radius-control:2px; --radius-card:2px;
+  /* CRATON display face (decided 14 Sep 2026): Big Shoulders Display 800 for the wordmark and marketing headlines,
+     tracked .07em. Rajdhani and IBM Plex Mono stay the interface and data faces. Bebas Neue remains the house
+     display face for documents and decks, so a portfolio row still reads as siblings — but Bebas is an
+     UPPERCASE-ONLY face and must never sit in the fallback stack of a sentence-case headline. When the
+     webfont fails (cold cache, restricted network) every headline silently renders in caps, which inverts
+     the voice: "Nothing to see here. Exactly." becomes a shout. Self-host and subset instead. */
+  --font-craton-display:"Big Shoulders Display","Archivo Narrow","Arial Narrow",sans-serif;
+  --craton-display-weight:800; --craton-display-tracking:.07em;
+}
+/* ============ Bedrock · light ============ */
+[data-brand="craton"][data-theme="light"]{
+  --bg-page:var(--cr-bed-paper); --bg-void:#DDD9D1; --bg-section-alt:#FFFFFF;
+  --surface-card:#FFFFFF; --surface-raised:var(--cr-bed-paper-raised); --surface-panel:var(--cr-bed-paper-raised);
+  --border-hairline:var(--cr-bed-paper-line); --border-medium:var(--cr-bed-paper-line); --border-strong:#B9B2A5;
+  --text-display:var(--cr-bed-ink-light); --text-heading:var(--cr-bed-ink-light); --text-body:var(--cr-bed-body-light); --text-bright:var(--cr-bed-ink-light); --text-muted:#5A6169; --text-label:#5A6169; /* a11y: was #6B737D — 4.04:1 on --bg-page, now 5.27:1 */
+  --accent-primary:var(--cr-bed-bronze-deep); --accent-primary-hover:var(--cr-bed-bronze-ink); --accent-on-primary:#FFFFFF; /* a11y: bronze-ink #8C6B3A was 4.12:1 on --bg-page; bronze-deep is 5.30:1 */
+  --accent-link:var(--cr-bed-slate-ink); --accent-signal:var(--cr-bed-slate-ink); --accent-premium:var(--cr-bed-bronze-ink); --accent-data:var(--cr-bed-slate-ink);
+  --accent-strata:var(--cr-bed-bronze-ink); --accent-strata-lt:var(--cr-bed-bronze);
+  /* --cr-warn-ink #8C6B3A was byte-identical to the old --accent-primary: "warning" and "live" were
+     literally the same colour. Aliased deliberately now, with the hatch carrying attention. */
+  --status-ok:var(--accent-signal); --status-warn:var(--accent-primary);
+  --focus-ring:var(--cr-bed-bronze-deep);
+  --accent-eyebrow:var(--cr-bed-bronze-deep); /* a11y: bronze-ink was 4.12:1 on --bg-page; bronze-deep is 5.30:1 */
+}
+
+/* ============ Strata · dark ============ */
+[data-brand="craton"][data-craton-palette="strata"]{
+  --bg-page:var(--hy-navy-950,#060F1C); --bg-void:#04090F; --bg-section-alt:#0B1929;
+  --surface-card:#0B1929; --surface-raised:#14283F; --surface-panel:#14283F;
+  --border-hairline:#22324C; --border-medium:#22324C; --border-strong:#34496A;
+  --text-display:#F2F6FA; --text-heading:#F2F6FA; --text-body:#D3DDEA; --text-bright:#F2F6FA; --text-muted:#9FB0C8; --text-label:#9FB0C8;
+  --accent-primary:#1A4FBA; --accent-primary-hover:#3B6FD6; --accent-on-primary:#F2F6FA;
+  --accent-link:#4FC3D9; --accent-signal:#4FC3D9; --accent-premium:var(--cr-str-sand); --accent-data:#4FC3D9;
+  --accent-strata:var(--cr-str-sand); --accent-strata-lt:var(--cr-str-sand-lt);
+  --status-ok:#3DBE8B; --status-warn:#E0A93A;
+  --focus-ring:#3B6FD6;
+  --accent-eyebrow:var(--accent-strata);
+}
+/* ============ Strata · light ============ */
+[data-brand="craton"][data-craton-palette="strata"][data-theme="light"]{
+  --bg-page:#F4F7FB; --bg-void:#DDE5EF; --bg-section-alt:#FFFFFF;
+  --surface-card:#FFFFFF; --surface-raised:#EAF0F7; --surface-panel:#EAF0F7;
+  --border-hairline:#DDE5EF; --border-medium:#DDE5EF; --border-strong:#C9D4E2;
+  --text-display:#0B1929; --text-heading:#0B1929; --text-body:#22304A; --text-bright:#0B1929; --text-muted:#4B5B74; --text-label:#4B5B74;
+  --accent-primary:#1A4FBA; --accent-primary-hover:#16429C; --accent-on-primary:#F2F6FA;
+  --accent-link:#1E9FB7; --accent-signal:#1E9FB7; --accent-premium:var(--cr-str-sand-ink); --accent-data:#1E9FB7;
+  --accent-strata:var(--cr-str-sand-ink); --accent-strata-lt:var(--cr-str-sand);
+  --status-ok:#1F8F63; --status-warn:#A9741A;
+  --focus-ring:#1A4FBA;
+  --accent-eyebrow:var(--accent-strata);
+}
+
+/* ============ Basalt · dark ============ */
+[data-brand="craton"][data-craton-palette="basalt"]{
+  --bg-page:var(--cr-bas-page); --bg-void:#060708; --bg-section-alt:var(--cr-bas-surface);
+  --surface-card:var(--cr-bas-surface); --surface-raised:var(--cr-bas-raised); --surface-panel:var(--cr-bas-raised);
+  --border-hairline:var(--cr-bas-hairline); --border-medium:var(--cr-bas-hairline); --border-strong:var(--cr-bas-strong);
+  --text-display:var(--cr-bas-bone); --text-heading:var(--cr-bas-bone); --text-body:var(--cr-bas-body); --text-bright:var(--cr-bas-bone); --text-muted:var(--cr-bas-muted); --text-label:var(--cr-bas-muted);
+  --accent-primary:var(--cr-bas-bone); --accent-primary-hover:#FFFFFF; --accent-on-primary:var(--cr-bas-page);
+  --accent-link:var(--cr-bas-verdigris); --accent-signal:#C9A961; --accent-premium:#C9A961; --accent-data:var(--cr-bas-verdigris);
+  --accent-strata:var(--cr-bas-verdigris); --accent-strata-lt:var(--cr-bas-verdigris-lt);
+  --status-ok:var(--cr-bas-verdigris); --status-warn:#C9A961;
+  --focus-ring:var(--cr-bas-verdigris);
+  --accent-eyebrow:var(--accent-strata);
+}
+/* ============ Basalt · light ============ */
+[data-brand="craton"][data-craton-palette="basalt"][data-theme="light"]{
+  --bg-page:var(--cr-bas-paper); --bg-void:#DCD7CE; --bg-section-alt:#FFFFFF;
+  --surface-card:#FFFFFF; --surface-raised:var(--cr-bas-paper-raised); --surface-panel:var(--cr-bas-paper-raised);
+  --border-hairline:var(--cr-bas-paper-line); --border-medium:var(--cr-bas-paper-line); --border-strong:#BDB7AC;
+  --text-display:var(--cr-bas-page); --text-heading:var(--cr-bas-page); --text-body:#3A3F45; --text-bright:var(--cr-bas-page); --text-muted:#6B7076; --text-label:#6B7076;
+  --accent-primary:var(--cr-bas-page); --accent-primary-hover:#22262B; --accent-on-primary:var(--cr-bas-paper);
+  --accent-link:var(--cr-bas-verdigris-ink); --accent-signal:#8F7433; --accent-premium:#8F7433; --accent-data:var(--cr-bas-verdigris-ink);
+  --accent-strata:var(--cr-bas-verdigris-ink); --accent-strata-lt:var(--cr-bas-verdigris);
+  --status-ok:var(--cr-bas-verdigris-ink); --status-warn:#8F7433;
+  --focus-ring:var(--cr-bas-verdigris-ink);
+  --accent-eyebrow:var(--accent-strata);
+}
+
+/* ============ Bedrock · light · darker paper regions ============
+   --bg-void (#DDD9D1) is a darker paper than --bg-page, so muted text and the eyebrow bronze
+   need one more step down to clear 4.5:1 on it. Scope a region painted on it with
+   data-craton-surface="void" on the same element that carries data-brand/data-theme,
+   or set the three values locally in the product layer (proto/craton.css does this for .rail).
+   Measured: muted 4.46 -> 4.81, eyebrow 4.48 -> 5.14. */
+[data-brand="craton"][data-theme="light"][data-craton-surface="void"]{
+  --text-muted:#555C64; --text-label:#555C64; --accent-eyebrow:#6E5228;
+}
+
+/* ============ State encoding · binding for every CRATON surface ============
+   Bedrock is deliberately desaturated. No two of its accents separate far enough to carry
+   meaning by hue. Measured with the dataviz palette validator, Sep 2026:
+
+     bronze      #B08D57  vs  sage        #7FA6B5   dE 13.1 normal vision   (floor 15)  FAIL
+     bronze-deep #7A5A2E  vs  slate-ink   #3F6F82   dE 13.2 normal vision               FAIL
+     both, chroma floor                                         below floor             FAIL
+
+   CVD separation passes (12.2 deutan). The failure is for FULL-COLOUR readers. Therefore:
+
+     STATE IS NEVER COLOUR.  State = position + fill pattern + a literal word.
+
+     bronze          live / needs you
+     sage            settled
+     45deg hatch     attention        (no third hue, so "bronze is the only accent" stays true)
+
+   A state mark is never rendered without its word. Reference implementation:
+   guidelines/craton/proto/craton.css  ->  .sm / .sm--settled / .sm--live / .sm--attention / .state */
+
+/* ============ CRATON motif helpers ============ */
+/* Strata footer: three hairline bands in the strata accent, used at the foot of a screen or a card. */
+[data-brand="craton"] .cr-strata{height:40px;background:repeating-linear-gradient(180deg,transparent 0 12px,color-mix(in srgb,var(--accent-strata) 14%,transparent) 12px 13px)}
+/* Top-rule emphasis (the CRATON card accent — 2px top strip in the strata colour). */
+[data-brand="craton"] .cr-card{background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:var(--radius-card)}
+[data-brand="craton"] .cr-card--hi{border-top:2px solid var(--accent-strata)}
+/* Eyebrow with the strata dash. */
+[data-brand="craton"] .cr-eyebrow{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-strata);display:flex;align-items:center;gap:8px}
+[data-brand="craton"] .cr-eyebrow::before{content:"";width:18px;height:1px;background:var(--accent-strata)}
+/* Segmented progress (the dashed bar from the day card). */
+[data-brand="craton"] .cr-bar{height:8px;position:relative;background:repeating-linear-gradient(90deg,var(--surface-raised) 0 6px,transparent 6px 8px)}
+[data-brand="craton"] .cr-bar>span{position:absolute;inset:0 auto 0 0;background:var(--accent-strata)}

@@ -1,0 +1,147 @@
+<!-- @dsCard group="Brand" name="State marks — colour is the third channel" viewport="960x720" -->
+<!DOCTYPE html>
+<html lang="en" data-brand="alidade">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State marks</title>
+<!-- PREVIEW FONT PATH ONLY. The installed design system supplies these faces
+     from tokens/fonts.css. Self-host before deploying — see 01-AUDIT.md §6.2. -->
+<link rel="stylesheet" href="../../tokens/fonts-alidade.css">
+<link rel="stylesheet" href="../../tokens/alidade-v2.css">
+<link rel="stylesheet" href="../../css/alidade-product-v2.css">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{ margin:0; background:var(--al-bg); color:var(--al-t2);
+        font-family:var(--al-font-ui); font-size:14px; padding:32px;
+        -webkit-font-smoothing:antialiased; }
+  h1,h2{ font-family:var(--al-font-display); font-weight:500; color:var(--al-t1);
+         letter-spacing:.02em; margin:0; line-height:1.1; }
+  .eyebrow{ font-family:var(--al-font-mono); font-size:11px; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--al-t3);
+            display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--al-teal); }
+  p{ max-width:74ch; line-height:1.6; }
+  .grid{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+         margin-top:26px; }
+  .spec{ padding:18px; text-align:center; }
+  .spec .glyph{ font-family:var(--al-font-mono); font-size:34px; line-height:1;
+                color:var(--band,var(--al-t2)); }
+  .spec .word{ font-family:var(--al-font-mono); font-size:11px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--band,var(--al-t2)); margin-top:10px; }
+  .spec .use{ font-size:12.5px; margin-top:10px; color:var(--al-t2); }
+  .spec .hex{ font-family:var(--al-font-mono); font-size:10px; color:var(--al-t3); margin-top:8px; }
+
+  .proof{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:34px; }
+  @media (max-width:760px){ .proof{ grid-template-columns:1fr; } }
+  .proof > div{ padding:18px; }
+  .gray{ filter:grayscale(1); }
+  .lbl2{ font-family:var(--al-font-mono); font-size:9.5px; letter-spacing:.16em;
+         text-transform:uppercase; color:var(--al-t3); margin-bottom:12px; }
+  .rowdemo{ display:flex; align-items:center; gap:14px; padding:11px 13px;
+            background:var(--al-srf2); border-radius:6px; margin-bottom:8px; }
+  code{ font-family:var(--al-font-mono); font-size:12px; color:var(--al-teal); }
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Brand · added v2</p>
+<h1 style="font-size:32px">State is never colour alone.</h1>
+<p style="margin-top:16px">
+  v1 carried the win bands on teal, gold and coral with no structural backup. That is invisible
+  to roughly one in twelve men, to forced-colors mode, to a greyscale print of a deck, and to a
+  screen read in sunlight through polarised lenses — which is the actual reading condition for a
+  capture lead checking a gate in a parking lot. Every stateful component now carries a
+  <b style="color:var(--al-t1);font-weight:500">mark</b> and a
+  <b style="color:var(--al-t1);font-weight:500">word</b>. Colour is the third channel, never the first.
+</p>
+<p style="margin-top:12px;color:var(--al-t3)">
+  The vocabulary is not new. These are the Unicode geometric marks the brand already uses in mono
+  status contexts — v2 only makes them load-bearing.
+</p>
+
+<div class="grid">
+  <div class="al-card spec" data-band="high">
+    <div class="glyph">▲</div>
+    <div class="word">Pursue · go · high</div>
+    <div class="use">Score 80+. Commit the capture team.</div>
+    <div class="hex">--al-teal · #21E0CD</div>
+  </div>
+  <div class="al-card spec" data-band="mid">
+    <div class="glyph">●</div>
+    <div class="word">Consider · watch · mid</div>
+    <div class="use">Score 60–79. Bid with a partner who closes the gap.</div>
+    <div class="hex">--al-gold · #E8B86A</div>
+  </div>
+  <div class="al-card spec" data-band="low">
+    <div class="glyph">■</div>
+    <div class="word">Hold · gap · risk</div>
+    <div class="use">Score below 60. Spend the B&amp;P elsewhere.</div>
+    <div class="hex">--al-coral · #FF7E66</div>
+  </div>
+  <div class="al-card spec" style="--band:var(--al-violet)">
+    <div class="glyph">◆</div>
+    <div class="word">Partner · consent</div>
+    <div class="use">Grants, watermarked contributions, marketplace.</div>
+    <div class="hex">--al-violet · #B499E0</div>
+  </div>
+</div>
+
+<h2 style="font-size:22px;margin-top:48px">The test</h2>
+<p style="margin-top:12px">Desaturate the surface. If the state still reads, it passes.</p>
+
+<div class="proof">
+  <div class="al-card">
+    <div class="lbl2">As shipped — colour intact</div>
+    <div class="rowdemo" data-band="high">
+      <span class="al-score__num" style="font-size:20px">92</span>
+      <span class="al-state" data-band="high">Pursue</span>
+      <span style="margin-left:auto;font-size:12.5px;color:var(--al-t1)">SDA Tranche 3</span>
+    </div>
+    <div class="rowdemo" data-band="mid">
+      <span class="al-score__num" style="font-size:20px">71</span>
+      <span class="al-state" data-band="mid">Consider</span>
+      <span style="margin-left:auto;font-size:12.5px;color:var(--al-t1)">DOI wildfire</span>
+    </div>
+    <div class="rowdemo" data-band="low">
+      <span class="al-score__num" style="font-size:20px">58</span>
+      <span class="al-state" data-band="low">Hold</span>
+      <span style="margin-left:auto;font-size:12.5px;color:var(--al-t1)">SeaPort-NxG</span>
+    </div>
+  </div>
+
+  <div class="al-card gray">
+    <div class="lbl2">Desaturated — the mark and the word carry it</div>
+    <div class="rowdemo" data-band="high">
+      <span class="al-score__num" style="font-size:20px">92</span>
+      <span class="al-state" data-band="high">Pursue</span>
+      <span style="margin-left:auto;font-size:12.5px;color:var(--al-t1)">SDA Tranche 3</span>
+    </div>
+    <div class="rowdemo" data-band="mid">
+      <span class="al-score__num" style="font-size:20px">71</span>
+      <span class="al-state" data-band="mid">Consider</span>
+      <span style="margin-left:auto;font-size:12.5px;color:var(--al-t1)">DOI wildfire</span>
+    </div>
+    <div class="rowdemo" data-band="low">
+      <span class="al-score__num" style="font-size:20px">58</span>
+      <span class="al-state" data-band="low">Hold</span>
+      <span style="margin-left:auto;font-size:12.5px;color:var(--al-t1)">SeaPort-NxG</span>
+    </div>
+  </div>
+</div>
+
+<h2 style="font-size:22px;margin-top:48px">Usage</h2>
+<div class="al-card" style="padding:20px;margin-top:14px">
+  <pre style="margin:0;font-family:var(--al-font-mono);font-size:12.5px;line-height:1.9;color:var(--al-t2);overflow-x:auto">&lt;span class=<code>"al-state"</code> data-band=<code>"high"</code>&gt;Pursue&lt;/span&gt;
+&lt;span class=<code>"al-state"</code> data-state=<code>"partner"</code>&gt;Scoped&lt;/span&gt;
+
+<span style="color:var(--al-t3)">&lt;!-- where the mark is the only label, give it a name --&gt;</span>
+&lt;span class=<code>"al-state"</code> data-state=<code>"risk"</code>&gt;&lt;span class=<code>"al-sr"</code>&gt;denied&lt;/span&gt;&lt;/span&gt;</pre>
+</div>
+
+<p style="margin-top:32px;font-family:var(--al-font-mono);font-size:10.5px;letter-spacing:.08em;color:var(--al-t3)">
+  HYPATIUS, LLC · UEI UKELB3UV76V6 · CAGE 19S89
+</p>
+
+</body>
+</html>

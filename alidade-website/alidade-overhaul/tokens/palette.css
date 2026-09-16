@@ -1,0 +1,40 @@
+/* ============================================================
+   HYPATIUS — Raw color scales for all three brand tiers.
+   Namespaced so the tiers never collide: --hy-* corporate,
+   --st-* STARCHITECT, --al-* ALIDADE. These are the FIXED
+   values from each brand's source system — do not retune them.
+   Author against tokens/semantic.css aliases, not these.
+   ============================================================ */
+:root{
+  /* ---- HYPATIUS corporate · "Blackout" ---- */
+  --hy-navy-900:#060F1C; --hy-navy-800:#0B1929; --hy-navy-700:#14253E;
+  --hy-navy-600:#1F3354; --hy-navy-500:#2A3A52; --hy-void:#04090F;
+  --hy-card:#0E1E33;
+  --hy-cobalt-700:#0F2E6B; --hy-cobalt-600:#133D8F; --hy-cobalt-500:#1A4FBA; --hy-cobalt-400:#3B7BD9;
+  --hy-aqua-500:#2A8DA0; --hy-aqua-400:#4FC3D9; --hy-aqua-300:#7FD7E5;
+  --hy-gold-500:#C9A961;
+  --hy-slate-100:#10203A; --hy-slate-200:#22324C; --hy-slate-300:#C9D4E2;
+  --hy-slate-400:#8FA0B5; --hy-slate-500:#90A0B4; --hy-slate-600:#B9C5D4;
+  --hy-slate-700:#CBD6E4; --hy-slate-800:#DCE5EF;
+  --hy-ink-bright:#F2F6FA; --hy-ink-pure:#FFFFFF;
+
+  /* ---- STARCHITECT · instrument panel ---- */
+  --st-void:#060B17; --st-deep-navy:#0B1525; --st-panel:#111E33; --st-panel-hi:#1F2D45;
+  --st-structure:#434B5C; --st-border:#243450;
+  --st-bone:#EFE9DD; --st-slate:#A8B0BD; --st-mute:#6B7588;
+  --st-gold:#D4A03B; --st-gold-bright:#E2BC6B; --st-cyan:#2EB5C9; --st-cyan-bright:#56C8D9;
+  --st-go:#4F8F6F; --st-watch:#D4A03B; --st-alert:#C8442E;
+  --st-wash-gold:rgba(212,160,59,0.14); --st-wash-cyan:rgba(46,181,201,0.12);
+  --st-border-soft:rgba(239,233,221,0.10); --st-border-gold:rgba(212,160,59,0.28);
+
+  /* ---- ALIDADE · pelagic glassmorphism ---- */
+  --al-bg:#060D1B; --al-srf:#0E1B2E; --al-srf2:#15263D; --al-srf3:#1B2D45; --al-structure:#2C3F52;
+  --al-bf:rgba(143,200,220,0.08); --al-bm:rgba(143,200,220,0.16); --al-bs:rgba(143,200,220,0.28);
+  --al-teal:#21E0CD; --al-teal-dk:#14998C; --al-gold:#E8B86A; --al-coral:#FF7E66; --al-violet:#B499E0;
+  --al-t1:#EFF5FE; --al-t2:#93A4BD; --al-t3:#5C6E89;
+  --al-teal-fill:rgba(33,224,205,0.10); --al-teal-dk-fill:rgba(20,153,140,0.10);
+  --al-gold-fill:rgba(232,184,106,0.12); --al-coral-fill:rgba(255,126,102,0.12); --al-violet-fill:rgba(180,153,224,0.12);
+  --al-teal-edge:rgba(33,224,205,0.25); --al-gold-edge:rgba(232,184,106,0.25);
+  --al-coral-edge:rgba(255,126,102,0.25); --al-violet-edge:rgba(180,153,224,0.25);
+  --al-on-teal:#022A26; --al-on-gold:#4A3613; --al-on-violet:#2C2148; --al-on-coral:#4D1E12;
+}

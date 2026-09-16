@@ -1,0 +1,24 @@
+/* ============================================================
+   ALIDADE — Hypatius Capture Intelligence
+   Global stylesheet entry point. @import lines only.
+   Consumers link THIS file.
+
+   v2 (16 Sep 2026): the two ALIDADE token layers are reconciled.
+   The last two imports are new and MUST come last — they close
+   the brand-vs-live split and carry the accessibility fixes.
+
+   Also: css/alidade-brand-bridge.css is retired. Do not import
+   it. tokens/alidade-v2.css defines the short-name vocabulary
+   (--bg --t1 --tl …) natively, so every surface that needed the
+   bridge now runs without it.
+   ============================================================ */
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/elevation.css";
+@import "tokens/components.css";
+
+/* ---- v2 · must come last ---- */
+@import "tokens/alidade-v2.css";
+@import "css/alidade-product-v2.css";
