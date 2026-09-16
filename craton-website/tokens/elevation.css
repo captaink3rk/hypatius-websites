@@ -1,0 +1,57 @@
+/* ============================================================
+   HYPATIUS — Elevation, glow, motion.
+   House rule across all tiers: BORDERS DO THE WORK, NOT SHADOWS.
+   Depth is fill + hairline. Glow is a signal, never decoration.
+   ============================================================ */
+:root{
+  --shadow-none:none;
+  --shadow-panel:0 1px 3px rgba(0,0,0,0.25);
+  --shadow-lift:0 8px 28px rgba(0,0,0,0.35);
+  --shadow-pop:0 16px 48px rgba(0,0,0,0.45);
+  --shadow-overlay:0 24px 64px -16px rgba(2,6,15,0.72);
+  --scrim:rgba(2,6,15,0.62);
+
+  --glow-signal:0 0 8px var(--hy-aqua-400);   /* the corporate signal dot */
+  --glow-gold:0 0 20px rgba(212,160,59,0.45);
+  --glow-cyan:0 0 18px rgba(46,181,201,0.40);
+  --glow-teal:0 0 48px rgba(33,224,205,0.28);
+  --glow-teal-node:0 0 12px rgba(33,224,205,0.55);
+
+  /* Two-axis protection gradient — every photographic hero carries it
+     so display type always lands on a dark field. */
+  --protect-h:linear-gradient(90deg,rgba(6,15,28,0.94) 0%,rgba(6,15,28,0.72) 45%,rgba(6,15,28,0.2) 100%); /* @kind other */
+  --protect-v:linear-gradient(180deg,rgba(6,15,28,0) 35%,rgba(6,15,28,0.9) 100%); /* @kind other */
+  --gradient-pelagic:radial-gradient(120% 100% at 75% 40%,#0E1B2E 0%,#060D1B 60%); /* @kind other */
+  --gradient-sheen:linear-gradient(135deg,#21E0CD 0%,#B499E0 55%,#FFC9D6 100%); /* @kind other */
+
+  /* ---- Motion — restrained, no bounce, no infinite decorative loops ---- */
+  --ease-out:cubic-bezier(0.2,0.8,0.2,1); /* @kind other */
+  --ease-standard:cubic-bezier(0.4,0,0.2,1); /* @kind other */
+  --dur-fast:0.15s; /* @kind other */
+  --dur-base:0.2s; /* @kind other */
+  --dur-state:0.3s; /* @kind other */
+  --dur-slow:0.4s; /* @kind other */
+  --dur-reveal:0.9s; /* @kind other */
+}
+
+[data-brand="starchitect"]{ --ease-out:cubic-bezier(0.16,1,0.3,1); /* @kind other */ --glow-signal:var(--glow-gold); }
+
+/* ALIDADE product UI: NO shadows, NO glows, NO gradients.
+   Depth = which surface level + which alpha border. Glow is
+   permitted on marketing/deck hero art only. */
+[data-brand="alidade"]{
+  --shadow-panel:none;
+  --shadow-lift:none;
+  --shadow-pop:none;
+  --glow-signal:var(--glow-teal-node);
+  --ease-out:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --ease-standard:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --dur-fast:120ms; /* @kind other */
+  --dur-base:200ms; /* @kind other */
+  --dur-state:200ms; /* @kind other */
+  --dur-slow:320ms; /* @kind other */
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
+}
