@@ -1,0 +1,31 @@
+/* ============================================================
+   STARCHITECT — Console dialect tokens
+   v8 "FUSION" identity (locked 2026-09-01): Sci-Fi FUI telemetry
+   language on Bento cell structure. Chamfers are RETIRED in the
+   console dialect — cells are rounded; FUI brackets mark the live
+   selection only. Semantic color doctrine:
+     cyan  = telemetry / tracking (FUI hairline)
+     gold  = decision clocks, mode states, signal
+     green = effects / go / positive telemetry (mint-shifted)
+     red   = lethal states ONLY
+   Print/marketing surfaces keep the base brand palette.
+   Legacy chamfer tokens retained below for v6/v7 archive surfaces.
+   ============================================================ */
+:root{
+  --console-bg:#06090F; --console-bg2:#0A101A; --console-panel:#10151E;
+  --console-panel-solid:#10151E; --console-inset:#161C27;
+  --console-line:#232B3A; --console-line2:#324055;
+  --console-txt:#EAF3FB; --console-body:#A9BBCB; --console-mute:#5B6C80;
+  --console-cyan:#40B4E5; --console-red:#FF5A4A; --console-gold:#E8A33D; --console-green:#7FE8D8;
+  --console-radius:12px; --console-radius-sm:8px;
+  --console-bracket:2px solid var(--console-cyan); /* @kind other */
+  --console-bracket-size:14px;
+  /* ARCADE MODE (skin-sc.css, v8) · body.arcade only · arena/training tier, never accreditation surfaces.
+     Ice-blue readouts on bevelled panels; unit portrait, 3x4 hotkey command grid, minimap with threat ping, adjutant banner. */
+  --console-arcade-blue:#8FC8FF; --console-arcade-blue-dim:#5B87B0; --console-arcade-bevel:#3E5570; --console-arcade-bevel-dk:#1A2434;
+  --console-arcade-panel-top:#141B28; --console-arcade-panel-bot:#0C111B;
+  /* legacy (v6/v7 archive surfaces only — do not use in v8) */
+  --console-chamfer:14px; --console-chamfer-sm:8px;
+  --console-clip:polygon(0 0,100% 0,100% calc(100% - var(--console-chamfer)),calc(100% - var(--console-chamfer)) 100%,0 100%); /* @kind other */
+  --console-clip-btn:polygon(var(--console-chamfer-sm) 0,100% 0,calc(100% - var(--console-chamfer-sm)) 100%,0 100%); /* @kind other */
+}
