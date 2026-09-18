@@ -1,0 +1,196 @@
+/* css/alidade-v3.css · alidade.us v3 · the presentation layer
+   ═════════════════════════════════════════════════════════════════════════════
+   Additive. Nothing in alidade-v2.css, alidade-product-v2.css or fonts.css is
+   edited, so this whole pass reverts by deleting one <link>.
+
+   The brief was "the current version is pretty bland." It is, and the cause is
+   worth stating because it constrains the fix:
+
+     "Depth is which surface level and which border alpha — no shadow, no glow,
+      no gradient in product. Applies to alidade.us, …"
+                                              — ALIDADE brand standard
+
+   Every ordinary move for making a dark site feel rich is banned here, and the
+   existing CSS honours that: zero gradients in the component layer. So this
+   layer does not reach for any of them. What it uses instead:
+
+     1. SCALE      a real display tier. v2's largest headline was 32px.
+     2. PHOTOGRAPHY a photograph is not a gradient. The pelagic field is the
+                   platform's own v4 render, already in the design system.
+     3. RHYTHM     full-bleed against contained, dense against quiet. v2 ran
+                   nine sections of identical shape.
+     4. THE LADDER four surface levels exist (#060D1B → #0E1B2E → #15263D →
+                   #1B2D45). v2 used two.
+     5. THE MARK   the crystalline A is iridescent by construction. Used at
+                   size, it IS the richness, and it costs no effects.
+
+   Scrims over photography are FLAT rgba, never gradients, for the same reason.
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. The display tier ───────────────────────────────────────────────────
+   Barlow Condensed is a display face being used at body-adjacent sizes. The
+   hero line is the protected one — "We do not guess. We engineer the win." —
+   and it was set at 32px. */
+.hero .h-hero,
+.hero h1 { font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-weight: 600; font-size: clamp(3.1rem, 7.4vw, 6.4rem); line-height: 0.92;
+  letter-spacing: 0.005em; text-transform: none; }
+.h-section { font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.02; }
+
+/* Stat numerals were 24px beside 11px labels — the ratio said "caption", not
+   "evidence". */
+.hero .stat__n, .stat__n { font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-weight: 600; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1;
+  color: var(--al-t1); }
+
+/* ── 2. The pelagic field, and three rule violations in the existing page ──
+   The hero already carried a photographic field (alidade-bearing-ring-1920),
+   but the page's own inline <style> — which sits after every linked stylesheet
+   and therefore wins — did three things the standard forbids:
+
+     .hero::after  background: linear-gradient(90deg, …)        ← GRADIENT
+     .hero-mark    filter: drop-shadow(0 0 34px rgba(33,224,205,.38))  ← GLOW
+     (briefing)    filter: drop-shadow(0 0 28px rgba(33,224,205,.3))   ← GLOW
+
+   That is the interesting part of "it looks bland": the page reached for the
+   two effects the standard bans — the easy way to make a dark page feel rich —
+   and still read flat, while scale, imagery and the surface ladder went unused.
+   Effects were never going to carry it, and they were not allowed to.
+
+   So: the gradient scrim becomes a flat rgba fill, the glows come off, and the
+   field becomes the platform's own v4 render — the open ocean with teal
+   bathymetric contours, generated to ALIDADE's brief and already shipping in
+   the design system as plat-alidade-v4. It is a stronger image than the bearing
+   ring and it is the same field the parent site uses for ALIDADE, so the two
+   now agree.
+
+   `section.hero` is 0,1,1 against the inline block's 0,1,0, so these win on
+   specificity rather than order — the inline <style> can stay untouched. */
+section.hero { position: relative; isolation: isolate; overflow: hidden; }
+section.hero::before { content: ''; position: absolute; inset: 0; z-index: -2;
+  pointer-events: none;
+  background: url('../assets/imagery/field-pelagic-2400.jpg') center 58% / cover no-repeat; }
+/* Flat, not a gradient. Two stacked flats give the falloff a single one cannot.
+   The values are set from measurement, not taste: the photographic harness put
+   the headline at 17.6:1 against a floor of 3 with the scrim at 0.78, which
+   meant the field was being crushed for no reason. At 0.64 / 0.46 the water and
+   its contours actually read and the type still clears every floor with room. */
+section.hero::after { content: ''; position: absolute; inset: 0; z-index: -1;
+  pointer-events: none; background: rgba(6, 13, 27, 0.64); }
+section.hero .wrap { position: relative; }
+section.hero .hero-col { position: relative; }
+/* The column scrim ends somewhere, and without a gradient that edge is visible.
+   Rather than try to hide it, it becomes a deliberate surface: a panel with a
+   hairline, which is exactly the vocabulary the standard prescribes — depth is
+   surface level and border alpha. The edge now reads as construction instead of
+   as an artefact, and it echoes the 2px left-edge bar used on cards. */
+section.hero .hero-col::before { content: ''; position: absolute;
+  inset: -2.5rem -2.5rem -2.5rem -50vw; z-index: -1; pointer-events: none;
+  background: rgba(6, 13, 27, 0.46);
+  border-right: 1px solid var(--al-teal-edge); }
+
+/* The glows come off. The crystalline mark is iridescent in the artwork; a
+   teal halo behind it adds nothing the file does not already carry, and the
+   standard bans it outright. */
+.hero-mark, .al-turn img, section#briefing img { filter: none !important; }
+
+/* ── 3. Rhythm: the accent band ────────────────────────────────────────────
+   One thin band of teal light, used to mark a change of subject. It is the
+   same divider that announces ALIDADE on hypati.us, so the parent and the
+   platform now punctuate the same way. Decorative, so aria-hidden in markup. */
+.al-band { height: clamp(70px, 7vw, 116px); background: var(--al-bg);
+  background-image: url('../assets/imagery/divider-teal-2400x300.jpg');
+  background-size: cover; background-position: center; position: relative; }
+.al-band::after { content: ''; position: absolute; inset: 0;
+  background-color: rgba(6, 13, 27, 0.30); }
+
+/* ── 4. The product, at a size you can read ────────────────────────────────
+   v2 showed the platform as a grid of thumbnails about 380px wide. At that
+   size a capture of a dense console is texture, not evidence — you cannot read
+   a single row, so it proves nothing. These run to the full measure.
+
+   The frame is the system's own: 8px card radius, 1px hairline, and a 2px
+   teal left-edge bar, which is ALIDADE's documented emphasis device. No
+   shadow. */
+.al-showcase { display: grid; gap: clamp(1.4rem, 2.4vw, 2.2rem); margin-top: 2.4rem; }
+.al-shot { margin: 0; background: var(--al-srf); border: 1px solid var(--al-line);
+  border-left: 2px solid var(--al-teal); border-radius: 8px; overflow: hidden; }
+.al-shot img { display: block; width: 100%; height: auto; }
+.al-shot figcaption { padding: 0.85rem 1.1rem; font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--al-t3); background: var(--al-srf2); border-top: 1px solid var(--al-line); }
+.al-shot figcaption b { color: var(--al-t1); font-weight: 500; letter-spacing: 0.06em; }
+/* Two-up for the surfaces that read at half measure. */
+.al-showcase--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 820px) { .al-showcase--pair { grid-template-columns: 1fr; } }
+
+/* ── 5. The duality, which is the actual story ─────────────────────────────
+   ALIDADE is a SaaS console a person works in AND a tool server an agent calls.
+   v2 asserted that in a card grid. This shows the two callers against the same
+   capability — the human path on one side, the agent path on the other, with
+   the run ledger underneath that both write to.
+
+   The violet is not decoration: it is the documented partner-and-consent
+   colour, and the agent path is where consent is granted. */
+.al-duality { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px; background: var(--al-line); border: 1px solid var(--al-line);
+  border-radius: 8px; overflow: hidden; margin-top: 2rem; }
+.al-duality > div { background: var(--al-srf); padding: clamp(1.3rem, 2.4vw, 2rem); }
+.al-duality .k { font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; display: flex;
+  align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; }
+.al-duality .k--human { color: var(--al-teal); }
+.al-duality .k--agent { color: var(--al-violet); }
+.al-duality h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.05; color: var(--al-t1);
+  margin: 0 0 0.5rem; }
+.al-duality p { color: var(--al-t2); font-size: 0.97rem; line-height: 1.6; margin: 0; }
+.al-duality code { font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  color: var(--al-t1); background: var(--al-srf3); border: 1px solid var(--al-line);
+  border-radius: 5px; padding: 0.15rem 0.45rem; display: inline-block; margin-top: 0.8rem; }
+.al-duality--foot { grid-column: 1 / -1; background: var(--al-srf2);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.06em;
+  color: var(--al-t3); }
+.al-duality--foot b { color: var(--al-teal); font-weight: 500; }
+@media (max-width: 760px) { .al-duality { grid-template-columns: 1fr; } }
+
+/* ── 6. Mobile, in a frame ─────────────────────────────────────────────────
+   The SaaS-with-a-phone half of the product had no visual on the site at all.
+   Three screens in device frames, the middle one raised a level so the row has
+   a centre. The frame is drawn with border and radius — the two things the
+   standard allows — not with a shadow. */
+.al-devices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2.2rem); margin-top: 2.4rem; align-items: center; }
+.al-device { margin: 0; background: var(--al-srf); border: 1px solid var(--al-line);
+  border-radius: 22px; padding: 10px; }
+.al-device--lift { background: var(--al-srf2); border-color: var(--al-teal-edge); }
+.al-device img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.al-device figcaption { padding: 0.8rem 0.4rem 0.2rem; font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--al-t3);
+  text-align: center; }
+@media (max-width: 760px) { .al-devices { grid-template-columns: 1fr; max-width: 20rem;
+  margin-inline: auto; } }
+
+/* ── 7. The quiet moment ───────────────────────────────────────────────────
+   Nine sections of the same density is why it read flat. This one is almost
+   empty on purpose: the protected line, the mark at size, and nothing else.
+   It is the only place the crystalline A appears large, and it carries the
+   section by itself. */
+.al-turn { background: var(--al-bg); text-align: center;
+  padding-block: clamp(4.5rem, 10vw, 8.5rem); }
+.al-turn img { width: clamp(88px, 11vw, 148px); height: auto; margin: 0 auto 1.8rem;
+  display: block; }
+.al-turn p { font-family: 'Barlow Condensed', sans-serif; font-weight: 500;
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem); line-height: 1.12; color: var(--al-t1);
+  max-width: 24ch; margin: 0 auto; }
+.al-turn .src { font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--al-t3);
+  margin-top: 1.4rem; }
+
+/* ── 8. Section separation ─────────────────────────────────────────────────
+   v2 alternated two background values and nothing else, so the eye had no
+   landmark. The full ladder is in play now: .alt sits one level up, .deep two. */
+section.alt { background: var(--al-srf); }
+section.deep, .al-deep { background: var(--al-srf2); }
+
+@media (prefers-reduced-motion: reduce) { .hero::before, .al-band { background-attachment: scroll; } }

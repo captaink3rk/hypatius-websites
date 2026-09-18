@@ -1,0 +1,269 @@
+/* ============================================================
+   ALIDADE — v2 RECONCILED TOKEN LAYER
+   Supersedes the split between:
+     tokens/palette.css  --al-*        (brand / deck / website)
+     tokens/alidade-hud.css --alidade-* (live application)
+
+   The two layers were kept deliberately unreconciled. This file
+   closes that. One palette, one geometry, one elevation rule.
+
+   Verdict, in one line:
+     COLOUR and GEOMETRY resolve to the BRAND layer.
+     ELEVATION gets a narrow, written exception for docked chrome.
+     Two values are adopted FROM the live app because they measure
+     better: the deep teal, and nothing else.
+
+   Every value below passes WCAG AA (4.5:1) for its intended role
+   on every surface it is permitted on. The two that did not, in
+   either source layer, are fixed here and marked [FIXED].
+
+   Scope: data-brand="alidade". The alidade-hud scope is retired —
+   see 02-DECISION-tokens.md for the migration map.
+   ============================================================ */
+
+[data-brand="alidade"],
+:root[data-brand="alidade"]{
+
+  /* ---------- FIELD & SURFACES — brand layer wins ----------
+     The abyss is the brand's, not the app's. #060D1B is tuned to
+     the crystalline A mark's iridescence; #0b1622 is a lighter,
+     bluer field that makes the mark sit flat on it. The mark is
+     locked, so the field serves the mark. */
+  --al-bg:      #060D1B;   /* page field — the abyss            */
+  --al-srf:     #0E1B2E;   /* card                              */
+  --al-srf2:    #15263D;   /* raised card, KPI, gate            */
+  --al-srf3:    #1B2D45;   /* modal, popover, docked rail       */
+  --al-structure:#2C3F52;  /* structural rule, divider          */
+
+  /* ---------- BORDERS ----------
+     Brand alphas retained. The 0.5px WIDTH is retired: it is a
+     real defect, not a refinement — on a 1x display 0.5px either
+     rounds to 1px at full strength or vanishes, so the hairline
+     is non-deterministic across the exact hardware mix a GovCon
+     buyer runs. 1px at the brand's alpha is the same optical
+     weight on 2x and is the only weight that survives 1x. */
+  --al-hairline: 1px;
+  --al-bf:  rgba(143,200,220,0.08);  /* faint  — card edge      */
+  --al-bm:  rgba(143,200,220,0.16);  /* medium — raised, input  */
+  --al-bs:  rgba(143,200,220,0.28);  /* strong — focus-within   */
+
+  /* ---------- ACCENTS — one meaning each, non-negotiable ----------
+     teal   = action / win / live
+     gold   = score / AI moment / human gate
+     coral  = gap / risk        (PRODUCT SIGNAL ONLY — never marketing)
+     violet = partner / consent / grant                              */
+  --al-teal:      #21E0CD;  /* brand teal. Not #5eead4 — that is    */
+                            /* Tailwind teal-300, a framework       */
+                            /* default, and it reads as generic     */
+                            /* next to a mark built on iridescence. */
+  --al-teal-dk:   #14B8A6;  /* [ADOPTED FROM LIVE APP] the one      */
+                            /* value the app wins outright.         */
+                            /* Old #14998C measured 4.33:1 on srf2  */
+                            /* — a FAIL for label text. This is     */
+                            /* 6.13:1. Same hue family, more usable.*/
+  --al-gold:      #E8B86A;
+  --al-coral:     #FF7E66;
+  --al-violet:    #B499E0;
+
+  /* ---------- TEXT ---------- */
+  --al-t1:  #EFF5FE;   /* display / heading / value               */
+  --al-t2:  #93A4BD;   /* body / secondary                        */
+  --al-t3:  #7D92B5;   /* [FIXED] microlabel. Was #5C6E89, which  */
+                       /* measured 2.94:1 on --al-srf2 — a FAIL,  */
+                       /* and it shipped: .kpi sets srf2 and      */
+                       /* .kpi-label sets t3. Every KPI label in  */
+                       /* the product failed AA. This is 4.83:1.  */
+                       /* RULE: t3 is not permitted on --al-srf3. */
+                       /* srf3 is modal/rail chrome; it uses t2.  */
+
+  /* ---------- ACCENT FILLS & EDGES ---------- */
+  --al-teal-fill:   rgba(33,224,205,0.10);
+  --al-teal-dk-fill:rgba(20,184,166,0.10);
+  --al-gold-fill:   rgba(232,184,106,0.12);
+  --al-coral-fill:  rgba(255,126,102,0.12);
+  --al-violet-fill: rgba(180,153,224,0.12);
+  --al-teal-edge:   rgba(33,224,205,0.25);
+  --al-gold-edge:   rgba(232,184,106,0.25);
+  --al-coral-edge:  rgba(255,126,102,0.25);
+  --al-violet-edge: rgba(180,153,224,0.25);
+
+  /* ---------- INK ON ACCENT (all verified >=5.5:1) ---------- */
+  --al-on-teal:    #022A26;  /* 9.26:1 */
+  --al-on-teal-dk: #04221F;  /* 6.73:1 */
+  --al-on-gold:    #4A3613;  /* 6.29:1 */
+  --al-on-coral:   #4D1E12;  /* 5.58:1 */
+  --al-on-violet:  #2C2148;  /* 6.05:1 */
+
+  /* ---------- GEOMETRY — brand layer wins ----------
+     The app ran Tailwind v4's radius scale as shipped, which is a
+     framework default nobody chose. These are the brand's. */
+  --al-radius-tick:    3px;
+  --al-radius-control: 5px;
+  --al-radius-input:   6px;
+  --al-radius-card:    8px;
+  --al-radius-modal:   12px;
+  --al-radius-full:    999px;
+
+  /* ---------- ELEVATION — the narrow exception ----------
+     The brand rule is: no shadow, no blur, no gradient in product.
+     Depth is surface level plus border alpha. That rule is correct
+     for content and it stays.
+
+     It is wrong for one case, and the live app was right to break
+     it there: chrome that DOCKS OVER scrolling content — the action
+     rail, the command banner, a modal scrim, a sticky header — has
+     to separate from whatever slides underneath it, and a surface
+     step cannot do that when the thing underneath is also a surface.
+
+     So: elevation is permitted on docked chrome and nowhere else.
+     It is a token, not a judgement call. If a surface is not docked
+     over moving content, it gets --al-elev-0 and that is the end of
+     the conversation.                                              */
+  --al-elev-0: none;                                    /* content: cards, rows, panels, KPIs  */
+  --al-elev-dock: 0 16px 40px -28px rgba(2,8,16,0.85);  /* docked rails, sticky banners        */
+  --al-elev-modal:0 28px 70px -40px rgba(2,8,16,0.92);  /* modals, popovers, command palette   */
+  --al-blur-dock: blur(12px) saturate(130%);            /* ONLY with --al-elev-dock/-modal     */
+
+  /* ---------- MOTION ---------- */
+  --al-ease:      cubic-bezier(.22,.61,.36,1);
+  --al-dur-fast:  120ms;
+  --al-dur-base:  200ms;
+  --al-dur-slow:  320ms;
+
+  /* ---------- TYPE ----------
+     Self-hosted. Zero CDN on product surfaces — a CDN font request
+     from a tenant workstation is an egress a security reviewer will
+     ask about, and the answer should be "there isn't one". */
+  --al-font-display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --al-font-ui:      "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --al-font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Product runs two weights only. Heavier weights bloom on the
+     dark substrate — this is a legibility rule, not a taste one. */
+  --al-fw-regular: 400;
+  --al-fw-medium:  500;
+
+  --al-fs-micro:   10px;
+  --al-fs-eyebrow: 11px;
+  --al-fs-label:   13px;
+  --al-fs-body:    14px;
+  --al-fs-subhead: 18px;
+  --al-fs-section: 26px;
+  --al-fs-headline:33px;
+  --al-fs-h1:      48px;
+  --al-fs-stat:    56px;
+  --al-fs-hero:    76px;
+
+  --al-ls-label:   0.18em;
+  --al-ls-tracked: 0.04em;
+  --al-ls-display: 0.02em;
+  --al-lh-body:    1.55;
+
+  /* ---------- SPACING — 4px base ---------- */
+  --al-sp-1:4px; --al-sp-2:8px; --al-sp-3:12px; --al-sp-4:16px;
+  --al-sp-5:20px; --al-sp-6:24px; --al-sp-8:32px; --al-sp-10:40px;
+  --al-sp-12:48px; --al-sp-16:64px;
+
+  /* ---------- SHELL GEOMETRY ---------- */
+  --al-rail-w:   56px;   /* icon nav rail   */
+  --al-topbar-h: 50px;
+  --al-dock-w:   352px;  /* action / detail rail */
+
+  /* ---------- SEMANTIC ALIASES ---------- */
+  --bg-page:var(--al-bg); --bg-void:var(--al-bg); --bg-section-alt:var(--al-srf);
+  --surface-card:var(--al-srf); --surface-raised:var(--al-srf2); --surface-panel:var(--al-srf3);
+  --border-hairline:var(--al-bf); --border-medium:var(--al-bm); --border-strong:var(--al-bs);
+  --border-rule:var(--al-structure);
+  --text-display:var(--al-t1); --text-heading:var(--al-t1); --text-body:var(--al-t2);
+  --text-bright:var(--al-t1); --text-muted:var(--al-t3); --text-label:var(--al-t3);
+  --accent-primary:var(--al-teal); --accent-primary-hover:var(--al-teal-dk);
+  --accent-link:var(--al-teal); --accent-signal:var(--al-teal);
+  --accent-premium:var(--al-gold); --accent-data:var(--al-teal);
+  --accent-partner:var(--al-violet); --on-accent:var(--al-on-teal);
+  --status-go:var(--al-teal); --status-watch:var(--al-gold); --status-alert:var(--al-coral);
+  --focus-ring:var(--al-teal);
+
+  color-scheme: dark;
+  font-family: var(--al-font-ui);
+  color: var(--al-t1);
+  background: var(--al-bg);
+
+  /* ---------- SHORT-NAME VOCABULARY — the bridge, retired ----------
+     The ALIDADE standalone system (brand book, website, logo stings,
+     specimen cards) was authored against short token names and needed
+     css/alidade-brand-bridge.css to run against --al-*. Those names are
+     defined here directly, so the bridge file can be deleted. Nothing
+     imports it after this. */
+  --bg:var(--al-bg); --srf:var(--al-srf); --srf2:var(--al-srf2); --srf3:var(--al-srf3);
+  --bf:var(--al-bf); --bm:var(--al-bm); --bs:var(--al-bs);
+  --t1:var(--al-t1); --t2:var(--al-t2); --t3:var(--al-t3);
+  --tl:var(--al-teal); --tl-dk:var(--al-teal-dk);
+  --tl-fill:var(--al-teal-fill); --tl-edge:var(--al-teal-edge);
+  --gd:var(--al-gold); --gd-fill:var(--al-gold-fill); --gd-edge:var(--al-gold-edge);
+  --cr:var(--al-coral); --cr-fill:var(--al-coral-fill); --cr-edge:var(--al-coral-edge);
+  --pr:var(--al-violet); --pr-fill:var(--al-violet-fill); --pr-edge:var(--al-violet-edge);
+  --r-card:var(--al-radius-card); --r-input:var(--al-radius-input); --r-modal:var(--al-radius-modal);
+  --font-display:var(--al-font-display);
+  --font-interface:var(--al-font-ui);
+  --font-sans:var(--al-font-ui);
+  --font-mono:var(--al-font-mono);
+  --font-serif:"IBM Plex Serif", Georgia, serif;
+  --hairline:var(--al-hairline);
+  --radius-card:var(--al-radius-card); --radius-input:var(--al-radius-input);
+  --radius-control:var(--al-radius-control); --radius-tick:var(--al-radius-tick);
+  --radius-full:var(--al-radius-full);
+  --fs-micro:var(--al-fs-micro); --fs-eyebrow:var(--al-fs-eyebrow);
+  --fs-label:var(--al-fs-label); --fs-body:var(--al-fs-body); --fs-stat:var(--al-fs-stat);
+  --ls-label:var(--al-ls-label); --ls-tracked:var(--al-ls-tracked); --ls-display:var(--al-ls-display);
+  --lh-body:var(--al-lh-body);
+  --fw-regular:var(--al-fw-regular); --fw-medium:var(--al-fw-medium);
+  --dur-fast:var(--al-dur-fast); --ease-standard:var(--al-ease);
+  --pad-pill:3px 8px; --pad-btn:8px 14px;
+  --rail-w:var(--al-rail-w);
+}
+
+/* The standalone ALIDADE system applies its tokens at :root with no
+   data-brand scope. Mirror the scope so this file works in both the
+   standalone system and the consolidated HYPATIUS one. */
+:root:not([data-brand]){
+  --al-bg:#060D1B; --al-srf:#0E1B2E; --al-srf2:#15263D; --al-srf3:#1B2D45;
+  --al-teal:#21E0CD; --al-teal-dk:#14B8A6; --al-gold:#E8B86A;
+  --al-coral:#FF7E66; --al-violet:#B499E0;
+  --al-t1:#EFF5FE; --al-t2:#93A4BD; --al-t3:#7D92B5;
+}
+
+/* ============================================================
+   WIN SCORE — three bands, settled, matches the live application.
+   >=80 high / teal · >=60 mid / gold · else low / coral
+   Weights 20/20/15/15/10/10/10.
+   The four-band 85/70/60 split still present in the website
+   template's bearing-dial copy is RETIRED. A score in a deck must
+   equal the score in the app or the deck is a liability.
+   ============================================================ */
+[data-brand="alidade"] [data-band="high"]{ --band:var(--al-teal);  --band-ink:var(--al-on-teal);   --band-fill:var(--al-teal-fill); }
+[data-brand="alidade"] [data-band="mid"] { --band:var(--al-gold);  --band-ink:var(--al-on-gold);   --band-fill:var(--al-gold-fill); }
+[data-brand="alidade"] [data-band="low"] { --band:var(--al-coral); --band-ink:var(--al-on-coral);  --band-fill:var(--al-coral-fill); }
+
+/* ============================================================
+   REDUCED MOTION — global, not per-component.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  [data-brand="alidade"] *,
+  [data-brand="alidade"] *::before,
+  [data-brand="alidade"] *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* ============================================================
+   FORCED COLORS — the accents carry meaning; in forced-colors
+   mode they are gone. The structural state marks in
+   alidade-product-v2.css are what survive. Nothing here is
+   permitted to depend on colour alone.
+   ============================================================ */
+@media (forced-colors: active){
+  [data-brand="alidade"] [data-band]{ forced-color-adjust:none; }
+}

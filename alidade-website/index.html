@@ -12,12 +12,14 @@
 <meta property="og:description" content="Seven cited factors resolve into one probability of win, with the gaps named. Teaming runs on consent. Every run leaves a reviewable record.">
 <meta property="og:url" content="https://alidade.us/">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="https://alidade.us/assets/imagery/hero_alidade-1920.jpg">
-<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<meta property="og:image" content="assets/deck-media/hero_alidade-1920.jpg">
+<link rel="icon" href="assets/logos/favicon.svg" type="image/svg+xml">
 
-<link rel="stylesheet" href="/css/fonts.css">
-<link rel="stylesheet" href="/css/alidade-v2.css">
-<link rel="stylesheet" href="/css/alidade-product-v2.css">
+<!-- Self-hosted faces. Zero CDN on this surface. -->
+<link rel="stylesheet" href="tokens/fonts-alidade.css">
+<link rel="stylesheet" href="tokens/alidade-v2.css">
+<link rel="stylesheet" href="css/alidade-product-v2.css">
+  <link rel="stylesheet" href="css/alidade-v3.css">
 
 <script type="application/ld+json">
 {
@@ -89,7 +91,7 @@
             filter:drop-shadow(0 0 10px rgba(33,224,205,.45)); } /* teal glow, never a solid fill */
   .brand:hover{ text-decoration:none; }
   .navlinks{ display:flex; gap:24px; margin-left:auto; font-size:14px; }
-  .navlinks a{ color:var(--al-t2); }
+  .navlinks a{ color:var(--al-t2); display:inline-flex; align-items:center; min-height:44px; padding:0 4px; }
   .navlinks a:hover{ color:var(--al-t1); text-decoration:none; }
   @media (max-width:980px){ .navlinks{ display:none; } }
 
@@ -101,7 +103,7 @@
   .hero{ isolation:isolate; }
   .hero::before{
     content:""; position:absolute; inset:0; z-index:-2; pointer-events:none;
-    background:url("/assets/imagery/alidade-bearing-ring-1920.jpg") center right / cover no-repeat;
+    background:url("assets/deck-media/alidade-bearing-ring-1920.jpg") center right / cover no-repeat;
     opacity:.9;
   }
   .hero::after{
@@ -167,13 +169,17 @@
 
   .deep{ isolation:isolate; }
   .deep::before{ content:""; position:absolute; inset:0; z-index:-2;
-                 background:url("/assets/imagery/alidade-deep.jpg") center / cover no-repeat; opacity:.55; }
+                 background:url("assets/deck-media/alidade-deep.jpg") center / cover no-repeat; opacity:.55; }
   .deep::after{ content:""; position:absolute; inset:0; z-index:-1;
                 background:linear-gradient(180deg, rgba(14,27,46,.92), rgba(6,13,27,.88)); }
   footer{ background:var(--al-srf); border-top:var(--al-hairline) solid var(--al-bf);
           padding-block:56px 32px; font-size:14px; }
   .foot-grid{ display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:32px; }
   @media (max-width:880px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
+  .tiers{ grid-template-columns:repeat(5,1fr); margin-top:40px; }
+  @media (max-width:1180px){ .tiers{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:760px){ .tiers{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .tiers{ grid-template-columns:1fr; } }
   footer h4{ font-family:var(--al-font-mono); font-size:10px; letter-spacing:.18em;
              text-transform:uppercase; color:var(--al-t3); margin-bottom:14px; font-weight:500; }
   footer ul{ list-style:none; margin:0; padding:0; line-height:2.1; }
@@ -192,7 +198,7 @@
 <header>
   <nav class="wrap nav" aria-label="Primary">
     <a href="#main" class="brand" aria-label="ALIDADE home">
-      <img src="/assets/brand/alidade-mark-256.png" alt="" width="30" height="30" class="mark-sm">
+      <img src="assets/logos/alidade-mark-256.png" alt="" width="30" height="30" class="mark-sm">
       <span>ALIDADE</span>
     </a>
     <span class="al-pill al-pill--teal al-pill--live" style="font-size:10px;">LIVE</span>
@@ -214,7 +220,7 @@
 <!-- ============================ HERO ============================ -->
 <section class="hero">
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-col">
       <p class="eyebrow">Capture decision intelligence · GovCon · a HYPATIUS platform</p>
       <h1 class="h-hero">We do not guess.<br>We engineer the win.</h1>
       <p class="lede">
@@ -252,7 +258,7 @@
     <!-- The mark, then the instrument. The crystalline A is never recoloured
          and never given a solid fill — a teal glow is the only treatment. -->
     <figure style="margin:0" data-band="high">
-      <img src="/assets/brand/alidade-mark-512.png" alt="ALIDADE crystalline A mark"
+      <img src="assets/logos/alidade-mark-512.png" alt="ALIDADE crystalline A mark"
            width="150" height="150" class="hero-mark">
       <svg viewBox="0 0 320 232" class="al-dial" role="img"
            aria-labelledby="dial-t dial-d" style="width:100%;height:auto">
@@ -308,6 +314,52 @@
 </section>
 
 <!-- ======================= THE SEAM / WEDGE ======================= -->
+
+<div class="al-band" aria-hidden="true"></div>
+
+<section id="duality" class="deep">
+  <div class="wrap">
+    <p class="eyebrow">Two callers, one capability</p>
+    <h2 class="h-section">A console you work in. A tool server your agents call.</h2>
+    <p class="lede">
+      Most tools make you choose. ALIDADE runs the same capability both ways, and writes
+      both to the same ledger &mdash; so the record does not care which one asked.
+    </p>
+
+    <div class="al-duality">
+      <div>
+        <div class="k k--human"><span>&#9650;</span> The human path</div>
+        <h3>Open the console. Read the bearing.</h3>
+        <p>
+          Eight surfaces &mdash; command, bid matches, competitive intel, pipeline, proposals,
+          GovFeed, partners, control room. A capture lead signs the gate. The pursuit moves.
+        </p>
+        <code>alidade.us &rarr; Command</code>
+      </div>
+      <div>
+        <div class="k k--agent"><span>&#9670;</span> The agent path</div>
+        <h3>Call the same tool. Get the same record.</h3>
+        <p>
+          Twenty-four tools across six groups, exposed over MCP. Your agent scores a pursuit or
+          drafts a section, and the gate still waits for a named person before anything leaves.
+        </p>
+        <code>tool: score_pursuit &rarr; GATE</code>
+      </div>
+      <div class="al-duality--foot">
+        Both paths write to one run ledger: inputs, tools called, outputs, and the person who
+        signed. <b>Nothing counts until a named person reviews it</b> &mdash; which is the same
+        rule, whichever caller asked.
+      </div>
+    </div>
+
+    <figure class="al-shot" style="margin-top:2rem">
+      <img src="assets/screens/v3/mcp-topology.jpg" loading="lazy"
+           alt="ALIDADE as an MCP tool server: four callers on the left, six tool groups in the middle, the run ledger on the right with AUTO and GATE states.">
+      <figcaption><b>The tool server.</b> Four callers &middot; six groups &middot; every call on the ledger</figcaption>
+    </figure>
+  </div>
+</section>
+
 <section class="alt" id="instrument">
   <div class="wrap">
     <p class="eyebrow">The seam</p>
@@ -321,25 +373,25 @@
 
     <div class="grid g4" style="margin-top:44px">
       <article class="al-card al-edge tool">
-        <img src="/assets/glyphs/glyph_network_teal.png" alt="" width="30" height="30" class="glyph">
+        <img src="assets/deck-media/glyph_network_teal.png" alt="" width="30" height="30" class="glyph">
         <h3>Who builds it</h3>
         <p style="font-size:14px;margin:0">Producers, primes, subs, and the contracts
           they hold, from the performer graph.</p>
       </article>
       <article class="al-card al-edge tool">
-        <img src="/assets/glyphs/glyph_chart_teal.png" alt="" width="30" height="30" class="glyph">
+        <img src="assets/deck-media/glyph_chart_teal.png" alt="" width="30" height="30" class="glyph">
         <h3>What it costs</h3>
         <p style="font-size:14px;margin:0">Vendor capacity and pricing intelligence
           beside the cost model you already trust.</p>
       </article>
       <article class="al-card al-edge tool">
-        <img src="/assets/glyphs/glyph_target_teal.png" alt="" width="30" height="30" class="glyph">
+        <img src="assets/deck-media/glyph_target_teal.png" alt="" width="30" height="30" class="glyph">
         <h3>How long to buy</h3>
         <p style="font-size:14px;margin:0">Lead time by pathway, so the schedule
           includes the time it takes to procure.</p>
       </article>
       <article class="al-card al-edge tool">
-        <img src="/assets/glyphs/glyph_scales_teal.png" alt="" width="30" height="30" class="glyph">
+        <img src="assets/deck-media/glyph_scales_teal.png" alt="" width="30" height="30" class="glyph">
         <h3>Under which authority</h3>
         <p style="font-size:14px;margin:0">OTA, SBIR Phase III, CSO, FAR Part 15 —
           with the compliance checks each one carries.</p>
@@ -351,7 +403,7 @@
 <!-- ========================= TOOL GROUPS ========================= -->
 <section id="tools">
   <div class="wrap">
-    <img src="/assets/glyphs/glyph_robot_teal.png" alt="" width="40" height="40" class="glyph" style="margin-bottom:18px">
+    <img src="assets/deck-media/glyph_robot_teal.png" alt="" width="40" height="40" class="glyph" style="margin-bottom:18px">
     <p class="eyebrow">Six tool groups · one server</p>
     <h2 class="h-section">Every surface is also a tool.</h2>
     <p class="lede">
@@ -369,42 +421,42 @@
 
     <div class="grid g3" style="margin-top:32px">
       <article class="al-card tool">
-        <img src="/assets/glyphs/glyph_discovery_teal.png" alt="" width="34" height="34" class="glyph">
+        <img src="assets/deck-media/glyph_discovery_teal.png" alt="" width="34" height="34" class="glyph">
         <div class="al-lbl">research</div>
         <h3>Find the opportunity</h3>
         <p class="tool__fns"><b>search_opportunities</b> · <b>enrich_notice</b> ·
           <b>forecast_recompetes</b> · <b>agency_signals</b></p>
       </article>
       <article class="al-card tool">
-        <img src="/assets/glyphs/glyph_network_teal.png" alt="" width="34" height="34" class="glyph">
+        <img src="assets/deck-media/glyph_network_teal.png" alt="" width="34" height="34" class="glyph">
         <div class="al-lbl">graph</div>
         <h3>Know the field</h3>
         <p class="tool__fns"><b>performer_lookup</b> · <b>award_history</b> ·
           <b>relationship_paths</b> · <b>incumbent_map</b></p>
       </article>
       <article class="al-card tool">
-        <img src="/assets/glyphs/glyph_target_teal.png" alt="" width="34" height="34" class="glyph">
+        <img src="assets/deck-media/glyph_target_teal.png" alt="" width="34" height="34" class="glyph">
         <div class="al-lbl">teaming</div>
         <h3>Fill the gap, on consent</h3>
         <p class="tool__fns"><b>find_partners</b> · <b>fit_score</b> ·
           <b>request_connection</b> · <b>consent_status</b></p>
       </article>
       <article class="al-card tool">
-        <img src="/assets/glyphs/glyph_chart_teal.png" alt="" width="34" height="34" class="glyph">
+        <img src="assets/deck-media/glyph_chart_teal.png" alt="" width="34" height="34" class="glyph">
         <div class="al-lbl">logistics</div>
         <h3>Can it be bought in time</h3>
         <p class="tool__fns"><b>vendor_capacity</b> · <b>procurement_lead_time</b> ·
           <b>pathway_options</b> · <b>sourcing_check</b></p>
       </article>
       <article class="al-card tool">
-        <img src="/assets/glyphs/glyph_proposal_teal.png" alt="" width="34" height="34" class="glyph">
+        <img src="assets/deck-media/glyph_proposal_teal.png" alt="" width="34" height="34" class="glyph">
         <div class="al-lbl">proposal</div>
         <h3>Write it compliant, cited</h3>
         <p class="tool__fns"><b>compliance_matrix</b> · <b>section_draft</b> ·
           <b>agency_voice</b> · <b>cite_sources</b></p>
       </article>
       <article class="al-card tool">
-        <img src="/assets/glyphs/glyph_scales_teal.png" alt="" width="34" height="34" class="glyph">
+        <img src="assets/deck-media/glyph_scales_teal.png" alt="" width="34" height="34" class="glyph">
         <div class="al-lbl">reporting</div>
         <h3>Prove it</h3>
         <p class="tool__fns"><b>capture_report</b> · <b>pipeline_summary</b> ·
@@ -447,6 +499,51 @@
 
 
 <!-- ======================= THE INSTRUMENT, SHOWN ======================= -->
+
+<div class="al-band" aria-hidden="true"></div>
+
+<section id="surfaces">
+  <div class="wrap">
+    <p class="eyebrow">The console</p>
+    <h2 class="h-section">Eight surfaces. One instrument.</h2>
+    <p class="lede">
+      Screens are product renders on composite exercise data. No customer or operational
+      data appears.
+    </p>
+
+    <div class="al-showcase">
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-command.jpg" loading="lazy"
+             alt="Command surface: the mission queue ranked by score, gates awaiting signature, and pipeline value.">
+        <figcaption><b>Command.</b> What needs a person today, ranked by score</figcaption>
+      </figure>
+    </div>
+
+    <div class="al-showcase al-showcase--pair">
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-matches.jpg" loading="lazy"
+             alt="Bid matches: opportunities scored against a declared capability profile.">
+        <figcaption><b>Bid matches.</b> Scored against your declared profile</figcaption>
+      </figure>
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-intel.jpg" loading="lazy"
+             alt="Competitive intel: rivals plotted by incumbency strength against capability overlap.">
+        <figcaption><b>Competitive intel.</b> Incumbency against overlap</figcaption>
+      </figure>
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-proposals.jpg" loading="lazy"
+             alt="Proposals: the compliance matrix mapped to Section L and M with gaps named.">
+        <figcaption><b>Proposals.</b> Compliance matrix, gaps named</figcaption>
+      </figure>
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-control.jpg" loading="lazy"
+             alt="Control room: the run ledger showing every tool call, its AUTO or GATE state and its authority.">
+        <figcaption><b>Control room.</b> Every call, its state, its authority</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section id="screens">
   <div class="wrap">
     <p class="eyebrow">The instrument</p>
@@ -458,27 +555,27 @@
     </p>
     <div class="shots">
       <figure class="shot shot--wide">
-        <img src="/assets/imagery/screens/alidade-ui-briefing.jpg" alt="Command briefing: the morning bearing on the desktop — scored pursuits, gates awaiting signature, and the run ledger." loading="lazy">
+        <img src="assets/screens/alidade-ui-briefing.jpg" alt="Command briefing: the morning bearing on the desktop — scored pursuits, gates awaiting signature, and the run ledger." loading="lazy">
         <figcaption><b>Command briefing.</b> The morning bearing, on the desktop.</figcaption>
       </figure>
       <figure class="shot">
-        <img src="/assets/imagery/screens/alidade-ui-opportunities.jpg" alt="Opportunities ranked by probability of win, each with its seven factor readings." loading="lazy">
+        <img src="assets/screens/alidade-ui-opportunities.jpg" alt="Opportunities ranked by probability of win, each with its seven factor readings." loading="lazy">
         <figcaption><b>Opportunities, ranked by pWin.</b> Seven factors, every one cited.</figcaption>
       </figure>
       <figure class="shot">
-        <img src="/assets/imagery/screens/alidade-ui-intel.jpg" alt="Competitive intel: rivals in the NAICS plotted by incumbency strength and capability overlap." loading="lazy">
+        <img src="assets/screens/alidade-ui-intel.jpg" alt="Competitive intel: rivals in the NAICS plotted by incumbency strength and capability overlap." loading="lazy">
         <figcaption><b>Competitive intel.</b> Know the field before the field knows you.</figcaption>
       </figure>
       <figure class="shot">
-        <img src="/assets/imagery/screens/alidade-ui-redline.jpg" alt="Bid Builder redline view with the compliance matrix mapping Section L to Section M." loading="lazy">
+        <img src="assets/screens/alidade-ui-redline.jpg" alt="Bid Builder redline view with the compliance matrix mapping Section L to Section M." loading="lazy">
         <figcaption><b>Redline and compliance matrix.</b> Sections L and M, mapped and gapped.</figcaption>
       </figure>
       <figure class="shot">
-        <img src="/assets/imagery/screens/alidade-ui-onevoice.jpg" alt="One Voice: multiple authors harmonised into a single proposal register." loading="lazy">
+        <img src="assets/screens/alidade-ui-onevoice.jpg" alt="One Voice: multiple authors harmonised into a single proposal register." loading="lazy">
         <figcaption><b>One Voice.</b> Many authors, one proposal register.</figcaption>
       </figure>
       <figure class="shot shot--wide">
-        <img src="/assets/imagery/screens/alidade-ui-control-room.jpg" alt="Agent and MCP control room: every tool call attributable to a person and a watermark id, exportable." loading="lazy">
+        <img src="assets/screens/alidade-ui-control-room.jpg" alt="Agent and MCP control room: every tool call attributable to a person and a watermark id, exportable." loading="lazy">
         <figcaption><b>Agent &amp; MCP control room.</b> Every row attributable to a person and a watermark id.</figcaption>
       </figure>
     </div>
@@ -487,6 +584,37 @@
 </section>
 
 <!-- ====================== THE SCORING INSTRUMENT ====================== -->
+
+<section id="mobile" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">In the field</p>
+    <h2 class="h-section">The gate travels.</h2>
+    <p class="lede">
+      Three destinations on the phone &mdash; Bearings, Ask, Grants. A signature request reaches
+      whoever has to sign it, with the scope it is asking for written out before they approve.
+    </p>
+
+    <div class="al-devices">
+      <figure class="al-device">
+        <img src="assets/screens/v3/mobile-1.jpg" loading="lazy"
+             alt="Bearings: pursuits ranked, with a connection request awaiting signature.">
+        <figcaption>Bearings &middot; the morning read</figcaption>
+      </figure>
+      <figure class="al-device al-device--lift">
+        <img src="assets/screens/v3/mobile-3.jpg" loading="lazy"
+             alt="Ask: a plain-language answer with the bearing dial and the tool calls that produced it.">
+        <figcaption>Ask &middot; answer, with its calls</figcaption>
+      </figure>
+      <figure class="al-device">
+        <img src="assets/screens/v3/mobile-5.jpg" loading="lazy"
+             alt="A consent gate: the scope offered, the scope withheld, and the expiry, before approval.">
+        <figcaption>Grants &middot; scope before consent</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="al-band" aria-hidden="true"></div>
 <section class="alt" id="score">
   <div class="wrap">
     <p class="eyebrow">The scoring instrument</p>
@@ -621,7 +749,7 @@
 <!-- ========================= GOVERNANCE ========================= -->
 <section class="alt" id="governance">
   <div class="wrap">
-    <img src="/assets/glyphs/glyph_shield_teal.png" alt="" width="40" height="40" class="glyph" style="margin-bottom:18px">
+    <img src="assets/deck-media/glyph_shield_teal.png" alt="" width="40" height="40" class="glyph" style="margin-bottom:18px">
     <p class="eyebrow">Governance</p>
     <h2 class="h-section">Secure by design. Collaborative by architecture.</h2>
     <p class="lede">
@@ -715,7 +843,7 @@
       is scoped to your capture shop — enterprise seats are six figures.
     </p>
 
-    <div class="grid" style="grid-template-columns:repeat(5,1fr);margin-top:40px">
+    <div class="grid tiers">
       <article class="al-card tier">
         <div class="tier__name">Scout</div>
         <div class="tier__for">One capture lead, watching the field.</div>
@@ -753,6 +881,13 @@
 </section>
 
 <!-- =========================== THE ASK =========================== -->
+
+<section class="al-turn">
+  <img src="assets/logos/alidade-mark-512.png" alt="" aria-hidden="true">
+  <p>STARCHITECT flies the mission.<br>ALIDADE sources it.</p>
+  <div class="src">One company &middot; three platforms &middot; hypati.us</div>
+</section>
+
 <section class="alt deep" id="briefing">
   <div class="wrap wrap--narrow" style="text-align:center">
     <p class="eyebrow" style="justify-content:center">The ask</p>
@@ -765,10 +900,7 @@
       <a href="mailto:sales@alidade.us" class="al-btn al-btn--primary">Request a briefing</a>
       <a href="tel:+12532304166" class="al-btn al-btn--secondary">253.230.4166</a>
     </div>
-    <p style="margin-top:40px;font-family:var(--al-font-display);font-size:26px;color:var(--al-t1)">
-      STARCHITECT flies the mission. ALIDADE sources it.
-    </p>
-    <img src="/assets/brand/alidade-lockup-web-600.png" alt="ALIDADE — Hypatius Capture Intelligence"
+    <img src="assets/logos/alidade-lockup-web-600.png" alt="ALIDADE — Hypatius Capture Intelligence"
          width="220" style="display:block;margin:40px auto 0;width:220px;height:auto;filter:drop-shadow(0 0 28px rgba(33,224,205,.3))">
   </div>
 </section>
@@ -779,7 +911,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <img src="/assets/brand/alidade-wordmark-720.png" alt="ALIDADE" width="180" style="display:block;width:180px;height:auto">
+        <img src="assets/logos/alidade-wordmark-720.png" alt="ALIDADE" width="180" style="display:block;width:180px;height:auto">
         <p style="font-size:13.5px;margin:12px 0 0;max-width:34ch;color:var(--al-t2)">
           Capture decision intelligence. A HYPATIUS platform.
         </p>

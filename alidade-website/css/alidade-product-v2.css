@@ -242,7 +242,7 @@
   color:var(--band, var(--al-t1));
 }
 .al-score__band{
-  font-family:var(--al-font-mono); font-size:9px;
+  font-family:var(--al-font-mono); font-size:10px; /* v2.1: 10px type floor */
   letter-spacing:.14em; text-transform:uppercase;
   color:var(--band, var(--al-t2));
   display:flex; align-items:center; gap:4px;
@@ -372,7 +372,7 @@
   background:var(--al-srf); border-right:var(--al-hairline) solid var(--al-bf);
 }
 .al-rail__item{
-  width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  width:44px; height:44px; display:flex; align-items:center; justify-content:center; /* 44px hit target (v2.1) */
   border-radius:6px; color:var(--al-t2); cursor:pointer;
   border:var(--al-hairline) solid transparent; background:none;
 }
