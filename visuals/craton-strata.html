@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:2400px;height:1340px;background:#04090F;overflow:hidden;position:relative}
+.field{position:absolute;inset:0;background:
+  radial-gradient(ellipse 70% 60% at 74% 26%, rgba(176,141,87,.30), transparent 60%),
+  radial-gradient(ellipse 100% 70% at 20% 4%, rgba(31,51,84,.60), transparent 64%),
+  linear-gradient(165deg,#0D1B2D 0%,#08131F 48%,#04090F 100%)}
+.grid{position:absolute;inset:0;opacity:.30;
+  background-image:linear-gradient(rgba(143,160,181,.20) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(143,160,181,.20) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 60% 55% at 72% 34%, #000 10%, transparent 76%)}
+/* ---- strata: stacked bedrock, rising to the right ---- */
+.strata{position:absolute;left:-10%;right:-10%;bottom:-10%;height:96%;transform:rotate(-6deg);transform-origin:50% 100%}
+.band{position:absolute;left:0;right:0;border-top:3px solid var(--e)}
+.band::before{content:"";position:absolute;inset:0;background:var(--f)}
+.band::after{content:"";position:absolute;left:0;right:0;top:-3px;height:3px;
+  background:linear-gradient(90deg,transparent 4%,var(--g) 52%,var(--g) 78%,transparent);filter:blur(2px)}
+.b1{bottom:0;   height:34%; --e:#6E5228; --g:rgba(176,141,87,.50); --f:#080F17}
+.b2{bottom:31%; height:26%; --e:#B08D57; --g:rgba(217,185,133,.70); --f:#121D29}
+.b3{bottom:54%; height:21%; --e:#D9B985; --g:rgba(217,185,133,.95); --f:#1E2C3A}
+.b4{bottom:72%; height:17%; --e:#8FA0B5; --g:rgba(143,160,181,.50); --f:#2A3A4C}
+/* ---- ledger rows riding the lit stratum, right of centre ---- */
+.rows{position:absolute;right:9%;top:26%;width:42%;display:grid;gap:22px;transform:rotate(-6deg)}
+.r{height:16px;border-left:5px solid #D9B985;
+   background:linear-gradient(90deg,rgba(217,185,133,.62),rgba(217,185,133,.14) 58%,transparent)}
+.r:nth-child(1){width:100%}.r:nth-child(2){width:86%}.r:nth-child(3){width:94%}
+.r:nth-child(4){width:71%}.r:nth-child(5){width:80%;opacity:.72}
+.r:nth-child(6){width:58%;opacity:.5}.r:nth-child(7){width:42%;opacity:.32}
+/* ---- hash chain descending through the strata ---- */
+.chain{position:absolute;right:7.5%;top:9%;height:76%;width:3px;
+  background:linear-gradient(180deg,transparent,rgba(217,185,133,.85) 12%,rgba(217,185,133,.85) 84%,transparent)}
+.n{position:absolute;left:50%;transform:translateX(-50%);width:26px;height:26px;
+  border:3px solid #D9B985;background:#070D14;border-radius:50%}
+.n i{position:absolute;inset:5px;background:#D9B985;border-radius:50%}
+.halo{position:absolute;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,185,133,.42),transparent 66%)}
+.vig{position:absolute;inset:0;background:
+  radial-gradient(ellipse 88% 80% at 62% 44%, transparent 38%, rgba(4,9,15,.86) 100%)}
+</style></head><body>
+<div class="field"></div><div class="grid"></div>
+<div class="strata"><div class="band b1"></div><div class="band b2"></div><div class="band b3"></div><div class="band b4"></div></div>
+<div class="rows"><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div></div>
+<div class="chain">
+  <div class="halo" style="top:6%"></div><div class="n" style="top:6%"><i></i></div>
+  <div class="n" style="top:28%"><i></i></div>
+  <div class="halo" style="top:50%"></div><div class="n" style="top:50%"><i></i></div>
+  <div class="n" style="top:72%"><i></i></div>
+  <div class="n" style="top:94%"><i></i></div>
+</div>
+<div style="position:absolute;right:4%;top:24%;width:46%;height:34%;transform:rotate(-6deg);background:radial-gradient(ellipse 60% 100% at 78% 50%,rgba(217,185,133,.16),transparent 70%)"></div>
+<div class="vig"></div>
+</body></html>
