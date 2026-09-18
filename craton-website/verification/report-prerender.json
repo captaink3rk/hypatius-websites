@@ -1,0 +1,434 @@
+[
+ {
+  "page": "binder",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "binder",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "605 words"
+ },
+ {
+  "page": "binder",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 25 total"
+ },
+ {
+  "page": "binder",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "binder",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "13.0 KB"
+ },
+ {
+  "page": "binder",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "binder",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "binder",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "codes",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "codes",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "563 words"
+ },
+ {
+  "page": "codes",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 25 total"
+ },
+ {
+  "page": "codes",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "codes",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "11.3 KB"
+ },
+ {
+  "page": "codes",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "codes",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "codes",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "compare",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "compare",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "544 words"
+ },
+ {
+  "page": "compare",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 25 total"
+ },
+ {
+  "page": "compare",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "compare",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "9.1 KB"
+ },
+ {
+  "page": "compare",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "compare",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "compare",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "hours",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "hours",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "542 words"
+ },
+ {
+  "page": "hours",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 25 total"
+ },
+ {
+  "page": "hours",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "hours",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "9.8 KB"
+ },
+ {
+  "page": "hours",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "hours",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "hours",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "index",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "index",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "1091 words"
+ },
+ {
+  "page": "index",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "8 nav links, 30 total"
+ },
+ {
+  "page": "index",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "index",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "22.7 KB"
+ },
+ {
+  "page": "index",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "index",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "index",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "rates",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "rates",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "559 words"
+ },
+ {
+  "page": "rates",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 25 total"
+ },
+ {
+  "page": "rates",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "rates",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "10.0 KB"
+ },
+ {
+  "page": "rates",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "rates",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "rates",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "record",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "record",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "631 words"
+ },
+ {
+  "page": "record",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 25 total"
+ },
+ {
+  "page": "record",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "record",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "12.0 KB"
+ },
+ {
+  "page": "record",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "record",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "record",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "walkthrough",
+  "check": "renders-without-js",
+  "ok": true,
+  "detail": "SKIP TO CONTENT CRATON Hours Codes Rates Binder Compare HYPA"
+ },
+ {
+  "page": "walkthrough",
+  "check": "copy-300-words",
+  "ok": true,
+  "detail": "548 words"
+ },
+ {
+  "page": "walkthrough",
+  "check": "nav-survives",
+  "ok": true,
+  "detail": "9 nav links, 26 total"
+ },
+ {
+  "page": "walkthrough",
+  "check": "entity-line",
+  "ok": true,
+  "detail": "\"HYPATIUS, LLC\" not in the rendered text"
+ },
+ {
+  "page": "walkthrough",
+  "check": "html-under-40kb",
+  "ok": true,
+  "detail": "10.8 KB"
+ },
+ {
+  "page": "walkthrough",
+  "check": "meta-exactly-one",
+  "ok": true,
+  "detail": "description x1 · canonical x1 · og:title x1"
+ },
+ {
+  "page": "walkthrough",
+  "check": "title-unique",
+  "ok": true,
+  "detail": "empty title"
+ },
+ {
+  "page": "walkthrough",
+  "check": "no-inline-font-data",
+  "ok": true,
+  "detail": "a font is still inlined in the HTML"
+ },
+ {
+  "page": "(site)",
+  "check": "robots.txt-present",
+  "ok": true,
+  "detail": "missing"
+ },
+ {
+  "page": "(site)",
+  "check": "sitemap.xml-present",
+  "ok": true,
+  "detail": "missing"
+ },
+ {
+  "page": "(site)",
+  "check": "sitemap-covers-every-page",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "page": "(site)",
+  "check": "shared-css-present",
+  "ok": true,
+  "detail": "missing"
+ },
+ {
+  "page": "(site)",
+  "check": "layer-css-present",
+  "ok": true,
+  "detail": "missing"
+ },
+ {
+  "page": "(site)",
+  "check": "fonts-extracted",
+  "ok": true,
+  "detail": "26 font files"
+ },
+ {
+  "page": "(site)",
+  "check": "no-blob-refs-in-css",
+  "ok": true,
+  "detail": "a blob: URL is still referenced"
+ },
+ {
+  "page": "(site)",
+  "check": "no-base64-fonts-in-css",
+  "ok": true,
+  "detail": "a base64 payload is still in the stylesheet"
+ }
+]
