@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /site/docs/
-Sitemap: https://hypati.us/sitemap.xml
