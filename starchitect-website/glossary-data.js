@@ -29,7 +29,7 @@ window.STARCHITECT_GLOSSARY = [
     abbrev: "Battle Management Command, Control, Communications, Computers, and Intelligence",
     category: "Doctrine",
     definition: "The integrated system of systems that allows military commanders to direct forces and assets. BMC4I modernization is a core Department of Defense priority — legacy BMC4I tools were not designed for the multi-domain, machine-speed character of modern conflict. STARCHITECT is purpose-built as a BMC4I platform.",
-    seeAlso: "CJADC2, C2"
+    seeAlso: "BMC3I, C2"
   },
   {
     term: "BabylonJS",
@@ -45,7 +45,7 @@ window.STARCHITECT_GLOSSARY = [
     abbrev: "Command and Control",
     category: "Doctrine",
     definition: "The exercise of authority and direction by a commander over assigned forces. The shorthand for everything from a single radio operator dispatching a unit to enterprise-scale joint-force coordination. STARCHITECT is a C2 platform at machine speed, built to operate where legacy C2 systems collapse.",
-    seeAlso: "BMC4I, CJADC2"
+    seeAlso: "BMC4I, BMC3I"
   },
   {
     term: "CesiumJS",
@@ -55,10 +55,10 @@ window.STARCHITECT_GLOSSARY = [
     seeAlso: "BabylonJS, K3s"
   },
   {
-    term: "CJADC2",
-    abbrev: "Combined Joint All-Domain Command and Control",
+    term: "BMC3I",
+    abbrev: "Battle Management, Command, Control, Communications, and Intelligence",
     category: "Doctrine",
-    definition: "The Department of War's framework for integrating sensor and effector systems across all warfighting domains — space, air, land, maritime, cyber, and information. CJADC2 demands a kill chain that closes in seconds across previously incompatible service-specific systems. STARCHITECT is engineered as a CJADC2 execution layer.",
+    definition: "The integrated function of sensing, deciding, and directing across all warfighting domains: space, air, land, maritime, cyber, and information. BMC3I demands a kill chain that closes in seconds across previously incompatible service-specific systems. STARCHITECT is engineered as a BMC3I execution layer. Spell out DDIL (denied, disrupted, intermittent, and limited) on first use.",
     seeAlso: "JADC2, BMC4I, F2T2EA"
   },
   {
@@ -149,7 +149,7 @@ window.STARCHITECT_GLOSSARY = [
     abbrev: "Find, Fix, Track, Target, Engage, Assess",
     category: "Doctrine",
     definition: "The canonical six-step kill chain. Each step has discrete sensor and decision requirements. Compressing F2T2EA timeline is the central challenge of modern command and control — and the headline metric STARCHITECT optimizes.",
-    seeAlso: "OODA, CJADC2"
+    seeAlso: "OODA, BMC3I"
   },
   {
     term: "FMI / FMU",
@@ -193,7 +193,7 @@ window.STARCHITECT_GLOSSARY = [
     abbrev: null,
     category: "Doctrine",
     definition: "A U.S. homeland missile defense initiative requiring a layered architecture of interceptors, space-based sensors, ground-based fire control, and a survivable C2 mesh. STARCHITECT's design directly addresses Golden Dome's command-and-control challenges: sensor fusion, machine-speed engagement sequencing, and DDIL survivability.",
-    seeAlso: "BMC4I, CJADC2, PWSA"
+    seeAlso: "BMC4I, BMC3I, PWSA"
   },
 
   // ===== H =====
@@ -233,8 +233,8 @@ window.STARCHITECT_GLOSSARY = [
     term: "JADC2",
     abbrev: "Joint All-Domain Command and Control",
     category: "Doctrine",
-    definition: "The U.S. military's earlier framework for cross-domain integration, since superseded in coalition-context naming by CJADC2. The technical and operational requirements are largely identical.",
-    seeAlso: "CJADC2, BMC4I"
+    definition: "The U.S. military's earlier framework for cross-domain integration, which HYPATIUS materials describe in BMC3I terms. The technical and operational requirements are largely identical.",
+    seeAlso: "BMC3I, BMC4I"
   },
 
   // ===== K =====
@@ -264,7 +264,7 @@ window.STARCHITECT_GLOSSARY = [
     abbrev: null,
     category: "Doctrine",
     definition: "An evolution of the kill chain concept where multiple sensors and effectors are dynamically meshed rather than chained linearly. Kill Web is more resilient to single-point disruption. STARCHITECT's distributed architecture is purpose-built for Kill Web operations.",
-    seeAlso: "Kill Chain, F2T2EA, CJADC2"
+    seeAlso: "Kill Chain, F2T2EA, BMC3I"
   },
 
   // ===== L =====
@@ -323,7 +323,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "MCP",
     abbrev: "Model Context Protocol",
     category: "Architecture",
-    definition: "An emerging standard for tool-calling and context exchange between Large Language Models and external systems. STARCHITECT's CJADC2 MCP Server exposes 78+ MCP tools — natively bridging the physical space domain with LLM-driven course-of-action generation.",
+    definition: "An emerging standard for tool-calling and context exchange between Large Language Models and external systems. STARCHITECT's BMC3I MCP Server exposes 78+ MCP tools — natively bridging the physical space domain with LLM-driven course-of-action generation.",
     seeAlso: "AI Correlator, Natural Language C2"
   },
   {

@@ -1,0 +1,253 @@
+/* site-v10.css · starchitect.us v10 · accessibility and contrast layer
+   ═════════════════════════════════════════════════════════════════════════════
+   Additive only. Nothing in base.css, site2.css or sub.css was edited, so every
+   rule here can be read as a diff and removed by deleting one <link>.
+
+   These are not new problems. The website has simply never had a harness — the
+   existing one covers the platform's fourteen operator-console screens and stops
+   there — so the first run of verify-site.mjs found 54 failures across 144
+   checks. What follows is that list, with the measurement that justifies each
+   value.
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. The primary call to action had invisible text ───────────────────────
+   The worst thing the harness found, and it was on every page.
+
+   base.css:153   .btn-primary  { background: var(--gold); color: var(--void); }
+   base.css:136   .nav-links > a { color: #9FA9B8; }
+
+   `.nav-links > a` is specificity 0,1,1 and `.btn-primary` is 0,1,0, so the nav
+   rule wins and "Request briefing" renders #9FA9B8 on #D4A03B — a measured
+   1.01:1. The intent in base.css was right; it was being overridden. Restoring
+   it gives 8.32:1. */
+.nav-links > a.btn-primary { color: var(--void); }
+
+/* ── 2. Two tokens, not thirty selectors ───────────────────────────────────
+   Both failing colours are custom properties in base.css, which makes this a
+   two-line fix at the source rather than a hunt through class names:
+
+     base.css:28   --mute-text: #6B7588
+     base.css:33   --gold-deep: #A87B22
+
+   --mute-text carries every stat label, the footer contact block, the copyright
+   and credential lines and the ITAR notice. Measured 3.60:1 on the panel ground
+   #111E33, 4.01:1 on #0A1322 and 4.24:1 on the void — under 4.5 on all three.
+   #8A94A8 is the nearest value that clears every ground it lands on, including
+   the raised panel #1A2A45 that the first attempt at #7C879C missed at 3.97:
+   4.71 raised, 5.47 panel, 6.09 deep navy, 6.44 void. It is also exactly
+   HYPATIUS's --slate-400, so the muted tone is now the same value across the
+   parent and this platform rather than two near-misses.
+
+   The gold ink on the two paper grounds, #ECE7DB and #F4F1E9, measured 3.08:1
+   and 3.37:1. #7A5A2E clears both at 5.11 and 5.59 and is still unmistakably
+   the same bronze-gold. It is also already a value in the wider system —
+   CRATON's --cr-bed-bronze-deep is the same hex, chosen there for the same
+   reason. See the note below on why this one is applied per selector rather
+   than at the token. */
+:root {
+  --mute-text: #8A94A8;
+}
+
+/* --gold-deep is NOT retargeted at the token. It was, and that was a mistake
+   worth recording: the token is used both as ink on the paper grounds, where it
+   needed darkening, and as the dark stop of the .os-core gradient, where
+   darkening it dropped the near-black wordmark sitting on that gradient from
+   5.17:1 to 3.12:1. The harness could not see the regression because it cannot
+   read a background that is a gradient — it walks up to the page ground and
+   reports whatever it finds there. A token used for both ink and fill cannot be
+   fixed at the token, so only the ink uses move. */
+.sec-paper .eyebrow, .phase .pl, .trust, .sec-paper .spec td.mono { color: #7A5A2E; }
+.sec-paper .eyebrow::before { background: #7A5A2E; }
+
+/* The ITAR notice is a hardcoded #45505f in base.css, not a token, and measured
+   2.40:1 — the least readable text on the site, and the one paragraph on a
+   defense contractor's site that has to be readable. */
+.itar { color: var(--mute-text); }
+
+/* ── 4. Type floor ─────────────────────────────────────────────────────────
+   The "A HYPATIUS / PLATFORM" pill beside the wordmark set at 9px on every
+   page at both widths. 10px is the floor in the corporate standard and the
+   smallest size the harness accepts. */
+.nav-logo .pill, .nav-logo .pill b { font-size: 10px; line-height: 1.15; }
+
+/* ── 5. Touch target ───────────────────────────────────────────────────────
+   The mobile menu button measured 22×28. 44×44 is the floor; the glyph is
+   unchanged, the hit area is not. */
+.nav-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+/* The display value is deliberately NOT set here. base.css hides the toggle at
+   desktop and shows it under a media query; declaring display unconditionally
+   in this layer put a hamburger on the 1440px nav. Only the sizing belongs at
+   this level — the visibility rule already worked. */
+@media (max-width: 980px) { .nav-toggle { display: inline-flex; } }
+
+/* ── 6. Focus ──────────────────────────────────────────────────────────────
+   The wordmark link is the first focusable element on every page and showed no
+   focus ring, so a keyboard user's first Tab landed nowhere visible.
+
+   Both :focus and :focus-visible are declared on purpose. :focus-visible alone
+   is the tidier rule, but Chromium does not match it for a programmatic
+   .focus() — which is exactly how an automated check, a skip link and several
+   assistive tools move focus. A ring that only appears for one kind of focus is
+   a ring you cannot rely on.
+
+   !important is here reluctantly and with a reason. base.css already declares
+   `:focus-visible { outline: 2px solid var(--gold) }` at line 72, and that rule
+   is ALSO not reaching the focused element: the computed outline on a focused
+   .nav-logo was `currentColor solid 0px`, which is neither the UA default nor
+   anything declared in the four stylesheets. Something in the page's own inline
+   <style> is zeroing it. Rather than leave the site with no visible focus ring
+   while that is tracked down, the ring is forced here. If the inline rule is
+   found and removed, drop the !important — the harness will keep it honest. */
+.nav-logo:focus, .nav-links > a:focus, .nav-toggle:focus,
+.footer a:focus, .btn:focus,
+.nav-logo:focus-visible, .nav-links > a:focus-visible, .nav-toggle:focus-visible,
+.footer a:focus-visible, .btn:focus-visible {
+  outline: 2px solid #D4A03B !important; outline-offset: 3px; border-radius: 2px; }
+
+/* ── 7. Skip link ──────────────────────────────────────────────────────────
+   Owned by the generated block in the <head> (tools/bake-chrome.mjs), not here,
+   so there is exactly one definition. The first version used left:-9999px to
+   hide it, which is itself a cause of horizontal scroll on a narrow viewport;
+   it now uses the clip-path pattern, which takes no layout space at all. */
+
+/* ── 8. Red does not belong on a public surface ────────────────────────────
+   The harness flagged #C8442E at 3.44:1 on the panel ground and 4.05:1 on the
+   void, on "CONVERGING", "Case 01 — China GEO" and "Case 04 — Strait of
+   Hormuz". Fixing the contrast is the smaller half of the problem.
+
+   The corporate brand standard is explicit: red is PROHIBITED externally, and
+   inside the product it is reserved for lethal and refused states. It is doing
+   neither job here — it is being used as emphasis on case-study labels and a
+   rate readout on the public marketing site.
+
+   Retargeting --alert to the platform's own gold fixes the brand violation and
+   the contrast in one move: 7.07:1 on panel, 8.32:1 on void, and gold is
+   already what STARCHITECT uses for decision and emphasis. The token keeps its
+   name so the intent stays legible in the CSS; only the value changes, and only
+   on the website. The operator console's own state vocabulary is untouched,
+   which is where red still means what it should. */
+:root { --alert: #D4A03B; }
+
+/* ── 9. Type floor in the component CSS ────────────────────────────────────
+   Six rules set 9px or 9.5px mono labels: the correlator feed and value rows,
+   the COA badge, the threat-scope footer keys and the PACE node labels. 10px
+   is the floor. Letter-spacing is unchanged, so the labels keep their
+   engineered look; they are simply readable now. */
+.cor-feed .lbl, .cor-out .lbl, .cor-val, .cor-coa .badge,
+.scope-foot .sf .k, .pace-node .nl { font-size: 10px; }
+
+/* ── 10. The palette specimen on the company page ──────────────────────────
+   "● #8B6FD6 · VIOLET" is a swatch label printed in the colour it names, which
+   measured 4.25:1. The swatch dot keeps the true value — it is the specimen —
+   and only the label text lifts to #B499E0, which is ALIDADE's own partner and
+   consent violet and reads 6.82:1. */
+.plat.crat .pk { color: #B499E0; }
+
+/* ── 12. The surface index numerals ───────────────────────────────────────
+   platform.html numbers its eight surfaces with 40px display numerals in
+   --structure #2A3A57, which measured 1.46:1. At 40px the AA threshold is 3.0
+   rather than 4.5, so they do not need to become prominent — they need to be
+   visible at all. #5E77A4 reads 3.70:1 and keeps them recessive behind the
+   surface names, which is the job they were doing. */
+.surface .gn { color: #5E77A4; }
+
+/* ── 11. Form controls ─────────────────────────────────────────────────────
+   The briefing form's checkbox measured 13×13 against a 44px floor. Making the
+   native control 44px just stretches the glyph into a tall rectangle, so the
+   control is rebuilt: a 44×44 target with a 20px box drawn inside it. The box
+   looks the same size it always did; the thing you can hit is more than four
+   times the area. */
+.fg input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none;
+  width: 44px; height: 44px; margin: 0; flex: none; cursor: pointer;
+  background: transparent; border: 0; position: relative; }
+.fg input[type="checkbox"]::before {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 20px; height: 20px; transform: translate(-50%, -50%);
+  border: 1px solid var(--structure); border-radius: 2px;
+  background: var(--panel); transition: border-color .15s, background .15s; }
+.fg input[type="checkbox"]:checked::before {
+  background: var(--gold); border-color: var(--gold); }
+.fg input[type="checkbox"]:checked::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 5px; height: 10px; margin: -6px 0 0 -3px;
+  border: solid #060B17; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.fg input[type="checkbox"]:focus-visible::before,
+.fg input[type="checkbox"]:focus::before {
+  outline: 2px solid #D4A03B; outline-offset: 2px; }
+.fg label { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+
+/* ── 14. The telemetry bar on a phone ──────────────────────────────────────
+   Five readouts in a fixed row measured 917px wide inside a 390px viewport, so
+   the whole page scrolled sideways. The bar is decorative chrome, already
+   aria-hidden, so it scrolls within itself instead of dragging the document
+   with it. The scrollbar is hidden because a visible one on a 28px strip reads
+   as a rendering fault. */
+.telebar { overflow: hidden; }
+.telebar-inner { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  flex-wrap: nowrap; }
+.telebar-inner::-webkit-scrollbar { display: none; }
+
+/* ── 13. A background the harness cannot read ─────────────────────────────
+   .os-core is `background: linear-gradient(...)` with no background-color, so
+   the contrast check walks up the ancestor chain, finds the page ground and
+   reports the near-black wordmark on it as 1.00:1. The text is in fact on gold.
+
+   Declaring a background-color underneath the gradient is not a way of quieting
+   the check. It is what should have been there: any client that does not paint
+   the gradient — an old renderer, a forced-colors mode, a printed page — gets
+   the page ground today and unreadable near-black text on it. The colour is the
+   gradient's own midpoint, so nothing changes visually where the gradient does
+   paint. */
+.os-core { background-color: #A87B22; }
+
+/* ── 15. The PACE staircase on a phone ─────────────────────────────────────
+   Five tiers at 82px each ran 12px past a 390px viewport and took the whole
+   document sideways with them. The staircase encodes its meaning in the
+   descending heights, so wrapping it would break the diagram; it scrolls within
+   itself instead.
+
+   Unlike the telemetry bar this one is content rather than chrome, so it keeps
+   a real scrollbar and is reachable from the keyboard — a scrollable region
+   nobody can focus is a region a keyboard user cannot read. */
+.pace-stairs { overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 4px; }
+.pace-stairs:focus-visible { outline: 2px solid #D4A03B; outline-offset: 3px; }
+
+/* ── 16. The press kit on its paper ground ─────────────────────────────────
+   press-kit.html was promoted out of the retired a-* set and is now canonical.
+   Its "Things not to do" list and sign-off line inherit --slate #9FA9B8, which
+   is a colour for dark grounds; on the paper ground #ECE7DB they measured
+   1.92:1. --ink-soft #4A5564 is base.css's own text-on-paper value and reads
+   6.13:1. The page simply had a block that had never been checked against the
+   ground it sits on. */
+.sec-paper .donts, .sec-paper .donts li, .sec-paper .signoff,
+.donts, .donts li { color: var(--ink-soft); }
+
+/* ── 17. The leadership block, ported with its markup ──────────────────────
+   The team section was promoted out of the retired a-about.html into
+   company.html. Its styling lived in sub.css, which a-about.html loaded and
+   company.html does not — so the markup arrived and rendered as unstyled text,
+   with the initials sitting as stray characters above each name.
+
+   The six rules are ported verbatim from sub.css:65-70 rather than reinvented,
+   so the block looks exactly as it did on the page it came from. Moving markup
+   between pages in a site with per-page stylesheets moves only half the
+   component; this is the other half.
+
+   The one addition is the grid at narrow widths: three columns of 28px-padded
+   cards do not fit a phone, and sub.css had no breakpoint for it because
+   a-about.html was never checked at 390. */
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+.member { background: var(--panel); border: 1px solid var(--hair); border-radius: 8px; padding: 28px; }
+.member .photo { width: 64px; height: 64px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--panel-hi), var(--structure));
+  background-color: var(--panel-hi);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 24px; color: var(--gold);
+  letter-spacing: 0.05em; margin-bottom: 18px; border: 1px solid var(--hair-gold); }
+.member h3 { color: var(--bone); font-size: 19px; margin-bottom: 3px; }
+.member .role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.member p { font-size: 14px; color: var(--mute-text); line-height: 1.5; }
+@media (max-width: 900px) { .team { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .team { grid-template-columns: 1fr; } .member { padding: 20px; } }

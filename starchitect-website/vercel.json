@@ -1,1 +1,22 @@
-{"cleanUrls": true, "trailingSlash": false, "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]}]}
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/a-about",        "destination": "/company",    "permanent": true },
+    { "source": "/a-capabilities", "destination": "/capabilities","permanent": true },
+    { "source": "/a-platform",     "destination": "/platform",   "permanent": true },
+    { "source": "/a-use-cases",    "destination": "/use-cases",  "permanent": true },
+    { "source": "/a-glossary",     "destination": "/resources",  "permanent": true },
+    { "source": "/a-press-kit",    "destination": "/press-kit",  "permanent": true },
+    { "source": "/evolve",         "destination": "/",           "permanent": true },
+    { "source": "/home-a-watch",   "destination": "/",           "permanent": true },
+    { "source": "/home-b-field",   "destination": "/",           "permanent": true },
+    { "source": "/home-c-brief",   "destination": "/",           "permanent": true },
+    { "source": "/home-command",   "destination": "/",           "permanent": true },
+    { "source": "/intro-preview",  "destination": "/",           "permanent": true },
+    { "source": "/intro-live",     "destination": "/",           "permanent": true }
+  ],
+  "headers": [
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+  ]
+}

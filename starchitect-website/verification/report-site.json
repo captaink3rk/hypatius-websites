@@ -1,0 +1,1122 @@
+[
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (35 interactive)"
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "home",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (27 interactive)"
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "home",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (30 interactive)"
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "platform",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (22 interactive)"
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "platform",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (29 interactive)"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "capabilities",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (21 interactive)"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "capabilities",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (32 interactive)"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "use-cases",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (24 interactive)"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "use-cases",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (31 interactive)"
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resilience",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (23 interactive)"
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resilience",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (29 interactive)"
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "security",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (21 interactive)"
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "security",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (29 interactive)"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "acquisition",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (21 interactive)"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "acquisition",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (30 interactive)"
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "company",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (22 interactive)"
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "company",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (36 interactive)"
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resources",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (28 interactive)"
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "resources",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (41 interactive)"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "press-kit",
+  "vp": 1440,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "no-horizontal-scroll",
+  "ok": true,
+  "detail": "page scrolls horizontally"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "type-floor-10px",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "hit-target-44",
+  "ok": true,
+  "detail": " (28 interactive)"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "reduced-motion-still",
+  "ok": true,
+  "detail": "0 infinite animations still running"
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "zero-cdn",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "contrast-aa",
+  "ok": true,
+  "detail": "0 low: "
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "banned-terms",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "screen": "press-kit",
+  "vp": 390,
+  "check": "focus-visible",
+  "ok": true,
+  "detail": "ok"
+ }
+]

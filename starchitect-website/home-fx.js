@@ -7,7 +7,15 @@
 (function () {
   'use strict';
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var GOLD = '#D4A03B', CYAN = '#2EB5C9', BONE = '#EFE9DD', ALERT = '#C8442E', GO = '#4F8F6F', SLATE = '#6B7588';
+  /* v10: ALERT and SLATE corrected here because this file writes colours as
+     inline styles, which no stylesheet can override.
+     ALERT was #C8442E. Red is prohibited on external surfaces by the corporate
+     standard and is reserved in-product for lethal and refused states; here it
+     was decorating a rate readout, and measured 4.05:1 on the void. Gold is
+     STARCHITECT's own emphasis colour and reads 8.32:1.
+     SLATE was #6B7588, which failed AA on all four dark grounds. #8A94A8 is
+     HYPATIUS's --slate-400 and clears every one of them. */
+  var GOLD = '#D4A03B', CYAN = '#2EB5C9', BONE = '#EFE9DD', ALERT = '#D4A03B', GO = '#4F8F6F', SLATE = '#8A94A8';
 
   /* ---- Nav: scrolled state + mobile toggle ---------------- */
   function initNav() {
@@ -339,7 +347,18 @@
      Keeps every route's IA and proof scaffold identical & lean.   */
   function initChrome() {
     var body = document.body;
-    if (!body || body.getAttribute('data-chrome') !== 'on') return;
+    if (!body) return;
+    /* v10: the chrome is now baked into the HTML by tools/bake-chrome.mjs, so a
+       crawler, a reader mode and a no-JS visitor all get the navigation, the
+       footer, the entity line and the ITAR notice without running any script.
+       Baked pages carry data-chrome="baked" and this function stands down for
+       them. It still runs for any page left on data-chrome="on", so nothing
+       breaks if a new page is added before it has been baked. The live values
+       in the telemetry bar are unaffected either way: initTelemetry binds by
+       [data-utc] / [data-latency] / [data-tracked], which the static markup
+       carries. */
+    if (body.getAttribute('data-chrome') === 'baked') return;
+    if (body.getAttribute('data-chrome') !== 'on') return;
     var route = body.getAttribute('data-route') || '';
     var WM = (window.__resources && window.__resources.wordmark) || 'assets/wordmark.png';
     var NAV = [
@@ -395,13 +414,13 @@
     foot.innerHTML =
       '<div class="footer-grid">' +
         '<div class="footer-brand"><img src="' + WM + '" alt="STARCHITECT">' +
-          '<p>The operating system for space warfare and CJADC2.</p>' +
+          '<p>The operating system for space warfare and BMC3I.</p>' +
           '<div class="contact">leadership@hypati.us<br>253.230.4166<br>Charleston, SC</div></div>' +
         '<div class="footer-col"><h4>Platform</h4><a href="platform.html">Operator console</a><a href="capabilities.html">Capabilities</a><a href="use-cases.html">Use cases</a><a href="resilience.html">PACE resilience</a></div>' +
         '<div class="footer-col"><h4>Engage</h4><a href="security.html">Security</a><a href="acquisition.html">Acquisition</a><a href="resources.html">Resources</a></div>' +
         '<div class="footer-col"><h4>Company</h4><a href="company.html">About</a><a href="resources.html">Glossary</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us \u2197</a></div>' +
       '</div>' +
-      '<div class="footer-bottom"><div>\u00a9 2026 HYPATIUS LLC \u00b7 STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 \u00b7 CAGE 19S89</div></div>' +
+      '<div class="footer-bottom"><div>\u00a9 2026 HYPATIUS, LLC \u00b7 STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 \u00b7 CAGE 19S89</div></div>' +
       '<div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>';
     body.appendChild(foot);
   }

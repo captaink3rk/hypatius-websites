@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://starchitect.us/home</loc><priority>1.0</priority></url>
+  <url><loc>https://starchitect.us/platform</loc><priority>0.9</priority></url>
+  <url><loc>https://starchitect.us/capabilities</loc><priority>0.8</priority></url>
+  <url><loc>https://starchitect.us/use-cases</loc><priority>0.8</priority></url>
+  <url><loc>https://starchitect.us/resilience</loc><priority>0.7</priority></url>
+  <url><loc>https://starchitect.us/security</loc><priority>0.7</priority></url>
+  <url><loc>https://starchitect.us/acquisition</loc><priority>0.7</priority></url>
+  <url><loc>https://starchitect.us/company</loc><priority>0.7</priority></url>
+  <url><loc>https://starchitect.us/resources</loc><priority>0.6</priority></url>
+  <url><loc>https://starchitect.us/press-kit</loc><priority>0.6</priority></url>
+</urlset>

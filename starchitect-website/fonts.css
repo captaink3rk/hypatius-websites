@@ -1,0 +1,35 @@
+/* fonts.css · starchitect.us v10 · self-hosted
+   ─────────────────────────────────────────────────────────────────────────────
+   Every page previously fetched these three families from Google, which put a
+   third-party request on all twenty pages of a defense-contractor site and made
+   first paint depend on a host we do not control. The same woff2 subset already
+   ships self-hosted on hypati.us, so this is parity rather than a new decision.
+
+   The CDN link asked for IBM Plex Mono at 400, 500 and 600. The subset carries
+   400, 500 and 700, so 600 is declared against the Bold file rather than left
+   to synthesise — a synthetic bold on a mono face wrecks the column alignment
+   that the telemetry bar and every data readout depend on.
+
+   font-display:swap matches the previous behaviour: text paints immediately in
+   the fallback and reflows once, rather than hiding until the face loads. */
+
+@font-face{font-family:'Bebas Neue';src:url('assets/fonts/BebasNeue-Regular.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+
+@font-face{font-family:'Rajdhani';src:url('assets/fonts/Rajdhani-Regular.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Rajdhani';src:url('assets/fonts/Rajdhani-Medium.woff2') format('woff2');
+  font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Rajdhani';src:url('assets/fonts/Rajdhani-SemiBold.woff2') format('woff2');
+  font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Rajdhani';src:url('assets/fonts/Rajdhani-Bold.woff2') format('woff2');
+  font-weight:700;font-style:normal;font-display:swap}
+
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/IBMPlexMono-Medium.woff2') format('woff2');
+  font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/IBMPlexMono-Bold.woff2') format('woff2');
+  font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/IBMPlexMono-Bold.woff2') format('woff2');
+  font-weight:700;font-style:normal;font-display:swap}
