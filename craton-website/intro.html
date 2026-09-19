@@ -3,10 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- The gate is deliberately NOT the home page. / stays the static prerendered
-     page so the crawler, the link unfurler and the answer engine never meet a
-     JavaScript redirect at the front door. noindex + canonical to the real page,
-     and this URL stays out of sitemap.xml. -->
 <meta name="robots" content="noindex,follow">
 <title>CRATON</title>
 <link rel="canonical" href="https://craton-erp.us/">
@@ -47,9 +43,6 @@ main{display:block}
 <video id="plate" src="assets/video/craton-intro-plate-v1.mp4" poster="assets/img/intro-poster-craton-v1.png" autoplay muted playsinline preload="auto"></video>
 <video id="mark" src="assets/video/cr-mark-resolve-alpha.webm" muted playsinline preload="auto"></video>
 <div id="curtain"></div>
-<!-- Fallback lockup. Same coordinates as assets/img/a-f1809e0dac.svg — the shipped
-     primary lockup. If the marks are ever revised, update this from that file;
-     it is not a second asset to keep in sync by eye. -->
 <div id="fallback" aria-hidden="true">
 <svg viewBox="0 0 560 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="#F1F3F5" stroke-width="4" stroke-linecap="square" fill="none"><path d="M43 4 L80 16 V50 C80 74 62 90 43 97 C24 90 6 74 6 50 V16 Z"></path><path d="M18 40 H68" stroke="#B08D57"></path><path d="M18 54 H68" stroke="#B08D57"></path><path d="M22 68 H64" stroke="#B08D57"></path></g><text x="104" y="66" font-family="Big Shoulders Display, Archivo Narrow, Arial Narrow, sans-serif" font-weight="800" font-size="70" letter-spacing="4.9" fill="#F1F3F5">CRATON</text><text x="106" y="88" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2.3" fill="#8F99A5">HYPATIUS ENTERPRISE RESOURCE PLATFORM</text></svg>
 </div>
