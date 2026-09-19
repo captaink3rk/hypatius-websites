@@ -1,0 +1,98 @@
+[
+ {
+  "path": "js on, first visit",
+  "check": "overlay shown",
+  "ok": true,
+  "detail": "display:block"
+ },
+ {
+  "path": "js on, first visit",
+  "check": "page scroll locked",
+  "ok": true,
+  "detail": "html.al-sting-locked not set"
+ },
+ {
+  "path": "js on, first visit",
+  "check": "video requested",
+  "ok": true,
+  "detail": "no media request"
+ },
+ {
+  "path": "js on, first visit",
+  "check": "skip target >= 44px",
+  "ok": true,
+  "detail": "123x44"
+ },
+ {
+  "path": "javascript off",
+  "check": "overlay NOT rendered",
+  "ok": true,
+  "detail": "display:none"
+ },
+ {
+  "path": "javascript off",
+  "check": "video NOT requested",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "path": "javascript off",
+  "check": "page copy intact",
+  "ok": true,
+  "detail": "1771 words"
+ },
+ {
+  "path": "javascript off",
+  "check": "scroll NOT locked",
+  "ok": true,
+  "detail": "html.al-sting-locked set with JS off"
+ },
+ {
+  "path": "prefers-reduced-motion",
+  "check": "overlay removed",
+  "ok": true,
+  "detail": "display:(removed)"
+ },
+ {
+  "path": "prefers-reduced-motion",
+  "check": "video NOT requested",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "path": "prefers-reduced-motion",
+  "check": "scroll NOT locked",
+  "ok": true,
+  "detail": "html.al-sting-locked set"
+ },
+ {
+  "path": "second visit",
+  "check": "overlay removed",
+  "ok": true,
+  "detail": "display:(removed)"
+ },
+ {
+  "path": "(assets)",
+  "check": "assets/video/alidade-intro-sting-v1.mp4",
+  "ok": true,
+  "detail": "1142286 bytes"
+ },
+ {
+  "path": "(assets)",
+  "check": "assets/video/alidade-intro-sting-v1.webm",
+  "ok": true,
+  "detail": "249363 bytes"
+ },
+ {
+  "path": "(assets)",
+  "check": "assets/img/alidade-intro-poster-v1.jpg",
+  "ok": true,
+  "detail": "62799 bytes"
+ },
+ {
+  "path": "(assets)",
+  "check": "js/alidade-sting-v1.js",
+  "ok": true,
+  "detail": "4112 bytes"
+ }
+]
