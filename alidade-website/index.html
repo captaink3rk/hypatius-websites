@@ -193,6 +193,17 @@
 </head>
 
 <body>
+<!-- Intro sting · overlay, not a gate. display:none until
+     js/alidade-sting-v1.js shows it, so with JavaScript off this block renders
+     nothing and the page is served exactly as it was. See css/alidade-v3.css §9. -->
+<div id="al-sting" aria-hidden="true">
+  <video poster="assets/img/alidade-intro-poster-v1.jpg" muted playsinline preload="none">
+    <source data-src="assets/video/alidade-intro-sting-v1.mp4"  type="video/mp4">
+    <source data-src="assets/video/alidade-intro-sting-v1.webm" type="video/webm">
+  </video>
+  <a class="al-sting__skip" href="#main">Skip intro</a>
+</div>
+
 <a href="#main" class="al-skip">Skip to content</a>
 
 <header>
@@ -958,5 +969,6 @@
   </div>
 </footer>
 
+<script src="js/alidade-sting-v1.js" defer></script>
 </body>
 </html>

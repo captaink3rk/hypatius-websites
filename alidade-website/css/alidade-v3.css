@@ -194,3 +194,72 @@ section.alt { background: var(--al-srf); }
 section.deep, .al-deep { background: var(--al-srf2); }
 
 @media (prefers-reduced-motion: reduce) { .hero::before, .al-band { background-attachment: scroll; } }
+
+/* ── 9 · The intro sting overlay ─────────────────────────────────────────────
+   Drawn over the real page, never in place of it. See js/alidade-sting-v1.js
+   for why this is an overlay rather than the gate page hypati.us uses.
+
+   display:none is the load-bearing line: with JavaScript off the overlay never
+   appears, so the served page is unchanged and a crawler has nothing to skip
+   past. Only alidade-sting-v1.js ever sets .is-on.
+
+   Depth here is a surface and an opacity, per the ALIDADE standard — the
+   overlay is the page colour at full cover, not a shadow or a blur. */
+#al-sting { display: none; }
+
+#al-sting.is-on {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--al-bg, #060D1B);
+  opacity: 1;
+  transition: opacity 700ms ease;
+}
+
+#al-sting.is-out { opacity: 0; pointer-events: none; }
+
+/* contain, not cover. At 1440x900 (1.6:1) cover crops a 16:9 master top and
+   bottom, and the tagline sits low enough to be the first thing lost. The
+   overlay is already the page colour, so letterboxing is invisible. */
+#al-sting video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+#al-sting.is-ready video { opacity: 1; }
+
+/* The skip control carries the site's own 44px target floor and its focus
+   ring, because it is the only thing on screen while it is up. */
+.al-sting__skip {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.5rem);
+  bottom: clamp(1rem, 3vw, 2.5rem);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.75rem 1.1rem;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--al-t2, #A9BBD3);
+  text-decoration: none;
+  border: 1px solid var(--al-line, rgba(125, 146, 181, 0.35));
+  background: transparent;
+  opacity: 0;
+  transition: opacity 500ms ease 1.2s, color 200ms, border-color 200ms;
+}
+
+#al-sting.is-ready .al-sting__skip { opacity: 1; }
+.al-sting__skip:hover,
+.al-sting__skip:focus-visible { color: var(--al-t1, #E8EFF8); border-color: var(--al-teal, #21E0CD); }
+
+/* While the sting is up the page behind it must not scroll. */
+html.al-sting-locked, html.al-sting-locked body { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) { #al-sting { display: none !important; } }
