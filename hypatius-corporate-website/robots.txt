@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /site/docs/
+Disallow: /reference/
+Disallow: /verification/
+Disallow: /visuals/
+
 Sitemap: https://hypati.us/sitemap.xml

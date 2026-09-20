@@ -20,13 +20,13 @@ video.ready{opacity:1}
 </head>
 <body>
 <div class="stage">
-<video id="sting" src="site/video/hypatius-intro-sting-v2.mp4" poster="site/img/intro-poster-v3.jpg" autoplay muted playsinline preload="auto"></video>
+<video id="sting" src="/site/video/hypatius-intro-sting-v2.mp4" poster="/site/img/intro-poster-v3.jpg" autoplay muted playsinline preload="auto"></video>
 </div>
-<a class="skip" id="skip" href="home.html">Skip intro</a>
+<a class="skip" id="skip" href="/home">Skip intro</a>
 <div class="fade" id="fade"></div>
 <script>
 (function(){
-var dest="home.html",v=document.getElementById("sting"),skip=document.getElementById("skip"),fade=document.getElementById("fade"),done=false;
+var dest="/home",v=document.getElementById("sting"),skip=document.getElementById("skip"),fade=document.getElementById("fade"),done=false;
 function go(){if(done)return;done=true;fade.classList.add("on");setTimeout(function(){location.replace(dest)},700)}
 if(sessionStorage.getItem("hyp-intro-seen")){location.replace(dest);return}
 sessionStorage.setItem("hyp-intro-seen","1");
