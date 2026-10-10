@@ -1,0 +1,16 @@
+/* HYPATIUS hero runtime: layers. Overlays inside a hero keep their resting state unless the scene drives them. */
+.hx{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.hx-poster,.hx-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hx-canvas{opacity:0}
+.hx-poster--start{display:none}
+html.hx-motion .hx-poster--start{display:block}
+html.hx-motion .hx-poster--end{display:none}
+.hx.hx-live .hx-canvas{opacity:1}
+.hx.hx-live .hx-poster{opacity:0}
+
+/* CRATON: the core-sample scene sits in the existing image slot, under its scrim. */
+.cr-hero[data-hx-hero] .hx{z-index:0}
+.hx-gauge{position:absolute;right:max(24px,4vw);top:clamp(96px,14vh,150px);text-align:right;font:500 11px var(--t-mono);letter-spacing:.16em;color:var(--cr-bed-muted,#8F99A5);text-transform:uppercase;z-index:1;pointer-events:none}
+.hx-gauge b{display:block;font:800 64px/1 var(--t-display);letter-spacing:.07em;color:var(--cr-bed-ink,#F1F3F5);margin:6px 0}
+.hx-gauge b span{color:var(--cr-bed-bronze,#B08D57)}
+@media (max-width:900px){.hx-gauge{display:none}}
