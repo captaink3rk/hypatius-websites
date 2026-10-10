@@ -1,6 +1,6 @@
 // ALIDADE hero · "Take a bearing". The A (original art, never recoloured) floats in a bearing ring over a sea of
 // opportunities; the sighting arm sweeps, locks onto one, and the scored card appears beside it.
-// Overlay hooks: [data-hx="card"] and [data-hx="bearing"] are placed by the scene; [data-hx="pwin"] counts to 72.
+// Overlay hooks: [data-hx="card"] and [data-hx="bearing"] are placed by the scene; [data-hx="pwin"] counts to 84.
 import * as THREE from './three.module.min.js';
 import {ramp, ease} from './ease.js';
 
@@ -59,7 +59,7 @@ export default async function create(canvas, {root}) {
     R.render(scene, cam);
     if (card) { const [cx, cy] = screen(v.set(target.x, target.h, target.z)); const k = ramp(t, 3.5, 3.82, ease.alidade);
       card.style.left = (cx + 26) + 'px'; card.style.top = (cy - 40) + 'px'; card.style.opacity = k; card.style.translate = `${-10 * (1 - k)}px 0`; }
-    if (pw) pw.textContent = String(Math.round(72 * ramp(t, 3.5, 4.4)));
+    if (pw) pw.textContent = String(Math.round(84 * ramp(t, 3.5, 4.4)));
     if (brg) { const [bx, by] = screen(v.set(o.x - 9.2, o.y + .4, o.z)); brg.style.left = bx + 'px'; brg.style.top = by + 'px'; brg.style.opacity = lock; }
   }
   return {renderAt, resize};

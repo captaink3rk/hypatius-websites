@@ -1,0 +1,33 @@
+/* HYPATIUS in-page motion · v1 · base layer. Every rule is scoped to html.mx-on, so without the
+   script the page shows its finished state. Brand timing comes from --mx-ease, --mx-dur, --mx-y. */
+.mx-on .mx-reveal{opacity:0;transform:translateY(var(--mx-y));transition:opacity var(--mx-dur) var(--mx-ease),transform var(--mx-dur) var(--mx-ease)}
+.mx-on .mx-reveal.mx-in{opacity:1;transform:none}
+.mx-fill{transform-origin:left center}
+.mx-on [data-mx="bars"] .mx-fill{transform:scaleX(0);transition:transform calc(var(--mx-dur) * 2.4) var(--mx-ease);transition-delay:inherit}
+.mx-on [data-mx="bars"].mx-in .mx-fill{transform:scaleX(1)}
+.mx-on [data-mx="bars"] .mx-late{opacity:0;transition:opacity var(--mx-dur) var(--mx-ease);transition-delay:inherit}
+.mx-on [data-mx="bars"].mx-in .mx-late{opacity:1;transition-delay:calc(var(--mx-dur) * 2)}
+.mx-on [data-mx="rows"]>*{opacity:0;transform:translateY(var(--mx-y));transition:opacity var(--mx-dur) var(--mx-ease),transform var(--mx-dur) var(--mx-ease)}
+.mx-on [data-mx="rows"].mx-in>*{opacity:1;transform:none}
+[data-mx="steps"] [data-mx-step]{cursor:pointer}
+[data-mx="steps"] [data-mx-step]:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+[data-mx-progress]{--p:0}
+.mx-still *{transition:none!important;animation:none!important}
+
+/* ── ALIDADE · worked score (seven factors). Series 1 teal, solid fill plus the ▲ band mark; the
+   unearned share of each weight is the hairline track; the named gap carries ■ and a word. */
+.mx-sf{margin-top:24px;padding:20px 24px 22px}
+.mx-sf__head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-bottom:10px}
+.mx-sf__rows{list-style:none;margin:0;padding:0}
+.mx-sf__rows li{display:grid;grid-template-columns:minmax(150px,200px) minmax(0,1fr) 76px;column-gap:16px;align-items:center;padding:9px 0;border-bottom:1px solid var(--al-hair,rgba(147,164,189,.14))}
+.mx-sf__n{font-weight:600;color:var(--al-t1);font-size:16px}
+.mx-sf__bar{display:block;height:12px;width:calc(var(--w) * 100%);border:1px solid rgba(147,164,189,.38);position:relative}
+.mx-sf__fill{position:absolute;inset:0 auto 0 0;width:calc(var(--v) * 100%);background:var(--al-teal)}
+.mx-sf__v{font:400 13px 'IBM Plex Mono',monospace;color:var(--al-t3);text-align:right;font-variant-numeric:tabular-nums}
+.mx-sf__v b{color:var(--al-t1);font-weight:500}
+.mx-sf__gap{grid-column:2/4;margin-top:6px;font-size:12px}
+.mx-sf__total{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:8px 22px;align-items:center;margin-top:18px}
+.mx-sf__score{font:600 64px/1 'Barlow Condensed',sans-serif;color:var(--al-t1);font-variant-numeric:tabular-nums}
+.mx-sf__of{font:500 14px Rajdhani,sans-serif;color:var(--al-t2);margin-left:8px}
+.mx-sf__total p{margin:0;max-width:52ch;color:var(--al-t2)}
+@media (max-width:760px){.mx-sf__rows li{grid-template-columns:minmax(0,1fr) 64px}.mx-sf__bar{grid-column:1/3;grid-row:2;margin-top:6px}.mx-sf__total{grid-template-columns:auto auto}.mx-sf__total p{grid-column:1/-1}}

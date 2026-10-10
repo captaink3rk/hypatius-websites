@@ -135,7 +135,7 @@
      from a tenant workstation is an egress a security reviewer will
      ask about, and the answer should be "there isn't one". */
   --al-font-display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
-  --al-font-ui:      "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --al-font-ui:      "Rajdhani", system-ui, -apple-system, "Segoe UI", sans-serif;
   --al-font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Product runs two weights only. Heavier weights bloom on the

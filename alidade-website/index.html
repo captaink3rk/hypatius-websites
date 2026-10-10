@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="css/alidade-product-v2.css">
   <link rel="stylesheet" href="css/alidade-v3.css">
   <link rel="stylesheet" href="assets/hero-v1/hero.css">
+  <link rel="stylesheet" href="assets/motion-v1/hx-motion.css">
   <script>(function(){try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches||innerWidth<760||(navigator.connection&&navigator.connection.saveData);if(!m)document.documentElement.classList.add('hx-motion')}catch(e){}})()</script>
 
 <script type="application/ld+json">
@@ -241,6 +242,7 @@
                display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center;
                font-size:12px; color:var(--al-t3); }
 </style>
+<link rel="stylesheet" href="assets/family-v1.css">
 </head>
 
 <body>
@@ -301,7 +303,8 @@
   <div class="hx-bearing" data-hx="bearing" aria-hidden="true">BRG 042° · LOCKED</div>
   <div class="hx-card" data-hx="card" aria-label="Example opportunity, simulated">
     <div class="k"><span>Opportunity · scored</span><b>SIMULATED</b></div>
-    <div class="n"><span data-hx="pwin">72</span><small>% win probability</small></div>
+    <div class="n"><span data-hx="pwin">84</span><small>probability of win</small></div>
+    <div class="al-state" data-band="high">Pursue</div>
     <div class="row">7 of 7 factors cited · teaming fit high</div>
   </div>
   <div class="wrap hero-grid">
@@ -664,7 +667,7 @@
         <div class="band__n">80+</div>
         <div>
           <div class="al-state" data-band="high">Pursue</div>
-          <p style="font-size:13.5px;margin:8px 0 0">Commit the capture team.
+          <p style="margin:8px 0 0">Commit the capture team.
             Gaps, if any, are closeable inside the schedule.</p>
         </div>
       </div>
@@ -672,15 +675,15 @@
         <div class="band__n">60–79</div>
         <div>
           <div class="al-state" data-band="mid">Consider</div>
-          <p style="font-size:13.5px;margin:8px 0 0">Bid only with a partner who
+          <p style="margin:8px 0 0">Bid only with a partner who
             closes the named gap. Teaming changes the answer.</p>
         </div>
       </div>
       <div class="band" data-band="low">
         <div class="band__n">&lt;60</div>
         <div>
-          <div class="al-state" data-band="low">Hold</div>
-          <p style="font-size:13.5px;margin:8px 0 0">The B&amp;P is better spent
+          <div class="al-state" data-band="low">Pass</div>
+          <p style="margin:8px 0 0">The B&amp;P is better spent
             elsewhere. The score says why, in writing.</p>
         </div>
       </div>
@@ -705,6 +708,24 @@
         </tbody>
       </table>
     </div>
+
+    <figure class="al-card al-edge mx-sf" aria-labelledby="mx-sf-t">
+      <figcaption class="mx-sf__head"><span class="al-lbl" id="mx-sf-t">Worked example · one opportunity, scored</span><span class="al-lbl">Synthetic · not a real opportunity</span></figcaption>
+      <ol class="mx-sf__rows" data-mx="bars" data-gap="110">
+        <li><span class="mx-sf__n">Agency affinity</span><span class="mx-sf__bar" style="--w:1.000"><span class="mx-sf__fill mx-fill" style="--v:0.850"></span></span><span class="mx-sf__v"><b>17</b> / 20</span></li>
+        <li><span class="mx-sf__n">Capability match</span><span class="mx-sf__bar" style="--w:1.000"><span class="mx-sf__fill mx-fill" style="--v:0.900"></span></span><span class="mx-sf__v"><b>18</b> / 20</span></li>
+        <li><span class="mx-sf__n">NAICS alignment</span><span class="mx-sf__bar" style="--w:0.750"><span class="mx-sf__fill mx-fill" style="--v:0.933"></span></span><span class="mx-sf__v"><b>14</b> / 15</span></li>
+        <li><span class="mx-sf__n">Competition level</span><span class="mx-sf__bar" style="--w:0.750"><span class="mx-sf__fill mx-fill" style="--v:0.600"></span></span><span class="mx-sf__v"><b>9</b> / 15</span><span class="mx-sf__gap mx-late al-state" data-state="gap">gap · incumbent strength</span></li>
+        <li><span class="mx-sf__n">Past performance</span><span class="mx-sf__bar" style="--w:0.500"><span class="mx-sf__fill mx-fill" style="--v:0.900"></span></span><span class="mx-sf__v"><b>9</b> / 10</span></li>
+        <li><span class="mx-sf__n">Certification match</span><span class="mx-sf__bar" style="--w:0.500"><span class="mx-sf__fill mx-fill" style="--v:1.000"></span></span><span class="mx-sf__v"><b>10</b> / 10</span></li>
+        <li><span class="mx-sf__n">Political context</span><span class="mx-sf__bar" style="--w:0.500"><span class="mx-sf__fill mx-fill" style="--v:0.700"></span></span><span class="mx-sf__v"><b>7</b> / 10</span></li>
+      </ol>
+      <div class="mx-sf__total">
+        <div><span class="mx-sf__score" data-mx="count" data-to="84" data-ms="1500">84</span><span class="mx-sf__of">/ 100 probability of win</span></div>
+        <div class="al-state" data-band="high">Pursue</div>
+        <p>Score 84, pursue. One named gap: competition level, 9 of 15. The capture plan closes it with a partner who holds the incumbent's past performance.</p>
+      </div>
+    </figure>
     <span class="al-proof">
       Weights are fixed and published. A score shown in a briefing deck equals the
       score in the application — the bands and weights are one implementation.
@@ -992,9 +1013,21 @@
       <span style="margin-left:auto">© 2026 HYPATIUS, LLC. All rights reserved.</span>
     </div>
   </div>
+<!-- @family:begin · shared family bar (assets: family.css) -->
+<nav class="hx-family" aria-label="The HYPATIUS family" style="--fb-ink:#EFF5FE;--fb-mute:#93A4BD;--fb-line:rgba(147,164,189,.18);--fb-here:rgba(33,224,205,.05)">
+  <div class="hx-family__k">The family · corporate leads, platforms follow</div>
+  <ul>
+    <li data-co="hy"><a href="https://hypati.us" rel="noopener"><i aria-hidden="true"></i><b>HYPATIUS</b><span>Parent company</span></a></li>
+    <li data-co="st"><a href="https://starchitect.us" rel="noopener"><i aria-hidden="true"></i><b>STARCHITECT</b><span>Space wargaming &amp; BMC3I · Live</span></a></li>
+    <li data-co="al" aria-current="true"><a href="https://alidade.us"><i aria-hidden="true"></i><b>ALIDADE</b><span>Capture decision intelligence · In development</span></a></li>
+    <li data-co="cr"><a href="https://craton-erp.us" rel="noopener"><i aria-hidden="true"></i><b>CRATON</b><span>Audit-ready operations · In development</span></a></li>
+  </ul>
+</nav>
+<!-- @family:end -->
 </footer>
 
 <script src="js/alidade-sting-v1.js" defer></script>
 <script src="assets/hero-v1/hero-runtime.js" defer></script>
+<script src="assets/motion-v1/hx-motion.js" data-brand="al" data-reveal="main section:not(.hero) .wrap > *" defer></script>
 </body>
 </html>

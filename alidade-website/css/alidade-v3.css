@@ -268,3 +268,15 @@ section.deep, .al-deep { background: var(--al-srf2); }
 html.al-sting-locked, html.al-sting-locked body { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) { #al-sting { display: none !important; } }
+
+
+/* ── 10 Oct 2026 · brand-standard alignment (HYP-BS-03-ALID v1.0) ─────────────
+   1. Interface face is Rajdhani everywhere (decided 25 Sep; Inter retired). Rajdhani sets
+      smaller than Inter at the same size, so body runs at weight 500 with a 16px floor.
+   2. Coral is a product gap signal and reads as red: on this public site the low band and
+      risk states keep their mark (■) and word, in the microlabel tone instead of coral.
+   3. The low band's word is PASS, matching the three-band rule (▲ PURSUE · ● CONSIDER · ■ PASS). */
+body{font-weight:500}
+.al-card p,.al-card li,main li,section td,.band p,.hero .lede{font-size:max(16px,1rem)}
+:root,[data-brand="alidade"]{--al-coral:var(--al-t3);--al-coral-fill:rgba(125,146,181,.10);--al-coral-edge:rgba(125,146,181,.30)}
+.lede,.hero .lede{font-weight:500}
