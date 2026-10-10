@@ -1,7 +1,7 @@
 /* ============================================================
    HYPATIUS — Flagship homepage behavior
    Nav state · mobile drawer · scroll reveals · count-up ·
-   hero starfield · ticker · contact form · Tweaks protocol
+   hero starfield · ticker · briefing form · subnav scrollspy
    ============================================================ */
 (function () {
   'use strict';
@@ -83,10 +83,14 @@
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach(function (el) { counted.observe(el); });
 
-  /* ---------------- Hero starfield ---------------- */
+  /* ---------------- Hero starfield ----------------
+     The loop runs only while it can be seen: it stops when the tab is
+     hidden, when the canvas is scrolled off screen, and whenever the
+     viewer prefers reduced motion (a single static frame is drawn). */
   var canvas = document.getElementById('stars');
-  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var ctx = canvas.getContext('2d'), stars = [], W, H, raf;
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext('2d'), stars = [], W = 0, H = 0, raf = 0, onScreen = true;
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)');
     function size() {
       W = canvas.width = canvas.offsetWidth * devicePixelRatio;
       H = canvas.height = canvas.offsetHeight * devicePixelRatio;
@@ -99,106 +103,84 @@
         dir: Math.random() > 0.5 ? 1 : -1, vx: (Math.random() - 0.5) * 0.06 * devicePixelRatio
       });
     }
-    function draw() {
+    function paint(advance) {
       ctx.clearRect(0, 0, W, H);
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
-        s.a += s.tw * s.dir;
-        if (s.a > 0.8 || s.a < 0.12) s.dir *= -1;
-        s.x += s.vx; if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
+        if (advance) {
+          s.a += s.tw * s.dir;
+          if (s.a > 0.8 || s.a < 0.12) s.dir *= -1;
+          s.x += s.vx; if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
+        }
         ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283);
         ctx.fillStyle = 'rgba(180,210,235,' + s.a + ')'; ctx.fill();
       }
-      raf = requestAnimationFrame(draw);
     }
-    size(); draw();
-    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 200); });
+    function frame() { paint(true); raf = requestAnimationFrame(frame); }
+    function canRun() { return !rm.matches && onScreen && document.visibilityState === 'visible'; }
+    function update() {
+      if (canRun()) { if (!raf) raf = requestAnimationFrame(frame); }
+      else if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    }
+    size(); paint(false); update();
+    document.addEventListener('visibilitychange', update);
+    if (rm.addEventListener) rm.addEventListener('change', update); else if (rm.addListener) rm.addListener(update);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[entries.length - 1].isIntersecting; update();
+      }).observe(canvas);
+    }
+    var rt; window.addEventListener('resize', function () {
+      clearTimeout(rt); rt = setTimeout(function () { size(); if (!raf) paint(false); }, 200);
+    });
   }
 
-  /* ---------------- Ticker duplicate (seamless loop) ---------------- */
+  /* ---------------- Ticker: seamless loop + pause/play (WCAG 2.2.2) ---------------- */
+  var ticker = document.querySelector('.ticker');
   var track = document.querySelector('.ticker__track');
-  if (track) track.innerHTML += track.innerHTML;
+  if (track) {
+    [].slice.call(track.children).forEach(function (item) {
+      var copy = item.cloneNode(true); copy.setAttribute('aria-hidden', 'true'); track.appendChild(copy);
+    });
+  }
+  var tickBtn = document.querySelector('.ticker__toggle');
+  if (ticker && tickBtn) tickBtn.addEventListener('click', function () {
+    var paused = ticker.classList.toggle('ticker--paused');
+    tickBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    tickBtn.textContent = paused ? 'Play' : 'Pause';
+    tickBtn.setAttribute('aria-label', paused ? 'Play ticker' : 'Pause ticker');
+  });
 
-  /* ---------------- Contact form ---------------- */
+  /* ---------------- Briefing request form ----------------
+     No third-party service: submit composes a pre-filled email to
+     leadership@hypati.us in the visitor's own mail client, then shows
+     the confirmation (with the same link, in case nothing opened). */
   var form = document.getElementById('briefingForm');
   if (form) form.addEventListener('submit', function (e) {
     e.preventDefault();
+    function val(n) { var f = form.elements[n]; return f ? String(f.value || '').trim() : ''; }
+    var name = val('name'), org = val('organization');
+    var subject = 'Briefing request \u2014 ' + (org ? name + ' / ' + org : name);
+    var body = [
+      'Name: ' + name,
+      'Organization: ' + (org || '-'),
+      'Work email: ' + val('email'),
+      'Mission: ' + val('mission'),
+      '',
+      'How can we help?',
+      val('message') || '-'
+    ].join('\r\n');
+    var href = 'mailto:leadership@hypati.us?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = href;
     var ok = document.getElementById('formOk');
+    var link = document.getElementById('formMailto');
+    if (link) link.setAttribute('href', href);
     form.style.display = 'none';
-    if (ok) ok.style.display = 'block';
+    if (ok) { ok.style.display = 'block'; ok.focus(); }
   });
-
-  /* ============================================================
-     TWEAKS
-     ============================================================ */
-  var defaults = window.TWEAK_DEFAULTS || {};
-  var state = Object.assign({ hero: 'battlespace', portfolio: 'showcase', accent: 'aqua', headline: 'clarity' }, defaults);
-  var root = document.documentElement;
-
-  var HEADLINES = {
-    clarity: {
-      title: 'Accountable automation <span class="sig">for defense.</span>',
-      sub: 'HYPATIUS, LLC builds three platforms that <b>decide, prove and account for</b> the work of contested-domain defense \u2014 each one leaving a record a commander, a bid board or an auditor can take apart. Clarity for contested environments, with the evidence attached.'
-    },
-    superiority: {
-      title: 'We engineer <span class="sig">decision superiority.</span>',
-      sub: 'Not features. Outcomes. HYPATIUS turns contested space, spectrum, and procurement into <b>a single operating picture</b> \u2014 so good people make the right call faster than the threat.'
-    },
-    shield: {
-      title: 'The software <span class="sig">shield.</span>',
-      sub: 'A software operating layer for contested domains \u2014 <b>orbital, maritime, and federal</b>. We give the mission a decisive edge where the environment fights back.'
-    }
-  };
-
-  function applyHeadline() {
-    var h = HEADLINES[state.headline] || HEADLINES.clarity;
-    var t = document.querySelector('.hero__title'), s = document.querySelector('.hero__sub');
-    if (t) t.innerHTML = h.title;
-    if (s) s.innerHTML = h.sub;
-  }
-  function apply() {
-    root.setAttribute('data-hero', state.hero);
-    root.setAttribute('data-portfolio', state.portfolio);
-    root.setAttribute('data-accent', state.accent);
-    applyHeadline();
-    document.querySelectorAll('.tw__seg').forEach(function (seg) {
-      var key = seg.getAttribute('data-key');
-      seg.querySelectorAll('button').forEach(function (b) {
-        b.classList.toggle('sel', b.getAttribute('data-val') === state[key]);
-      });
-    });
-  }
-  apply();
-
-  function setKey(key, val) {
-    state[key] = val; apply();
-    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: (function () { var o = {}; o[key] = val; return o; })() }, '*'); } catch (e) {}
-  }
-
-  document.querySelectorAll('.tw__seg').forEach(function (seg) {
-    var key = seg.getAttribute('data-key');
-    seg.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      setKey(key, b.getAttribute('data-val'));
-    });
-  });
-
-  var panel = document.getElementById('tweaks');
-  var closeBtn = document.getElementById('twClose');
-  if (panel) {
-    window.addEventListener('message', function (e) {
-      var d = e.data || {};
-      if (d.type === '__activate_edit_mode') panel.classList.add('on');
-      else if (d.type === '__deactivate_edit_mode') panel.classList.remove('on');
-    });
-    if (closeBtn) closeBtn.addEventListener('click', function () {
-      panel.classList.remove('on');
-      try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (e) {}
-    });
-    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
-  }
 
   /* ---------------- Subnav scrollspy (inner pages) ---------------- */
+  var root = document.documentElement;
   var subnavLinks = [].slice.call(document.querySelectorAll('.subnav a[href^="#"]'));
   if (subnavLinks.length) {
     var sections = subnavLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
