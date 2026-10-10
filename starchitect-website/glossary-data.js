@@ -100,7 +100,7 @@ window.STARCHITECT_GLOSSARY = [
   // ===== D =====
   {
     term: "DDIL",
-    abbrev: "Denied, Degraded, Intermittent, Limited",
+    abbrev: "Denied, Disrupted, Intermittent, Limited",
     category: "Doctrine",
     definition: "The operating conditions of contested communications environments. In DDIL, networks fail, satellites are jammed, ground stations are destroyed, and bandwidth becomes scarce. STARCHITECT is engineered specifically to fight through DDIL via its five-tier PACE architecture.",
     seeAlso: "PACE, K3s, CRDT"
@@ -148,7 +148,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "F2T2EA",
     abbrev: "Find, Fix, Track, Target, Engage, Assess",
     category: "Doctrine",
-    definition: "The canonical six-step kill chain. Each step has discrete sensor and decision requirements. Compressing F2T2EA timeline is the central challenge of modern command and control — and the headline metric STARCHITECT optimizes.",
+    definition: "The canonical six-step kill chain. Each step has discrete sensor and decision requirements. Compressing F2T2EA timeline is the central challenge of modern command and control — and the headline measure STARCHITECT optimizes.",
     seeAlso: "OODA, BMC3I"
   },
   {
@@ -249,7 +249,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "KEDA",
     abbrev: "Kubernetes Event-Driven Autoscaling",
     category: "Architecture",
-    definition: "A Kubernetes component that scales workloads based on event triggers rather than CPU or memory metrics. STARCHITECT uses KEDA to spin up thousands of parallel worker pods for massively-parallel orbital prediction — evaluating thousands of intercept permutations in seconds.",
+    definition: "A Kubernetes component that scales workloads based on event triggers rather than CPU or memory load. STARCHITECT uses KEDA to spin up thousands of parallel worker pods for massively-parallel orbital prediction — evaluating thousands of intercept permutations in seconds.",
     seeAlso: "K3s, NATS"
   },
   {
@@ -547,7 +547,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "Track Quality Score",
     abbrev: "TQS",
     category: "Operations",
-    definition: "A composite confidence metric (0.0–1.0) representing the operator's confidence in a sensor track. STARCHITECT computes TQS from path diversity, signal-to-noise ratio, and latency margins — and auto-escalates engagement authority when TQS crosses configurable thresholds.",
+    definition: "A composite confidence measure (0.0–1.0) representing the operator's confidence in a sensor track. STARCHITECT computes TQS from path diversity, signal-to-noise ratio, and latency margins — and auto-escalates engagement authority when TQS crosses configurable thresholds.",
     seeAlso: "EKF, Link 16, Fog of War"
   },
 

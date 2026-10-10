@@ -138,6 +138,17 @@ function foot() {
   </div>
   <div class="footer-bottom"><div>&copy; 2026 HYPATIUS, LLC &middot; STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 &middot; CAGE 19S89</div></div>
   <div class="itar">${ITAR}</div>
+<!-- @family:begin · shared family bar (assets: family.css) -->
+<nav class="hx-family" aria-label="The HYPATIUS family" style="--fb-ink:#EFE9DD;--fb-mute:#A8B0BD;--fb-line:rgba(239,233,221,.14);--fb-here:rgba(212,160,59,.06)">
+  <div class="hx-family__k">The family · corporate leads, platforms follow</div>
+  <ul>
+    <li data-co="hy"><a href="https://hypati.us" rel="noopener"><i aria-hidden="true"></i><b>HYPATIUS</b><span>Parent company</span></a></li>
+    <li data-co="st" aria-current="true"><a href="https://starchitect.us"><i aria-hidden="true"></i><b>STARCHITECT</b><span>Space wargaming &amp; BMC3I · Live</span></a></li>
+    <li data-co="al"><a href="https://alidade.us" rel="noopener"><i aria-hidden="true"></i><b>ALIDADE</b><span>Capture decision intelligence · In development</span></a></li>
+    <li data-co="cr"><a href="https://craton-erp.us" rel="noopener"><i aria-hidden="true"></i><b>CRATON</b><span>Audit-ready operations · In development</span></a></li>
+  </ul>
+</nav>
+<!-- @family:end -->
 </footer>
 ${END}`;
 }
@@ -163,7 +174,8 @@ for (const file of readdirSync(SITE).filter(f => f.endsWith('.html')).sort()) {
   html = html.replace(new RegExp(
     HBEGIN.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '[\\s\\S]*?' +
     HEND.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\n?', 'g'), '');
-  html = html.replace(/<\/head>/i, `${HEAD_CSS}\n</head>`);
+  html = html.replace(/<\/head>/i, `${HEAD_CSS}\n<link rel="stylesheet" href="assets/family-v1.css">
+</head>`);
   // data-chrome flips to "baked" so home-fx.js knows to stand down. Keeping the
   // attribute (rather than deleting it) means the page still declares that it
   // HAS chrome, which is what the harness checks for.

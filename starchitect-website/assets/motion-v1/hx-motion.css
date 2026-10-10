@@ -1,0 +1,44 @@
+/* HYPATIUS in-page motion · v1 · base layer. Every rule is scoped to html.mx-on, so without the
+   script the page shows its finished state. Brand timing comes from --mx-ease, --mx-dur, --mx-y. */
+.mx-on .mx-reveal{opacity:0;transform:translateY(var(--mx-y));transition:opacity var(--mx-dur) var(--mx-ease),transform var(--mx-dur) var(--mx-ease)}
+.mx-on .mx-reveal.mx-in{opacity:1;transform:none}
+.mx-fill{transform-origin:left center}
+.mx-on [data-mx="bars"] .mx-fill{transform:scaleX(0);transition:transform calc(var(--mx-dur) * 2.4) var(--mx-ease);transition-delay:inherit}
+.mx-on [data-mx="bars"].mx-in .mx-fill{transform:scaleX(1)}
+.mx-on [data-mx="bars"] .mx-late{opacity:0;transition:opacity var(--mx-dur) var(--mx-ease);transition-delay:inherit}
+.mx-on [data-mx="bars"].mx-in .mx-late{opacity:1;transition-delay:calc(var(--mx-dur) * 2)}
+.mx-on [data-mx="rows"]>*{opacity:0;transform:translateY(var(--mx-y));transition:opacity var(--mx-dur) var(--mx-ease),transform var(--mx-dur) var(--mx-ease)}
+.mx-on [data-mx="rows"].mx-in>*{opacity:1;transform:none}
+[data-mx="steps"] [data-mx-step]{cursor:pointer}
+[data-mx="steps"] [data-mx-step]:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+[data-mx-progress]{--p:0}
+.mx-still *{transition:none!important;animation:none!important}
+
+/* ── STARCHITECT · PACE ladder. Two channels: node count is the bar height in cyan (telemetry);
+   assurance is the bone reference with a 45° hatch. The live tier carries FUI corner brackets.
+   Moves are 0.4 s, 1–2 px; the sequence plays once and holds on T4. */
+.mx-pace{position:relative;max-width:820px;margin:8px auto 0;text-align:left}
+.mx-pace__ref{height:10px;margin:0 auto 6px;max-width:790px;background:repeating-linear-gradient(135deg,rgba(239,233,221,.55) 0 1px,transparent 1px 6px);border-top:1px solid rgba(239,233,221,.55);position:relative}
+.mx-pace__ref span{position:absolute;right:0;top:-22px;font:500 10px var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--bone)}
+.mx-pace .pace-stairs .tier{position:relative;transform-origin:bottom;transition:transform var(--mx-dur) var(--mx-ease),background var(--mx-dur) var(--mx-ease)}
+.mx-on .mx-pace .pace-stairs .tier{transform:scaleY(.02)}
+.mx-on .mx-pace.mx-in .pace-stairs .tier{transform:none}
+.mx-on .mx-pace.mx-in .pace-stairs .tier:nth-child(2){transition-delay:.06s}.mx-on .mx-pace.mx-in .pace-stairs .tier:nth-child(3){transition-delay:.12s}
+.mx-on .mx-pace.mx-in .pace-stairs .tier:nth-child(4){transition-delay:.18s}.mx-on .mx-pace.mx-in .pace-stairs .tier:nth-child(5){transition-delay:.24s}
+.mx-pace .pace-stairs .tier::before,.mx-pace .pace-stairs .tier::after{content:"";position:absolute;width:12px;height:12px;border:0 solid var(--gold);opacity:0;transition:opacity .15s var(--mx-ease)}
+.mx-pace .pace-stairs .tier::before{top:-6px;left:-6px;border-top-width:2px;border-left-width:2px}
+.mx-pace .pace-stairs .tier::after{top:-6px;right:-6px;border-top-width:2px;border-right-width:2px}
+.mx-pace .pace-stairs .tier.mx-cur{background:#16263F}
+.mx-pace .pace-stairs .tier.mx-cur::before,.mx-pace .pace-stairs .tier.mx-cur::after{opacity:1}
+.mx-pace__cap{min-height:3.2em;margin:18px auto 0;max-width:640px;text-align:center}
+.mx-pace__cap p{margin:0;font-size:17px;color:var(--slate)}
+.mx-pace__cap p b{color:var(--bone);font-weight:600}
+.mx-on .mx-pace__cap p{display:none}
+.mx-on .mx-pace[data-mx-cur="0"] [data-cap="0"],.mx-on .mx-pace[data-mx-cur="1"] [data-cap="1"],.mx-on .mx-pace[data-mx-cur="2"] [data-cap="2"],
+.mx-on .mx-pace[data-mx-cur="3"] [data-cap="3"],.mx-on .mx-pace[data-mx-cur="4"] [data-cap="4"]{display:block}
+.mx-pace__key{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:16px;font:500 10px var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--mute-text)}
+.mx-pace__key i{display:inline-block;width:12px;height:8px;margin-right:8px;vertical-align:0}
+.mx-pace__key .k1{background:var(--cyan)}.mx-pace__key .k4{background:repeating-linear-gradient(135deg,var(--bone) 0 1px,transparent 1px 4px);border-top:1px solid var(--bone)}
+.mx-pace .pace-stairs .tier{border-top:2px solid var(--cyan)}
+.mx-pace__key .k1{background:none;border-top:2px solid var(--cyan);border-left:1px solid var(--hair);border-right:1px solid var(--hair);height:8px}
+.mx-pace{padding-top:26px}
