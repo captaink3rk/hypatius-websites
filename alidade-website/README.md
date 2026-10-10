@@ -1,9 +1,9 @@
-# alidade.us — static deploy
-Root: this folder. No build step. Vercel framework preset: Other.
+# HYPATIUS hero lab
 
-- index.html — single-page site
-- css/ — fonts.css (self-hosted Barlow Condensed, Inter, IBM Plex Mono), alidade-v2.css (tokens), alidade-product-v2.css (components)
-- assets/brand, assets/glyphs, assets/imagery, assets/fonts — only files the page references
-- vercel.json — clean URLs + long-cache headers on /assets
+Four working hero concepts, one per site: `hy/`, `st/`, `al/`, `cr/`. Each is a standalone page on three.js with the brand's own logo, colors, fonts and motion curve.
 
-All paths are root-absolute (/assets/…, /css/…), so the folder must be the repo root or Vercel "Root Directory".
+Run locally: `python3 -m http.server 9200` in this folder, then open http://localhost:9200/st/ (or hy, al, cr).
+
+- `assets/clock.js`: the shared clock and the brand easing curves. Real time in the browser; `?cap=1` lets `cap.js` step frames for video capture; reduced motion renders one still frame.
+- `cap.js`: Playwright capture of stills or 8-second clips (`node cap.js st video 8 24`).
+- Data in the STARCHITECT and ALIDADE heroes is tagged SIMULATED; the CRATON counter is illustrative.
