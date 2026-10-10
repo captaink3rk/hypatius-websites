@@ -1,0 +1,19 @@
+/* HYPATIUS hero runtime: layers. Overlays inside a hero keep their resting state unless the scene drives them. */
+.hx{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.hx-poster,.hx-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hx-canvas{opacity:0}
+.hx-poster--start{display:none}
+html.hx-motion .hx-poster--start{display:block}
+html.hx-motion .hx-poster--end{display:none}
+.hx.hx-live .hx-canvas{opacity:1}
+.hx.hx-live .hx-poster{opacity:0}
+
+/* HYPATIUS: the Earth photo is the poster. The live orbit crossfades in over it; the 2D starfield bows out. */
+.hero[data-hx-hero] .hx{z-index:-2}
+.hero[data-hx-hero] canvas#stars{transition:opacity .9s cubic-bezier(.2,.8,.2,1)}
+.hero[data-hx-hero]:has(.hx-live) canvas#stars{opacity:0}
+.hero[data-hx-hero]:has(.hx-live) .hero__veil{background:linear-gradient(90deg,rgba(4,9,15,.92) 0%,rgba(4,9,15,.6) 40%,rgba(4,9,15,0) 62%),linear-gradient(0deg,rgba(4,9,15,.8) 0%,rgba(4,9,15,0) 24%)}
+.hx-tag{position:absolute;left:0;top:0;opacity:0;z-index:1;display:flex;gap:8px;align-items:center;white-space:nowrap;pointer-events:none;font:500 10px 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:#B9C5D4}
+.hx-tag b{font:600 16px Rajdhani,system-ui,sans-serif;letter-spacing:.12em;color:#F2F6FA}
+.hx-tag i{width:8px;height:8px;border-radius:50%;flex:none}
+.hx-tag.flip i{order:3}

@@ -1,98 +1,44 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HYPATIUS · Hero concept · Three platforms, one orbit</title>
-<link rel="stylesheet" href="../assets/fonts.css">
-<script type="importmap">{"imports":{"three":"../three/build/three.module.js"}}</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HYPATIUS</title>
+<link rel="canonical" href="https://hypati.us/home">
 <style>
-:root{--page:#060F1C;--cobalt:#1A4FBA;--cobalt4:#3B7BD9;--aqua:#4FC3D9;--ink:#F2F6FA;--slate:#B9C5D4;--muted:#7F8EA6;--line:rgba(185,197,212,.14);--gold:#D4A03B;--teal:#21E0CD;--bronze:#B08D57}
-*{box-sizing:border-box}html,body{margin:0;background:var(--page);color:var(--ink);font-family:Rajdhani,system-ui,sans-serif}
-.hero{position:relative;height:100vh;min-height:720px;overflow:hidden}
-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,15,28,.9) 0,rgba(6,15,28,.5) 36%,rgba(6,15,28,0) 58%)}
-nav{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;padding:22px 56px}
-nav img{height:22px}
-nav ul{display:flex;gap:30px;list-style:none;margin:0 28px 0 auto;padding:0;font:600 15px Rajdhani;letter-spacing:.04em;color:var(--slate)}
-.btn{font:600 14px Rajdhani;letter-spacing:.06em;padding:12px 18px;background:var(--aqua);color:var(--page);text-decoration:none;border:1px solid var(--aqua);border-radius:2px}
-.btn.ghost{background:transparent;color:var(--ink);border-color:rgba(185,197,212,.35)}
-.copy{position:absolute;left:56px;top:50%;transform:translateY(-44%);max-width:640px}
-.eyebrow{font:500 11px "IBM Plex Mono";letter-spacing:.2em;color:var(--aqua);text-transform:uppercase;display:flex;align-items:center;gap:12px}
-.eyebrow:before{content:"";width:28px;height:1px;background:var(--aqua)}
-h1{font:400 clamp(64px,8.2vw,124px)/.9 "Bebas Neue",sans-serif;margin:22px 0 18px}
-h1 span{display:block}h1 .a{color:var(--aqua)}
-.beam{display:flex;align-items:center;width:340px;margin:0 0 22px}.beam s{height:2px;background:var(--cobalt);flex:none;text-decoration:none}.beam i{width:9px;height:9px;border-radius:50%;background:var(--aqua);box-shadow:0 0 10px var(--aqua);flex:none}
-.lede{font:500 20px/1.45 Rajdhani;color:var(--slate);max-width:520px;margin:0 0 30px}
-.btns{display:flex;gap:12px}
-.tag{position:absolute;font:500 10px "IBM Plex Mono";letter-spacing:.18em;text-transform:uppercase;color:var(--slate);white-space:nowrap;pointer-events:none;display:flex;gap:8px;align-items:center}
-.tag b{font:600 16px Rajdhani;letter-spacing:.12em;color:var(--ink)}
-.tag.flip i{order:3}.tag i{width:8px;height:8px;border-radius:50%}
-.stamp{position:absolute;left:56px;bottom:26px;font:400 10px "IBM Plex Mono";letter-spacing:.2em;color:var(--muted)}
-@media (max-width:900px){nav ul{display:none}.copy{left:24px;right:24px}nav{padding:16px 24px}.tag{display:none}}
-</style></head><body>
-<section class="hero">
-  <canvas id="c"></canvas><div class="shade"></div>
-  <nav><img src="../assets/hypatius-wordmark.png" alt="HYPATIUS"><ul><li>Platforms</li><li>The record</li><li>Method</li><li>Company</li><li>News</li></ul><a class="btn" href="#">Request a briefing</a></nav>
-  <div class="copy" id="copy">
-    <div class="eyebrow">Defense technology · Charleston, SC</div>
-    <h1><span>Accountable automation</span><span class="a">for defense.</span></h1>
-    <div class="beam"><s id="bm"></s><i></i></div>
-    <p class="lede">Three platforms that decide, prove and account for the work of contested-domain defense, each one leaving a record a commander, a bid board or an auditor can take apart.</p>
-    <div class="btns"><a class="btn" href="#">Explore the platforms</a><a class="btn ghost" href="#">Contracting with HYPATIUS</a></div>
-  </div>
-  <div class="tag" id="t0"><i style="background:var(--gold)"></i><b>STARCHITECT</b><span>Live</span></div>
-  <div class="tag" id="t1"><i style="background:var(--teal)"></i><b>ALIDADE</b><span>In development</span></div>
-  <div class="tag" id="t2"><i style="background:var(--bronze)"></i><b>CRATON</b><span>In development</span></div>
-  <div class="stamp">HYPATIUS, LLC · UEI UKELB3UV76V6 · CAGE 19S89</div>
-</section>
-<script type="module">
-import * as THREE from 'three';
-import {run,ramp,ease} from '../assets/clock.js';
-const cv=document.getElementById('c');
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true});
-R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x060F1C,1);
-const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(34,1,10,2e6);
-const RE=6378;
-{const g=new THREE.BufferGeometry(),p=[];let s=5;const r=()=>{s=(s*16807)%2147483647;return s/2147483647};
- for(let i=0;i<2400;i++){const v=new THREE.Vector3(r()*2-1,r()*2-1,r()*2-1).normalize().multiplyScalar(9e5);p.push(v.x,v.y,v.z)}
- g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:0x9FB0C8,size:1.5,sizeAttenuation:false,transparent:true,opacity:.55})))}
-const earth=new THREE.Group();scene.add(earth);
-earth.add(new THREE.Mesh(new THREE.SphereGeometry(RE,128,96),new THREE.MeshBasicMaterial({color:0x0B1929})));
-const gm=new THREE.LineBasicMaterial({color:0x1F3354,transparent:true,opacity:.7});
-for(let lat=-80;lat<=80;lat+=10){const pts=[],r=RE*1.001*Math.cos(lat*Math.PI/180),y=RE*1.001*Math.sin(lat*Math.PI/180);for(let a=0;a<=360;a+=2)pts.push(new THREE.Vector3(r*Math.cos(a*Math.PI/180),y,r*Math.sin(a*Math.PI/180)));earth.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),gm))}
-for(let lon=0;lon<180;lon+=10){const pts=[];for(let a=0;a<=360;a+=2){const t=a*Math.PI/180,l=lon*Math.PI/180;pts.push(new THREE.Vector3(RE*1.001*Math.cos(t)*Math.cos(l),RE*1.001*Math.sin(t),RE*1.001*Math.cos(t)*Math.sin(l)))}earth.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),gm))}
-// lit-city dots: a deterministic scatter in cobalt and aqua
-{const g=new THREE.BufferGeometry(),p=[];let s=21;const r=()=>{s=(s*16807)%2147483647;return s/2147483647};
- for(let i=0;i<3500;i++){const u=r()*2-1,th=r()*Math.PI*2,q=Math.sqrt(1-u*u);if(Math.abs(u)>.75)continue;p.push(RE*1.003*q*Math.cos(th),RE*1.003*u,RE*1.003*q*Math.sin(th))}
- g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));earth.add(new THREE.Points(g,new THREE.PointsMaterial({color:0x4FC3D9,size:1.4,sizeAttenuation:false,transparent:true,opacity:.5})))}
-for(let i=0;i<16;i++)earth.add(new THREE.Mesh(new THREE.SphereGeometry(RE*(1+i*.009),96,64),new THREE.MeshBasicMaterial({color:0x3B7BD9,transparent:true,opacity:.055*(1-i/16),side:THREE.BackSide,depthWrite:false})));
-earth.rotation.z=.35;
-// Three platforms, three orbits: STARCHITECT gold, ALIDADE teal, CRATON bronze.
-const ORB=[{c:0xD4A03B,r:RE*1.9,inc:.42,raan:.3,sp:.03,a0:1.9},{c:0x21E0CD,r:RE*1.55,inc:-.5,raan:1.2,sp:.04,a0:1.2},{c:0xB08D57,r:RE*2.3,inc:.16,raan:2.4,sp:.02,a0:-.6}];
-ORB.forEach(o=>{const grp=new THREE.Group();grp.rotation.set(o.inc,o.raan,0);scene.add(grp);o.g=grp;
-  const pts=[];for(let a=0;a<=360;a+=1)pts.push(new THREE.Vector3(o.r*Math.cos(a*Math.PI/180),0,o.r*Math.sin(a*Math.PI/180)));
-  o.geo=new THREE.BufferGeometry().setFromPoints(pts);o.n=pts.length;
-  grp.add(new THREE.Line(o.geo,new THREE.LineBasicMaterial({color:o.c,transparent:true,opacity:.75})));
-  o.sat=new THREE.Mesh(new THREE.OctahedronGeometry(150),new THREE.MeshBasicMaterial({color:o.c}));grp.add(o.sat);
-  const gc=document.createElement('canvas');gc.width=gc.height=64;const x=gc.getContext('2d'),gr=x.createRadialGradient(32,32,0,32,32,32);const col='#'+o.c.toString(16).padStart(6,'0');gr.addColorStop(0,col);gr.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=gr;x.fillRect(0,0,64,64);
-  o.halo=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(gc),transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));o.halo.scale.set(1400,1400,1);grp.add(o.halo)});
-function size(){const w=cv.clientWidth,h=cv.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;if(w>900)cam.setViewOffset(w,h,-w*.24,-h*.06,w,h);else cam.clearViewOffset();cam.updateProjectionMatrix()}
-addEventListener('resize',size);size();
-const $=id=>document.getElementById(id),v=new THREE.Vector3();
-function screen(o){o.sat.getWorldPosition(v);const behind=v.clone().sub(cam.position).dot(new THREE.Vector3().sub(cam.position).normalize());v.project(cam);return [(v.x*.5+.5)*cv.clientWidth,(-v.y*.5+.5)*cv.clientHeight]}
-const occluded=o=>{o.sat.getWorldPosition(v);const d=v.clone().sub(cam.position),ray=new THREE.Ray(cam.position,d.clone().normalize());const hit=ray.intersectSphere(new THREE.Sphere(new THREE.Vector3(),RE),new THREE.Vector3());return hit&&hit.distanceTo(cam.position)<d.length()};
-const TGT=[[.66,.84],[.84,.29],[.90,.66]];let solved=false;
-function solve(){cam.position.set(-7000,7000,36000);cam.lookAt(1500,-2500,0);cam.updateMatrixWorld();scene.updateMatrixWorld(true);
-  ORB.forEach((o,i)=>{let best=1e9,ba=0;for(let k=0;k<720;k++){const a=k/720*Math.PI*2;o.sat.position.set(o.r*Math.cos(a),0,o.r*Math.sin(a));o.g.updateMatrixWorld(true);
-    if(occluded(o))continue;const [x,y]=screen(o),dx=x/cv.clientWidth-TGT[i][0],dy=y/cv.clientHeight-TGT[i][1],e=dx*dx+dy*dy;if(e<best){best=e;ba=a}}
-    o.a0=ba-o.sp*6})}
-function renderAt(t){if(!solved){solve();solved=true}
-  const u=ramp(t,0,3,ease.corporate);
-  cam.position.set(-7000+Math.sin(t*.04)*900,9000-2000*u,40000-4000*u);cam.lookAt(1500,-2500,0);
-  earth.rotation.y=t*.012;
-  ORB.forEach((o,i)=>{const d=ramp(t,.5+i*.25,2.1+i*.25,ease.corporate);o.geo.setDrawRange(0,Math.max(2,Math.round(o.n*d)));
-    const a=o.a0+t*o.sp;o.sat.position.set(o.r*Math.cos(a),0,o.r*Math.sin(a));o.halo.position.copy(o.sat.position);o.sat.visible=o.halo.visible=d>=1;
-    const el=$('t'+i),[x,y]=screen(o);const flip=x>cv.clientWidth*.78;el.classList.toggle('flip',flip);el.style.left=(flip?x-16-el.offsetWidth:x+16)+'px';el.style.top=(y-8)+'px';el.style.opacity=(d>=1&&!occluded(o))?ramp(t,2.1+i*.25,2.5+i*.25):0});
-  R.render(scene,cam);
-  const c=ramp(t,.1,.6,ease.corporate);$('copy').style.opacity=c;$('copy').style.marginTop=`${16*(1-c)}px`;
-  $('bm').style.width=(ramp(t,.6,1.4,ease.corporate)*330)+'px';
-}
-run(renderAt);
-</script></body></html>
+html,body{margin:0;height:100%;background:#060B17;overflow:hidden;font-family:"IBM Plex Mono",ui-monospace,monospace}
+a{color:#4FC3D9}a:hover{color:#D4A03B}
+.stage{position:fixed;inset:0;display:grid;place-items:center;background:#060B17}
+video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 900ms ease}
+video.ready{opacity:1}
+.skip{position:fixed;right:clamp(1rem,3vw,2.5rem);bottom:clamp(1rem,3vw,2.5rem);color:#9FB3C8;text-decoration:none;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.75rem 1rem;border:1px solid rgba(159,179,200,0.35);opacity:0;transition:opacity 600ms ease 1.5s,border-color 200ms,color 200ms;min-height:44px;display:inline-flex;align-items:center}
+.skip.show{opacity:1}
+.skip:hover{color:#fff;border-color:#4FC3D9}
+.fade{position:fixed;inset:0;background:#060B17;opacity:0;pointer-events:none;transition:opacity 700ms ease}
+.fade.on{opacity:1}
+@media (prefers-reduced-motion:reduce){video{transition:none}}
+</style>
+</head>
+<body>
+<main class="stage" aria-label="HYPATIUS intro">
+<video id="sting" src="/site/video/hypatius-intro-sting-v2.mp4" poster="/site/img/intro-poster-v3.jpg" autoplay muted playsinline preload="auto"></video>
+</main>
+<a class="skip" id="skip" href="/home">Skip intro</a>
+<div class="fade" id="fade"></div>
+<script>
+(function(){
+var dest="/home",v=document.getElementById("sting"),skip=document.getElementById("skip"),fade=document.getElementById("fade"),done=false;
+function go(){if(done)return;done=true;fade.classList.add("on");setTimeout(function(){location.replace(dest)},700)}
+if(sessionStorage.getItem("hyp-intro-seen")){location.replace(dest);return}
+sessionStorage.setItem("hyp-intro-seen","1");
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){go();return}
+v.addEventListener("canplay",function(){v.classList.add("ready");skip.classList.add("show")});
+v.addEventListener("ended",go);
+v.addEventListener("error",go);
+skip.addEventListener("click",function(e){e.preventDefault();go()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.key==="Enter")go()});
+setTimeout(go,11000);
+})();
+</script>
+</body>
+</html>

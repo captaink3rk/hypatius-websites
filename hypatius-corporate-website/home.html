@@ -16,6 +16,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/site/flagship-v7.css">
+<link rel="stylesheet" href="/site/hero-v1/hero.css">
+<script>(function(){try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches||innerWidth<760||(navigator.connection&&navigator.connection.saveData);if(!m)document.documentElement.classList.add('hx-motion')}catch(e){}})()</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"HYPATIUS, LLC","alternateName":"HYPATIUS","url":"https://hypati.us/","logo":"https://hypati.us/site/img/hypatius-mark.png","slogan":"Accountable automation for defense","email":"leadership@hypati.us","telephone":"+1-253-230-4166","address":{"@type":"PostalAddress","addressLocality":"Charleston","addressRegion":"SC","addressCountry":"US"},"sameAs":["https://www.linkedin.com/company/hypatius-hq","https://starchitect.us","https://alidade.us","https://craton-erp.us"],"brand":[{"@type":"Brand","name":"STARCHITECT","url":"https://starchitect.us","description":"Advanced reconnaissance. Space wargaming and BMC3I."},{"@type":"Brand","name":"ALIDADE","url":"https://alidade.us","description":"Capture decision intelligence for GovCon. Seven cited factors resolve to one probability of win; teaming runs on consent. Built for delivery as an MCP tool server. In development \u00b7 TBD 2027."},{"@type":"Brand","name":"CRATON","url":"https://craton-erp.us","description":"DCAA-ready timekeeping, charge codes, indirect rate pools and the SF 1408 audit binder for small government contractors. In development \u00b7 TBD 2027."}],"identifier":[{"@type":"PropertyValue","propertyID":"UEI","value":"UKELB3UV76V6"},{"@type":"PropertyValue","propertyID":"CAGE","value":"19S89"}]}
 </script>
@@ -50,11 +52,17 @@
 </div>
 
 <main id="main" tabindex="-1">
-<header class="hero" id="top" data-screen-label="Hero">
+<header class="hero" id="top" data-screen-label="Hero" data-hx-hero>
   <div class="hero__media">
     <div class="hero__img hero__img--battlespace"></div>
     <div class="hero__img hero__img--orbital"></div>
   </div>
+  <div class="hx" data-scene="/site/hero-v1/scene-hy.js" data-ease="corporate" data-fade="1100">
+    <canvas class="hx-canvas" aria-hidden="true"></canvas>
+  </div>
+  <div class="hx-tag" data-hx="tag-0" aria-hidden="true"><i style="background:#D4A03B"></i><b>STARCHITECT</b><span>Live</span></div>
+  <div class="hx-tag" data-hx="tag-1" aria-hidden="true"><i style="background:#21E0CD"></i><b>ALIDADE</b><span>In development</span></div>
+  <div class="hx-tag" data-hx="tag-2" aria-hidden="true"><i style="background:#B08D57"></i><b>CRATON</b><span>In development</span></div>
   <canvas id="stars"></canvas>
   <div class="hero__veil"></div>
   <div class="hero__inner">
@@ -608,5 +616,6 @@
 
 
 <script src="/site/flagship-v7.js"></script>
+<script src="/site/hero-v1/hero-runtime.js" defer></script>
 </body>
 </html>
