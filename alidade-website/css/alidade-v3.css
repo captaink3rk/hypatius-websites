@@ -214,7 +214,7 @@ section.deep, .al-deep { background: var(--al-srf2); }
   z-index: 9999;
   background: var(--al-bg, #060D1B);
   opacity: 1;
-  transition: opacity 700ms ease;
+  transition: opacity var(--al-dur-slow, 320ms) var(--al-ease, cubic-bezier(.22,.61,.36,1));
 }
 
 #al-sting.is-out { opacity: 0; pointer-events: none; }
@@ -228,7 +228,7 @@ section.deep, .al-deep { background: var(--al-srf2); }
   object-fit: contain;
   display: block;
   opacity: 0;
-  transition: opacity 600ms ease;
+  transition: opacity var(--al-dur-slow, 320ms) var(--al-ease, cubic-bezier(.22,.61,.36,1));
 }
 
 #al-sting.is-ready video { opacity: 1; }
@@ -252,10 +252,15 @@ section.deep, .al-deep { background: var(--al-srf2); }
   border: 1px solid var(--al-line, rgba(125, 146, 181, 0.35));
   background: transparent;
   opacity: 0;
-  transition: opacity 500ms ease 1.2s, color 200ms, border-color 200ms;
+  transition: opacity var(--al-dur-slow, 320ms) var(--al-ease, cubic-bezier(.22,.61,.36,1)) 1.2s,
+              color var(--al-dur-base, 200ms) var(--al-ease, cubic-bezier(.22,.61,.36,1)),
+              border-color var(--al-dur-base, 200ms) var(--al-ease, cubic-bezier(.22,.61,.36,1));
 }
 
 #al-sting.is-ready .al-sting__skip { opacity: 1; }
+/* Focus lands on Skip as soon as the overlay opens, so a keyboard user sees
+   the control they are on without waiting for the video. */
+.al-sting__skip:focus-visible { opacity: 1; transition-delay: 0s; }
 .al-sting__skip:hover,
 .al-sting__skip:focus-visible { color: var(--al-t1, #E8EFF8); border-color: var(--al-teal, #21E0CD); }
 
