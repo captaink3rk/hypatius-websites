@@ -251,3 +251,20 @@
 .member p { font-size: 14px; color: var(--mute-text); line-height: 1.5; }
 @media (max-width: 900px) { .team { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .team { grid-template-columns: 1fr; } .member { padding: 20px; } }
+
+/* ── 18. Simulated readouts are labelled as such (phase 1) ─────────────────
+   The telemetry strip and the correlator latency were Math.random() jitter
+   presented as live data. home-fx.js now writes fixed illustrative values and
+   these tags say so. Slate #A8B0BD on the void reads 9.00:1. */
+.tb.tb-sim, .sim-tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--slate);
+  border: 1px solid var(--hair); border-radius: 2px; padding: 2px 6px; line-height: 1.2; }
+.sim-tag { margin-left: 6px; display: inline-block; }
+
+/* ── 19. Platform status on the company page (phase 1, CMPO decision) ──────
+   STARCHITECT is Live. ALIDADE and CRATON are cleared for public mention as
+   "In development · TBD 2027" and must never read as live or available. */
+.plat .pstat { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--slate); margin: -6px 0 12px; }
+.plat .pstat.live { color: var(--gold); }

@@ -208,7 +208,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "Hypersonic",
     abbrev: null,
     category: "Operations",
-    definition: "Speeds at or above Mach 5. Modern hypersonic threats compress engagement windows to 160-300 seconds. The mismatch between hypersonic kinematics and legacy decision-loop timelines is the central premise of STARCHITECT.",
+    definition: "Speeds at or above Mach 5. Modern hypersonic threats compress engagement windows into minutes. The mismatch between hypersonic kinematics and legacy decision-loop timelines is the central premise of STARCHITECT.",
     seeAlso: "Kill Chain, F2T2EA"
   },
 
@@ -249,7 +249,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "KEDA",
     abbrev: "Kubernetes Event-Driven Autoscaling",
     category: "Architecture",
-    definition: "A Kubernetes component that scales workloads based on event triggers rather than CPU or memory metrics. STARCHITECT uses KEDA to spin up thousands of parallel worker pods for massively-parallel orbital prediction — calculating 5,000+ intercept permutations in under 15 seconds.",
+    definition: "A Kubernetes component that scales workloads based on event triggers rather than CPU or memory metrics. STARCHITECT uses KEDA to spin up thousands of parallel worker pods for massively-parallel orbital prediction — evaluating thousands of intercept permutations in seconds.",
     seeAlso: "K3s, NATS"
   },
   {
@@ -466,7 +466,7 @@ window.STARCHITECT_GLOSSARY = [
     term: "Rancher",
     abbrev: null,
     category: "Architecture",
-    definition: "A Kubernetes management platform that orchestrates clusters across diverse environments. STARCHITECT uses Rancher to manage its K3s mesh — scaling from $200 homelab nodes to national-scale super-clusters.",
+    definition: "A Kubernetes management platform that orchestrates clusters across diverse environments. STARCHITECT uses Rancher to manage its K3s mesh — scaling from homelab nodes to national-scale super-clusters.",
     seeAlso: "K3s, Helm"
   },
   {

@@ -16,6 +16,9 @@
     { "source": "/intro-preview",  "destination": "/",           "permanent": true },
     { "source": "/intro-live",     "destination": "/",           "permanent": true }
   ],
+  "rewrites": [
+    { "source": "/home", "destination": "/home.html" }
+  ],
   "headers": [
     { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
   ]

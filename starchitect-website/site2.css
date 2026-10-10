@@ -96,7 +96,7 @@
 .pb-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--hair); border-radius: 8px; overflow: hidden; margin-top: 48px; }
 .pb-cell { padding: 38px 30px; border-right: 1px solid var(--hair); background: var(--panel); }
 .pb-cell:last-child { border-right: 0; }
-.pb-cell.hot { background: linear-gradient(180deg, rgba(200,68,46,0.10), transparent); border-top: 2px solid var(--alert); }
+.pb-cell.hot { background: linear-gradient(180deg, rgba(212,160,59,0.10), transparent); border-top: 2px solid var(--alert); }
 .pb-cell.hot .statnum { color: var(--alert); }
 .pullq { margin-top: 42px; padding-left: 22px; border-left: 3px solid var(--gold); font-family: var(--font-display); font-size: clamp(26px,3.6vw,42px); color: var(--bone); letter-spacing: 0.02em; line-height: 1.04; }
 .pullq span { color: var(--gold); }
@@ -137,7 +137,7 @@
 .pace-node:nth-child(3) .bar { height: 92px; } .pace-node:nth-child(4) .bar { height: 66px; }
 .pace-node .nl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); }
 .pace-node.down { opacity: 0.28; transform: translateY(6px); }
-.pace-node.down .bar { background: linear-gradient(180deg, rgba(200,68,46,0.4), transparent); border-color: var(--alert); filter: grayscale(0.4); }
+.pace-node.down .bar { background: linear-gradient(180deg, rgba(212,160,59,0.4), transparent); border-color: var(--alert); filter: grayscale(0.4); }
 .pace-tier { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--go); margin-bottom: 8px; }
 .pace-desc { font-size: 14px; color: var(--slate); line-height: 1.55; min-height: 44px; }
 .pace-stairs { display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin-top: 8px; height: 200px; }
@@ -220,7 +220,7 @@
 
 /* ---- Hypatius platform family ---- */
 .family { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
-.plat { border: 1px solid var(--hair); border-top-width: 3px; border-radius: 8px; background: var(--panel); padding: 30px; }
+.plat { border: 1px solid var(--hair); border-top-width: 4px; border-radius: 8px; background: var(--panel); padding: 30px; }
 .plat.star { border-top-color: var(--gold); box-shadow: 0 0 0 1px var(--hair-gold), 0 20px 50px -30px rgba(212,160,59,0.4); }
 .plat.ali { border-top-color: var(--cyan); }
 .plat.crat { border-top-color: #8B6FD6; }
@@ -249,7 +249,7 @@
 
 /* ---- glossary / resource list ---- */
 .reslist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
-.rescard { border: 1px solid var(--hair); border-top: 3px solid var(--cyan); border-radius: 8px; background: var(--panel); padding: 30px; transition: transform .2s var(--ease), border-color .2s; }
+.rescard { border: 1px solid var(--hair); border-top: 4px solid var(--cyan); border-radius: 8px; background: var(--panel); padding: 30px; transition: transform .2s var(--ease), border-color .2s; }
 .rescard:hover { transform: translateY(-3px); }
 .rescard .rk { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 12px; }
 .rescard h3 { color: var(--bone); font-size: 19px; margin-bottom: 8px; }

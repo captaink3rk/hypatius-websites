@@ -73,14 +73,35 @@
         if (b) b.classList.add('active');
       });
     }
+    // Phase 1: compose a mailto: to leadership@hypati.us with every field, open
+    // it, then show the confirmation (it used to fake success and send nothing).
+    // Native validation, including the required U.S. Person / ITAR attestation,
+    // runs before submit fires.
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const v = (n) => { const el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
+      const typeEl = form.elements['lead_type'];
+      const typeLabel = typeEl && typeEl.selectedIndex > 0 ? typeEl.options[typeEl.selectedIndex].text : '';
+      const branchMap = { gov: ['agency', 'Agency or component'], prime: ['program', 'Program or division'],
+                          investor: ['firm_type', 'Firm type'], press: ['publication', 'Publication'] };
+      const lines = [
+        'Full name: ' + v('name'),
+        'Work email: ' + v('email'),
+        'Organization: ' + v('organization'),
+        'Which best describes you: ' + typeLabel
+      ];
+      const br = branchMap[v('lead_type')];
+      if (br) lines.push(br[1] + ': ' + v(br[0]));
+      const us = form.elements['us_person'];
+      lines.push('U.S. Person attestation (ITAR 22 C.F.R. 120.62): ' + (us && us.checked ? 'Confirmed' : 'Not confirmed'));
+      window.location.href = 'mailto:leadership@hypati.us?subject=' +
+        encodeURIComponent('STARCHITECT briefing request \u2014 ' + v('organization')) +
+        '&body=' + encodeURIComponent(lines.join('\r\n'));
       const fields = document.getElementById('formFields');
       const success = document.getElementById('formSuccess');
       if (fields && success) {
         fields.style.display = 'none';
         success.classList.add('active');
-        success.scrollIntoView ? null : null; // intentionally no scrollIntoView
       }
     });
   }

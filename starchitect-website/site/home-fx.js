@@ -357,7 +357,7 @@
 
     var classy = document.createElement('div');
     classy.className = 'classification';
-    classy.textContent = 'UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10';
+    classy.textContent = 'UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.33';
 
     var nav = document.createElement('nav');
     nav.className = 'nav'; nav.id = 'nav';
@@ -402,7 +402,7 @@
         '<div class="footer-col"><h4>Company</h4><a href="company.html">About</a><a href="resources.html">Glossary</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us \u2197</a></div>' +
       '</div>' +
       '<div class="footer-bottom"><div>\u00a9 2026 HYPATIUS LLC \u00b7 STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 \u00b7 CAGE 19S89</div></div>' +
-      '<div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>';
+      '<div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.33) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>';
     body.appendChild(foot);
   }
 

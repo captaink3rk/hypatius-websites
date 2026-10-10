@@ -8,11 +8,11 @@
 :root {
   /* Surfaces — the void & the panels */
   --void:        #060B17;
-  --deep-navy:   #0A1322;
+  --deep-navy:   #0B1525;
   --navy:        #0E1A2E;
   --panel:       #111E33;
-  --panel-hi:    #1A2A45;
-  --structure:   #2A3A57;
+  --panel-hi:    #1F2D45;
+  --structure:   #434B5C;
 
   /* Light "document" surfaces */
   --paper:       #ECE7DB;  /* warm bone document field */
@@ -23,7 +23,7 @@
 
   /* Text on dark */
   --bone:        #EFE9DD;
-  --slate:       #9FA9B8;
+  --slate:       #A8B0BD;
   --mute:        #67718440;
   --mute-text:   #6B7588;
 
@@ -36,7 +36,7 @@
 
   /* Status */
   --go:    #4F8F6F;
-  --alert: #C8442E;
+  --alert: #D4A03B; /* was #C8442E; red is internal-only, never on public surfaces */
 
   /* Lines */
   --hair:      #243450;
@@ -92,9 +92,9 @@ img { display: block; max-width: 100%; }
   background-image:
     linear-gradient(rgba(67,75,92,0.13) 1px, transparent 1px),
     linear-gradient(90deg, rgba(67,75,92,0.13) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background-size: 48px 48px;
 }
-.grid-bg.fine { background-size: 28px 28px; background-image:
+.grid-bg.fine { background-size: 24px 24px; background-image:
     linear-gradient(rgba(67,75,92,0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(67,75,92,0.08) 1px, transparent 1px); }
 

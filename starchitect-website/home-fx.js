@@ -85,14 +85,11 @@
       var mm = String(d.getUTCMinutes()).padStart(2, '0');
       var ss = String(d.getUTCSeconds()).padStart(2, '0');
       clock.forEach(function (c) { c.textContent = hh + ':' + mm + ':' + ss + ' UTC'; });
-      if (!REDUCED) {
-        lat.forEach(function (l) { l.textContent = (340 + Math.floor(Math.random() * 120)) + ' ms'; });
-        base += (Math.random() > 0.5 ? 1 : -1);
-        trk.forEach(function (t) { t.textContent = base.toLocaleString(); });
-      } else {
-        lat.forEach(function (l) { l.textContent = '< 500 ms'; });
-        trk.forEach(function (t) { t.textContent = base.toLocaleString(); });
-      }
+      /* Phase 1: the latency and track readouts were Math.random() jitter
+         presented as live telemetry. They are now fixed illustrative values and
+         the strip carries a SIMULATED tag (baked chrome). Only the clock ticks. */
+      lat.forEach(function (l) { l.textContent = '< 500 ms'; });
+      trk.forEach(function (t) { t.textContent = base.toLocaleString(); });
     };
     tick();
     if (!REDUCED) setInterval(tick, 1000);
@@ -169,7 +166,7 @@
           setTimeout(function () {
             root.classList.remove('sweep');
             stateEl.textContent = 'COA VERIFIED'; stateEl.style.color = GO;
-            latEl.textContent = (390 + Math.floor(Math.random() * 90)) + ' ms';
+            latEl.textContent = '418 ms'; // fixed illustrative value; panel is tagged SIMULATED
             if (bar) bar.style.width = '100%';
             coa.classList.add('show');
             setTimeout(play, 4200);
@@ -203,7 +200,7 @@
 
     var SCEN = [
       { id: 'tjs', label: 'TJS-3 / TJS-10', blue: 'TJS-3', red: 'TJS-10', start: 18.0, min: 0.8, unit: 'km', rate: 'CONVERGING', col: ALERT, note: 'GEO · cross-track close approach' },
-      { id: 'sj29', label: 'SJ-29 / USA-325', blue: 'USA-325', red: 'SJ-29A/B', start: 22.0, min: 11.0, unit: 'km', rate: '12-HR CYCLE', col: GOLD, note: 'GSSAP custody · proximity ops' },
+      { id: 'sj29', label: 'SJ-29 / USA-325', blue: 'USA-325', red: 'SJ-29A/B', start: 22.0, min: 11.0, unit: 'km', rate: 'CYCLING', col: GOLD, note: 'GSSAP custody · proximity ops' },
       { id: 'cosmos', label: 'Cosmos 2589', blue: 'GEO BELT', red: 'COSMOS 2589', start: 9.0, min: 0.2, unit: 'km', rate: 'CIRCULARIZING', col: CYAN, note: 'Sub-satellite deployment watch' }
     ];
     var cur = SCEN[0], W, H, DPR, t = 0, raf, phase = 0;
@@ -258,7 +255,7 @@
       // track trails
       ctx.strokeStyle = 'rgba(46,181,201,0.5)'; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(cx, cy); ctx.stroke();
-      ctx.strokeStyle = 'rgba(200,68,46,0.5)';
+      ctx.strokeStyle = 'rgba(212,160,59,0.5)'; // threat trail: gold, no red on public surfaces
       ctx.beginPath(); ctx.moveTo(rx, ry); ctx.lineTo(cx, cy); ctx.stroke();
       // blue marker
       drawMark(bx, by, CYAN, cur.blue);
@@ -266,7 +263,8 @@
       // center asset
       ctx.fillStyle = BONE; ctx.beginPath(); ctx.arc(cx, cy, 2.5, 0, 7); ctx.fill();
       // readout
-      if (readEl) readEl.textContent = range.toFixed(range < 1 ? 2 : 1) + ' ' + cur.unit;
+      // readout is qualitative: uncited ranges stay off public pages
+      if (readEl) readEl.textContent = prog < 0.34 ? 'Distant' : (prog < 0.75 ? 'Closing' : 'Close approach');
       t += 0.016;
       raf = requestAnimationFrame(draw);
     }
@@ -376,7 +374,7 @@
 
     var classy = document.createElement('div');
     classy.className = 'classification';
-    classy.textContent = 'UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.10';
+    classy.textContent = 'UNCLASSIFIED // DUAL-USE // ITAR 22 C.F.R. 120.33';
 
     var nav = document.createElement('nav');
     nav.className = 'nav'; nav.id = 'nav';
@@ -421,7 +419,7 @@
         '<div class="footer-col"><h4>Company</h4><a href="company.html">About</a><a href="resources.html">Glossary</a><a href="https://hypati.us" target="_blank" rel="noopener">hypati.us \u2197</a></div>' +
       '</div>' +
       '<div class="footer-bottom"><div>\u00a9 2026 HYPATIUS, LLC \u00b7 STARCHITECT is a HYPATIUS platform.</div><div>UEI UKELB3UV76V6 \u00b7 CAGE 19S89</div></div>' +
-      '<div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.10) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>';
+      '<div class="itar">This site contains technical data as defined under the International Traffic in Arms Regulations (ITAR) (22 C.F.R. 120.33) and may not be exported or disclosed to any foreign person without prior U.S. Government authorization.</div>';
     body.appendChild(foot);
   }
 

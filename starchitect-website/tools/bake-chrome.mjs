@@ -104,6 +104,8 @@ function head(route) {
 </nav>
 <div class="telebar" aria-hidden="true">
   <div class="telebar-inner">
+    <span class="tb tb-sim">SIMULATED READOUT</span>
+    <span class="tb-sep"></span>
     <span class="tb"><span class="live"></span><b>MESH NOMINAL</b> &middot; 5-TIER PACE</span>
     <span class="tb-sep"></span>
     <span class="tb">CORRELATOR <span class="g" data-latency>&lt; 500 ms</span></span>
