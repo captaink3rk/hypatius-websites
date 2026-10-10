@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://craton-erp.us/binder</loc><priority>0.7</priority></url>
-  <url><loc>https://craton-erp.us/codes</loc><priority>0.7</priority></url>
-  <url><loc>https://craton-erp.us/compare</loc><priority>0.7</priority></url>
-  <url><loc>https://craton-erp.us/hours</loc><priority>0.7</priority></url>
-  <url><loc>https://craton-erp.us/</loc><priority>1.0</priority></url>
-  <url><loc>https://craton-erp.us/rates</loc><priority>0.7</priority></url>
-  <url><loc>https://craton-erp.us/record</loc><priority>0.7</priority></url>
-  <url><loc>https://craton-erp.us/walkthrough</loc><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/</loc><lastmod>2026-10-10</lastmod><priority>1.0</priority></url>
+  <url><loc>https://craton-erp.us/hours</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/codes</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/rates</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/binder</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/record</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/compare</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://craton-erp.us/walkthrough</loc><lastmod>2026-10-10</lastmod><priority>0.7</priority></url>
 </urlset>

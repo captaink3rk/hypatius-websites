@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://craton-erp.us/">
 <meta name="description" content="CRATON — the record that agrees with itself. HYPATIUS Enterprise Resource Platform.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoObject","name":"CRATON intro sting","description":"Brand intro sequence: a geological core sample rising under studio light, resolving on the CRATON lockup.","uploadDate":"2026-09-19","duration":"PT10S","contentUrl":"https://craton-erp.us/assets/video/craton-intro-plate-v1.mp4","thumbnailUrl":"https://craton-erp.us/assets/img/intro-poster-craton-v1.png","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"HYPATIUS, LLC"}}
+{"@context":"https://schema.org","@type":"VideoObject","name":"CRATON intro sting","description":"Brand intro sequence: a geological core sample rising under studio light, resolving on the CRATON lockup.","uploadDate":"2026-09-19","duration":"PT10S","contentUrl":"https://craton-erp.us/assets/video/craton-intro-plate-v2.mp4","thumbnailUrl":"https://craton-erp.us/assets/img/intro-poster-craton-v1.jpg","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"HYPATIUS, LLC"}}
 </script>
 <style>
 html,body{margin:0;height:100%;background:#161C24;overflow:hidden}
@@ -39,14 +39,14 @@ main{display:block}
 <body>
 <main id="main">
 <div class="stage"></div>
-<iframe id="dest" src="index.html" tabindex="-1" aria-hidden="true" title="CRATON"></iframe>
-<video id="plate" src="assets/video/craton-intro-plate-v1.mp4" poster="assets/img/intro-poster-craton-v1.png" autoplay muted playsinline preload="auto"></video>
+<iframe id="dest" src="/" tabindex="-1" aria-hidden="true" title="CRATON"></iframe>
+<video id="plate" src="assets/video/craton-intro-plate-v2.mp4" poster="assets/img/intro-poster-craton-v1.jpg" autoplay muted playsinline preload="auto"></video>
 <video id="mark" src="assets/video/cr-mark-resolve-alpha.webm" muted playsinline preload="auto"></video>
 <div id="curtain"></div>
 <div id="fallback" aria-hidden="true">
 <svg viewBox="0 0 560 100" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="#F1F3F5" stroke-width="4" stroke-linecap="square" fill="none"><path d="M43 4 L80 16 V50 C80 74 62 90 43 97 C24 90 6 74 6 50 V16 Z"></path><path d="M18 40 H68" stroke="#B08D57"></path><path d="M18 54 H68" stroke="#B08D57"></path><path d="M22 68 H64" stroke="#B08D57"></path></g><text x="104" y="66" font-family="Big Shoulders Display, Archivo Narrow, Arial Narrow, sans-serif" font-weight="800" font-size="70" letter-spacing="4.9" fill="#F1F3F5">CRATON</text><text x="106" y="88" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2.3" fill="#8F99A5">HYPATIUS ENTERPRISE RESOURCE PLATFORM</text></svg>
 </div>
-<a class="cr-skip" id="skip" href="index.html">Skip intro</a>
+<a class="cr-skip" id="skip" href="/">Skip intro</a>
 <div id="fade"></div>
 </main>
 <script>
@@ -60,7 +60,7 @@ main{display:block}
    then        cross-fade into the landing page preloaded underneath
    Total video 10.0417s — inside the 11s gate ceiling.
    ──────────────────────────────────────────────────────────────────── */
-var DEST   = "index.html",
+var DEST   = "/",
     FADE   = 0.80,
     IN     = 3.60,
     RATE   = 0.75,

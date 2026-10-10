@@ -123,3 +123,98 @@ footer ul li { display: flex; }
   height: 100%;
   object-fit: cover;
 }
+
+/* ── 5 · Platform status mark (10 Oct 2026) ────────────────────────────────
+   CRATON is public and in development, availability planned for 2027 (TBD).
+   The status is carried the CRATON way: a fill pattern plus the literal word,
+   never colour alone. The 45deg hatch is the same pattern .cr-band--attention
+   already uses, so no new hue enters the palette. .cr-sm--attention had no
+   rule in craton.css (the binder's attention marks rendered as empty boxes);
+   it now shares the hatch. */
+.cr-sm--hatch,
+.cr-sm--attention {
+  background: repeating-linear-gradient(45deg, var(--surface-raised) 0 3px, var(--accent-primary) 3px 5px);
+  box-shadow: inset 0 0 0 1px var(--accent-primary);
+}
+
+.cr-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 var(--s4);
+  padding: 6px 12px 6px 8px;
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-card, 2px);
+  font-family: var(--t-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent-primary-hover);
+  background: transparent;
+  max-width: 100%;
+}
+.cr-status .cr-sm { width: 12px; height: 12px; }
+
+.cr-status--sm {
+  margin: 0 0 var(--s4);
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.cr-status--sm .cr-sm { width: 10px; height: 10px; }
+
+.cr-avail {
+  font-family: var(--t-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  margin: var(--s4) 0 0;
+}
+
+/* ── 6 · Walkthrough request form ──────────────────────────────────────────
+   Composes a mailto: — nothing is sent from the page and nothing is stored. */
+.cr-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4) var(--s5); margin-top: var(--s6); text-align: left; }
+.cr-form__f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.cr-form__f--wide { grid-column: 1 / -1; }
+.cr-form label {
+  font-family: var(--t-mono);
+  font-size: 10.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-label);
+}
+.cr-form input,
+.cr-form select,
+.cr-form textarea {
+  font: inherit;
+  font-size: 16px;
+  color: var(--text-bright);
+  background: var(--surface-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control, 2px);
+  padding: 10px 12px;
+  min-height: 44px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cr-form textarea { min-height: 112px; resize: vertical; }
+.cr-form input:focus-visible,
+.cr-form select:focus-visible,
+.cr-form textarea:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 1px; border-color: var(--accent-primary); }
+.cr-form__hint { font-size: 13px; color: var(--text-muted); }
+.cr-form__act { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; }
+.cr-form__act .cr-btn { cursor: pointer; }
+.cr-form__err { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--text-bright); display: flex; gap: 10px; align-items: center; }
+.cr-form__err[hidden], .cr-confirm[hidden], .cr-form[hidden] { display: none; }
+.cr-confirm {
+  margin-top: var(--s6);
+  padding: var(--s5);
+  border: 1px solid var(--border-hairline);
+  border-top: 2px solid var(--accent-strata);
+  background: var(--surface-card);
+  text-align: left;
+}
+.cr-confirm .cr-disp { font-size: 32px; margin: var(--s3) 0; }
+@media (max-width: 720px) { .cr-form { grid-template-columns: 1fr; } }
+.cr-form label .cr-form__hint { font-size: inherit; color: var(--text-muted); }
