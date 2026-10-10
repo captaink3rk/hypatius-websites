@@ -218,3 +218,9 @@ footer ul li { display: flex; }
 .cr-confirm .cr-disp { font-size: 32px; margin: var(--s3) 0; }
 @media (max-width: 720px) { .cr-form { grid-template-columns: 1fr; } }
 .cr-form label .cr-form__hint { font-size: inherit; color: var(--text-muted); }
+
+/* ── 10 Oct 2026 · brand-standard alignment (HYP-BS-04-CRAT v1.0) ──────────────
+   Big Shoulders Display 800 is tracked for marketing headlines (standard: .07em; packet range
+   .04–.07em). .05em keeps the large hero inside its measure. Muted label is #9CA6B2 (set in craton.css). */
+.cr-disp{letter-spacing:.05em}
+.cr-hero h1.cr-disp{max-width:13ch}

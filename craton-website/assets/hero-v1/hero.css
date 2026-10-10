@@ -10,7 +10,7 @@ html.hx-motion .hx-poster--end{display:none}
 
 /* CRATON: the core-sample scene sits in the existing image slot, under its scrim. */
 .cr-hero[data-hx-hero] .hx{z-index:0}
-.hx-gauge{position:absolute;right:max(24px,4vw);top:clamp(96px,14vh,150px);text-align:right;font:500 11px var(--t-mono);letter-spacing:.16em;color:var(--cr-bed-muted,#8F99A5);text-transform:uppercase;z-index:1;pointer-events:none}
+.hx-gauge{position:absolute;right:max(24px,4vw);top:clamp(96px,14vh,150px);text-align:right;font:500 11px var(--t-mono);letter-spacing:.16em;color:var(--cr-bed-muted,#9CA6B2);text-transform:uppercase;z-index:1;pointer-events:none}
 .hx-gauge b{display:block;font:800 64px/1 var(--t-display);letter-spacing:.07em;color:var(--cr-bed-ink,#F1F3F5);margin:6px 0}
 .hx-gauge b span{color:var(--cr-bed-bronze,#B08D57)}
 @media (max-width:900px){.hx-gauge{display:none}}

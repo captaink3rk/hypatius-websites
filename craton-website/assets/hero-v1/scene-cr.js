@@ -14,7 +14,7 @@ export default async function create(canvas, {root}) {
   const key = new THREE.DirectionalLight(0xF1F3F5, 1.5); key.position.set(-6, 12, 10); scene.add(key);
   const warm = new THREE.DirectionalLight(0xD9B985, .6); warm.position.set(10, 2, -6); scene.add(warm);
   const grp = new THREE.Group(); scene.add(grp);
-  const N = 14, W = 16, D = 10, SX = 80, SZ = 50;
+  const N = 14, W = 16, D = 10, SX = 56, SZ = 32;
   const hf = (x, z, k) => .32 * Math.sin(x * .42 + k * .9) + .22 * Math.cos(z * .55 + k * 1.7) + .12 * Math.sin((x + z) * .9 + k);
   const tones = [0x1F2731, 0x2C3744, 0x3A4553, 0x26303B, 0x4A5566, 0x323D4A];
   const layers = [], seams = []; let base = 0;
@@ -38,14 +38,17 @@ export default async function create(canvas, {root}) {
   function resize() { const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight; R.setSize(w, h, false); cam.aspect = w / h;
     if (w > 900) cam.setViewOffset(w, h, -w * .2, h * .02, w, h); else cam.clearViewOffset(); cam.updateProjectionMatrix(); }
   function renderAt(t) {
-    const a = .62 + Math.sin(t * .07) * .08; cam.position.set(Math.sin(a) * 34, 10.5 + Math.sin(t * .05) * .4, Math.cos(a) * 34); cam.lookAt(0, -.6, 0);
+    // CRATON motion rule: restrained and purposeful, no decorative loops. The camera eases to rest
+    // as the drill lands, and the scene stops rendering once settled.
+    const ts = Math.min(t, 5.2), a = .62 + Math.sin(ts * .07) * .08; cam.position.set(Math.sin(a) * 34, 10.5 + Math.sin(ts * .05) * .4, Math.cos(a) * 34); cam.lookAt(0, -.6, 0);
     layers.forEach((L, k) => { const u = ramp(t, .1 + k * .05, .7 + k * .05, ease.corporate); L.m.position.y = (1 - u) * 1.4; L.m.material.opacity = u; seams[k].position.y = L.m.position.y; });
     const d = ramp(t, 1.4, 4.2, ease.corporate), top = H + .6, bot = top - (top + .05) * d;
-    core.scale.y = Math.max(.001, top - bot); core.position.set(coreX, (top + bot) / 2, coreZ); bit.position.set(coreX, bot, coreZ); bit.rotation.z = t * 4;
+    core.scale.y = Math.max(.001, top - bot); core.position.set(coreX, (top + bot) / 2, coreZ); bit.position.set(coreX, bot, coreZ); bit.rotation.z = ts * 4;
     let n = 0; ticks.forEach((tk, k) => { const hit = bot <= layers[k].base + layers[k].th; if (hit) n++; tk.material.opacity = hit ? .9 : 0; seams[k].material.opacity = hit ? .85 : .18; });
     R.render(scene, cam);
     if (areas) areas.textContent = String(n).padStart(2, '0');
     if (gauge) gauge.style.opacity = ramp(t, 1.2, 1.6, ease.corporate);
+    return t >= 5.2;
   }
   return {renderAt, resize};
 }
