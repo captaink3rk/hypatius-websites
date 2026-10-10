@@ -1041,3 +1041,8 @@ main:focus{ outline:none; }
   letter-spacing:.16em; text-transform:uppercase; cursor:pointer; }
 .ticker__toggle:hover{ color:#fff; }
 @media (prefers-reduced-motion: reduce){ .ticker__toggle{ display:none; } }
+
+/* ── 10 Oct 2026 · house type floor ─────────────────────────────────────────────
+   Digital body copy runs at 16px minimum across the family (same floor as the three platform
+   standards; WCAG 1.4.4). Mono labels and captions are exempt. */
+.meth__d,.rec-pt__d,.footer__brand p,.mdo2__ret p,.mdo__cap,.fnd__bio,.review__a,.cyc__d{font-size:max(16px,1rem)}

@@ -1,0 +1,26 @@
+/* HYPATIUS in-page motion · v1 · base layer. Every rule is scoped to html.mx-on, so without the
+   script the page shows its finished state. Brand timing comes from --mx-ease, --mx-dur, --mx-y. */
+.mx-on .mx-reveal{opacity:0;transform:translateY(var(--mx-y));transition:opacity var(--mx-dur) var(--mx-ease),transform var(--mx-dur) var(--mx-ease)}
+.mx-on .mx-reveal.mx-in{opacity:1;transform:none}
+.mx-fill{transform-origin:left center}
+.mx-on [data-mx="bars"] .mx-fill{transform:scaleX(0);transition:transform calc(var(--mx-dur) * 2.4) var(--mx-ease);transition-delay:inherit}
+.mx-on [data-mx="bars"].mx-in .mx-fill{transform:scaleX(1)}
+.mx-on [data-mx="bars"] .mx-late{opacity:0;transition:opacity var(--mx-dur) var(--mx-ease);transition-delay:inherit}
+.mx-on [data-mx="bars"].mx-in .mx-late{opacity:1;transition-delay:calc(var(--mx-dur) * 2)}
+.mx-on [data-mx="rows"]>*{opacity:0;transform:translateY(var(--mx-y));transition:opacity var(--mx-dur) var(--mx-ease),transform var(--mx-dur) var(--mx-ease)}
+.mx-on [data-mx="rows"].mx-in>*{opacity:1;transform:none}
+[data-mx="steps"] [data-mx-step]{cursor:pointer}
+[data-mx="steps"] [data-mx-step]:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+[data-mx-progress]{--p:0}
+.mx-still *{transition:none!important;animation:none!important}
+
+/* ── HYPATIUS · the record. The three points step in turn and light the part of the receipt they
+   describe: the hash chain, the receipt's fields, the reviewer gate. Plays once, then rests with
+   everything at full strength. */
+.mx-rec .rec-pt{transition:opacity var(--mx-dur) var(--mx-ease),box-shadow var(--mx-dur) var(--mx-ease)}
+.mx-on .mx-rec.mx-in:not(.mx-end) .rec-pt{opacity:.5}
+.mx-on .mx-rec.mx-in .rec-pt.mx-cur{opacity:1;box-shadow:inset 2px 0 0 var(--accent-signal,#4FC3D9)}
+.mx-rec [data-hl]{transition:background var(--mx-dur) var(--mx-ease),opacity var(--mx-dur) var(--mx-ease)}
+.mx-on .mx-rec.mx-in:not(.mx-end) [data-hl]{opacity:.45}
+.mx-on .mx-rec[data-mx-cur="0"]:not(.mx-end) [data-hl="0"],.mx-on .mx-rec[data-mx-cur="1"]:not(.mx-end) [data-hl="1"],.mx-on .mx-rec[data-mx-cur="2"]:not(.mx-end) [data-hl="2"]{opacity:1;background:rgba(79,195,217,.07)}
+.mx-on .mx-rec[data-mx-cur="2"]:not(.mx-end) [data-hl="2"] .receipt__blocked{outline:1px solid rgba(79,195,217,.5);outline-offset:4px}

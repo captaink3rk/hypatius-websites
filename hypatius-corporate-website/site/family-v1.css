@@ -1,0 +1,20 @@
+/* HYPATIUS family bar · shared by hypati.us, starchitect.us, alidade.us, craton-erp.us
+   One row, same order and words on every site; each site sets its own ink through the custom
+   properties below. Names are set in Rajdhani, the interface face all four share. */
+.hx-family{--fb-ink:#F2F6FA;--fb-mute:#9AA6B8;--fb-line:rgba(185,197,212,.16);--fb-here:rgba(185,197,212,.06);
+  margin:40px 0 0;padding:22px 0 0;border-top:1px solid var(--fb-line);font-family:'Rajdhani',system-ui,sans-serif}
+.hx-family__k,.hx-family__cred{font:500 10.5px/1.6 'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--fb-mute)}
+.hx-family ul{list-style:none;margin:14px 0 4px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--fb-line);border-left:1px solid var(--fb-line)}
+.hx-family li{min-width:0;border-right:1px solid var(--fb-line);border-bottom:1px solid var(--fb-line)}
+.hx-family a{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:2px;align-items:center;padding:14px 16px;text-decoration:none;color:var(--fb-ink);min-height:44px;transition:background .2s}
+.hx-family a:hover{background:var(--fb-here)}
+.hx-family a:focus-visible{outline:2px solid currentColor;outline-offset:-2px}
+.hx-family i{width:8px;height:8px;border-radius:50%;grid-row:span 2;align-self:start;margin-top:6px}
+.hx-family b{font-weight:700;font-size:15px;letter-spacing:.14em}
+.hx-family span{grid-column:2;font:500 14px/1.35 'Rajdhani',system-ui,sans-serif;color:var(--fb-mute)}
+.hx-family li[aria-current] a{background:var(--fb-here)}
+.hx-family li[aria-current] span::after{content:" · You are here"}
+.hx-family [data-co="hy"] i{background:#4FC3D9}.hx-family [data-co="st"] i{background:#D4A03B}
+.hx-family [data-co="al"] i{background:#21E0CD}.hx-family [data-co="cr"] i{background:#B08D57}
+@media (max-width:900px){.hx-family ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.hx-family ul{grid-template-columns:1fr}}

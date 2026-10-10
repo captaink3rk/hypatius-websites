@@ -17,10 +17,12 @@
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/site/flagship-v7.css">
 <link rel="stylesheet" href="/site/hero-v1/hero.css">
+<link rel="stylesheet" href="/site/motion-v1/hx-motion.css">
 <script>(function(){try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches||innerWidth<760||(navigator.connection&&navigator.connection.saveData);if(!m)document.documentElement.classList.add('hx-motion')}catch(e){}})()</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"HYPATIUS, LLC","alternateName":"HYPATIUS","url":"https://hypati.us/","logo":"https://hypati.us/site/img/hypatius-mark.png","slogan":"Accountable automation for defense","email":"leadership@hypati.us","telephone":"+1-253-230-4166","address":{"@type":"PostalAddress","addressLocality":"Charleston","addressRegion":"SC","addressCountry":"US"},"sameAs":["https://www.linkedin.com/company/hypatius-hq","https://starchitect.us","https://alidade.us","https://craton-erp.us"],"brand":[{"@type":"Brand","name":"STARCHITECT","url":"https://starchitect.us","description":"Advanced reconnaissance. Space wargaming and BMC3I."},{"@type":"Brand","name":"ALIDADE","url":"https://alidade.us","description":"Capture decision intelligence for GovCon. Seven cited factors resolve to one probability of win; teaming runs on consent. Built for delivery as an MCP tool server. In development \u00b7 TBD 2027."},{"@type":"Brand","name":"CRATON","url":"https://craton-erp.us","description":"DCAA-ready timekeeping, charge codes, indirect rate pools and the SF 1408 audit binder for small government contractors. In development \u00b7 TBD 2027."}],"identifier":[{"@type":"PropertyValue","propertyID":"UEI","value":"UKELB3UV76V6"},{"@type":"PropertyValue","propertyID":"CAGE","value":"19S89"}]}
 </script>
+<link rel="stylesheet" href="/site/family-v1.css">
 </head>
 <body class="wrap">
 <a class="skip" href="#main">Skip to content</a>
@@ -328,19 +330,19 @@
       <p class="sec-lede">The three platforms look nothing alike and share one structural commitment. An AI-assisted run writes down what went in, which tools it called and what came out &mdash; and no output reaches a course of action, a bid or an invoice until a named person has signed for it. There is no automatic acceptance path to switch off, because there is not one to begin with.</p>
     </div>
 
-    <div class="rec-grid reveal" data-delay="120">
+    <div class="rec-grid reveal mx-rec" data-delay="120" data-mx="steps" data-interval="4200">
       <div class="rec-points">
-        <div class="rec-pt">
+        <div class="rec-pt" data-mx-step>
           <div class="rec-pt__t">The ledger never takes a write back</div>
           <p class="rec-pt__d">A correction is a new row that references the one it corrects. Each row carries the hash of the row before it, so a removed or reordered entry is detectable rather than arguable. The history of a number is the number.</p>
           <div class="rec-pt__c">append-only &middot; chain verified on every read</div>
         </div>
-        <div class="rec-pt">
+        <div class="rec-pt" data-mx-step>
           <div class="rec-pt__t">The receipt is an object, not a log line</div>
           <p class="rec-pt__d">Inputs, tools called, outputs and reviewer are first-class fields attached to the thing they produced &mdash; queryable and exportable months later, rather than a line in a file somebody hopefully kept.</p>
           <div class="rec-pt__c">run.receipt &middot; inputs &middot; tools &middot; outputs &middot; reviewer</div>
         </div>
-        <div class="rec-pt">
+        <div class="rec-pt" data-mx-step>
           <div class="rec-pt__t">Nothing counts without a name against it</div>
           <p class="rec-pt__d">Acceptance is blocked until a reviewer is set. The automation proposes and a person disposes &mdash; in the console under a decision clock, at the bid gate, and at the close of the month. Same rule, three surfaces.</p>
           <div class="rec-pt__c">accept &middot; blocked until reviewer_id is set</div>
@@ -349,12 +351,12 @@
 
       <figure class="receipt" style="margin:0;">
         <figcaption class="receipt__h"><span class="receipt__dot" aria-hidden="true"></span>run receipt &middot; craton.rates.snapshot &middot; illustrative</figcaption>
-        <div class="receipt__row"><span class="receipt__k">Run</span><span class="receipt__v"><b>2026-09-01T06:12:04Z</b> &middot; period 2026-08</span></div>
-        <div class="receipt__row"><span class="receipt__k">Inputs</span><span class="receipt__v">ledger rows <b>posted to date</b><br>pools: fringe &middot; overhead &middot; G&amp;A</span></div>
-        <div class="receipt__row"><span class="receipt__k">Tools</span><span class="receipt__v">ledger.read<br>rates.compute<br>sf1408.map(area&nbsp;03)</span></div>
-        <div class="receipt__row"><span class="receipt__k">Outputs</span><span class="receipt__v">provisional &rarr; final<br>G&amp;A <b>rate, recomputed</b></span></div>
-        <div class="receipt__row"><span class="receipt__k">Reviewer</span><span class="receipt__v receipt__blocked">&#9670; unset &mdash; acceptance blocked</span></div>
-        <div class="receipt__foot"><span class="receipt__seal">&#9650; chain verified</span><span style="color:var(--slate-500)">hash 7f2a&hellip;b41c</span></div>
+        <div class="receipt__row" data-hl="1"><span class="receipt__k">Run</span><span class="receipt__v"><b>2026-09-01T06:12:04Z</b> &middot; period 2026-08</span></div>
+        <div class="receipt__row" data-hl="1"><span class="receipt__k">Inputs</span><span class="receipt__v">ledger rows <b>posted to date</b><br>pools: fringe &middot; overhead &middot; G&amp;A</span></div>
+        <div class="receipt__row" data-hl="1"><span class="receipt__k">Tools</span><span class="receipt__v">ledger.read<br>rates.compute<br>sf1408.map(area&nbsp;03)</span></div>
+        <div class="receipt__row" data-hl="1"><span class="receipt__k">Outputs</span><span class="receipt__v">provisional &rarr; final<br>G&amp;A <b>rate, recomputed</b></span></div>
+        <div class="receipt__row" data-hl="2"><span class="receipt__k">Reviewer</span><span class="receipt__v receipt__blocked">&#9670; unset &mdash; acceptance blocked</span></div>
+        <div class="receipt__foot" data-hl="0"><span class="receipt__seal">&#9650; chain verified</span><span style="color:var(--slate-500)">hash 7f2a&hellip;b41c</span></div>
       </figure>
     </div>
 
@@ -612,10 +614,22 @@
       <span class="footer__right"><span class="mono">CHARLESTON, SC</span><a class="footer__li" href="https://www.linkedin.com/company/hypatius-hq" target="_blank" rel="noopener" aria-label="HYPATIUS on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></span>
     </div>
   </div>
+<!-- @family:begin · shared family bar (assets: family.css) -->
+<nav class="hx-family" aria-label="The HYPATIUS family" style="">
+  <div class="hx-family__k">The family · corporate leads, platforms follow</div>
+  <ul>
+    <li data-co="hy" aria-current="true"><a href="https://hypati.us"><i aria-hidden="true"></i><b>HYPATIUS</b><span>Parent company</span></a></li>
+    <li data-co="st"><a href="https://starchitect.us" rel="noopener"><i aria-hidden="true"></i><b>STARCHITECT</b><span>Space wargaming &amp; BMC3I · Live</span></a></li>
+    <li data-co="al"><a href="https://alidade.us" rel="noopener"><i aria-hidden="true"></i><b>ALIDADE</b><span>Capture decision intelligence · In development</span></a></li>
+    <li data-co="cr"><a href="https://craton-erp.us" rel="noopener"><i aria-hidden="true"></i><b>CRATON</b><span>Audit-ready operations · In development</span></a></li>
+  </ul>
+</nav>
+<!-- @family:end -->
 </footer>
 
 
 <script src="/site/flagship-v7.js"></script>
 <script src="/site/hero-v1/hero-runtime.js" defer></script>
+<script src="/site/motion-v1/hx-motion.js" data-brand="hy" defer></script>
 </body>
 </html>
