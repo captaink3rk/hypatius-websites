@@ -1,0 +1,26 @@
+/* HYPATIUS hero runtime: layers. Overlays inside a hero keep their resting state unless the scene drives them. */
+.hx{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.hx-poster,.hx-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hx-canvas{opacity:0}
+.hx-poster--start{display:none}
+html.hx-motion .hx-poster--start{display:block}
+html.hx-motion .hx-poster--end{display:none}
+.hx.hx-live .hx-canvas{opacity:1}
+.hx.hx-live .hx-poster{opacity:0}
+
+/* STARCHITECT overlay: look-ahead readout (resting state is fully visible; the scene animates it in) */
+.hero[data-hx-hero] .hero-veil{background:linear-gradient(85deg,var(--void) 4%,rgba(6,11,23,.86) 30%,rgba(6,11,23,.7) 42%,rgba(6,11,23,.12) 60%,rgba(6,11,23,0) 100%),linear-gradient(0deg,rgba(6,11,23,.7),rgba(6,11,23,0) 22%)}
+.hx-readout{position:relative;justify-self:end;align-self:end;width:min(380px,100%);margin-bottom:-8px;padding:20px 22px;border:1px solid var(--hair,rgba(239,233,221,.14));background:rgba(6,11,23,.66);backdrop-filter:blur(4px)}
+.hx-readout .hx-reg{position:absolute;width:14px;height:14px;border:0 solid var(--gold)}
+.hx-readout .hx-reg.tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}.hx-readout .hx-reg.tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
+.hx-readout .hx-reg.bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}.hx-readout .hx-reg.br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
+.hx-readout .k{display:flex;justify-content:space-between;gap:12px;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate)}
+.hx-readout .k b{color:var(--gold);font-weight:500;border:1px solid rgba(212,160,59,.5);padding:1px 6px;letter-spacing:.14em;white-space:nowrap;align-self:start}
+.hx-readout .big{display:flex;gap:22px;margin:14px 0 8px}
+.hx-readout .big div{font-family:var(--font-display);font-size:46px;line-height:1;color:var(--bone)}
+.hx-readout .big small{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--slate);margin-top:6px;white-space:nowrap}
+.hx-readout .big .g{color:var(--gold)}
+.hx-readout .src{font-family:var(--font-mono);font-size:10px;line-height:1.5;color:var(--mute-text);letter-spacing:.04em}
+@media (max-width:1000px){.hx-readout{justify-self:start;margin-top:28px}}
+.hero[data-hx-hero] .container>*{min-width:0}
+@media (max-width:760px){.hero[data-hx-hero] .hx{opacity:.5}.hx-readout .big{flex-wrap:wrap;gap:16px}.hx-readout .big small{white-space:normal}}
