@@ -1,118 +1,1000 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ALIDADE · Hero concept · Take a bearing</title>
-<link rel="stylesheet" href="../assets/fonts.css">
-<script type="importmap">{"imports":{"three":"../three/build/three.module.js"}}</script>
-<style>
-:root{--bg:#060D1B;--t1:#EFF5FE;--t2:#93A4BD;--t3:#7D92B5;--teal:#21E0CD;--teal2:#14B8A6;--line:rgba(147,164,189,.18)}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--t1);font-family:Inter,system-ui,sans-serif}
-.hero{position:relative;height:100vh;min-height:720px;overflow:hidden}
-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,13,27,.94) 0,rgba(6,13,27,.6) 36%,rgba(6,13,27,0) 60%)}
-nav{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:18px;padding:20px 56px;border-bottom:1px solid var(--line);background:rgba(6,13,27,.5);backdrop-filter:blur(6px)}
-nav img{height:22px}
-.pill{font:500 11px "IBM Plex Mono";letter-spacing:.08em;color:var(--teal);border:1px solid rgba(33,224,205,.45);padding:3px 8px;border-radius:3px}
-nav ul{display:flex;gap:26px;list-style:none;margin:0 0 0 auto;padding:0;font:500 14px Inter;color:var(--t2)}
-.btn{font:500 14px Inter;padding:11px 18px;border-radius:3px;background:var(--teal);color:#04121A;text-decoration:none;border:1px solid var(--teal)}
-.btn.ghost{background:transparent;color:var(--t1);border-color:var(--line)}
-.copy{position:absolute;left:56px;top:50%;transform:translateY(-44%);max-width:600px}
-.eyebrow{font:500 11px "IBM Plex Mono";letter-spacing:.18em;color:var(--t3);text-transform:uppercase;display:flex;align-items:center;gap:12px}
-.eyebrow:before{content:"";width:28px;height:1px;background:var(--teal)}
-h1{font:600 clamp(50px,6.3vw,96px)/.94 "Barlow Condensed",sans-serif;letter-spacing:.005em;margin:22px 0 24px}
-h1 span{display:block;white-space:nowrap}h1 .t{color:var(--teal)}
-.lede{font:400 18px/1.6 Inter;color:var(--t2);max-width:500px;margin:0 0 30px}
-.btns{display:flex;gap:12px}
-.card{position:absolute;width:250px;padding:14px 16px;border:1px solid rgba(33,224,205,.4);background:rgba(6,13,27,.78);backdrop-filter:blur(4px);border-radius:3px;pointer-events:none}
-.card .k{font:500 10px "IBM Plex Mono";letter-spacing:.16em;color:var(--t3);text-transform:uppercase;display:flex;justify-content:space-between}
-.card .k b{color:var(--teal);font-weight:500}
-.card .n{font:600 40px/1 "Barlow Condensed";margin:10px 0 4px;color:var(--t1)}
-.card .n small{font:500 13px Inter;color:var(--t2);margin-left:6px}
-.card .row{font:400 12px/1.5 "IBM Plex Mono";color:var(--t2)}
-.bearing{position:absolute;font:500 11px "IBM Plex Mono";letter-spacing:.16em;color:var(--teal);pointer-events:none}
-.stamp{position:absolute;left:56px;bottom:26px;font:400 10px "IBM Plex Mono";letter-spacing:.18em;color:var(--t3)}
-@media (max-width:900px){nav ul{display:none}.copy{left:24px;right:24px}nav{padding:16px 24px}.card,.bearing{display:none}}
-</style></head><body>
-<section class="hero">
-  <canvas id="c"></canvas><div class="shade"></div>
-  <nav><img src="../assets/alidade-wordmark.png" alt="ALIDADE"><span class="pill">In development · TBD 2027</span>
-    <ul><li>The instrument</li><li>Tools</li><li>Scoring</li><li>Teaming</li><li>Governance</li></ul><a class="btn" href="#">Request a briefing</a></nav>
-  <div class="copy" id="copy">
-    <div class="eyebrow">Capture decision intelligence · GovCon</div>
-    <h1><span>We do not guess.</span><span>We engineer <em class="t" style="font-style:normal">the win.</em></span></h1>
-    <p class="lede">ALIDADE takes a bearing on every open opportunity, scores win probability on seven cited factors, and builds the compliant proposal around the one worth chasing.</p>
-    <div class="btns"><a class="btn" href="#">Request a briefing</a><a class="btn ghost" href="#">Tour the instrument</a></div>
-  </div>
-  <div class="bearing" id="brg">BRG 042° · LOCKED</div>
-  <div class="card" id="card"><div class="k"><span>Opportunity · scored</span><b>SIMULATED</b></div>
-    <div class="n" id="pw">72<small>% win probability</small></div>
-    <div class="row">7 of 7 factors cited · teaming fit high</div></div>
-  <div class="stamp">ALIDADE · a HYPATIUS platform · HYPATIUS, LLC · UEI UKELB3UV76V6 · CAGE 19S89</div>
-</section>
-<script type="module">
-import * as THREE from 'three';
-import {run,ramp,ease} from '../assets/clock.js';
-const cv=document.getElementById('c');
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true});
-R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x060D1B,1);
-const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x060D1B,30,120);
-const cam=new THREE.PerspectiveCamera(38,1,.1,500);
-// Sea of opportunities: a point lattice that swells slowly.
-const NX=160,NZ=110,sea=new THREE.BufferGeometry(),pos=new Float32Array(NX*NZ*3);
-for(let i=0;i<NX;i++)for(let j=0;j<NZ;j++){const k=(i*NZ+j)*3;pos[k]=(i-NX/2)*.7;pos[k+2]=-j*.7+6}
-sea.setAttribute('position',new THREE.BufferAttribute(pos,3));
-const seaMat=new THREE.PointsMaterial({color:0x7D92B5,size:.07,transparent:true,opacity:.55});
-scene.add(new THREE.Points(sea,seaMat));
-// Opportunity markers: thin pillars of light standing on the sea.
-let s=11;const rnd=()=>{s=(s*16807)%2147483647;return s/2147483647};
-const opps=[];
-for(let i=0;i<34;i++){const x=(rnd()-.35)*60,z=-6-rnd()*60,h=.6+rnd()*2.2;
-  const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x,0,z),new THREE.Vector3(x,h,z)]);
-  const l=new THREE.Line(g,new THREE.LineBasicMaterial({color:0x93A4BD,transparent:true,opacity:.5}));scene.add(l);
-  const dot=new THREE.Mesh(new THREE.SphereGeometry(.09,10,8),new THREE.MeshBasicMaterial({color:0xEFF5FE,transparent:true,opacity:.8}));dot.position.set(x,h,z);scene.add(dot);
-  opps.push({x,z,h,l,dot})}
-const target=opps.reduce((b,o)=>(Math.abs(o.x-3)+Math.abs(o.z+9)<Math.abs(b.x-3)+Math.abs(b.z+9)?o:b));
-// The instrument: a bearing ring with degree ticks, floating over the sea, the A at its centre.
-const inst=new THREE.Group();inst.position.set(10,6.4,-14);scene.add(inst);
-const ring=new THREE.Group();inst.add(ring);
-const tick=[];for(let d=0;d<360;d+=2){const a=d*Math.PI/180,r0=4.2,r1=d%10===0?4.75:4.45;tick.push(new THREE.Vector3(r0*Math.cos(a),0,r0*Math.sin(a)),new THREE.Vector3(r1*Math.cos(a),0,r1*Math.sin(a)))}
-ring.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(tick),new THREE.LineBasicMaterial({color:0x93A4BD,transparent:true,opacity:.6})));
-const circ=r=>{const p=[];for(let a=0;a<=360;a+=2)p.push(new THREE.Vector3(r*Math.cos(a*Math.PI/180),0,r*Math.sin(a*Math.PI/180)));return new THREE.BufferGeometry().setFromPoints(p)};
-ring.add(new THREE.Line(circ(4.2),new THREE.LineBasicMaterial({color:0x21E0CD,transparent:true,opacity:.8})));
-ring.add(new THREE.Line(circ(5.3),new THREE.LineBasicMaterial({color:0x14B8A6,transparent:true,opacity:.35})));
-inst.rotation.x=.18;
-// Sighting arm: points from the instrument to the bearing, sweeping, then locks.
-const armG=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]);
-const arm=new THREE.Line(armG,new THREE.LineBasicMaterial({color:0x21E0CD,transparent:true,opacity:.9}));scene.add(arm);
-const lockRing=new THREE.Mesh(new THREE.RingGeometry(.5,.56,48),new THREE.MeshBasicMaterial({color:0x21E0CD,transparent:true,opacity:0,side:THREE.DoubleSide}));lockRing.rotation.x=-Math.PI/2;lockRing.position.set(target.x,.02,target.z);scene.add(lockRing);
-// The A mark as a sprite: original art, never recoloured, teal glow behind only.
-const tex=await new THREE.TextureLoader().loadAsync('../assets/alidade-mark-512.png');tex.colorSpace=THREE.SRGBColorSpace;
-const A=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false}));A.scale.set(4.4,4.5,1);inst.add(A);A.position.y=.3;
-const glowC=document.createElement('canvas');glowC.width=glowC.height=256;{const g=glowC.getContext('2d'),gr=g.createRadialGradient(128,128,0,128,128,128);gr.addColorStop(0,'rgba(33,224,205,.45)');gr.addColorStop(1,'rgba(33,224,205,0)');g.fillStyle=gr;g.fillRect(0,0,256,256)}
-const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(glowC),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));glow.scale.set(12,12,1);inst.add(glow);glow.renderOrder=-1;A.renderOrder=1;
-function size(){const w=cv.clientWidth,h=cv.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;if(w>900)cam.setViewOffset(w,h,-w*.14,0,w,h);else cam.clearViewOffset();cam.updateProjectionMatrix()}
-addEventListener('resize',size);size();
-const $=id=>document.getElementById(id),v=new THREE.Vector3();
-const tb=Math.atan2(target.z-inst.position.z,target.x-inst.position.x);
-function screen(p){v.copy(p).project(cam);return [(v.x*.5+.5)*cv.clientWidth,(-v.y*.5+.5)*cv.clientHeight]}
-function renderAt(t){
-  const p=sea.attributes.position.array;
-  for(let i=0;i<NX;i++)for(let j=0;j<NZ;j++){const k=(i*NZ+j)*3,x=p[k],z=p[k+2];p[k+1]=Math.sin(x*.18+t*.6)*.28+Math.cos(z*.22+t*.45)*.22}
-  sea.attributes.position.needsUpdate=true;
-  cam.position.set(Math.sin(t*.05)*1.2,5.2+Math.sin(t*.07)*.25,16);cam.lookAt(4,3.2,-14);
-  // sweep 0.6 to 3.2 s, then lock (ALIDADE curve)
-  const sw=ramp(t,.6,3.2,ease.alidade),ang=tb-1.9*(1-sw);
-  ring.rotation.y=-(ang)+Math.sin(t*.4)*.01*(sw);
-  const o=inst.position,L=Math.hypot(target.x-o.x,target.z-o.z),tip=new THREE.Vector3(o.x+Math.cos(ang)*L,target.h*.0,o.z+Math.sin(ang)*L);
-  armG.setFromPoints([new THREE.Vector3(o.x,o.y-.6,o.z),tip]);
-  const lock=ramp(t,3.2,3.52,ease.alidade);
-  lockRing.material.opacity=lock*(.6+.4*Math.sin(t*3));lockRing.scale.setScalar(1+.25*Math.sin(t*3));
-  opps.forEach(q=>{const on=q===target;q.l.material.color.set(on&&lock>0?0x21E0CD:0x93A4BD);q.l.material.opacity=on?.5+.5*lock:.38;q.dot.material.color.set(on&&lock>0?0x21E0CD:0xEFF5FE)});
-  A.position.y=.3+Math.sin(t*.8)*.12;glow.material.opacity=.7+.3*Math.sin(t*.9);
-  R.render(scene,cam);
-  const c=ramp(t,.1,.42,ease.alidade);$('copy').style.opacity=c;$('copy').style.marginLeft=`${-12*(1-c)}px`;
-  const [cx,cy]=screen(new THREE.Vector3(target.x,target.h,target.z));const cd=$('card');cd.style.left=(cx+26)+'px';cd.style.top=(cy-40)+'px';
-  const k=ramp(t,3.5,3.82,ease.alidade);cd.style.opacity=k;cd.style.transform=`translateX(${-10*(1-k)}px)`;
-  $('pw').firstChild.nodeValue=String(Math.round(72*ramp(t,3.5,4.4)));
-  const [bx,by]=screen(new THREE.Vector3(o.x-9.2,o.y+.4,o.z));const b=$('brg');b.style.left=bx+'px';b.style.top=by+'px';b.style.opacity=lock;
+<!DOCTYPE html>
+<html lang="en" data-brand="alidade">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALIDADE — Capture decision intelligence for GovCon · a HYPATIUS platform</title>
+<meta name="description" content="ALIDADE finds the opportunity, scores win probability on seven cited factors, charts the teaming partner on consent, and builds the compliant proposal. One instrument, in your browser or as governed tools inside your AI agent. In development, with availability planned for 2027.">
+<link rel="canonical" href="https://alidade.us/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALIDADE">
+<meta property="og:title" content="ALIDADE — Capture decision intelligence for GovCon">
+<meta property="og:description" content="Seven cited factors resolve into one probability of win, with the gaps named. Teaming runs on consent. In development, availability planned for 2027.">
+<meta property="og:url" content="https://alidade.us/">
+<meta property="og:image" content="https://alidade.us/assets/imagery/hero_alidade-1920.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:alt" content="The ALIDADE bearing ring: one instrument, a single teal light in the deep.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ALIDADE — Capture decision intelligence for GovCon">
+<meta name="twitter:description" content="Seven cited factors resolve into one probability of win, with the gaps named. Teaming runs on consent. In development, availability planned for 2027.">
+<meta name="twitter:image" content="https://alidade.us/assets/imagery/hero_alidade-1920.jpg">
+<link rel="icon" href="assets/logos/favicon.svg" type="image/svg+xml">
+
+<!-- Self-hosted faces. Zero CDN on this surface. -->
+<link rel="stylesheet" href="tokens/fonts-alidade.css">
+<link rel="stylesheet" href="tokens/alidade-v2.css">
+<link rel="stylesheet" href="css/alidade-product-v2.css">
+  <link rel="stylesheet" href="css/alidade-v3.css">
+  <link rel="stylesheet" href="assets/hero-v1/hero.css">
+  <script>(function(){try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches||innerWidth<760||(navigator.connection&&navigator.connection.saveData);if(!m)document.documentElement.classList.add('hx-motion')}catch(e){}})()</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"ALIDADE",
+  "applicationCategory":"BusinessApplication",
+  "operatingSystem":"Web, MCP",
+  "description":"Capture decision intelligence for government contracting. Opportunity discovery, seven-factor win scoring, consent-based teaming, and compliant proposal development.",
+  "url":"https://alidade.us/",
+  "publisher":{
+    "@type":"Organization",
+    "name":"HYPATIUS, LLC",
+    "url":"https://hypati.us",
+    "address":{"@type":"PostalAddress","addressLocality":"Charleston","addressRegion":"SC","addressCountry":"US"},
+    "identifier":[
+      {"@type":"PropertyValue","name":"UEI","value":"UKELB3UV76V6"},
+      {"@type":"PropertyValue","name":"CAGE","value":"19S89"}
+    ]
+  }
 }
-run(renderAt);
-</script></body></html>
+</script>
+
+<style>
+  /* ---- page-level layout. Everything visual lives in the token
+         and product layers; this file adds composition only. ---- */
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{ margin:0; background:var(--al-bg); color:var(--al-t2);
+        font-family:var(--al-font-ui); font-size:16px; line-height:var(--al-lh-body);
+        -webkit-font-smoothing:antialiased; }
+  img,svg{ max-width:100%; }
+  a{ color:var(--al-teal); text-decoration:none; }
+  a:hover{ text-decoration:underline; text-underline-offset:3px; }
+  h1,h2,h3,h4{ color:var(--al-t1); font-family:var(--al-font-display);
+               font-weight:500; letter-spacing:var(--al-ls-display);
+               line-height:1.06; margin:0; }
+
+  .wrap{ max-width:1280px; margin:0 auto; padding-inline:clamp(1.25rem,4vw,3rem); }
+  .wrap--narrow{ max-width:960px; }
+  section{ padding-block:clamp(3.5rem,7vw,6rem); position:relative; }
+  .alt{ background:var(--al-srf); border-block:var(--al-hairline) solid var(--al-bf); }
+
+  .eyebrow{ font-family:var(--al-font-mono); font-size:11px; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--al-t3);
+            display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:28px; height:1px; background:var(--al-teal); flex:none; }
+
+  .h-hero   { font-size:clamp(44px,7vw,76px); }
+  .h-section{ font-size:clamp(30px,4.2vw,48px); }
+  .h-sub    { font-size:clamp(20px,2.4vw,26px); }
+  .lede{ font-size:clamp(17px,1.5vw,19px); color:var(--al-t2); max-width:62ch; margin-top:22px; }
+
+  .grid{ display:grid; gap:20px; }
+  .g2{ grid-template-columns:repeat(2,1fr); }
+  .g3{ grid-template-columns:repeat(3,1fr); }
+  .g4{ grid-template-columns:repeat(4,1fr); }
+  @media (max-width:900px){ .g3,.g4{ grid-template-columns:1fr; } }
+  @media (max-width:760px){ .g2{ grid-template-columns:1fr; } }
+
+  /* ---- nav ---- */
+  header{ position:sticky; top:0; z-index:50;
+          background:color-mix(in srgb, var(--al-bg) 88%, transparent);
+          backdrop-filter:blur(12px) saturate(140%);
+          border-bottom:var(--al-hairline) solid var(--al-bf); }
+  .nav{ display:flex; align-items:center; gap:28px; height:66px; }
+  .brand{ font-family:var(--al-font-display); font-size:21px; letter-spacing:.14em;
+          color:var(--al-t1); text-transform:uppercase; display:flex; align-items:center; gap:11px; }
+  .mark-sm{ width:30px; height:30px; object-fit:contain;
+            filter:drop-shadow(0 0 10px rgba(33,224,205,.45)); } /* teal glow, never a solid fill */
+  .brand:hover{ text-decoration:none; }
+  .navlinks{ display:flex; gap:24px; margin-left:auto; font-size:14px; }
+  .navlinks a{ color:var(--al-t2); display:inline-flex; align-items:center; min-height:44px; padding:0 4px; }
+  .navlinks a:hover{ color:var(--al-t1); text-decoration:none; }
+  .nav-status{ flex:none; white-space:nowrap; }
+
+  /* mobile disclosure menu. The toggle only exists under 980px; above it the
+     links sit inline as before. Without JavaScript the button does nothing and
+     the footer carries the same links. */
+  .navtoggle{ display:none; flex:none; width:44px; height:44px; margin-left:auto; padding:0;
+              background:transparent; color:var(--al-t1); cursor:pointer;
+              border:var(--al-hairline) solid var(--al-bf); border-radius:var(--al-radius-control);
+              align-items:center; justify-content:center;
+              transition:border-color var(--al-dur-fast) var(--al-ease); }
+  .navtoggle:hover{ border-color:var(--al-bm); }
+  .navtoggle__bars, .navtoggle__bars::before, .navtoggle__bars::after{
+    display:block; width:18px; height:1.5px; background:currentColor; position:relative;
+    transition:transform var(--al-dur-base) var(--al-ease), background var(--al-dur-fast) var(--al-ease); }
+  .navtoggle__bars::before, .navtoggle__bars::after{ content:""; position:absolute; left:0; }
+  .navtoggle__bars::before{ top:-6px; }
+  .navtoggle__bars::after { top:6px; }
+  .navtoggle[aria-expanded="true"] .navtoggle__bars{ background:transparent; }
+  .navtoggle[aria-expanded="true"] .navtoggle__bars::before{ transform:translateY(6px) rotate(45deg); }
+  .navtoggle[aria-expanded="true"] .navtoggle__bars::after { transform:translateY(-6px) rotate(-45deg); }
+
+  @media (max-width:980px){
+    .nav{ gap:14px; position:relative; }
+    .navtoggle{ display:inline-flex; }
+    .navlinks{ display:none; position:absolute; top:100%; left:0; right:0; margin:0;
+               flex-direction:column; gap:0; padding:8px clamp(1.25rem,4vw,3rem) 16px;
+               background:var(--al-srf); border-bottom:var(--al-hairline) solid var(--al-bf); }
+    .navlinks.is-open{ display:flex; }
+    .navlinks a{ padding:0; border-bottom:var(--al-hairline) solid var(--al-bf); }
+    .navlinks a:last-child{ border-bottom:0; }
+  }
+  @media (max-width:600px){ .nav-cta{ display:none; } }
+  @media (max-width:420px){
+    .nav{ gap:10px; }
+    .brand{ font-size:18px; letter-spacing:.1em; gap:8px; }
+  }
+
+  /* in-development notice. Hairline, square 2px teal left bar (a barred edge
+     carries no radius), no fill beyond the surface ladder. */
+  .devbar{ background:var(--al-srf); border-bottom:var(--al-hairline) solid var(--al-bf); }
+  .devbar p{ margin:0; padding:9px 0 9px 14px; font-size:13px; line-height:1.5; color:var(--al-t2);
+             border-left:2px solid var(--al-teal); }
+  .devbar a{ color:var(--al-teal); }
+  main:focus{ outline:none; }
+
+  /* ---- hero: depth-contour field ---- */
+  .hero{ padding-block:clamp(3.5rem,7vw,6rem); overflow:hidden; }
+  /* Photographic hero, brand-book imagery direction: "the deep, one instrument,
+     a single teal light". The bearing ring IS the alidade. Two-axis protection
+     gradient so display type always lands on a dark field. */
+  .hero{ isolation:isolate; }
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:-2; pointer-events:none;
+    background:url("assets/deck-media/alidade-bearing-ring-1920.jpg") center right / cover no-repeat;
+    opacity:.9;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:
+      linear-gradient(90deg, rgba(6,13,27,.96) 0%, rgba(6,13,27,.82) 42%, rgba(6,13,27,.25) 100%),
+      linear-gradient(180deg, rgba(6,13,27,.35) 0%, rgba(6,13,27,0) 40%, rgba(6,13,27,.92) 100%);
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(2rem,5vw,4.5rem); align-items:start; }
+  @media (max-width:1000px){ .hero-grid{ grid-template-columns:1fr; } }
+
+  .cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,auto); justify-content:start;
+             gap:clamp(1.5rem,4vw,3.5rem); margin-top:40px;
+             padding-top:24px; border-top:var(--al-hairline) solid var(--al-bf); }
+  @media (max-width:560px){ .stat-row{ grid-template-columns:1fr 1fr; } }
+  .stat__n{ font-family:var(--al-font-display); font-size:40px; color:var(--al-teal); line-height:1; }
+  .hero-mark{ display:block; width:150px; height:150px; object-fit:contain; margin:0 auto 14px;
+              filter:drop-shadow(0 0 34px rgba(33,224,205,.38)); }
+  @media (max-width:1000px){ .hero-mark{ width:110px; height:110px; } }
+  .stat__l{ font-family:var(--al-font-mono); font-size:10px; letter-spacing:.16em;
+            text-transform:uppercase; color:var(--al-t3); margin-top:8px; }
+
+  /* ---- tool groups ---- */
+  .tool{ padding:22px; }
+  .tool h3{ font-size:20px; margin-bottom:6px; }
+  .glyph{ width:34px; height:34px; object-fit:contain; display:block; margin-bottom:14px; opacity:.92; }
+  .tool__fns{ font-family:var(--al-font-mono); font-size:11.5px; color:var(--al-t3);
+              line-height:2; margin-top:14px; word-break:break-word; }
+  .tool__fns b{ color:var(--al-teal); font-weight:400; }
+
+  /* ---- product screens ---- */
+  .shots{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:40px; }
+  .shot{ margin:0; background:var(--al-srf); border:var(--al-hairline) solid var(--al-bf);
+         border-radius:var(--al-radius-card); overflow:hidden; }
+  .shot--wide{ grid-column:1/-1; }
+  .shot img{ display:block; width:100%; height:auto; border-bottom:var(--al-hairline) solid var(--al-bf); }
+  .shot figcaption{ padding:12px 16px; font-size:13.5px; color:var(--al-t2); }
+  .shot figcaption b{ color:var(--al-t1); font-weight:500; }
+  @media (max-width:760px){ .shots{ grid-template-columns:1fr; } }
+
+  /* ---- band legend ---- */
+  .band{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start;
+         padding:16px; border-left:2px solid var(--band); background:var(--al-srf);
+         border-radius:0 8px 8px 0; }
+  .band__n{ font-family:var(--al-font-display); font-size:30px; color:var(--band); line-height:1; }
+
+  /* ---- factor table ---- */
+  table{ width:100%; border-collapse:collapse; font-size:14px; }
+  th{ font-family:var(--al-font-mono); font-size:10px; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--al-t3); text-align:left;
+      padding:10px 12px; border-bottom:var(--al-hairline) solid var(--al-bm); font-weight:500; }
+  td{ padding:11px 12px; border-bottom:var(--al-hairline) solid var(--al-bf); color:var(--al-t2); }
+  td:last-child{ text-align:right; font-variant-numeric:tabular-nums; color:var(--al-t1); }
+
+  /* ---- pricing ---- */
+  .tier{ padding:24px; display:flex; flex-direction:column; gap:14px; }
+  .tier--feature{ border-color:var(--al-teal-edge); }
+  .tier__name{ font-family:var(--al-font-mono); font-size:11px; letter-spacing:.2em;
+               text-transform:uppercase; color:var(--al-teal); }
+  .tier__for{ font-size:14px; color:var(--al-t2); min-height:3em; }
+  .tier ul{ margin:0; padding-left:18px; font-size:13.5px; color:var(--al-t2); line-height:1.9; }
+
+  .deep{ isolation:isolate; }
+  .deep::before{ content:""; position:absolute; inset:0; z-index:-2;
+                 background:url("assets/deck-media/alidade-deep.jpg") center / cover no-repeat; opacity:.55; }
+  .deep::after{ content:""; position:absolute; inset:0; z-index:-1;
+                background:linear-gradient(180deg, rgba(14,27,46,.92), rgba(6,13,27,.88)); }
+  footer{ background:var(--al-srf); border-top:var(--al-hairline) solid var(--al-bf);
+          padding-block:56px 32px; font-size:14px; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:32px; }
+  @media (max-width:880px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
+  .tiers{ grid-template-columns:repeat(5,1fr); margin-top:40px; }
+  @media (max-width:1180px){ .tiers{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:760px){ .tiers{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .tiers{ grid-template-columns:1fr; } }
+  footer h4{ font-family:var(--al-font-mono); font-size:10px; letter-spacing:.18em;
+             text-transform:uppercase; color:var(--al-t3); margin-bottom:14px; font-weight:500; }
+  footer ul{ list-style:none; margin:0; padding:0; line-height:2.1; }
+  footer a{ color:var(--al-t2); }
+  footer a:hover{ color:var(--al-t1); }
+  .foot-legal{ margin-top:44px; padding-top:24px;
+               border-top:var(--al-hairline) solid var(--al-bf);
+               display:flex; flex-wrap:wrap; gap:16px 28px; align-items:center;
+               font-size:12px; color:var(--al-t3); }
+</style>
+</head>
+
+<body>
+<!-- Intro sting · overlay, not a gate. display:none until
+     js/alidade-sting-v1.js shows it, so with JavaScript off this block renders
+     nothing and the page is served exactly as it was. See css/alidade-v3.css §9.
+     Not aria-hidden: it holds the focusable Skip control. It is a labelled
+     dialog; the script moves focus to Skip on open and back to the page on close. -->
+<div id="al-sting" role="dialog" aria-modal="true" aria-label="ALIDADE intro">
+  <video poster="assets/img/alidade-intro-poster-v2.jpg" muted playsinline preload="none">
+    <source data-src="assets/video/alidade-intro-sting-v2.mp4"  type="video/mp4">
+    <source data-src="assets/video/alidade-intro-sting-v2.webm" type="video/webm">
+  </video>
+  <a class="al-sting__skip" href="#main">Skip intro</a>
+</div>
+
+<a href="#main" class="al-skip">Skip to content</a>
+
+<header>
+  <nav class="wrap nav" aria-label="Primary">
+    <a href="#main" class="brand" aria-label="ALIDADE home">
+      <img src="assets/logos/alidade-mark-256.png" alt="" width="30" height="30" class="mark-sm">
+      <span>ALIDADE</span>
+    </a>
+    <span class="al-pill al-pill--gold nav-status" style="font-size:10px;">In development</span>
+    <button type="button" class="navtoggle" aria-expanded="false" aria-controls="navlinks">
+      <span class="navtoggle__bars" aria-hidden="true"></span><span class="al-sr">Menu</span>
+    </button>
+    <div class="navlinks" id="navlinks">
+      <a href="#screens">The instrument</a>
+      <a href="#tools">Tools</a>
+      <a href="#score">Scoring</a>
+      <a href="#teaming">Teaming</a>
+      <a href="#governance">Governance</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://hypati.us">HYPATIUS ↗</a>
+    </div>
+    <a href="#briefing" class="al-btn al-btn--primary nav-cta">Request a briefing</a>
+  </nav>
+</header>
+
+<div class="devbar" role="note" aria-label="Product status">
+  <div class="wrap">
+    <p>ALIDADE is in development, with availability planned for 2027 (TBD).
+      <a href="#briefing">Briefings and design partnerships by request.</a></p>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" data-hx-hero>
+  <div class="hx" data-scene="assets/hero-v1/scene-al.js" data-ease="alidade" data-fade="320">
+    <img class="hx-poster hx-poster--end" src="assets/hero-v1/al-end.jpg" alt="" width="1600" height="1000" fetchpriority="high">
+    <img class="hx-poster hx-poster--start" src="assets/hero-v1/al-start.jpg" alt="" width="1600" height="1000" fetchpriority="high">
+    <canvas class="hx-canvas" aria-hidden="true"></canvas>
+  </div>
+  <div class="hx-bearing" data-hx="bearing" aria-hidden="true">BRG 042° · LOCKED</div>
+  <div class="hx-card" data-hx="card" aria-label="Example opportunity, simulated">
+    <div class="k"><span>Opportunity · scored</span><b>SIMULATED</b></div>
+    <div class="n"><span data-hx="pwin">72</span><small>% win probability</small></div>
+    <div class="row">7 of 7 factors cited · teaming fit high</div>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-col">
+      <p class="eyebrow">Capture decision intelligence · GovCon · a HYPATIUS platform</p>
+      <h1 class="h-hero">We do not guess.<br>We engineer the win.</h1>
+      <p class="lede">
+        ALIDADE finds the opportunity, scores win probability on seven cited factors,
+        charts the teaming partner on consent, and builds the compliant proposal —
+        on one instrument. At launch, run it in your browser, or call every
+        capability as a governed tool from your AI agent.
+      </p>
+
+      <div class="cta-row">
+        <a href="#briefing" class="al-btn al-btn--primary">Request a briefing</a>
+        <a href="#instrument" class="al-btn al-btn--secondary">Tour the instrument →</a>
+      </div>
+
+      <div class="stat-row">
+        <div>
+          <div class="stat__n">24</div>
+          <div class="stat__l">Tools · six groups</div>
+        </div>
+        <div>
+          <div class="stat__n">7</div>
+          <div class="stat__l">Scoring factors, each cited</div>
+        </div>
+        <div>
+          <div class="stat__n">100%</div>
+          <div class="stat__l">Of runs written to the ledger</div>
+        </div>
+      </div>
+      <span class="al-proof">
+        Tool count describes the planned general-availability surface.
+        Ledger coverage is enforced in the data layer, not by policy.
+      </span>
+    </div>
+
+    <!-- The live bearing scene (assets/hero-v1) carries the crystalline A: original art, never recoloured. -->
+    <div class="hx-space" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ======================= THE SEAM / WEDGE ======================= -->
+
+<div class="al-band" aria-hidden="true"></div>
+
+<section id="duality" class="deep">
+  <div class="wrap">
+    <p class="eyebrow">Two callers, one capability</p>
+    <h2 class="h-section">A console you work in. A tool server your agents call.</h2>
+    <p class="lede">
+      Most tools make you choose. ALIDADE runs the same capability both ways, and writes
+      both to the same ledger &mdash; so the record does not care which one asked.
+    </p>
+
+    <div class="al-duality">
+      <div>
+        <div class="k k--human"><span>&#9650;</span> The human path</div>
+        <h3>Open the console. Read the bearing.</h3>
+        <p>
+          Eight surfaces &mdash; command, bid matches, competitive intel, pipeline, proposals,
+          GovFeed, partners, control room. A capture lead signs the gate. The pursuit moves.
+        </p>
+        <code>alidade.us &rarr; Command</code>
+      </div>
+      <div>
+        <div class="k k--agent"><span>&#9670;</span> The agent path</div>
+        <h3>Call the same tool. Get the same record.</h3>
+        <p>
+          Twenty-four tools across six groups, exposed over MCP. Your agent scores a pursuit or
+          drafts a section, and the gate still waits for a named person before anything leaves.
+        </p>
+        <code>tool: score_pursuit &rarr; GATE</code>
+      </div>
+      <div class="al-duality--foot">
+        Both paths write to one run ledger: inputs, tools called, outputs, and the person who
+        signed. <b>Nothing counts until a named person reviews it</b> &mdash; which is the same
+        rule, whichever caller asked.
+      </div>
+    </div>
+
+    <figure class="al-shot" style="margin-top:2rem">
+      <img src="assets/screens/v3/mcp-topology.jpg" width="1728" height="900" loading="lazy"
+           alt="ALIDADE as an MCP tool server: four callers on the left, six tool groups in the middle, the run ledger on the right with AUTO and GATE states.">
+      <figcaption><b>The tool server.</b> Four callers &middot; six groups &middot; every call on the ledger</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="alt" id="instrument">
+  <div class="wrap">
+    <p class="eyebrow">The seam</p>
+    <h2 class="h-section" style="max-width:20ch">Everything a pursuit needs that is not the writing.</h2>
+    <p class="lede">
+      A proposal tool starts when you have already decided to bid. By then the
+      expensive decisions are behind you — whether to bid at all, who fills the
+      gap, which pathway buys the schedule you promised. That is the seam ALIDADE
+      owns. Take a bearing on it before you commit the team.
+    </p>
+
+    <div class="grid g4" style="margin-top:44px">
+      <article class="al-card al-edge tool">
+        <img src="assets/deck-media/glyph_network_teal.png" alt="" width="30" height="30" class="glyph">
+        <h3>Who builds it</h3>
+        <p style="font-size:14px;margin:0">Producers, primes, subs, and the contracts
+          they hold, from the performer graph.</p>
+      </article>
+      <article class="al-card al-edge tool">
+        <img src="assets/deck-media/glyph_chart_teal.png" alt="" width="30" height="30" class="glyph">
+        <h3>What it costs</h3>
+        <p style="font-size:14px;margin:0">Vendor capacity and pricing intelligence
+          beside the cost model you already trust.</p>
+      </article>
+      <article class="al-card al-edge tool">
+        <img src="assets/deck-media/glyph_target_teal.png" alt="" width="30" height="30" class="glyph">
+        <h3>How long to buy</h3>
+        <p style="font-size:14px;margin:0">Lead time by pathway, so the schedule
+          includes the time it takes to procure.</p>
+      </article>
+      <article class="al-card al-edge tool">
+        <img src="assets/deck-media/glyph_scales_teal.png" alt="" width="30" height="30" class="glyph">
+        <h3>Under which authority</h3>
+        <p style="font-size:14px;margin:0">OTA, SBIR Phase III, CSO, FAR Part 15 —
+          with the compliance checks each one carries.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= TOOL GROUPS ========================= -->
+<section id="tools">
+  <div class="wrap">
+    <img src="assets/deck-media/glyph_robot_teal.png" alt="" width="40" height="40" class="glyph" style="margin-bottom:18px">
+    <p class="eyebrow">Six tool groups · one server</p>
+    <h2 class="h-section">Every surface is also a tool.</h2>
+    <p class="lede">
+      The same capabilities your team runs in the console are published to your
+      agent as consent-gated tools. Reads run automatically in-tenant. Anything
+      that acts — contacting a partner, sharing a document, releasing a report —
+      stops at a human gate.
+    </p>
+
+    <div style="display:flex;gap:10px;align-items:center;margin-top:28px;flex-wrap:wrap">
+      <code class="al-pill al-pill--teal" style="font-family:var(--al-font-mono)">alidade-mcp</code>
+      <span class="al-ledger__mode" data-mode="auto">AUTO · reads</span>
+      <span class="al-ledger__mode" data-mode="gate">GATE · acts</span>
+    </div>
+
+    <div class="grid g3" style="margin-top:32px">
+      <article class="al-card tool">
+        <img src="assets/deck-media/glyph_discovery_teal.png" alt="" width="34" height="34" class="glyph">
+        <div class="al-lbl">research</div>
+        <h3>Find the opportunity</h3>
+        <p class="tool__fns"><b>search_opportunities</b> · <b>enrich_notice</b> ·
+          <b>forecast_recompetes</b> · <b>agency_signals</b></p>
+      </article>
+      <article class="al-card tool">
+        <img src="assets/deck-media/glyph_network_teal.png" alt="" width="34" height="34" class="glyph">
+        <div class="al-lbl">graph</div>
+        <h3>Know the field</h3>
+        <p class="tool__fns"><b>performer_lookup</b> · <b>award_history</b> ·
+          <b>relationship_paths</b> · <b>incumbent_map</b></p>
+      </article>
+      <article class="al-card tool">
+        <img src="assets/deck-media/glyph_target_teal.png" alt="" width="34" height="34" class="glyph">
+        <div class="al-lbl">teaming</div>
+        <h3>Fill the gap, on consent</h3>
+        <p class="tool__fns"><b>find_partners</b> · <b>fit_score</b> ·
+          <b>request_connection</b> · <b>consent_status</b></p>
+      </article>
+      <article class="al-card tool">
+        <img src="assets/deck-media/glyph_chart_teal.png" alt="" width="34" height="34" class="glyph">
+        <div class="al-lbl">logistics</div>
+        <h3>Can it be bought in time</h3>
+        <p class="tool__fns"><b>vendor_capacity</b> · <b>procurement_lead_time</b> ·
+          <b>pathway_options</b> · <b>sourcing_check</b></p>
+      </article>
+      <article class="al-card tool">
+        <img src="assets/deck-media/glyph_proposal_teal.png" alt="" width="34" height="34" class="glyph">
+        <div class="al-lbl">proposal</div>
+        <h3>Write it compliant, cited</h3>
+        <p class="tool__fns"><b>compliance_matrix</b> · <b>section_draft</b> ·
+          <b>agency_voice</b> · <b>cite_sources</b></p>
+      </article>
+      <article class="al-card tool">
+        <img src="assets/deck-media/glyph_scales_teal.png" alt="" width="34" height="34" class="glyph">
+        <div class="al-lbl">reporting</div>
+        <h3>Prove it</h3>
+        <p class="tool__fns"><b>capture_report</b> · <b>pipeline_summary</b> ·
+          <b>run_ledger</b> · <b>export_pdf</b></p>
+      </article>
+    </div>
+
+    <span class="al-proof" style="margin-top:20px">
+      Tool names describe the planned general-availability surface.
+    </span>
+
+    <!-- the ledger, shown rather than described -->
+    <div class="al-card" style="margin-top:36px;overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:var(--al-hairline) solid var(--al-bf)">
+        <span class="al-lbl">Run ledger · every call, attributable</span>
+      </div>
+      <div class="al-ledger"><span class="al-ledger__time">05:46:01</span>
+        <span class="al-ledger__tool">performer_lookup</span>
+        <span class="al-ledger__mode" data-mode="auto">auto</span>
+        <span>4 producers · 12 citations</span></div>
+      <div class="al-ledger"><span class="al-ledger__time">05:46:02</span>
+        <span class="al-ledger__tool">procurement_lead_time</span>
+        <span class="al-ledger__mode" data-mode="auto">auto</span>
+        <span>3 pathways</span></div>
+      <div class="al-ledger"><span class="al-ledger__time">05:46:04</span>
+        <span class="al-ledger__tool">request_connection</span>
+        <span class="al-ledger__mode" data-mode="gate">gate</span>
+        <span>Held for approval · J. Broe</span></div>
+      <div class="al-ledger"><span class="al-ledger__time">05:46:04</span>
+        <span class="al-ledger__tool">export_pdf</span>
+        <span class="al-ledger__mode" data-mode="gate">gate</span>
+        <span>Denied · scope not granted <span class="al-state" data-state="risk"><span class="al-sr">denied</span></span></span></div>
+      <div style="padding:12px 16px;border-top:var(--al-hairline) solid var(--al-bf)">
+        <span class="al-proof" style="margin:0">Denials are recorded with the same
+          fidelity as successes. A ledger that only logs what worked is not an audit trail.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================= THE INSTRUMENT, SHOWN ======================= -->
+
+<div class="al-band" aria-hidden="true"></div>
+
+<section id="surfaces">
+  <div class="wrap">
+    <p class="eyebrow">The console</p>
+    <h2 class="h-section">Eight surfaces. One instrument.</h2>
+    <p class="lede">
+      Screens are product renders on composite exercise data. No customer or operational
+      data appears.
+    </p>
+
+    <div class="al-showcase">
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-command.jpg" width="1800" height="1288" loading="lazy"
+             alt="Command surface: the mission queue ranked by score, gates awaiting signature, and pipeline value.">
+        <figcaption><b>Command.</b> What needs a person today, ranked by score</figcaption>
+      </figure>
+    </div>
+
+    <div class="al-showcase al-showcase--pair">
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-matches.jpg" width="1800" height="1172" loading="lazy"
+             alt="Bid matches: opportunities scored against a declared capability profile.">
+        <figcaption><b>Bid matches.</b> Scored against your declared profile</figcaption>
+      </figure>
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-intel.jpg" width="1800" height="907" loading="lazy"
+             alt="Competitive intel: rivals plotted by incumbency strength against capability overlap.">
+        <figcaption><b>Competitive intel.</b> Incumbency against overlap</figcaption>
+      </figure>
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-proposals.jpg" width="1800" height="791" loading="lazy"
+             alt="Proposals: the compliance matrix mapped to Section L and M with gaps named.">
+        <figcaption><b>Proposals.</b> Compliance matrix, gaps named</figcaption>
+      </figure>
+      <figure class="al-shot">
+        <img src="assets/screens/v3/s-control.jpg" width="1800" height="1611" loading="lazy"
+             alt="Control room: the run ledger showing every tool call, its AUTO or GATE state and its authority.">
+        <figcaption><b>Control room.</b> Every call, its state, its authority</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="wrap">
+    <p class="eyebrow">The instrument</p>
+    <h2 class="h-section">One instrument. Every surface an agent or a human works from.</h2>
+    <p class="lede">
+      Command briefing, opportunities ranked by probability of win, competitive intel, the
+      Bid Builder with redline and compliance matrix, One Voice, and the agent control room
+      where every tool call is attributable to a person.
+    </p>
+    <div class="shots">
+      <figure class="shot shot--wide">
+        <img src="assets/screens/alidade-ui-briefing.jpg" width="1728" height="880" alt="Command briefing: the morning bearing on the desktop — scored pursuits, gates awaiting signature, and the run ledger." loading="lazy">
+        <figcaption><b>Command briefing.</b> The morning bearing, on the desktop.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/screens/alidade-ui-opportunities.jpg" width="1728" height="884" alt="Opportunities ranked by probability of win, each with its seven factor readings." loading="lazy">
+        <figcaption><b>Opportunities, ranked by pWin.</b> Seven factors, every one cited.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/screens/alidade-ui-intel.jpg" width="1728" height="876" alt="Competitive intel: rivals in the NAICS plotted by incumbency strength and capability overlap." loading="lazy">
+        <figcaption><b>Competitive intel.</b> Know the field before the field knows you.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/screens/alidade-ui-redline.jpg" width="1728" height="881" alt="Bid Builder redline view with the compliance matrix mapping Section L to Section M." loading="lazy">
+        <figcaption><b>Redline and compliance matrix.</b> Sections L and M, mapped and gapped.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/screens/alidade-ui-onevoice.jpg" width="1728" height="884" alt="One Voice: multiple authors harmonised into a single proposal register." loading="lazy">
+        <figcaption><b>One Voice.</b> Many authors, one proposal register.</figcaption>
+      </figure>
+      <figure class="shot shot--wide">
+        <img src="assets/screens/alidade-ui-control-room.jpg" width="1728" height="975" alt="Agent and MCP control room: every tool call attributable to a person and a watermark id, exportable." loading="lazy">
+        <figcaption><b>Agent &amp; MCP control room.</b> Every row attributable to a person and a watermark id.</figcaption>
+      </figure>
+    </div>
+    <span class="al-proof">Screens are product mockups with composite data. No customer information appears.</span>
+  </div>
+</section>
+
+<!-- ====================== THE SCORING INSTRUMENT ====================== -->
+
+<section id="mobile" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">In the field</p>
+    <h2 class="h-section">The gate travels.</h2>
+    <p class="lede">
+      Three destinations on the phone &mdash; Bearings, Ask, Grants. A signature request reaches
+      whoever has to sign it, with the scope it is asking for written out before they approve.
+    </p>
+
+    <div class="al-devices">
+      <figure class="al-device">
+        <img src="assets/screens/v3/mobile-1.jpg" width="760" height="1629" loading="lazy"
+             alt="Bearings: pursuits ranked, with a connection request awaiting signature.">
+        <figcaption>Bearings &middot; the morning read</figcaption>
+      </figure>
+      <figure class="al-device al-device--lift">
+        <img src="assets/screens/v3/mobile-3.jpg" width="760" height="1629" loading="lazy"
+             alt="Ask: a plain-language answer with the bearing dial and the tool calls that produced it.">
+        <figcaption>Ask &middot; answer, with its calls</figcaption>
+      </figure>
+      <figure class="al-device">
+        <img src="assets/screens/v3/mobile-5.jpg" width="760" height="1629" loading="lazy"
+             alt="A consent gate: the scope offered, the scope withheld, and the expiry, before approval.">
+        <figcaption>Grants &middot; scope before consent</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="al-band" aria-hidden="true"></div>
+<section class="alt" id="score">
+  <div class="wrap">
+    <p class="eyebrow">The scoring instrument</p>
+    <h2 class="h-section">Seven factors. Every one cited.</h2>
+    <p class="lede">
+      Seven weighted signals resolve into one probability of win — with the gaps
+      named, so a go/no-go is defensible to the person who has to fund it. The
+      colour is calculated from the score, never chosen. The band carries a mark
+      and a word as well as a hue, so it survives a greyscale print and a
+      colour-deficient reader.
+    </p>
+
+    <div class="grid g3" style="margin-top:40px">
+      <div class="band" data-band="high">
+        <div class="band__n">80+</div>
+        <div>
+          <div class="al-state" data-band="high">Pursue</div>
+          <p style="font-size:13.5px;margin:8px 0 0">Commit the capture team.
+            Gaps, if any, are closeable inside the schedule.</p>
+        </div>
+      </div>
+      <div class="band" data-band="mid">
+        <div class="band__n">60–79</div>
+        <div>
+          <div class="al-state" data-band="mid">Consider</div>
+          <p style="font-size:13.5px;margin:8px 0 0">Bid only with a partner who
+            closes the named gap. Teaming changes the answer.</p>
+        </div>
+      </div>
+      <div class="band" data-band="low">
+        <div class="band__n">&lt;60</div>
+        <div>
+          <div class="al-state" data-band="low">Hold</div>
+          <p style="font-size:13.5px;margin:8px 0 0">The B&amp;P is better spent
+            elsewhere. The score says why, in writing.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="al-card" style="margin-top:36px;padding:8px 12px 4px">
+      <table>
+        <caption class="al-lbl" style="text-align:left;padding:12px 4px 10px">
+          Factor weights · sum 100
+        </caption>
+        <thead>
+          <tr><th scope="col">Factor</th><th scope="col">What it reads</th><th scope="col">Weight</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:var(--al-t1)">Agency affinity</td><td>Prior awards, relationships, and incumbency posture at this agency</td><td>20</td></tr>
+          <tr><td style="color:var(--al-t1)">Capability match</td><td>Your declared capabilities against the stated requirement</td><td>20</td></tr>
+          <tr><td style="color:var(--al-t1)">NAICS alignment</td><td>Code fit and size-standard position</td><td>15</td></tr>
+          <tr><td style="color:var(--al-t1)">Competition level</td><td>Field density and incumbent strength</td><td>15</td></tr>
+          <tr><td style="color:var(--al-t1)">Past performance</td><td>Relevance, recency, and CPARS posture</td><td>10</td></tr>
+          <tr><td style="color:var(--al-t1)">Certification match</td><td>Set-aside eligibility against the solicitation</td><td>10</td></tr>
+          <tr><td style="color:var(--al-t1)">Political context</td><td>Appropriations, policy shifts, and protest history</td><td>10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="al-proof">
+      Weights are fixed and published. A score shown in a briefing deck equals the
+      score in the application — the bands and weights are one implementation.
+    </span>
+  </div>
+</section>
+
+<!-- ========================== TEAMING ========================== -->
+<section id="teaming">
+  <div class="wrap">
+    <p class="eyebrow">Partner marketplace</p>
+    <h2 class="h-section">No one wins alone.</h2>
+    <p class="lede">
+      So connection runs on consent — a signed grant that travels with every tool
+      call, whatever client made it. Discover anonymized partners ranked by
+      bid-match fit. Identities resolve only on mutual opt-in. Nothing your sub's
+      agent asks for leaves your tenant unless you scoped it.
+    </p>
+
+    <div class="grid g2" style="margin-top:40px;align-items:start">
+      <div class="al-card" style="padding:20px">
+        <div class="al-lbl" style="margin-bottom:16px">Before consent</div>
+        <div class="al-watermark" style="margin-bottom:12px">
+          <div class="al-watermark__tag">Partner · B2F4-9XK</div>
+          <p style="margin:0;font-size:14px;color:var(--al-t1)">
+            Fills: DoD logistics · OCONUS operations</p>
+          <p style="margin:6px 0 0;font-size:12.5px;color:var(--al-t2)">
+            8(a) · 8+ yrs · ISO 27001</p>
+        </div>
+        <div class="al-watermark">
+          <div class="al-watermark__tag">Partner · 7K1C-4QM</div>
+          <p style="margin:0;font-size:14px;color:var(--al-t1)">
+            Fills: cloud engineering · CMMC L2</p>
+          <p style="margin:6px 0 0;font-size:12.5px;color:var(--al-t2)">
+            HUBZone · 12+ yrs · AWS GovCloud</p>
+        </div>
+        <span class="al-proof">Handles are watermark identifiers. No firm name,
+          no UEI, no contact until both sides opt in.</span>
+      </div>
+
+      <div class="al-card al-edge al-edge--grant" style="padding:20px">
+        <div class="al-lbl" style="margin-bottom:16px">The grant</div>
+        <p style="font-size:14.5px;color:var(--al-t1);margin:0 0 16px">
+          A grant is a signed scope between tenants. Tool groups, fields, and
+          expiry, per grantee. Hidden fields stay hidden to agents too.
+        </p>
+        <div style="display:grid;gap:10px;font-family:var(--al-font-mono);font-size:12px">
+          <div style="display:flex;justify-content:space-between;gap:12px">
+            <span style="color:var(--al-t3)">SCOPE</span>
+            <span style="color:var(--al-t1)">teaming · proposal</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px">
+            <span style="color:var(--al-t3)">FIELDS</span>
+            <span style="color:var(--al-t1)">capability, past_perf</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px">
+            <span style="color:var(--al-t3)">WITHHELD</span>
+            <span style="color:var(--al-violet)">pricing, staffing</span></div>
+          <div style="display:flex;justify-content:space-between;gap:12px">
+            <span style="color:var(--al-t3)">EXPIRES</span>
+            <span style="color:var(--al-t1)">on award or +90d</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="h-sub" style="margin-top:56px">Many companies. One voice.</h3>
+    <p class="lede" style="margin-top:14px">
+      When two firms team, two writing styles collide. One Voice harmonizes them
+      into a single compliant narrative while the compliance matrix tracks every
+      §L section against its §M evaluation factor. Forensic watermarking persists
+      on drafts and on final exports.
+    </p>
+  </div>
+</section>
+
+<!-- ========================= GOVERNANCE ========================= -->
+<section class="alt" id="governance">
+  <div class="wrap">
+    <img src="assets/deck-media/glyph_shield_teal.png" alt="" width="40" height="40" class="glyph" style="margin-bottom:18px">
+    <p class="eyebrow">Governance</p>
+    <h2 class="h-section">Secure by design. Collaborative by architecture.</h2>
+    <p class="lede">
+      Contested capture runs on trust. Tenant isolation, an append-only audit
+      record, the consent ledger, and forensic watermarking are not features
+      bolted on for procurement — they are the architecture.
+    </p>
+
+    <div class="grid g3" style="margin-top:40px">
+      <article class="al-card" style="padding:20px">
+        <div class="al-lbl">01 · Isolation</div>
+        <h3 class="h-sub" style="font-size:18px;margin:8px 0">Tenant isolation</h3>
+        <p style="font-size:14px;margin:0">Row-level security per tenant, enforced
+          in the database. Your data never co-mingles with another prime's.</p>
+      </article>
+      <article class="al-card" style="padding:20px">
+        <div class="al-lbl">02 · Record</div>
+        <h3 class="h-sub" style="font-size:18px;margin:8px 0">Append-only audit</h3>
+        <p style="font-size:14px;margin:0">Every call recorded with inputs, tools
+          called, outputs, and citations. Denials recorded too. Exportable for the file.</p>
+      </article>
+      <article class="al-card" style="padding:20px">
+        <div class="al-lbl">03 · Consent</div>
+        <h3 class="h-sub" style="font-size:18px;margin:8px 0">Scoped grants</h3>
+        <p style="font-size:14px;margin:0">Tool groups, fields, and expiry per
+          grantee. Teaming requests reveal identity only on mutual consent.</p>
+      </article>
+      <article class="al-card" style="padding:20px">
+        <div class="al-lbl">04 · Authority</div>
+        <h3 class="h-sub" style="font-size:18px;margin:8px 0">Designated approvers</h3>
+        <p style="font-size:14px;margin:0">The agent proposes; a person disposes.
+          Read-only tools run automatically. Anything that acts pauses for approval.</p>
+      </article>
+      <article class="al-card" style="padding:20px">
+        <div class="al-lbl">05 · Provenance</div>
+        <h3 class="h-sub" style="font-size:18px;margin:8px 0">Forensic watermarking</h3>
+        <p style="font-size:14px;margin:0">Persists on drafts and on final exports.
+          Unwatermarked export is gated by tenant policy.</p>
+      </article>
+      <article class="al-card" style="padding:20px">
+        <div class="al-lbl">06 · Routing</div>
+        <h3 class="h-sub" style="font-size:18px;margin:8px 0">Provider routing</h3>
+        <p style="font-size:14px;margin:0">Model and region routing under tenant
+          control, with security checks in the build pipeline.</p>
+      </article>
+    </div>
+
+    <!-- Claim posture. This block is the one that most needs to be
+         honest, and honesty here is a sales asset, not a cost. -->
+    <div class="al-card al-edge al-edge--gate" style="margin-top:40px;padding:24px">
+      <div class="al-lbl" style="margin-bottom:12px">Compliance posture · stated plainly</div>
+      <div class="grid g2" style="gap:24px">
+        <div>
+          <p style="margin:0 0 12px;font-size:14.5px;color:var(--al-t1)">What the architecture is built on</p>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.9">
+            <li>Database-enforced tenant isolation</li>
+            <li>Append-only audit record, exportable</li>
+            <li>Designated-approver model on every acting tool</li>
+            <li>Tenant-controlled provider routing</li>
+            <li>Security checks in the build pipeline</li>
+            <li>Architecture designed against NIST SP 800-171 controls</li>
+          </ul>
+        </div>
+        <div>
+          <p style="margin:0 0 12px;font-size:14.5px;color:var(--al-t1)">What is a pathway, not a status</p>
+          <ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.9">
+            <li>FedRAMP High — <b style="color:var(--al-gold);font-weight:500">target pathway</b>.
+                ALIDADE is not FedRAMP Authorized.</li>
+            <li>NIST SP 800-171 — <b style="color:var(--al-gold);font-weight:500">designed against</b>;
+                no third-party assessment claimed.</li>
+            <li>SOC 2, CMMC, StateRAMP — <b style="color:var(--al-gold);font-weight:500">not claimed</b>;
+                current status is shared in a <a href="#briefing">briefing</a>.</li>
+          </ul>
+          <span class="al-proof" style="margin-top:14px">
+            We publish the distinction between an architecture and an
+            authorization because your security reviewer will find it anyway.
+            Bring your CISO — we will walk the architecture end to end.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== PRICING ========================== -->
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow">Planned tiers at launch · TBD 2027</p>
+    <h2 class="h-section">Planned to scale with the mission.</h2>
+    <p class="lede">
+      At launch, the plans run from a single capture lead to an isolated, audited
+      enterprise tenancy. Tiers are planned, not on sale. Pricing on request:
+      it is scoped to your capture shop. <a href="#briefing">Request a briefing</a>.
+    </p>
+
+    <div class="grid tiers">
+      <article class="al-card tier">
+        <div class="tier__name">Scout</div>
+        <div class="tier__for">One capture lead, watching the field.</div>
+        <ul><li>Opportunity search</li><li>Win scoring, read-only</li><li>Run ledger</li></ul>
+      </article>
+      <article class="al-card tier">
+        <div class="tier__name">Light</div>
+        <div class="tier__for">A small shop running two or three pursuits.</div>
+        <ul><li>Everything in Scout</li><li>Pipeline</li><li>GovFeed signals</li></ul>
+      </article>
+      <article class="al-card tier">
+        <div class="tier__name">Analyst</div>
+        <div class="tier__for">A capture team with teaming in play.</div>
+        <ul><li>Partner marketplace</li><li>Scoped grants</li><li>Competitive intel</li></ul>
+      </article>
+      <article class="al-card tier tier--feature">
+        <div class="tier__name">Captain</div>
+        <div class="tier__for">A full capture organization, proposal included.</div>
+        <ul><li>Bid Builder</li><li>One Voice</li><li>Compliance matrix</li><li>MCP server access</li></ul>
+      </article>
+      <article class="al-card tier">
+        <div class="tier__name">Enterprise</div>
+        <div class="tier__for">Isolated tenancy with governance obligations.</div>
+        <ul><li>Dedicated isolation</li><li>Gov mode</li><li>Export controls</li><li>Named support</li></ul>
+      </article>
+    </div>
+    <div class="cta-row" style="margin-top:28px">
+      <a href="mailto:sales@alidade.us" class="al-btn al-btn--primary">Request a briefing</a>
+      <a href="mailto:sales@alidade.us" class="al-btn al-btn--secondary">Join the design-partner program</a>
+    </div>
+    <span class="al-proof">
+      Tier names and contents describe the planned launch packaging and may change.
+      Return-on-investment modelling is available in a briefing, run against your
+      own pursuit history. We do not publish a savings percentage we cannot cite.
+    </span>
+  </div>
+</section>
+
+<!-- =========================== THE ASK =========================== -->
+
+<section class="al-turn">
+  <img src="assets/logos/alidade-mark-512.png" width="502" height="512" alt="" aria-hidden="true">
+  <p>STARCHITECT flies the mission.<br>ALIDADE sources it.</p>
+  <div class="src">One company &middot; three platforms &middot; hypati.us</div>
+</section>
+
+<section class="alt deep" id="briefing">
+  <div class="wrap wrap--narrow" style="text-align:center">
+    <p class="eyebrow" style="justify-content:center">The ask</p>
+    <h2 class="h-section">Pick one pursuit. We run it together in 90 days.</h2>
+    <p class="lede" style="margin-inline:auto;text-align:center">
+      You name the capture and the subs. We connect the team, scope the grants,
+      and deliver the cited sourcing section with its ledger.
+    </p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="mailto:sales@alidade.us" class="al-btn al-btn--primary">Request a briefing</a>
+      <a href="tel:+12532304166" class="al-btn al-btn--secondary">253.230.4166</a>
+    </div>
+    <img src="assets/logos/alidade-lockup-web-600.png" alt="ALIDADE — Hypatius Capture Intelligence"
+         width="220" height="239" style="display:block;margin:40px auto 0;width:220px;height:auto;filter:drop-shadow(0 0 28px rgba(33,224,205,.3))">
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logos/alidade-wordmark-720.png" alt="ALIDADE" width="180" height="25" style="display:block;width:180px;height:auto">
+        <p style="font-size:13.5px;margin:12px 0 0;max-width:34ch;color:var(--al-t2)">
+          Capture decision intelligence. A HYPATIUS platform.
+        </p>
+        <p style="font-family:var(--al-font-display);font-size:17px;color:var(--al-t1);margin:18px 0 0">
+          Clarity for contested environments.
+        </p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#screens">The instrument</a></li>
+          <li><a href="#tools">Tool groups</a></li>
+          <li><a href="#score">Scoring</a></li>
+          <li><a href="#teaming">Teaming</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#governance">Governance</a></li>
+          <li><a href="https://hypati.us">HYPATIUS ↗</a></li>
+          <li><a href="https://starchitect.us">STARCHITECT ↗</a></li>
+          <li><a href="https://www.linkedin.com/company/alidade-hq/">LinkedIn ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:sales@alidade.us">sales@alidade.us</a></li>
+          <li><a href="mailto:leadership@hypati.us">leadership@hypati.us</a></li>
+          <li><a href="tel:+12532304166">253.230.4166</a></li>
+          <li>Charleston, SC</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-legal">
+      <span class="al-stamp">UEI UKELB3UV76V6 · CAGE 19S89</span>
+      <span>HYPATIUS, LLC · small business · non-traditional defense contractor</span>
+      <span>FedRAMP High — target pathway. Not FedRAMP Authorized.</span>
+      <span style="margin-left:auto">© 2026 HYPATIUS, LLC. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/alidade-sting-v1.js" defer></script>
+<script src="assets/hero-v1/hero-runtime.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* HYPATIUS hero runtime: layers. Overlays inside a hero keep their resting state unless the scene drives them. */
+.hx{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.hx-poster,.hx-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hx-canvas{opacity:0}
+.hx-poster--start{display:none}
+html.hx-motion .hx-poster--start{display:block}
+html.hx-motion .hx-poster--end{display:none}
+.hx.hx-live .hx-canvas{opacity:1}
+.hx.hx-live .hx-poster{opacity:0}
+
+/* ALIDADE: the live scene replaces the pelagic photo field and the dial. The column panel (flat fill + hairline)
+   stays as the text surface. Card is a flat surface with a border: no shadow, no gradient. */
+section.hero[data-hx-hero]{min-height:max(720px,min(100vh,940px));display:grid;align-items:center}
+section.hero[data-hx-hero]::before,section.hero[data-hx-hero]::after{content:none}
+section.hero[data-hx-hero] .hx{z-index:-2}
+.hx-space{min-height:420px}
+.hx-card{position:absolute;left:59%;top:51%;width:250px;padding:14px 16px;border:1px solid var(--al-teal-edge,rgba(33,224,205,.4));background:rgba(6,13,27,.82);border-radius:3px;z-index:1;pointer-events:none}
+.hx-card .k{display:flex;justify-content:space-between;gap:10px;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--al-t3)}
+.hx-card .k b{color:var(--al-teal);font-weight:500}
+.hx-card .n{font:600 40px/1 'Barlow Condensed',sans-serif;margin:10px 0 4px;color:var(--al-t1)}
+.hx-card .n small{font:500 13px Inter,sans-serif;color:var(--al-t2);margin-left:6px}
+.hx-card .row{font:400 12px/1.5 'IBM Plex Mono',monospace;color:var(--al-t2)}
+.hx-bearing{position:absolute;left:54%;top:33%;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--al-teal);z-index:1;pointer-events:none;white-space:nowrap}
+@media (max-width:900px){.hx-card,.hx-bearing,.hx-space{display:none}}
+section.hero[data-hx-hero] .hero-col::before{background:rgba(6,13,27,.62)}
