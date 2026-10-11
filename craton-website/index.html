@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-brand="craton" data-theme="dark"><head>
+  <!-- First visit this session plays the intro sting (/intro), the way hypati.us and starchitect.us
+       open on theirs. Skipped inside the intro's own preload frame, for return visits in the session,
+       under reduced motion, for crawlers, and with ?stay. The intro sets the flag and returns here. -->
+  <script>(function(){try{if(window.top!==window.self)return;if(/[?&]stay\b/.test(location.search))return;
+if(/bot|crawl|spider|slurp|lighthouse|headless/i.test(navigator.userAgent))return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+if(sessionStorage.getItem('cr-intro-seen'))return;location.replace('/intro');}catch(e){}})()</script>
   <meta property="og:site_name" content="CRATON">
   <meta name="robots" content="index,follow">
   <link rel="stylesheet" href="css/craton.css">
@@ -8,6 +15,7 @@
   <link rel="stylesheet" href="assets/hero-v1/hero.css">
   <script>(function(){try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches||innerWidth<760||(navigator.connection&&navigator.connection.saveData);if(!m)document.documentElement.classList.add('hx-motion')}catch(e){}})()</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>CRATON — DCAA-ready timekeeping and the SF 1408 binder | HYPATIUS</title>
 <meta name="description" content="CRATON is the HYPATIUS Enterprise Resource Platform: DCAA-ready timekeeping, charge-code lifecycle, indirect rates and an always-current SF 1408 audit binder, with a complete, reviewable record of every AI-assisted run. Built for small and non-traditional defense contractors. In development; availability planned for 2027.">
 <meta property="og:title" content="CRATON — Nothing to see here. Exactly.">
