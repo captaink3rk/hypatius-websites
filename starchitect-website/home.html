@@ -252,6 +252,7 @@
           <h3>Request access</h3>
           <p class="help">Qualified leads receive the technical whitepaper, pitch deck, and a briefing scheduler.</p>
           <form id="briefingForm" action="mailto:leadership@hypati.us" method="post" enctype="text/plain">
+            <div class="fg" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"><label for="bf-website">Website</label><input type="text" id="bf-website" name="website" tabindex="-1" autocomplete="off"></div>
             <div class="fg"><label for="bf-name">Full name</label><input type="text" id="bf-name" name="name" autocomplete="name" required placeholder="Jane Doe"></div>
             <div class="fg"><label for="bf-email">Work email</label><input type="email" id="bf-email" name="email" autocomplete="email" required placeholder="name@organization.gov"></div>
             <div class="fg"><label for="bf-org">Organization</label><input type="text" id="bf-org" name="organization" autocomplete="organization" required placeholder="U.S. Space Force, Lockheed Martin…"></div>
@@ -274,8 +275,10 @@
         </div>
         <div class="form-success" id="formSuccess">
           <div class="ck">✓</div>
-          <h3>Your request is ready to send.</h3>
-          <p style="color:var(--slate);">Your email app has opened a pre-filled message to leadership@hypati.us. Send it to complete the request; a member of our team will respond within one business day with the technical whitepaper and a briefing scheduler. If no message opened, email <a href="mailto:leadership@hypati.us" style="color:var(--gold);">leadership@hypati.us</a> directly.</p>
+          <div data-sent><h3>Request received.</h3>
+          <p style="color:var(--slate);">Your request is with leadership@hypati.us. A member of our team will reply to your work email within one business day with the technical whitepaper and a briefing scheduler.</p></div>
+          <div data-fallback hidden><h3>Your request is ready to send.</h3>
+          <p style="color:var(--slate);">Your email app has opened a pre-filled message to leadership@hypati.us. Send it to complete the request; a member of our team will respond within one business day with the technical whitepaper and a briefing scheduler. If no message opened, email <a href="mailto:leadership@hypati.us" style="color:var(--gold);">leadership@hypati.us</a> directly.</p></div>
         </div>
       </div>
     </div>
@@ -308,10 +311,9 @@
       document.querySelectorAll('.branch').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-branch') === sel.value); });
     });
     var form = document.getElementById('briefingForm');
-    // Phase 1: the form used to show success and send nothing. It now composes a
-    // mailto: to leadership@hypati.us carrying every field, opens it, then shows
-    // the confirmation. Native validation (incl. the required U.S. Person / ITAR
-    // attestation) runs before this handler fires.
+    // Sends through /api/contact (Resend -> leadership@hypati.us). If the server
+    // can't be reached it falls back to a pre-filled mailto:. Native validation
+    // (incl. the required U.S. Person / ITAR attestation) runs before this fires.
     if (form) form.addEventListener('submit', function (e) {
       e.preventDefault();
       var v = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
@@ -319,20 +321,33 @@
       var typeLabel = typeEl && typeEl.selectedIndex > 0 ? typeEl.options[typeEl.selectedIndex].text : '';
       var branchMap = { gov: ['agency', 'Agency or component'], prime: ['program', 'Program or division'],
                         investor: ['firm_type', 'Firm type'], press: ['publication', 'Publication'] };
-      var lines = [
-        'Full name: ' + v('name'),
-        'Work email: ' + v('email'),
-        'Organization: ' + v('organization'),
-        'Which best describes you: ' + typeLabel
+      var fields = [
+        ['Full name', v('name')],
+        ['Work email', v('email')],
+        ['Organization', v('organization')],
+        ['Which best describes you', typeLabel]
       ];
       var br = branchMap[v('lead_type')];
-      if (br) lines.push(br[1] + ': ' + v(br[0]));
-      lines.push('U.S. Person attestation (ITAR 22 C.F.R. 120.62): ' + (form.elements['us_person'] && form.elements['us_person'].checked ? 'Confirmed' : 'Not confirmed'));
+      if (br) fields.push([br[1], v(br[0])]);
+      fields.push(['U.S. Person attestation (ITAR 22 C.F.R. 120.62)', form.elements['us_person'] && form.elements['us_person'].checked ? 'Confirmed' : 'Not confirmed']);
       var subject = 'STARCHITECT briefing request \u2014 ' + v('organization');
-      window.location.href = 'mailto:leadership@hypati.us?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(lines.join('\r\n'));
-      document.getElementById('formFields').style.display = 'none';
-      document.getElementById('formSuccess').classList.add('active');
+      var href = 'mailto:leadership@hypati.us?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(fields.map(function (f) { return f[0] + ': ' + f[1]; }).join('\r\n'));
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ site: 'starchitect', name: v('name'), email: v('email'), subject: subject, fields: fields, website: v('website') })
+      }).then(function (r) { return r.ok; }, function () { return false; }).then(function (sent) {
+        if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+        if (!sent) window.location.href = href;
+        var ok = document.getElementById('formSuccess');
+        ok.querySelector('[data-sent]').hidden = !sent;
+        ok.querySelector('[data-fallback]').hidden = sent;
+        document.getElementById('formFields').style.display = 'none';
+        ok.classList.add('active');
+      });
     });
   })();
 </script>
