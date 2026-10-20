@@ -161,22 +161,39 @@
     function val(n) { var f = form.elements[n]; return f ? String(f.value || '').trim() : ''; }
     var name = val('name'), org = val('organization');
     var subject = 'Briefing request \u2014 ' + (org ? name + ' / ' + org : name);
-    var body = [
-      'Name: ' + name,
-      'Organization: ' + (org || '-'),
-      'Work email: ' + val('email'),
-      'Mission: ' + val('mission'),
-      '',
-      'How can we help?',
-      val('message') || '-'
-    ].join('\r\n');
+    var fields = [
+      ['Name', name],
+      ['Organization', org],
+      ['Work email', val('email')],
+      ['Mission', val('mission')],
+      ['How can we help?', val('message')]
+    ];
+    var body = fields.map(function (f) { return f[0] + ': ' + (f[1] || '-'); }).join('\r\n');
     var href = 'mailto:leadership@hypati.us?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    window.location.href = href;
     var ok = document.getElementById('formOk');
     var link = document.getElementById('formMailto');
+    var btn = form.querySelector('button[type="submit"]');
     if (link) link.setAttribute('href', href);
-    form.style.display = 'none';
-    if (ok) { ok.style.display = 'block'; ok.focus(); }
+    function show(sent) {
+      if (ok) {
+        var t = ok.querySelector('[data-sent]'), f = ok.querySelector('[data-fallback]');
+        if (t) t.hidden = !sent; if (f) f.hidden = sent;
+      }
+      form.style.display = 'none';
+      if (ok) { ok.style.display = 'block'; ok.focus(); }
+    }
+    if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+    /* Send through /api/contact (Resend -> leadership@hypati.us). If the
+       server can't be reached, fall back to a pre-filled email. */
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ site: 'hypatius', name: name, email: val('email'), subject: subject, fields: fields, website: val('website') })
+    }).then(function (r) { return r.ok; }, function () { return false; }).then(function (sent) {
+      if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+      if (!sent) window.location.href = href;
+      show(sent);
+    });
   });
 
   /* ---------------- Subnav scrollspy (inner pages) ---------------- */

@@ -173,6 +173,8 @@
       </div>
       <div class="reveal" data-delay="120">
         <form id="briefingForm" action="mailto:leadership@hypati.us" method="post" enctype="text/plain">
+          <div class="fld" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
           <div class="form__row">
             <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jane Operator" required></div>
             <div class="fld"><label for="f-org">Organization</label><input id="f-org" name="organization" type="text" autocomplete="organization" placeholder="Agency / Prime"></div>
@@ -188,11 +190,13 @@
             </select></div>
           <div class="fld"><label for="f-msg">How can we help?</label><textarea id="f-msg" name="message" placeholder="Briefly describe your mission need."></textarea></div>
           <button class="btn btn--primary" type="submit">Request a briefing <span class="btn__arrow">&rarr;</span></button>
-          <p class="proof" style="margin-top:1rem;">Opens a pre-filled email to leadership@hypati.us in your mail app. Nothing is sent until you send it.</p>
+          <p class="proof" style="margin-top:1rem;">Goes straight to leadership@hypati.us. We reply to the work email you give.</p>
         </form>
         <div class="form__ok" id="formOk" style="display:none;" role="status" tabindex="-1">
-          <strong>Your email is ready.</strong>
-          <p style="color:var(--slate-400);">We opened a pre-filled briefing request to leadership@hypati.us in your mail app. Send it from there and someone from leadership will respond within one business day. If nothing opened, <a id="formMailto" href="mailto:leadership@hypati.us" style="color:var(--accent-hero);">open the email again</a> or write to leadership@hypati.us directly.</p>
+          <div data-sent><strong>Request received.</strong>
+          <p style="color:var(--slate-400);">Your briefing request is with leadership@hypati.us. Someone from leadership will reply to your work email within one business day.</p></div>
+          <div data-fallback hidden><strong>Your email is ready.</strong>
+          <p style="color:var(--slate-400);">We opened a pre-filled briefing request to leadership@hypati.us in your mail app. Send it from there and someone from leadership will respond within one business day. If nothing opened, <a id="formMailto" href="mailto:leadership@hypati.us" style="color:var(--accent-hero);">open the email again</a> or write to leadership@hypati.us directly.</p></div>
         </div>
       </div>
     </div>
@@ -235,6 +239,6 @@
 <!-- @family:end -->
 </footer>
 
-<script src="/site/flagship-v7.js"></script>
+<script src="/site/flagship-v7.js?v=contact1"></script>
 </body>
 </html>
