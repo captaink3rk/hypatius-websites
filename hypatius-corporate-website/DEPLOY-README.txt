@@ -1,21 +1,18 @@
-HYPATIUS · SID 2026 website fix
+HYPATIUS · Field Notes · CEO 01 "Moving at the speed of need"
 
-Copy these into the ROOT of the hypati.us site in the repo (the same folder that holds
-home.html, company.html and the site/ folder), keeping the folders exactly as they are:
+Drag these FOLDERS into hypatius-corporate-website/ on GitHub (same place as home.html,
+news.html, news/ and site/). Dragging folders keeps the paths; the file picker does not.
 
-  news.html                                   -> replaces the current news.html
-  news/space-industry-days-2026.html          -> new file inside a news/ folder at the site root
-                                                 (create the folder if it is not there)
-  site/img/sid-2026-hero.jpg                  -> new file inside the existing site/img/ folder
-  site/img/og-sid-2026-1200x630.jpg           -> new file inside the existing site/img/ folder
+  field-notes/speed-of-need.html                 -> NEW folder field-notes/ (creates the page)
+  site/img/field-notes-speed-of-need-hero.jpg    -> into existing site/img/
+  site/img/ceo01-speed-of-need-1200x627.jpg      -> into existing site/img/
+  news.html                                      -> replaces news.html (adds the CEO 01 card on top;
+                                                    SID and Kennedy cards unchanged)
 
-Then delete the stray copies from the last upload, which landed in the wrong place:
-  news-space-industry-days-2026.html, sid-2026-hero.jpg, og-sid-2026-1200x630.jpg
-  (at the site root, beside news.html)
+Result: https://hypati.us/field-notes/speed-of-need
 
-Tip: GitHub's "Add files via upload" keeps folders only when you drag the folders in.
-Choosing files with the file picker drops them all into one folder.
-
-After deploy, check:
-  https://hypati.us/news                              (SID card shows the spacecraft image)
-  https://hypati.us/news/space-industry-days-2026     (QR target; loads with header image)
+Check after deploy (in a private window):
+  - the page loads with the spacecraft header image
+  - /news shows the new card first, with its image
+  - paste the URL into LinkedIn's Post Inspector (linkedin.com/post-inspector) so the
+    preview picks up the 1200x627 image before Stan posts
