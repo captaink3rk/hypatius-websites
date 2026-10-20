@@ -107,8 +107,9 @@
 <div class="cr-cta cr-cta--inline" id="request">
   <p class="cr-eb">Get in touch</p>
   <h2 class="cr-disp">Request a walkthrough</h2>
-  <p class="cr-lede">Tell us your award type and the week that works. The form writes the email for you; nothing is sent until you send it from your own mail app. We send two times back, not a scheduling link.</p>
+  <p class="cr-lede">Tell us your award type and the week that works. The request goes straight to leadership@hypati.us. We send two times back, not a scheduling link.</p>
   <form class="cr-form" id="wt-form" action="mailto:leadership@hypati.us" method="post" enctype="text/plain" novalidate>
+    <div class="cr-form__f" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"><label for="wt-website">Website</label><input id="wt-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
     <div class="cr-form__f"><label for="wt-name">Name</label><input id="wt-name" name="Name" type="text" autocomplete="name" required></div>
     <div class="cr-form__f"><label for="wt-org">Organization</label><input id="wt-org" name="Organization" type="text" autocomplete="organization" required></div>
     <div class="cr-form__f"><label for="wt-email">Work email</label><input id="wt-email" name="Email" type="email" autocomplete="email" required></div>
@@ -127,14 +128,17 @@
     <div class="cr-form__f cr-form__f--wide"><label for="wt-notes">Your hard part <span class="cr-form__hint">(optional)</span></label><textarea id="wt-notes" name="Your hard part" rows="4" placeholder="Floor checks, unallowables, an indirect base nobody has defended in writing"></textarea></div>
     <p class="cr-form__err" id="wt-err" role="alert" hidden><span class="cr-sm cr-sm--attention" aria-hidden="true"></span><span id="wt-err-t">Name, organization and a valid work email are needed.</span></p>
     <div class="cr-form__act">
-      <button class="cr-btn" type="submit">Compose the email</button>
+      <button class="cr-btn" type="submit">Send the request</button>
       <span class="cr-form__hint">Or write to <a href="mailto:leadership@hypati.us?subject=CRATON%20walkthrough%20request">leadership@hypati.us</a></span>
     </div>
   </form>
   <div class="cr-confirm" id="wt-confirm" hidden tabindex="-1">
-    <p class="cr-status cr-status--sm"><span class="cr-sm cr-sm--settled" aria-hidden="true"></span>Email composed</p>
+    <div data-sent><p class="cr-status cr-status--sm"><span class="cr-sm cr-sm--settled" aria-hidden="true"></span>Request sent</p>
+    <h3 class="cr-disp">We have it.</h3>
+    <p>Your walkthrough request is with leadership@hypati.us. We reply to your work email with two times.</p></div>
+    <div data-fallback hidden><p class="cr-status cr-status--sm"><span class="cr-sm cr-sm--settled" aria-hidden="true"></span>Email composed</p>
     <h3 class="cr-disp">Check your mail app.</h3>
-    <p>Your request to leadership@hypati.us is written and waiting in your mail app. Send it from there and we reply with two times. If nothing opened, <a id="wt-again" href="mailto:leadership@hypati.us">open the email again</a> or write to leadership@hypati.us directly.</p>
+    <p>Your request to leadership@hypati.us is written and waiting in your mail app. Send it from there and we reply with two times. If nothing opened, <a id="wt-again" href="mailto:leadership@hypati.us">open the email again</a> or write to leadership@hypati.us directly.</p></div>
     <p><button class="cr-btn cr-btn--ghost" type="button" id="wt-edit">Edit the request</button></p>
   </div>
   <p class="cr-avail">CRATON is in development; availability planned for 2027 (TBD). Walkthroughs by request.</p>
@@ -218,8 +222,17 @@ form.addEventListener("submit", function(e){
   body+="\n\nSent from craton-erp.us/walkthrough";
   var href="mailto:leadership@hypati.us?subject="+encodeURIComponent("CRATON walkthrough request \u2014 "+v("wt-org"))+"&body="+encodeURIComponent(body);
   again.href=href;
-  window.location.href=href;
-  form.hidden=true; ok.hidden=false; ok.focus();
+  var btn=form.querySelector('button[type="submit"]'); btn.disabled=true;
+  fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({site:"craton",name:v("wt-name"),email:v("wt-email"),
+      subject:"CRATON walkthrough request \u2014 "+v("wt-org"),fields:fields,website:v("wt-website")})})
+  .then(function(r){return r.ok;},function(){return false;}).then(function(sent){
+    btn.disabled=false;
+    if(!sent) window.location.href=href;
+    ok.querySelector("[data-sent]").hidden=!sent;
+    ok.querySelector("[data-fallback]").hidden=sent;
+    form.hidden=true; ok.hidden=false; ok.focus();
+  });
 });
 edit.addEventListener("click", function(){ ok.hidden=true; form.hidden=false; document.getElementById("wt-name").focus(); });
 })();
